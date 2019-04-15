@@ -2,19 +2,19 @@
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
         <servlet-name>SiteDAO</servlet-name>
-        <servlet-class>dao.SiteDAO</servlet-class>
+        <servlet-class>DAO.SiteDAO</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TeatroDAO</servlet-name>
-        <servlet-class>dao.TeatroDAO</servlet-class>
+        <servlet-class>DAO.TeatroDAO</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>UsuarioDAO</servlet-name>
-        <servlet-class>dao.UsuarioDAO</servlet-class>
+        <servlet-class>DAO.UsuarioDAO</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PromocaoDAO</servlet-name>
-        <servlet-class>dao.PromocaoDAO</servlet-class>
+        <servlet-class>DAO.PromocaoDAO</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>cadastraSite</servlet-name>
@@ -26,31 +26,31 @@
     </servlet>
     <servlet>
         <servlet-name>CadastraSite</servlet-name>
-        <servlet-class>servlets.CadastraSite</servlet-class>
+        <servlet-class>Controllers.CadastraSite</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditaSite</servlet-name>
-        <servlet-class>servlets.EditaSite</servlet-class>
+        <servlet-class>Controllers.EditaSite</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>servlets.LoginServlet</servlet-class>
+        <servlet-class>Controllers.LoginServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CadastraTeatro</servlet-name>
-        <servlet-class>servlets.CadastraTeatro</servlet-class>
+        <servlet-class>Controllers.CadastraTeatro</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditaTeatro</servlet-name>
-        <servlet-class>servlets.EditaTeatro</servlet-class>
+        <servlet-class>Controllers.EditaTeatro</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>CadastraPromocao</servlet-name>
-        <servlet-class>servlets.CadastraPromocao</servlet-class>
+        <servlet-class>Controllers.CadastraPromocao</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditaPromocao</servlet-name>
-        <servlet-class>servlets.EditaPromocao</servlet-class>
+        <servlet-class>Controllers.EditaPromocao</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>SiteDAO</servlet-name>
