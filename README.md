@@ -10,7 +10,7 @@ Primeiro projeto da disciplina de Desenvolvimento de Software para a Web. Univer
 * Tela de listagem de sites de venda de ingressos
   * Não requer login
 * Tela de cadastro de salas de teatro
-  * E-mail, senha, cnpj, nome e cidade
+  * E-mail, senha, CNPJ, nome e cidade
   * CRUD
   * Login de administrador
 * Tela de listagem de salas de teatro
@@ -20,12 +20,12 @@ Primeiro projeto da disciplina de Desenvolvimento de Software para a Web. Univer
 * Tela de criação de promoção
   * Login de teatro
   * Escolher site
-  * Nome da peça, preço, dia, horário
+  * Nome da peça, preço, dia, horário, CNPJ
 * Tela de listagem de promoções por sala
   * Listar promoções por sala de teatro
   * Não requer login
 * Tela de listagem de promoções por site
-  * Login de Usuário
+  * Login de sala de teatro
 
 
 ## OBSERVAÇÕES
@@ -36,3 +36,4 @@ Primeiro projeto da disciplina de Desenvolvimento de Software para a Web. Univer
 * O sistema deve logar os erros no console;
 * O sistema deve implementar o MVC;
 * O sistema deve usar apenas JSP, Servlets, JDBC, CSS e Javascript;
+
