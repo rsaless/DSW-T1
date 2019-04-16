@@ -1,5 +1,6 @@
 package DAO;
 
+import Models.Promocao;
 import Models.Site;
 import Models.Teatro;
 import java.sql.Connection;
@@ -7,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,7 +17,8 @@ public class TeatroDAO extends GenericDAO{
     /* C */ private final String INSERIR = "INSERT INTO Teatro(email, senha, cidade, nome, cnpj) values (?,?,?,?,?)";   
     /* R */ private final String LISTAR = "SELECT * FROM Teatro";                                                        
     /* U */ private final String ATUALIZAR = "UPDATE Teatro SET email=?, senha=?, cidade=?, nome=?, cnpj=? WHERE id=?"; 
-    /* D */ private final String DELETAR = "DELETE FROM Teatro WHERE id=?";                                              
+    /* D */ private final String DELETAR = "DELETE FROM Teatro WHERE id=?";            
+    /* - */ private final String LISTAR_CIDADE = "SELECT * FROM Teatro WHERE cidade=?"; 
     
     /* C */ public void inserir(Teatro teatro) {
         try {
@@ -97,5 +101,35 @@ public class TeatroDAO extends GenericDAO{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    /* - */ public List<Teatro> listar_cidade(String cidade_desejada){
+        List<Teatro> teatros = new ArrayList<>();
+        
+        try {
+            Connection connection = this.getConnection();
+            PreparedStatement statement = connection.prepareStatement(LISTAR_CIDADE);
+            statement.setString(1, cidade_desejada);
+            ResultSet resultSet = statement.executeQuery();
+            
+            while (resultSet.next()) {                
+                String email = resultSet.getString("email");
+                String senha = resultSet.getString("senha");
+                String cidade = resultSet.getString("cidade");
+                String nome = resultSet.getString("nome");
+                Integer cnpj = resultSet.getInt("cnpj");
+                Integer id = resultSet.getInt("id");
+                
+                Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
+                teatros.add(teatro);
+            }
+            
+            resultSet.close();
+            statement.close();
+            connection.close();
+            
+        } catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return teatros; 
     }
 }

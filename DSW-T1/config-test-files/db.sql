@@ -32,3 +32,16 @@ create table Teatro (
     cnpj integer not null,
     constraint Teatro_PK PRIMARY KEY (id)
 );
+
+create table Promocao (
+    id integer not null generated always as identity (start with 1, increment by 1),
+    url varchar(40) not null,    
+    nome varchar(100) not null,
+    preco float(6,2) not null,
+    dia date not null,
+    hora time not null,
+    cnpj integer not null,
+    constraint Teatro_PK PRIMARY KEY (id),
+    constraint Site_FK FOREIGN KEY (url) REFERENCES Site(url),
+    constraint Teatro_FK FOREIGN KEY (cnpj) REFERENCES Teatro(cnpj)
+);
