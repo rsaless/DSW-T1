@@ -22,3 +22,13 @@ create table Site (
     telefone integer not null,
     constraint Site_PK PRIMARY KEY (id)
 );
+
+create table Teatro (
+    id integer not null generated always as identity (start with 1, increment by 1),
+    email varchar(50) not null,
+    senha varchar(100) not null,
+    cidade varchar(40) not null,
+    nome varchar(50) not null,
+    cnpj integer not null,
+    constraint Teatro_PK PRIMARY KEY (id)
+);
