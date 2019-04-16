@@ -37,3 +37,6 @@ Primeiro projeto da disciplina de Desenvolvimento de Software para a Web. Univer
 * O sistema deve implementar o MVC;
 * O sistema deve usar apenas JSP, Servlets, JDBC, CSS e Javascript;
 
+## PREPARANDO O AMBIENTE
+* Criar banco de dados Trabalho1 (usuario: root, senha: root);
+* Executar script db.sql (presente na pasta config-test-files);

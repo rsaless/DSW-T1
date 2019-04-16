@@ -1,16 +1,37 @@
 package Models;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Promocao {
     private String url;
     private String nome_peca;
     private Float preco;
-    private Date data_hora;
+    private LocalDate dia;    
+    private LocalTime hora;
     private Integer cnpj;
     private Integer id;
+
+    public Promocao(String url, String nome_peca, Float preco, LocalDate dia, LocalTime hora, Integer cnpj, Integer id) {
+        this.url = url;
+        this.nome_peca = nome_peca;
+        this.preco = preco;
+        this.dia = dia;
+        this.hora = hora;
+        this.cnpj = cnpj;
+        this.id = id;
+    }
+    public Promocao(String url, String nome_peca, Float preco, LocalDate dia, LocalTime hora, Integer cnpj) {
+        this.url = url;
+        this.nome_peca = nome_peca;
+        this.preco = preco;
+        this.dia = dia;
+        this.hora = hora;
+        this.cnpj = cnpj;
+    }
+    public Promocao(Integer id) {
+        this.id = id;
+    }
 
     public String getUrl() {
         return url;
@@ -33,23 +54,6 @@ public class Promocao {
         this.preco = preco;
     }
 
-    public String getData(){
-        // Retorna apenas a data (dia/mes/ano)
-        DateFormat data_format = new SimpleDateFormat("dd/MM/yyyy");
-	return data_format.format(this.getData_hora());
-    }
-    public String getHora(){
-        // Retorna apenas a hora (hh:mm:ss)
-        SimpleDateFormat hora_format = new SimpleDateFormat("HH:mm:ss");
-        return hora_format.format(this.getData_hora());
-    }
-    public Date getData_hora() {
-        return data_hora;
-    }
-    public void setData_hora(Date data_hora) {
-        this.data_hora = data_hora;
-    }
-
     public Integer getCnpj() {
         return cnpj;
     }
@@ -63,5 +67,35 @@ public class Promocao {
     public void setId(Integer id) {
         this.id = id;
     }
+
+    public LocalDate getData() {
+        return dia;
+    }
+    public void setData(LocalDate dia) {
+        this.dia = dia;
+    }
+
+    public LocalTime getHora() {
+        return hora;
+    }
+    public void setHora(LocalTime hora) {
+        this.hora = hora;
+    }
+    
     
 }
+
+/*
+Maneira antiga (não apagar)
+
+    public String getData(){
+        // Retorna apenas a data (dia/mes/ano)
+        DateFormat data_format = new SimpleDateFormat("dd/MM/yyyy");
+	return data_format.format(this.getData_hora());
+    }
+    public String getHora(){
+        // Retorna apenas a hora (hh:mm:ss)
+        SimpleDateFormat hora_format = new SimpleDateFormat("HH:mm:ss");
+        return hora_format.format(this.getData_hora());
+    }
+*/
