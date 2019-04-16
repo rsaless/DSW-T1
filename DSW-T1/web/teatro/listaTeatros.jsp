@@ -5,15 +5,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" type="text/css" href="/css/teste.css">
         <title>Listagem de Teatros</title>
     </head>
     <body>
         <center>
             <h1>TEATROS</h1>
             <h2>
-                <a href="adicionar_teatro">Adicionar novo Teatro </a>|
-                <a href="lista_teatros">Lista de Teatros</a>
+                <a href="cadastro">Adicionar novo Teatro </a>|
+                <a href="lista">Lista de Teatros</a>
             </h2>
         </center>
         <div align="center">

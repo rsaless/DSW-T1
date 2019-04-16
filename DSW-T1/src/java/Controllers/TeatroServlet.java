@@ -12,21 +12,41 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/teatro")
+@WebServlet(urlPatterns = "/bla/*")
 public class TeatroServlet extends HttpServlet {
+    
     private TeatroDAO dao;
+    
+    @Override
+    public void init() {
+        dao = new TeatroDAO();
+    }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         String action = request.getServletPath();
+        String uri = request.getRequestURI();
+        System.out.println(uri);
         try {
             switch (action){
-                case "/cadastro": apresentaFormCadastro(request, response); break;
-                // case "/insercao": insere(request, response); break;
-                case "/remocao": remove(request, response); break;
-                case "/edicao": apresentaFormEdicao(request, response); break;
-                // case "/atualizacao": atualize(request, response); break;
-                default: lista(request, response); break;
+                case "/cadastro": 
+                    apresentaFormCadastro(request, response); 
+                    break;
+                case "/insercao": 
+                    insere(request, response); 
+                    break;
+                case "/remocao": 
+                    remove(request, response); 
+                    break;
+                case "/edicao": 
+                    apresentaFormEdicao(request, response); 
+                    break;
+                case "/atualizacao": 
+                    atualize(request, response); 
+                    break;
+                default: 
+                    lista(request, response); 
+                    break;
             }
         } catch (RuntimeException | IOException | ServletException e) {
             throw new ServletException(e);
@@ -54,34 +74,37 @@ public class TeatroServlet extends HttpServlet {
         dispatcher.forward(request, response);
     }
     
-    /*
+    
     private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
         request.setCharacterEncoding("UTF-8");
-        String titulo = request.getParameter("titulo");
-        String autor = request.getParameter("autor");
-        Integer ano = Integer.parseInt(request.getParameter("ano"));
-        Float preco = Float.parseFloat(request.getParameter("preco"));
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        String cidade = request.getParameter("cidade");
+        String nome = request.getParameter("nome");
+        Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
 
-        Livro livro = new Livro(titulo, autor, ano, preco);
-        dao.insert(livro);
+        Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj);
+        dao.inserir(teatro);
         response.sendRedirect("lista");
     }
-    */
-    /*
+    
+    
     private void atualize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
         Integer id = Integer.parseInt(request.getParameter("id"));
-        String titulo = request.getParameter("titulo");
-        String autor = request.getParameter("autor");
-        Integer ano = Integer.parseInt(request.getParameter("ano"));
-        Float preco = Float.parseFloat(request.getParameter("preco"));
+        String email = request.getParameter("email");
+        String senha = request.getParameter("senha");
+        String cidade = request.getParameter("cidade");
+        String nome = request.getParameter("nome");
+        Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
 
-        Livro livro = new Livro(id, titulo, autor, ano, preco);
-        dao.update(livro);
+        Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
+        dao.atualizar(teatro);
         response.sendRedirect("lista");
     }
-    */
+    
 
     private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
@@ -89,11 +112,6 @@ public class TeatroServlet extends HttpServlet {
         Teatro teatro = new Teatro(id);
         dao.deletar(teatro);
         response.sendRedirect("lista");
-    }
-    
-    @Override
-    public void init() {
-        dao = new TeatroDAO();
     }
 
     @Override
