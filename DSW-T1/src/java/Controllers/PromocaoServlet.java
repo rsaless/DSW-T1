@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author rafap
  */
-public class CadastraPromocao extends HttpServlet {
+public class PromocaoServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

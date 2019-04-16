@@ -26,7 +26,7 @@
     </servlet>
     <servlet>
         <servlet-name>CadastraSite</servlet-name>
-        <servlet-class>Controllers.CadastraSite</servlet-class>
+        <servlet-class>Controllers.SiteServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditaSite</servlet-name>
@@ -38,7 +38,7 @@
     </servlet>
     <servlet>
         <servlet-name>CadastraTeatro</servlet-name>
-        <servlet-class>Controllers.CadastraTeatro</servlet-class>
+        <servlet-class>Controllers.TeatroServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditaTeatro</servlet-name>
@@ -46,7 +46,7 @@
     </servlet>
     <servlet>
         <servlet-name>CadastraPromocao</servlet-name>
-        <servlet-class>Controllers.CadastraPromocao</servlet-class>
+        <servlet-class>Controllers.PromocaoServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EditaPromocao</servlet-name>
