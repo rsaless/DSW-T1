@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/bla/*")
+@WebServlet(urlPatterns = "/teatro/*")
 public class TeatroServlet extends HttpServlet {
     
     private TeatroDAO dao;
@@ -24,9 +24,8 @@ public class TeatroServlet extends HttpServlet {
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
-        String action = request.getServletPath();
-        String uri = request.getRequestURI();
-        System.out.println(uri);
+        String action = request.getPathInfo();
+        if(action == null) action = "";
         try {
             switch (action){
                 case "/cadastro": 
@@ -57,19 +56,19 @@ public class TeatroServlet extends HttpServlet {
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Teatro> teatros = dao.listar();
         request.setAttribute("listaTeatros", teatros);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("teatro/listaTeatros.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_teatro/listaTeatros.jsp");
         dispatcher.forward(request, response);
     }
 
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("teatro/formTeatro.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_teatro/formTeatro.jsp");
         dispatcher.forward(request, response);
     }
 
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Teatro teatro = dao.get(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("teatro/formTeatro.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_teatro/formTeatro.jsp");
         request.setAttribute("teatro", teatro);
         dispatcher.forward(request, response);
     }
@@ -86,7 +85,7 @@ public class TeatroServlet extends HttpServlet {
 
         Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj);
         dao.inserir(teatro);
-        response.sendRedirect("lista");
+        response.sendRedirect("");
     }
     
     
@@ -102,7 +101,7 @@ public class TeatroServlet extends HttpServlet {
 
         Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
         dao.atualizar(teatro);
-        response.sendRedirect("lista");
+        response.sendRedirect("");
     }
     
 
@@ -111,7 +110,7 @@ public class TeatroServlet extends HttpServlet {
 
         Teatro teatro = new Teatro(id);
         dao.deletar(teatro);
-        response.sendRedirect("lista");
+        response.sendRedirect("");
     }
 
     @Override

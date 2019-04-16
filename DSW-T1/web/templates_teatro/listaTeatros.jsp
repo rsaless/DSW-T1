@@ -5,15 +5,15 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" type="text/css" href="/css/teste.css">
+        <link rel="stylesheet" href="css/bootstrap.css">
         <title>Listagem de Teatros</title>
     </head>
     <body>
         <center>
             <h1>TEATROS</h1>
             <h2>
-                <a href="cadastro">Adicionar novo Teatro </a>|
-                <a href="lista">Lista de Teatros</a>
+                <a href="teatro/cadastro">Adicionar novo Teatro </a>|
+                <a href="teatro">Lista de Teatros</a>
             </h2>
         </center>
         <div align="center">
@@ -37,9 +37,9 @@
                         <td><c:out value="${teatro.cidade}" /></td>
                         <td><c:out value="${teatro.cnpj}" /></td>
                         <td>
-                            <a href="edicao?id=<c:out value='${teatro.id}' />">Edição</a>
+                            <a href="teatro/edicao?id=<c:out value='${teatro.id}' />">Edição</a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="remocao?id=<c:out value='${teatro.id}' />" 
+                            <a href="teatro/remocao?id=<c:out value='${teatro.id}' />" 
                                onclick="return confirm('Tem certeza de que deseja excluir este item?');">
                                 Remoção
                             </a>                    	

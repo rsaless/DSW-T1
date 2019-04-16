@@ -14,7 +14,7 @@
             <h1>TEATROS</h1>
             <h2>
                 <a href="cadastro">Adicionar novo Teatro </a>|
-                <a href="lista">Lista de Teatros</a>
+                <a href="../teatro/">Lista de Teatros</a>
             </h2>
         </center>
         <div align="center">
