@@ -85,7 +85,7 @@ public class TeatroServlet extends HttpServlet {
 
         Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj);
         dao.inserir(teatro);
-        response.sendRedirect("");
+        response.sendRedirect("/DSW-T1/teatro");
     }
     
     
@@ -101,7 +101,7 @@ public class TeatroServlet extends HttpServlet {
 
         Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
         dao.atualizar(teatro);
-        response.sendRedirect("");
+        response.sendRedirect("/DSW-T1/teatro");
     }
     
 
@@ -110,7 +110,7 @@ public class TeatroServlet extends HttpServlet {
 
         Teatro teatro = new Teatro(id);
         dao.deletar(teatro);
-        response.sendRedirect("");
+        response.sendRedirect("/DSW-T1/teatro");
     }
 
     @Override
