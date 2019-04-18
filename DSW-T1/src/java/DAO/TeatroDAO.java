@@ -15,6 +15,7 @@ public class TeatroDAO extends GenericDAO{
     /* U */ private final String ATUALIZAR = "UPDATE Teatro SET email=?, senha=?, cidade=?, nome=?, cnpj=? WHERE id=?"; 
     /* D */ private final String DELETAR = "DELETE FROM Teatro WHERE id=?";            
     /* - */ private final String LISTAR_CIDADE = "SELECT * FROM Teatro WHERE cidade=?"; 
+    /* - */ private final String GET = "SELECT * FROM Teatro where id=?"; 
     
     /* C */ public void inserir(Teatro teatro) {
         try {
@@ -127,5 +128,32 @@ public class TeatroDAO extends GenericDAO{
             throw new RuntimeException(e);
         }
         return teatros; 
+    }
+    /* - */ public Teatro get(int id){     
+        Teatro teatro = null;
+        try {
+            Connection connection = this.getConnection();
+            PreparedStatement statement = connection.prepareStatement(GET);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            
+            if (resultSet.next()) {                
+                String email = resultSet.getString("email");
+                String senha = resultSet.getString("senha");
+                String cidade = resultSet.getString("cidade");
+                String nome = resultSet.getString("nome");
+                Integer cnpj = resultSet.getInt("cnpj");
+                
+                teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
+            }
+            
+            resultSet.close();
+            statement.close();
+            connection.close();
+            
+        } catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return teatro; 
     }
 }

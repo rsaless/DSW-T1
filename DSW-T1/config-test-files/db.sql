@@ -6,7 +6,7 @@ drop table Usuario;
 
 create table Usuario (
     id integer not null generated always as identity (start with 1, increment by 1),
-    email varchar(50) not null,
+    email varchar(50) not null unique,
     senha varchar(100) not null,
     ativo smallint not null,
     CONSTRAINT Usuario_PK PRIMARY KEY (id)
@@ -14,14 +14,14 @@ create table Usuario (
 
 create table Papel (
     id integer not null generated always as identity (start with 1, increment by 1),
-    email varchar(50) not null,
+    email varchar(50) not null unique,
     nome varchar(50) not null,
     constraint Papel_PK PRIMARY KEY (id)
 );
 
 create table Site (
     id integer not null generated always as identity (start with 1, increment by 1),
-    email varchar(50) not null,
+    email varchar(50) not null unique,
     senha varchar(100) not null,
     url varchar(40) not null,
     nome varchar(50) not null,
@@ -31,12 +31,12 @@ create table Site (
 
 create table Teatro (
     id integer not null generated always as identity (start with 1, increment by 1),
-    email varchar(50) not null,
+    email varchar(50) not null unique,
     senha varchar(100) not null,
     cidade varchar(40) not null,
     nome varchar(50) not null,
     cnpj integer not null,
-    constraint Teatro_PK PRIMARY KEY (cnpj)
+    constraint Teatro_PK PRIMARY KEY (cnpj) 
 );
 
 create table Promocao (
@@ -48,6 +48,6 @@ create table Promocao (
     hora time not null,
     cnpj integer not null,
     constraint Promocao_PK PRIMARY KEY (id),
-    constraint Site_FK FOREIGN KEY (url) REFERENCES Site(url),
-    constraint Teatro_FK FOREIGN KEY (cnpj) REFERENCES Teatro(cnpj)
+    constraint Site_FK FOREIGN KEY (url) REFERENCES Site(url) ON DELETE CASCADE,
+    constraint Teatro_FK FOREIGN KEY (cnpj) REFERENCES Teatro(cnpj) ON DELETE CASCADE
 );
