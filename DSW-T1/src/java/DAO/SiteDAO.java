@@ -13,7 +13,8 @@ public class SiteDAO extends GenericDAO{
     /* C */ private final String INSERIR = "INSERT INTO Site(email, senha, url, nome, telefone) values (?,?,?,?,?)";   
     /* R */ private final String LISTAR = "SELECT * FROM Site";                                                        
     /* U */ private final String ATUALIZAR = "UPDATE Site SET email=?, senha=?, url=?, nome=?, telefone=? WHERE id=?"; 
-    /* D */ private final String DELETAR = "DELETE FROM Site WHERE id=?";                                              
+    /* D */ private final String DELETAR = "DELETE FROM Site WHERE id=?";
+    /* - */ private final String GET = "SELECT * FROM Site where id=?"; 
     
     /* C */ public void inserir(Site site) {
         try {
@@ -96,5 +97,32 @@ public class SiteDAO extends GenericDAO{
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+    /* - */ public Site get(int id){     
+        Site site = null;
+        try {
+            Connection connection = this.getConnection();
+            PreparedStatement statement = connection.prepareStatement(GET);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            
+            if (resultSet.next()) {                
+                String email = resultSet.getString("email");
+                String senha = resultSet.getString("senha");
+                String url = resultSet.getString("url");
+                String nome = resultSet.getString("nome");
+                Integer telefone = resultSet.getInt("telefone");
+                
+                site = new Site(email, senha, url, nome, telefone, id);
+            }
+            
+            resultSet.close();
+            statement.close();
+            connection.close();
+            
+        } catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return site; 
     }
 }

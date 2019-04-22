@@ -17,6 +17,10 @@
         <servlet-name>TeatroServlet</servlet-name>
         <url-pattern>/teatro/*</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TeatroServlet</servlet-name>
+        <url-pattern>/site/*</url-pattern>
+    </servlet-mapping>
 -->
     <session-config>
         <session-timeout>
