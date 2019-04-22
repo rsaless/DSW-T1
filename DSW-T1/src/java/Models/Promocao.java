@@ -68,10 +68,10 @@ public class Promocao {
         this.id = id;
     }
 
-    public LocalDate getData() {
+    public LocalDate getDia() {
         return dia;
     }
-    public void setData(LocalDate dia) {
+    public void setDia(LocalDate dia) {
         this.dia = dia;
     }
 

@@ -1,86 +1,129 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Controllers;
 
+import DAO.PromocaoDAO;
+import Models.Promocao;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.util.List;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author rafap
- */
+@WebServlet(urlPatterns = "/promocao/*")
 public class PromocaoServlet extends HttpServlet {
-
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    
+    private PromocaoDAO dao;
+    
+    @Override
+    public void init() {
+        dao = new PromocaoDAO();
+    }
+    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet CadastraPromocao</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet CadastraPromocao at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        throws ServletException, IOException {
+        String action = request.getPathInfo();
+        if(action == null) action = "";
+        try {
+            switch (action){
+                case "/cadastro": 
+                    apresentaFormCadastro(request, response); 
+                    break;
+                case "/insercao": 
+                    insere(request, response); 
+                    break;
+                case "/remocao": 
+                    remove(request, response); 
+                    break;
+                case "/edicao": 
+                    apresentaFormEdicao(request, response); 
+                    break;
+                case "/atualizacao": 
+                    atualize(request, response); 
+                    break;
+                default: 
+                    lista(request, response); 
+                    break;
+            }
+        } catch (RuntimeException | IOException | ServletException e) {
+            throw new ServletException(e);
         }
+        
+    }
+    
+    private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        List<Promocao> promocoes = dao.listar();
+        request.setAttribute("listaPromocoes", promocoes);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/listaPromocoes.jsp");
+        dispatcher.forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+    private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/formPromocoes.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Promocao promocao = dao.get(id);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/formPromocoes.jsp");
+        request.setAttribute("promocao", promocao);
+        dispatcher.forward(request, response);
+    }
+    
+    private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        
+        request.setCharacterEncoding("UTF-8");
+        String url = request.getParameter("url");
+        String nome_peca = request.getParameter("nome_peca");
+        Float preco = Float.parseFloat(request.getParameter("preco"));
+        LocalDate dia = LocalDate.parse(request.getParameter("dia"));//"2017-02-05"
+        LocalTime hora = LocalTime.parse(request.getParameter("hora"));//"10:15:30"
+        Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
+
+        Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj);
+        dao.inserir(promocao);
+        response.sendRedirect("/DSW-T1/promocao");
+    }
+    
+    private void atualize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+        request.setCharacterEncoding("UTF-8");
+        Integer id = Integer.parseInt(request.getParameter("id"));
+        String url = request.getParameter("url");
+        String nome_peca = request.getParameter("nome_peca");
+        Float preco = Float.parseFloat(request.getParameter("preco"));
+        LocalDate dia = LocalDate.parse(request.getParameter("dia"));//"2017-02-05"
+        LocalTime hora = LocalTime.parse(request.getParameter("hora"));//"10:15:30"
+        Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
+
+        Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
+        dao.atualizar(promocao);
+        response.sendRedirect("/DSW-T1/promocao");
+    }
+    
+    private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        Promocao promocao = new Promocao(id);
+        dao.deletar(promocao);
+        response.sendRedirect("/DSW-T1/promocao");
+    }
+
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) 
+        throws ServletException, IOException {
         processRequest(request, response);
     }
 
-    /**
-     * Handles the HTTP <code>POST</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
+
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) 
+        throws ServletException, IOException {
         processRequest(request, response);
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
 }

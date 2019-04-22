@@ -12,7 +12,8 @@
                 <h1>Página Inicial</h1>
                 <h2>
                     <a href="/DSW-T1/site">Sites </a>|
-                    <a href="/DSW-T1/teatro">Teatros </a>
+                    <a href="/DSW-T1/teatro">Teatros </a> |
+                    <a href="/DSW-T1/promocao">Promocoes </a>
                 </h2>
         </center>
     </body>
