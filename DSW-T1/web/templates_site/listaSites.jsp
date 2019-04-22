@@ -15,7 +15,7 @@
                 <a href="/DSW-T1/site/cadastro">Adicionar novo Site </a>|
                 <a href="/DSW-T1/site">Lista de Sites</a>
             </h2>
-        </center><h1 align="center">SITES</h1>
+        </center>
         <div align="center">
             <h2>Lista de Sites</h2>
             <table border="1" cellpadding="5">
