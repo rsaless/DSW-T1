@@ -5,19 +5,19 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="../css/bootstrap.css">
+        <link rel="stylesheet" href="/DSW-T1/css/bootstrap.css">
         <title>Lista de Sites</title>
     </head>
     <body>
         <center>
             <h1>SITES</h1>
             <h2>
-                <a href="cadastro">Adicionar novo Site </a>|
-                <a href="../site/">Lista de Sites</a>
+                <a href="/DSW-T1/site/cadastro">Adicionar novo Site </a>|
+                <a href="/DSW-T1/site">Lista de Sites</a>
             </h2>
         </center><h1 align="center">SITES</h1>
         <div align="center">
-            <h2>Lista de Teatros</h2>
+            <h2>Lista de Sites</h2>
             <table border="1" cellpadding="5">
                 <tr>
                     <th>ID</th>
