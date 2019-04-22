@@ -14,9 +14,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PromocaoDAO extends GenericDAO{
-    /* C */ private final String INSERIR = "INSERT INTO Promocao(url, nome_peca, preco, dia, hora, cnpj) values (?,?,?,?,?)";   
+    /* C */ private final String INSERIR = "INSERT INTO Promocao(url, nome, preco, dia, hora, cnpj) values (?,?,?,?,?,?)";   
     /* R */ private final String LISTAR = "SELECT * FROM Promocao";                                                        
-    /* U */ private final String ATUALIZAR = "UPDATE Promocao SET url=?, nome_peca=?, preco=?, dia=?, hora=?, cnpj=? WHERE id=?"; 
+    /* U */ private final String ATUALIZAR = "UPDATE Promocao SET url=?, nome=?, preco=?, dia=?, hora=?, cnpj=? WHERE id=?"; 
     /* D */ private final String DELETAR = "DELETE FROM Promocao WHERE id=?";
     /* - */ private final String LISTAR_TEATRO = "SELECT * FROM Promocao WHERE cnpj=?"; 
     /* - */ private final String LISTAR_SITE = "SELECT * FROM Promocao WHERE site=?"; 
@@ -30,7 +30,7 @@ public class PromocaoDAO extends GenericDAO{
             statement.setString(1, promocao.getUrl());
             statement.setString(2, promocao.getNome_peca());
             statement.setFloat(3, promocao.getPreco());
-            statement.setDate(4, Date.valueOf(promocao.getData()));            
+            statement.setDate(4, Date.valueOf(promocao.getDia()));            
             statement.setTime(5, Time.valueOf(promocao.getHora()));
             statement.setInt(6, promocao.getCnpj());
             
@@ -52,7 +52,7 @@ public class PromocaoDAO extends GenericDAO{
             
             while (resultSet.next()) {                
                 String url = resultSet.getString("url");
-                String nome_peca = resultSet.getString("nome_peca");
+                String nome_peca = resultSet.getString("nome");
                 Float preco = resultSet.getFloat("preco");
                 LocalDate dia = resultSet.getDate("dia").toLocalDate();
                 LocalTime hora = resultSet.getTime("hora").toLocalTime();
@@ -80,7 +80,7 @@ public class PromocaoDAO extends GenericDAO{
             statement.setString(1, promocao.getUrl());
             statement.setString(2, promocao.getNome_peca());
             statement.setFloat(3, promocao.getPreco());
-            statement.setDate(4, Date.valueOf(promocao.getData()));            
+            statement.setDate(4, Date.valueOf(promocao.getDia()));            
             statement.setTime(5, Time.valueOf(promocao.getHora()));
             statement.setInt(6, promocao.getCnpj());
             statement.setInt(7, promocao.getId());
@@ -118,7 +118,7 @@ public class PromocaoDAO extends GenericDAO{
             
             while (resultSet.next()) {                
                 String url = resultSet.getString("url");
-                String nome_peca = resultSet.getString("nome_peca");
+                String nome_peca = resultSet.getString("nome");
                 Float preco = resultSet.getFloat("preco");
                 LocalDate dia = resultSet.getDate("dia").toLocalDate();
                 LocalTime hora = resultSet.getTime("hora").toLocalTime();
@@ -149,7 +149,7 @@ public class PromocaoDAO extends GenericDAO{
             
             while (resultSet.next()) {                
                 String url = resultSet.getString("url");
-                String nome_peca = resultSet.getString("nome_peca");
+                String nome_peca = resultSet.getString("nome");
                 Float preco = resultSet.getFloat("preco");
                 LocalDate dia = resultSet.getDate("dia").toLocalDate();
                 LocalTime hora = resultSet.getTime("hora").toLocalTime();
@@ -179,7 +179,7 @@ public class PromocaoDAO extends GenericDAO{
             
             if (resultSet.next()) {                
                 String url = resultSet.getString("url");
-                String nome_peca = resultSet.getString("nome_peca");
+                String nome_peca = resultSet.getString("nome");
                 Float preco = resultSet.getFloat("preco");
                 LocalDate dia = resultSet.getDate("dia").toLocalDate();
                 LocalTime hora = resultSet.getTime("hora").toLocalTime();

@@ -57,20 +57,20 @@ public class PromocaoServlet extends HttpServlet {
     
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Promocao> promocoes = dao.listar();
-        request.setAttribute("listaTeatros", promocoes);
+        request.setAttribute("listaPromocoes", promocoes);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/listaPromocoes.jsp");
         dispatcher.forward(request, response);
     }
 
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/formPromocao.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/formPromocoes.jsp");
         dispatcher.forward(request, response);
     }
 
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
         Promocao promocao = dao.get(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/formPromocao.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/formPromocoes.jsp");
         request.setAttribute("promocao", promocao);
         dispatcher.forward(request, response);
     }
@@ -106,7 +106,6 @@ public class PromocaoServlet extends HttpServlet {
         response.sendRedirect("/DSW-T1/promocao");
     }
     
-
     private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
 
