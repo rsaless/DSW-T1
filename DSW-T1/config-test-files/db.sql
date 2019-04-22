@@ -6,7 +6,7 @@ drop table Usuario;
 
 create table Usuario (
     id integer not null generated always as identity (start with 1, increment by 1),
-    email varchar(50) not null,
+    email varchar(50) not null unique,
     senha varchar(100) not null,
     ativo smallint not null,
     CONSTRAINT Usuario_PK PRIMARY KEY (id)
@@ -14,14 +14,14 @@ create table Usuario (
 
 create table Papel (
     id integer not null generated always as identity (start with 1, increment by 1),
-    email varchar(50) not null,
+    email varchar(50) not null unique,
     nome varchar(50) not null,
     constraint Papel_PK PRIMARY KEY (id)
 );
 
 create table Site (
     id integer not null generated always as identity (start with 1, increment by 1),
-    email varchar(50) not null,
+    email varchar(50) not null unique,
     senha varchar(100) not null,
     url varchar(40) not null,
     nome varchar(50) not null,
@@ -31,7 +31,7 @@ create table Site (
 
 create table Teatro (
     id integer not null generated always as identity (start with 1, increment by 1),
-    email varchar(50) not null,
+    email varchar(50) not null unique,
     senha varchar(100) not null,
     cidade varchar(40) not null,
     nome varchar(50) not null,
