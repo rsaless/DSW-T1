@@ -19,7 +19,7 @@
             <h1>SITES</h1>
             <h2>
                 <a href="cadastro">Adicionar novo Site </a>|
-                <a href="../teatro/">Lista de Sites</a>
+                <a href="../site/">Lista de Sites</a>
             </h2>
         </center>
         <div align="center">
