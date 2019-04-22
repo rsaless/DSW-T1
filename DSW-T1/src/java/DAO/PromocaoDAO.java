@@ -20,6 +20,7 @@ public class PromocaoDAO extends GenericDAO{
     /* D */ private final String DELETAR = "DELETE FROM Promocao WHERE id=?";
     /* - */ private final String LISTAR_TEATRO = "SELECT * FROM Promocao WHERE cnpj=?"; 
     /* - */ private final String LISTAR_SITE = "SELECT * FROM Promocao WHERE site=?"; 
+    /* - */ private final String GET = "SELECT * FROM Promocao where id=?"; 
     
     /* C */ public void inserir(Promocao promocao) {
         try {
@@ -167,5 +168,33 @@ public class PromocaoDAO extends GenericDAO{
             throw new RuntimeException(e);
         }
         return promocoes; 
+    }
+    /* - */ public Promocao get(int id){     
+        Promocao promocao = null;
+        try {
+            Connection connection = this.getConnection();
+            PreparedStatement statement = connection.prepareStatement(GET);
+            statement.setInt(1, id);
+            ResultSet resultSet = statement.executeQuery();
+            
+            if (resultSet.next()) {                
+                String url = resultSet.getString("url");
+                String nome_peca = resultSet.getString("nome_peca");
+                Float preco = resultSet.getFloat("preco");
+                LocalDate dia = resultSet.getDate("dia").toLocalDate();
+                LocalTime hora = resultSet.getTime("hora").toLocalTime();
+                Integer cnpj = resultSet.getInt("cnpj");
+                
+                promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
+            }
+            
+            resultSet.close();
+            statement.close();
+            connection.close();
+            
+        } catch(SQLException e) {
+            throw new RuntimeException(e);
+        }
+        return promocao; 
     }
 }
