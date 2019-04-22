@@ -36,7 +36,7 @@ create table Teatro (
     cidade varchar(40) not null,
     nome varchar(50) not null,
     cnpj integer not null,
-    constraint Teatro_PK PRIMARY KEY (cnpj)
+    constraint Teatro_PK PRIMARY KEY (cnpj) 
 );
 
 create table Promocao (
@@ -48,6 +48,6 @@ create table Promocao (
     hora time not null,
     cnpj integer not null,
     constraint Promocao_PK PRIMARY KEY (id),
-    constraint Site_FK FOREIGN KEY (url) REFERENCES Site(url),
-    constraint Teatro_FK FOREIGN KEY (cnpj) REFERENCES Teatro(cnpj)
+    constraint Site_FK FOREIGN KEY (url) REFERENCES Site(url) ON DELETE CASCADE,
+    constraint Teatro_FK FOREIGN KEY (cnpj) REFERENCES Teatro(cnpj) ON DELETE CASCADE
 );
