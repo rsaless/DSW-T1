@@ -39,5 +39,6 @@ Primeiro projeto da disciplina de Desenvolvimento de Software para a Web. Univer
 
 ## PREPARANDO O AMBIENTE
 * Criar banco de dados Trabalho1 (usuario: root, senha: root);
-* Executar script db.sql para criar as tabelas(presente na pasta config-test-files);
-* Executar script dados.sql para popular as tabelas(presente na pasta config-test-files);
+* Executar script db.sql para criar as tabelas (presente na pasta config-test-files);
+* Executar script dados.sql para popular as tabelas (presente na pasta config-test-files);
+* Executar script CriaUsuarios.java para criar os usuários e respectivos papeis (presente na pasta de códigos fonte login);

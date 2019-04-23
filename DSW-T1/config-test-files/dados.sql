@@ -1,3 +1,4 @@
+/*
 INSERT INTO Usuario(email, senha, ativo) VALUES ('usuario01@gmail.com', 'usuario01_pass', 1);
 INSERT INTO Usuario(email, senha, ativo) VALUES ('usuario02@gmail.com', 'usuario02_pass', 1);
 INSERT INTO Usuario(email, senha, ativo) VALUES ('usuario03@gmail.com', 'usuario03_pass', 1);
@@ -19,6 +20,7 @@ INSERT INTO Papel(email, nome) VALUES ('usuario07@gmail.com', 'USER_SITE');
 INSERT INTO Papel(email, nome) VALUES ('usuario08@gmail.com', 'USER_SITE');
 INSERT INTO Papel(email, nome) VALUES ('usuario09@gmail.com', 'USER_SITE');
 INSERT INTO Papel(email, nome) VALUES ('usuario10@gmail.com', 'USER_SITE');
+*/
 
 INSERT INTO Teatro(email, senha, cidade, nome, cnpj) VALUES ('teatro1@gmail.com', 'teatro1_pass', 'Cidade1', 'Teatro Cidade 1', 111000001);
 INSERT INTO Teatro(email, senha, cidade, nome, cnpj) VALUES ('teatro2@gmail.com', 'teatro2_pass', 'Cidade2', 'Teatro Cidade 2', 111000002);
