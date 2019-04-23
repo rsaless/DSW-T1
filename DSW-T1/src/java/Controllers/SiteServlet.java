@@ -1,6 +1,8 @@
 package Controllers;
 
+import DAO.PromocaoDAO;
 import DAO.SiteDAO;
+import Models.Promocao;
 import Models.Site;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,11 +17,13 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/site/*")
 public class SiteServlet extends HttpServlet {
     
-    private SiteDAO dao;
+    private SiteDAO siteDao;
+    private PromocaoDAO promocaoDao;
     
     @Override
     public void init() {
-        dao = new SiteDAO();
+        siteDao = new SiteDAO();
+        promocaoDao = new PromocaoDAO();
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -43,6 +47,9 @@ public class SiteServlet extends HttpServlet {
                 case "/atualizacao": 
                     atualize(request, response); 
                     break;
+                case "/detalhes": 
+                    detalhes(request, response); 
+                    break;
                 default: 
                     lista(request, response); 
                     break;
@@ -54,7 +61,7 @@ public class SiteServlet extends HttpServlet {
     }
     
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Site> sites = dao.listar();
+        List<Site> sites = siteDao.listar();
         request.setAttribute("listaSites", sites);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_site/listaSites.jsp");
         dispatcher.forward(request, response);
@@ -67,12 +74,23 @@ public class SiteServlet extends HttpServlet {
 
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Site site = dao.get(id);
+        Site site = siteDao.get(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_site/formSite.jsp");
         request.setAttribute("site", site);
         dispatcher.forward(request, response);
     }
     
+    private void detalhes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        int id = Integer.parseInt(request.getParameter("id"));
+        Site site = siteDao.get(id);
+        System.out.println(id);
+        System.out.println(site.getUrl());
+        List<Promocao> promocoes = promocaoDao.listar_site(site.getUrl());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_site/detalheSite.jsp");
+        request.setAttribute("site", site);
+        request.setAttribute("listaPromocoes", promocoes);
+        dispatcher.forward(request, response);
+    }
     
     private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
@@ -84,7 +102,7 @@ public class SiteServlet extends HttpServlet {
         Integer telefone = Integer.parseInt(request.getParameter("telefone"));
 
         Site site = new Site(email, senha, url, nome, telefone);
-        dao.inserir(site);
+        siteDao.inserir(site);
         response.sendRedirect("/DSW-T1/site");
     }
     
@@ -100,25 +118,23 @@ public class SiteServlet extends HttpServlet {
         Integer telefone = Integer.parseInt(request.getParameter("telefone"));
 
         Site site = new Site(email, senha, url, nome, telefone, id);
-        dao.atualizar(site);
+        siteDao.atualizar(site);
         response.sendRedirect("/DSW-T1/site");
     }
     
-
     private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
 
         Site site = new Site(id);
-        dao.deletar(site);
+        siteDao.deletar(site);
         response.sendRedirect("/DSW-T1/site");
     }
-
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
         processRequest(request, response);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
