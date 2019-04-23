@@ -1,6 +1,6 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <!DOCTYPE html>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
 <f:bundle basename="i18n.sistema">
     <html>
         <head>

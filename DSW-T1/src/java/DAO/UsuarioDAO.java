@@ -10,9 +10,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UsuarioDAO extends GenericDAO{
-    /* C */ private final String INSERIR_USUARIO = "INSERT INTO Usuario(email, senha, ativo) values (?,?,true)";   
+    /* C */ private final String INSERIR_USUARIO = "INSERT INTO Usuario(email, senha, ativo) values (?,?,1)";   
     /* C */ private final String INSERIR_ROLE = "INSERT INTO Papel(email, nome) values (?,?)"; 
     /* R */ private final String GET_USUARIO = "SELECT * FROM Usuario where email=?";
     /* R */ private final String LISTAR_USUARIOS = "SELECT * FROM Usuario";
@@ -22,15 +23,16 @@ public class UsuarioDAO extends GenericDAO{
     /* U */ private final String ATUALIZAR_ROLE = "UPDATE Usuario SET nome=?, WHERE email=?"; 
     /* U */ private final String ATIVA_DESATIVA = "UPDATE Usuario SET ativo=?, WHERE email=?"; 
     /* D */ private final String DELETAR_ID = "DELETE FROM Usuario WHERE id=?";
-    /* D */ private final String DELETAR_EMAIL = "DELETE FROM Usuario WHERE email=?";            
+    /* D */ private final String DELETAR_EMAIL = "DELETE FROM Usuario WHERE email=?";   
 
     /* C */ public void inserir_usuario(Usuario usuario) {
         try {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             Connection connection = this.getConnection();
             PreparedStatement statement = connection.prepareStatement(INSERIR_USUARIO);
             
             statement.setString(1, usuario.getEmail());
-            statement.setString(2, usuario.getSenha());
+            statement.setString(2, encoder.encode(usuario.getSenha()));
             
             statement.executeUpdate();
             statement.close();
@@ -168,11 +170,12 @@ public class UsuarioDAO extends GenericDAO{
     }    
     /* U */ public void atualizar_usuario(Usuario usuario) {
         try {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             Connection connection = this.getConnection();
             PreparedStatement statement = connection.prepareStatement(ATUALIZAR_USUARIO);
             
             statement.setString(1, usuario.getEmail());
-            statement.setString(2, usuario.getSenha());          
+            statement.setString(2, encoder.encode(usuario.getSenha()));          
             statement.setInt(3, usuario.getId());
 
             statement.executeUpdate();
@@ -190,8 +193,7 @@ public class UsuarioDAO extends GenericDAO{
             
             statement.setString(1, papel.getNome());
             statement.setString(2, papel.getEmail());
-            
-
+           
             statement.executeUpdate();
             statement.close();
             connection.close();
@@ -207,7 +209,6 @@ public class UsuarioDAO extends GenericDAO{
             
             statement.setBoolean(1, usuario.getAtivo());         
             statement.setInt(2, usuario.getId());
-
             statement.executeUpdate();
             statement.close();
             connection.close();
