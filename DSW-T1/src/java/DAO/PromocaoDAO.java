@@ -19,7 +19,7 @@ public class PromocaoDAO extends GenericDAO{
     /* U */ private final String ATUALIZAR = "UPDATE Promocao SET url=?, nome=?, preco=?, dia=?, hora=?, cnpj=? WHERE id=?"; 
     /* D */ private final String DELETAR = "DELETE FROM Promocao WHERE id=?";
     /* - */ private final String LISTAR_TEATRO = "SELECT * FROM Promocao WHERE cnpj=?"; 
-    /* - */ private final String LISTAR_SITE = "SELECT * FROM Promocao WHERE site=?"; 
+    /* - */ private final String LISTAR_SITE = "SELECT * FROM Promocao WHERE url=?"; 
     /* - */ private final String GET = "SELECT * FROM Promocao where id=?"; 
     
     /* C */ public void inserir(Promocao promocao) {

@@ -42,7 +42,9 @@
                             <a href="/DSW-T1/site/remocao?id=<c:out value='${site.id}' />" 
                                onclick="return confirm('Tem certeza de que deseja excluir este item?');">
                                 Remoção
-                            </a>                    	
+                            </a>  
+                            &nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="/DSW-T1/site/detalhes?id=<c:out value='${site.id}' />">Detalhes</a>
                         </td>
                     </tr>
                 </c:forEach>
