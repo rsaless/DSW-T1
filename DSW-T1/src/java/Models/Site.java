@@ -5,10 +5,10 @@ public class Site {
     private String senha;
     private String url;
     private String nome;
-    private Integer telefone;
+    private Long telefone;
     private Integer id;
 
-    public Site(String email, String senha, String url, String nome, Integer telefone, Integer id) {
+    public Site(String email, String senha, String url, String nome, Long telefone, Integer id) {
         this.email = email;
         this.senha = senha;
         this.url = url;
@@ -16,7 +16,7 @@ public class Site {
         this.telefone = telefone;
         this.id = id;
     }
-    public Site(String email, String senha, String url, String nome, Integer telefone) {
+    public Site(String email, String senha, String url, String nome, Long telefone) {
         this.email = email;
         this.senha = senha;
         this.url = url;
@@ -42,7 +42,7 @@ public class Site {
     public String getNome() {
         return nome;
     }
-    public Integer getTelefone() {
+    public Long getTelefone() {
         return telefone;
     }
     
@@ -58,7 +58,7 @@ public class Site {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public void setTelefone(Integer telefone) {
+    public void setTelefone(Long telefone) {
         this.telefone = telefone;
     }
     public void setId(Integer id) {

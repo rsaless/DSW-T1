@@ -99,7 +99,7 @@ public class SiteServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         String url = request.getParameter("url");
         String nome = request.getParameter("nome");
-        Integer telefone = Integer.parseInt(request.getParameter("telefone"));
+        Long telefone = Long.parseLong(request.getParameter("telefone"));
 
         Site site = new Site(email, senha, url, nome, telefone);
         siteDao.inserir(site);
@@ -115,7 +115,7 @@ public class SiteServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         String url = request.getParameter("url");
         String nome = request.getParameter("nome");
-        Integer telefone = Integer.parseInt(request.getParameter("telefone"));
+        Long telefone = Long.parseLong(request.getParameter("telefone"));
 
         Site site = new Site(email, senha, url, nome, telefone, id);
         siteDao.atualizar(site);
