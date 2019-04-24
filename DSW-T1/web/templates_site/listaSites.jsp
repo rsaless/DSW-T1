@@ -46,7 +46,7 @@
                                 <f:message key="listaSites.table.acoes.remover" />
                             </a>  
                             &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="/DSW-T1/site/detalhes?id=<c:out value='${site.id}' />">Detalhes</a>
+                            <a href="/DSW-T1/site/detalhes?id=<c:out value='${site.id}' />"><f:message key="listaSites.table.acoes.detalhes"/></a>
                         </td>
                     </tr>
                 </c:forEach>
