@@ -44,25 +44,25 @@
                     <div class="col-md-12 col-md-offset-6">
                         <table class="table table-bordered table-striped table-hover">
                             <tr class="col-md-2">
-                                <th><f:message key="listaPromocoes.table.id" /></th>
-                                <th><f:message key="listaPromocoes.table.site" /></th>
-                                <th><f:message key="listaPromocoes.table.peca" /></th>
-                                <th><f:message key="listaPromocoes.table.data" /></th>
-                                <th><f:message key="listaPromocoes.table.hora" /></th>
-                                <th><f:message key="listaPromocoes.table.preco" /></th>
-                                <th><f:message key="listaPromocoes.table.cnpj" /></th>
-                                <th><f:message key="listaPromocoes.table.acoes" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.id" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.site" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.peca" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.data" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.hora" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.preco" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.cnpj" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.acoes" /></th>
                             </tr>
                             <c:forEach var="promocao" items="${requestScope.listaPromocoes}">
                                 <tr>
-                                    <td><c:out value="${promocao.id}" /></td>
-                                    <td><c:out value="${promocao.url}" /></td>
-                                    <td><c:out value="${promocao.nome_peca}" /></td>
-                                    <td><c:out value="${promocao.dia}" /></td>
-                                    <td><c:out value="${promocao.hora}" /></td>
-                                    <td><c:out value="${promocao.preco}" /></td>
-                                    <td><c:out value="${promocao.cnpj}" /></td>
-                                    <td>
+                                    <td class="text-center"><c:out value="${promocao.id}" /></td>
+                                    <td class="text-center"><c:out value="${promocao.url}" /></td>
+                                    <td class="text-center"><c:out value="${promocao.nome_peca}" /></td>
+                                    <td class="text-center"><c:out value="${promocao.dia}" /></td>
+                                    <td class="text-center"><c:out value="${promocao.hora}" /></td>
+                                    <td class="text-center"><c:out value="${promocao.preco}" /></td>
+                                    <td class="text-center"><c:out value="${promocao.cnpj}" /></td>
+                                    <td class="text-center">
                                         <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />"><f:message key="listaPromocoes.table.acoes.editar" /></a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
