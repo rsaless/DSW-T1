@@ -16,17 +16,26 @@
             </style>
         </head>
         <body>
+            <div class="container">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a href="/DSW-T1/promocao" class="btn btn-default btn-lg"><f:message key="index.promocoes" /></a>
+                            <a href="/DSW-T1/site" class="btn btn-default btn-lg"><f:message key="index.sites" /> </a>
+                            <a href="/DSW-T1/teatro" class="btn btn-default btn-lg"><f:message key="index.teatros" /></a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
             <center>
                 <div class="container">
                     <div class="page-header">
                         <h1><f:message key="index.pageTitle" /></h1>
                     </div>
-                    <div class="btn-group btn-group-lg">
-                        <h2>
-                            <a href="/DSW-T1/site" class="btn btn-default btn-lg"><f:message key="index.sites" /> </a>
-                            <a href="/DSW-T1/teatro" class="btn btn-default btn-lg"><f:message key="index.teatros" /></a>
-                            <a href="/DSW-T1/promocao" class="btn btn-default btn-lg"><f:message key="index.promocoes" /></a>
-                        </h2>
+                    <div>
+                        <p>
+                            Alguma info
+                        </p>
                     </div>
                 </div>
             </center>

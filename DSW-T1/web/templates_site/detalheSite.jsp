@@ -8,14 +8,20 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/DSW-T1/css/bootstrap.css">
+        <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
         <title><f:message key="detalhesSite.title" /></title>
+        <style>
+            body{
+                font-family: 'Questrial', sans-serif;
+            }
+        </style>
     </head>
     <body>
         <center>
             <h1><f:message key="detalhesSite.bigTitle" /></h1>
             <h2>
-                <a href="/DSW-T1/promocao/cadastro"><f:message key="detalhesSite.goToAdd" /></a>|
-                <a href="/DSW-T1/site"><f:message key="detalhesSite.goToList" /></a>
+                <a href="/DSW-T1/promocao/cadastro" class="btn btn-default btn-lg"><f:message key="detalhesSite.goToAdd" /></a>
+                <a href="/DSW-T1/site" class="btn btn-default btn-lg"><f:message key="detalhesSite.goToList" /></a>
             </h2>
         </center>
         <div align="center">
