@@ -11,12 +11,18 @@
         </head>
         <body>
             <center>
-                    <h1><f:message key="index.pageTitle" /></h1>
-                    <h2>
-                        <a href="/DSW-T1/site"><f:message key="index.sites" /> </a>|
-                        <a href="/DSW-T1/teatro"><f:message key="index.teatros" /></a> |
-                        <a href="/DSW-T1/promocao"><f:message key="index.promocoes" /></a>
-                    </h2>
+                <div class="container">
+                    <div class="page-header">
+                        <h1><f:message key="index.pageTitle" /></h1>
+                    </div>
+                    <div class="btn-group btn-group-lg">
+                        <h2>
+                            <a href="/DSW-T1/site" class="btn btn-default btn-lg"><f:message key="index.sites" /> </a>
+                            <a href="/DSW-T1/teatro" class="btn btn-default btn-lg"><f:message key="index.teatros" /></a>
+                            <a href="/DSW-T1/promocao" class="btn btn-default btn-lg"><f:message key="index.promocoes" /></a>
+                        </h2>
+                    </div>
+                </div>
             </center>
         </body>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
