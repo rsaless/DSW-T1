@@ -60,7 +60,8 @@ public class SiteServlet extends HttpServlet {
                     break;
             }
         } catch (RuntimeException | IOException | ServletException e) {
-            throw new ServletException(e);
+            e.printStackTrace();
+            request.getRequestDispatcher("/templates_erro/500.jsp").forward(request, response);
         }
         
     }
