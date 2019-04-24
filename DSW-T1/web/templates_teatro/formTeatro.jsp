@@ -36,8 +36,8 @@
         <center>
             <h1><f:message key="formTeatro.bigTitle" /></h1>
             <h2>
-                <a href="cadastro"><f:message key="formTeatro.goToAdd" /></a>|
-                <a href="../teatro/"><f:message key="formTeatro.goToList" /></a>
+                <a href="cadastro" class="btn btn-default btn-lg"><f:message key="formTeatro.goToAdd" /></a>
+                <a href="../teatro/" class="btn btn-default btn-lg"><f:message key="formTeatro.goToList" /></a>
             </h2>
         </center>
         <div align="center">
@@ -47,36 +47,42 @@
                     <c:if test="${teatro != null}"><f:message key="formTeatro.smallTitle.editar" /></c:if>
                     <c:if test="${teatro == null}"><f:message key="formTeatro.smallTitle.cadastrar" /></c:if>
                 </h2>
-                <table border="1" cellpadding="5">   
-                    <c:if test="${teatro != null}">
-                        <input type="hidden" name="id" value="<c:out value='${teatro.id}' />" />
-                    </c:if>            
-                    <tr>
-                        <th><f:message key="formTeatro.form.email" /></th>
-                        <td><input type="email" name="email" size="50" required value="<c:out value='${teatro.email}' />" /></td>
-                    </tr>
-                    <tr>
-                        <th><f:message key="formTeatro.form.senha" /></th>
-                        <td><input type="password" name="senha" size="50" required value="<c:out value='${teatro.senha}' />"/></td>
-                    </tr>
-                    <tr>
-                        <th><f:message key="formTeatro.form.cidade" /></th>
-                        <td><input type="text" name="cidade" size="50" required value="<c:out value='${teatro.cidade}' />"/></td>
-                    </tr>
-                    <tr>
-                        <th><f:message key="formTeatro.form.nome" /></th>
-                        <td><input type="text" name="nome" size="50" required value="<c:out value='${teatro.nome}' />"/></td>
-                    </tr>
-                    <tr>
-                        <th><f:message key="formTeatro.form.cnpj" /></th>
-                        <td><input type="number" name="cnpj" size="50" required value="<c:out value='${teatro.cnpj}' />"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" align="center">
-                            <input type="submit" value="<f:message key="formTeatro.form.submit" />" />
-                        </td>
-                    </tr>
-                </table>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-form-label-md">
+                            <table class="table table-borderless">   
+                                <c:if test="${teatro != null}">
+                                    <input type="hidden" name="id" value="<c:out value='${teatro.id}' />" />
+                                </c:if>            
+                                <tr>
+                                    <th><f:message key="formTeatro.form.email" /></th>
+                                    <td><input type="email" name="email" size="50" required value="<c:out value='${teatro.email}' />" /></td>
+                                </tr>
+                                <tr>
+                                    <th><f:message key="formTeatro.form.senha" /></th>
+                                    <td><input type="password" name="senha" size="50" required value="<c:out value='${teatro.senha}' />"/></td>
+                                </tr>
+                                <tr>
+                                    <th><f:message key="formTeatro.form.cidade" /></th>
+                                    <td><input type="text" name="cidade" size="50" required value="<c:out value='${teatro.cidade}' />"/></td>
+                                </tr>
+                                <tr>
+                                    <th><f:message key="formTeatro.form.nome" /></th>
+                                    <td><input type="text" name="nome" size="50" required value="<c:out value='${teatro.nome}' />"/></td>
+                                </tr>
+                                <tr>
+                                    <th><f:message key="formTeatro.form.cnpj" /></th>
+                                    <td><input type="number" name="cnpj" size="50" required value="<c:out value='${teatro.cnpj}' />"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center">
+                                        <input type="submit" value="<f:message key="formTeatro.form.submit" />" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
         <c:if test="${!empty requestScope.mensagens}">

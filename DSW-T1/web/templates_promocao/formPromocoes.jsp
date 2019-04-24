@@ -36,8 +36,8 @@
         <center>
             <h1><f:message key="formPromocao.bigTitle" /></h1>
             <h2>
-                <a href="cadastro"><f:message key="formPromocao.goToAdd" /></a>|
-                <a href="../promocao/"><f:message key="formPromocao.goToList" /></a>
+                <a href="cadastro" class="btn btn-default btn-lg"><f:message key="formPromocao.goToAdd" /></a>
+                <a href="../promocao/" class="btn btn-default btn-lg"><f:message key="formPromocao.goToList" /></a>
             </h2>
         </center>
         <div align="center">
@@ -47,40 +47,46 @@
                     <c:if test="${promocao != null}"><f:message key="formPromocao.smallTitle.editar" /></c:if>
                     <c:if test="${promocao == null}"><f:message key="formPromocao.smallTitle.cadastrar" /></c:if>
                 </h2>
-                <table border="1" cellpadding="5">   
-                    <c:if test="${promocao != null}">
-                        <input type="hidden" name="id" value="<c:out value='${promocao.id}' />" />
-                    </c:if>      
-                    <tr>
-                        <th><f:message key="formPromocao.form.url" /></th>
-                        <td><input type="text" name="url" size="50" required value="<c:out value='${promocao.url}' />"/></td>
-                    </tr>
-                    <tr>
-                        <th><f:message key="formPromocao.form.nome" /></th>
-                        <td><input type="text" name="nome_peca" size="50" required value="<c:out value='${promocao.nome_peca}' />"/></td>
-                    </tr>
-                    <tr>
-                        <th><f:message key="formPromocao.form.data" /> </th>
-                        <td><input type="date" name="dia" size="50" required value="<c:out value='${promocao.dia}' />" /></td>
-                    </tr>
-                    <tr>
-                        <th><f:message key="formPromocao.form.hora" /> </th>
-                        <td><input type="text" name="hora" size="50" required value="<c:out value='${promocao.hora}' />"/></td>
-                    </tr>
-                    <tr>
-                        <th><f:message key="formPromocao.form.preco" /> </th>
-                        <td><input type="number" name="preco" size="50" step="0.1" required value="<c:out value='${promocao.preco}' />"/></td>
-                    </tr>
-                    <tr>
-                        <th><f:message key="formPromocao.form.cnpj" /> </th>
-                        <td><input type="number" name="cnpj" size="50" required value="<c:out value='${promocao.cnpj}' />"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" align="center">
-                            <input type="submit" value="<f:message key="formPromocao.form.submit" />" />
-                        </td>
-                    </tr>
-                </table>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-form-label-md">
+                            <table class="table table-borderless">   
+                                <c:if test="${promocao != null}">
+                                    <input type="hidden" name="id" value="<c:out value='${promocao.id}' />" />
+                                </c:if>      
+                                <tr>
+                                    <th><f:message key="formPromocao.form.url" /></th>
+                                    <td><input type="text" name="url" size="50" required value="<c:out value='${promocao.url}' />"/></td>
+                                </tr>
+                                <tr>
+                                    <th><f:message key="formPromocao.form.nome" /></th>
+                                    <td><input type="text" name="nome_peca" size="50" required value="<c:out value='${promocao.nome_peca}' />"/></td>
+                                </tr>
+                                <tr>
+                                    <th><f:message key="formPromocao.form.data" /> </th>
+                                    <td><input type="date" name="dia" size="50" required value="<c:out value='${promocao.dia}' />" /></td>
+                                </tr>
+                                <tr>
+                                    <th><f:message key="formPromocao.form.hora" /> </th>
+                                    <td><input type="text" name="hora" size="50" required value="<c:out value='${promocao.hora}' />"/></td>
+                                </tr>
+                                <tr>
+                                    <th><f:message key="formPromocao.form.preco" /> </th>
+                                    <td><input type="number" name="preco" size="50" step="0.1" required value="<c:out value='${promocao.preco}' />"/></td>
+                                </tr>
+                                <tr>
+                                    <th><f:message key="formPromocao.form.cnpj" /> </th>
+                                    <td><input type="number" name="cnpj" size="50" required value="<c:out value='${promocao.cnpj}' />"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center">
+                                        <input type="submit" value="<f:message key="formPromocao.form.submit" />" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
         <c:if test="${!empty requestScope.mensagens}">
