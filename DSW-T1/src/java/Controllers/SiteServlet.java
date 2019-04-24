@@ -2,8 +2,11 @@ package Controllers;
 
 import DAO.PromocaoDAO;
 import DAO.SiteDAO;
+import DAO.UsuarioDAO;
+import Models.Papel;
 import Models.Promocao;
 import Models.Site;
+import Models.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -19,11 +22,13 @@ public class SiteServlet extends HttpServlet {
     
     private SiteDAO siteDao;
     private PromocaoDAO promocaoDao;
+    private UsuarioDAO usuarioDAO;
     
     @Override
     public void init() {
         siteDao = new SiteDAO();
         promocaoDao = new PromocaoDAO();
+        usuarioDAO = new UsuarioDAO();
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -103,6 +108,8 @@ public class SiteServlet extends HttpServlet {
 
         Site site = new Site(email, senha, url, nome, telefone);
         siteDao.inserir(site);
+        usuarioDAO.inserir_usuario(new Usuario(email, senha));
+        usuarioDAO.inserir_role(new Papel(email, "USER_SITE"));
         response.sendRedirect("/DSW-T1/site");
     }
     
