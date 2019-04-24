@@ -32,41 +32,48 @@
         <center>
             <h1><f:message key="listaTeatros.bigTitle" /></h1>
             <h2>
-                <a href="/DSW-T1/teatro/cadastro"><f:message key="listaTeatros.goToAdd" /></a>|
-                <a href="/DSW-T1/teatro"><f:message key="listaTeatros.goToList" /></a>
+                <a href="/DSW-T1/teatro/cadastro" class="btn btn-default btn-lg"><f:message key="listaTeatros.goToAdd" /></a>
+                <a href="/DSW-T1/teatro" class="btn btn-default btn-lg"><f:message key="listaTeatros.goToList" /></a>
             </h2>
         </center>
         <div align="center">
             <h2><f:message key="listaTeatros.pageTitle" /></h2>
-            <table border="1" cellpadding="5">
-                <tr>
-                    <th><f:message key="listaTeatros.table.id" /></th>
-                    <th><f:message key="listaTeatros.table.nome" /></th>
-                    <th><f:message key="listaTeatros.table.email" /></th>
-                    <th><f:message key="listaTeatros.table.senha" /></th>
-                    <th><f:message key="listaTeatros.table.cidade" /></th>
-                    <th><f:message key="listaTeatros.table.cnpj" /></th>
-                    <th><f:message key="listaTeatros.table.acoes" /></th>
-                </tr>
-                <c:forEach var="teatro" items="${requestScope.listaTeatros}">
-                    <tr>
-                        <td><c:out value="${teatro.id}" /></td>
-                        <td><c:out value="${teatro.nome}" /></td>
-                        <td><c:out value="${teatro.email}" /></td>
-                        <td><c:out value="${teatro.senha}" /></td>
-                        <td><c:out value="${teatro.cidade}" /></td>
-                        <td><c:out value="${teatro.cnpj}" /></td>
-                        <td>
-                            <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />"><f:message key="listaTeatros.table.acoes.editar" /></a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="/DSW-T1/teatro/remocao?id=<c:out value='${teatro.id}' />" 
-                               onclick="return confirm('<f:message key="remover.confirm" />');">
-                                <f:message key="listaTeatros.table.acoes.remover" />
-                            </a>                    	
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
+            </br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-6">
+                        <table class="table table-bordered table-striped table-hover">
+                            <tr class="col-md-2">
+                                <th class="text-center"><f:message key="listaTeatros.table.id" /></th>
+                                <th class="text-center"><f:message key="listaTeatros.table.nome" /></th>
+                                <th class="text-center"><f:message key="listaTeatros.table.email" /></th>
+                                <th class="text-center"><f:message key="listaTeatros.table.senha" /></th>
+                                <th class="text-center"><f:message key="listaTeatros.table.cidade" /></th>
+                                <th class="text-center"><f:message key="listaTeatros.table.cnpj" /></th>
+                                <th class="text-center"><f:message key="listaTeatros.table.acoes" /></th>
+                            </tr>
+                            <c:forEach var="teatro" items="${requestScope.listaTeatros}">
+                                <tr>
+                                    <td class="text-center"><c:out value="${teatro.id}" /></td>
+                                    <td class="text-center"><c:out value="${teatro.nome}" /></td>
+                                    <td class="text-center"><c:out value="${teatro.email}" /></td>
+                                    <td class="text-center"><c:out value="${teatro.senha}" /></td>
+                                    <td class="text-center"><c:out value="${teatro.cidade}" /></td>
+                                    <td class="text-center"><c:out value="${teatro.cnpj}" /></td>
+                                    <td class="text-center">
+                                        <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />"><f:message key="listaTeatros.table.acoes.editar" /></a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="/DSW-T1/teatro/remocao?id=<c:out value='${teatro.id}' />" 
+                                           onclick="return confirm('<f:message key="remover.confirm" />');">
+                                            <f:message key="listaTeatros.table.acoes.remover" />
+                                        </a>                    	
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>                
+                </div>
+            </div>                
         </div>	
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

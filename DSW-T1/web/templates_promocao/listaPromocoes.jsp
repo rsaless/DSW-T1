@@ -32,43 +32,50 @@
         <center>
             <h1><f:message key="listaPromocoes.bigTitle" /></h1>
             <h2>
-                <a href="/DSW-T1/promocao/cadastro"><f:message key="listaPromocoes.goToAdd" /></a>|
-                <a href="/DSW-T1/promocao"><f:message key="listaPromocoes.goToList" /></a>
+                <a href="/DSW-T1/promocao/cadastro" class="btn btn-default btn-lg"><f:message key="listaPromocoes.goToAdd" /></a>
+                <a href="/DSW-T1/promocao" class="btn btn-default btn-lg"><f:message key="listaPromocoes.goToList" /></a>
             </h2>
         </center>
         <div align="center">
             <h2><f:message key="listaPromocoes.pageTitle" /></h2>
-            <table border="1" cellpadding="5">
-                <tr>
-                    <th><f:message key="listaPromocoes.table.id" /></th>
-                    <th><f:message key="listaPromocoes.table.site" /></th>
-                    <th><f:message key="listaPromocoes.table.peca" /></th>
-                    <th><f:message key="listaPromocoes.table.data" /></th>
-                    <th><f:message key="listaPromocoes.table.hora" /></th>
-                    <th><f:message key="listaPromocoes.table.preco" /></th>
-                    <th><f:message key="listaPromocoes.table.cnpj" /></th>
-                    <th><f:message key="listaPromocoes.table.acoes" /></th>
-                </tr>
-                <c:forEach var="promocao" items="${requestScope.listaPromocoes}">
-                    <tr>
-                        <td><c:out value="${promocao.id}" /></td>
-                        <td><c:out value="${promocao.url}" /></td>
-                        <td><c:out value="${promocao.nome_peca}" /></td>
-                        <td><c:out value="${promocao.dia}" /></td>
-                        <td><c:out value="${promocao.hora}" /></td>
-                        <td><c:out value="${promocao.preco}" /></td>
-                        <td><c:out value="${promocao.cnpj}" /></td>
-                        <td>
-                            <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />"><f:message key="listaPromocoes.table.acoes.editar" /></a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
-                               onclick="return confirm('<f:message key="remover.confirm" />');">
-                                <f:message key="listaPromocoes.table.acoes.remover" />
-                            </a>                    	
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
+            </br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-6">
+                        <table class="table table-bordered table-striped table-hover">
+                            <tr class="col-md-2">
+                                <th><f:message key="listaPromocoes.table.id" /></th>
+                                <th><f:message key="listaPromocoes.table.site" /></th>
+                                <th><f:message key="listaPromocoes.table.peca" /></th>
+                                <th><f:message key="listaPromocoes.table.data" /></th>
+                                <th><f:message key="listaPromocoes.table.hora" /></th>
+                                <th><f:message key="listaPromocoes.table.preco" /></th>
+                                <th><f:message key="listaPromocoes.table.cnpj" /></th>
+                                <th><f:message key="listaPromocoes.table.acoes" /></th>
+                            </tr>
+                            <c:forEach var="promocao" items="${requestScope.listaPromocoes}">
+                                <tr>
+                                    <td><c:out value="${promocao.id}" /></td>
+                                    <td><c:out value="${promocao.url}" /></td>
+                                    <td><c:out value="${promocao.nome_peca}" /></td>
+                                    <td><c:out value="${promocao.dia}" /></td>
+                                    <td><c:out value="${promocao.hora}" /></td>
+                                    <td><c:out value="${promocao.preco}" /></td>
+                                    <td><c:out value="${promocao.cnpj}" /></td>
+                                    <td>
+                                        <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />"><f:message key="listaPromocoes.table.acoes.editar" /></a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
+                                           onclick="return confirm('<f:message key="remover.confirm" />');">
+                                            <f:message key="listaPromocoes.table.acoes.remover" />
+                                        </a>                    	
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>
+                </div>
+            </div>        
         </div>
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
