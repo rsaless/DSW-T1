@@ -10,17 +10,29 @@
         <link rel="stylesheet" href="../css/bootstrap.css">
         <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
         <title><f:message key="formSite.title" /></title>
-        <style>
-            body{
-                font-family: 'Questrial', sans-serif;
-            }
-            .table {
-                margin: 0px auto !important;
-                width: 50%; 
-            }
-        </style>
     </head>
+    <style>
+        body{
+            font-family: 'Questrial', sans-serif;
+        }
+        .table {
+            margin: 0px auto !important;
+            width: 50%; 
+        }
+    </style>
     <body>
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a href="/DSW-T1" class="btn btn-default btn-lg"><f:message key="index.pageTitle" /></a>
+                        <a href="/DSW-T1/promocao" class="btn btn-default btn-lg"><f:message key="index.promocoes" /></a>
+                        <a href="/DSW-T1/site" class="btn btn-default btn-lg"><f:message key="index.sites" /> </a>
+                        <a href="/DSW-T1/teatro" class="btn btn-default btn-lg"><f:message key="index.teatros" /></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
         <center>
             <h1><f:message key="formSite.bigTitle" /></h1>
             <h2>
