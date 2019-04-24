@@ -25,7 +25,7 @@ create table Site (
     senha varchar(100) not null,
     url varchar(40) not null,
     nome varchar(50) not null,
-    telefone integer not null,
+    telefone bigint not null,
     constraint Site_PK PRIMARY KEY (url)
 );
 

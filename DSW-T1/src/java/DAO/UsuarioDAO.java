@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UsuarioDAO extends GenericDAO{
-    /* C */ private final String INSERIR_USUARIO = "INSERT INTO Usuario(email, senha, ativo) values (?,?,true)";   
+    /* C */ private final String INSERIR_USUARIO = "INSERT INTO Usuario(email, senha, ativo) values (?,?,1)";   
     /* C */ private final String INSERIR_ROLE = "INSERT INTO Papel(email, nome) values (?,?)"; 
     /* R */ private final String GET_USUARIO = "SELECT * FROM Usuario where email=?";
     /* R */ private final String LISTAR_USUARIOS = "SELECT * FROM Usuario";

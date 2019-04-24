@@ -1,7 +1,10 @@
 package Controllers;
 
 import DAO.TeatroDAO;
+import DAO.UsuarioDAO;
+import Models.Papel;
 import Models.Teatro;
+import Models.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -16,10 +19,12 @@ import javax.servlet.http.HttpServletResponse;
 public class TeatroServlet extends HttpServlet {
     
     private TeatroDAO dao;
+    private UsuarioDAO usuarioDAO;
     
     @Override
     public void init() {
         dao = new TeatroDAO();
+        usuarioDAO = new UsuarioDAO();
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -85,6 +90,8 @@ public class TeatroServlet extends HttpServlet {
 
         Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj);
         dao.inserir(teatro);
+        usuarioDAO.inserir_usuario(new Usuario (email, senha));
+        usuarioDAO.inserir_role(new Papel(email, "USER_TEATRO"));
         response.sendRedirect("/DSW-T1/teatro");
     }
     

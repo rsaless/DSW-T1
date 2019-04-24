@@ -15,7 +15,7 @@ public class DAOTester {
         TeatroDAO teatroDao = new TeatroDAO();
         UsuarioDAO usuarioDao = new UsuarioDAO();
         
-        Site site = new Site("site6@email.com", "site6_pass", "https://www.site6.com.br", "site6", 33330006,6);
+        Site site = new Site("site6@email.com", "site6_pass", "https://www.site6.com.br", "site6", 33330006L,6);
         siteDao.inserir(site);
         System.out.println(siteDao.listar().toString());
         site.setNome("FUNCIONOU");
