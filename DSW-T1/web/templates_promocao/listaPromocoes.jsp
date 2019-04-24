@@ -44,7 +44,7 @@
                             <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />"><f:message key="listaPromocoes.table.acoes.editar" /></a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
-                               onclick="return confirm('Tem certeza de que deseja excluir este item?');">
+                               onclick="return confirm('<f:message key="remover.confirm" />');">
                                 <f:message key="listaPromocoes.table.acoes.remover" />
                             </a>                    	
                         </td>
