@@ -42,7 +42,7 @@
                             <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />"><f:message key="listaTeatros.table.acoes.editar" /></a>
                             &nbsp;&nbsp;&nbsp;&nbsp;
                             <a href="/DSW-T1/teatro/remocao?id=<c:out value='${teatro.id}' />" 
-                               onclick="return confirm('Tem certeza de que deseja excluir este item?');">
+                               onclick="return confirm('<f:message key="remover.confirm" />');">
                                 <f:message key="listaTeatros.table.acoes.remover" />
                             </a>                    	
                         </td>
