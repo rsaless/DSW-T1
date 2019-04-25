@@ -39,6 +39,7 @@
                 </div>
             </nav>
         </div>
+        </br>
         <center>
             <h1><f:message key="listaPromocoes.bigTitle" /></h1>
             </br> </br>
