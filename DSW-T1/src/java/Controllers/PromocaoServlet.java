@@ -131,31 +131,19 @@ public class PromocaoServlet extends HttpServlet {
     
     private void buscarPorTeatro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        Integer cnpj_desejado = Integer.parseInt(request.getParameter("cnpj"));
-        List<Promocao> resultados = dao.listar_teatro(cnpj_desejado);
+        String cnpj_desejado_s = request.getParameter("cnpj");
+        List<Promocao> resultados;
+        if(cnpj_desejado_s != ""){
+            resultados = dao.listar_teatro(Integer.parseInt(cnpj_desejado_s));
+        } else {
+            resultados = dao.listar();
+        }
+        Locale currentLocale = request.getLocale();
+        Properties prop = new Properties();
         String resposta = "";
         
-        Locale currentLocale = request.getLocale();
-        
-        String filename = "/WEB-INF/properties/sistema_"+ currentLocale.getLanguage() +"_"+ currentLocale.getCountry() +".properties";
-        Properties prop = new Properties();
-        prop.load(getServletContext().getResourceAsStream(filename));//.input);
-        /*
-        try (
-                
-            InputStream input = PromocaoServlet.class.getClassLoader().getResourceAsStream(filename)) {         
-            if (input == null) {
-                System.out.println(getServletContext().getContextPath());
-                System.out.println("Sorry, unable to find" + filename);
-                return;
-            }
-            prop.load(getServletContext().getResourceAsStream(filename));//.input);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-        */
-        
-        
+        String filename = "/WEB-INF/properties/sistema_"+ currentLocale.getLanguage() +"_"+ currentLocale.getCountry() +".properties";    
+        prop.load(getServletContext().getResourceAsStream(filename));
         
         for(Promocao promocao : resultados){
             resposta += 
