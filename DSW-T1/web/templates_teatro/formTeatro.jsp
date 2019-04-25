@@ -9,15 +9,34 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/DSW-T1/css/bootstrap.css">
         <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/DSW-T1/css/glyphicon.css"> <!-- adicionado pra usar ícones-->
         <title><f:message key="formTeatro.title" /></title
     </head>
     <style>
         body{
             font-family: 'Questrial', sans-serif;
         }
-        .table {
-            margin: 0px auto !important;
-            width: 50%; 
+        h1{
+            font-size: 2.5em;
+        }
+        p{
+            padding-left: 30px;
+            color: gray;
+            font-size: 1.5em;
+        }
+        .dat_div{
+            border: 2px solid red;
+        }
+        .center_div{
+            width: 50%;
+            margin: 0px auto;
+        }
+        tr{
+            width: 50%;
+        }
+        th{
+            margin: 0px auto;
+            width: 10%;
         }
     </style>
     <body>
@@ -33,58 +52,73 @@
                 </div>
             </nav>
         </div>
+        </br>
         <center>
             <h1><f:message key="formTeatro.bigTitle" /></h1>
-            <h2>
-                <a href="cadastro" class="btn btn-default btn-lg"><f:message key="formTeatro.goToAdd" /></a>
-                <a href="../teatro/lista" class="btn btn-default btn-lg"><f:message key="formTeatro.goToList" /></a>
-            </h2>
+            </br> </br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p> Cadastre seu teatro aqui. É fácil e rápido. </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2>
+                            <a href="../teatro/lista" class="btn btn-primary btn-lg"><f:message key="formTeatro.goToList" />&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-list"></span></a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
         </center>
+        </br> </br> </br>                         
         <div align="center">
-            <c:if test="${teatro != null}"><form action="atualizacao" method="post"></c:if>
-            <c:if test="${teatro == null}"><form action="insercao" method="post"></c:if>
+            <c:if test="${site != null}"><form action="atualizacao" method="post"></c:if>
+            <c:if test="${site == null}"><form action="insercao" method="post"></c:if>
                 <h2>
                     <c:if test="${teatro != null}"><f:message key="formTeatro.smallTitle.editar" /></c:if>
                     <c:if test="${teatro == null}"><f:message key="formTeatro.smallTitle.cadastrar" /></c:if>
                 </h2>
                 <div class="container">
                     <div class="row">
-                        <div class="col-form-label-md">
-                            <table class="table table-borderless">   
-                                <c:if test="${teatro != null}">
-                                    <input type="hidden" name="id" value="<c:out value='${teatro.id}' />" />
-                                </c:if>            
-                                <tr>
-                                    <th><f:message key="formTeatro.form.email" /></th>
-                                    <td><input type="email" name="email" size="50" required value="<c:out value='${teatro.email}' />" /></td>
-                                </tr>
-                                <tr>
-                                    <th><f:message key="formTeatro.form.senha" /></th>
-                                    <td><input type="password" name="senha" size="50" required value="<c:out value='${teatro.senha}' />"/></td>
-                                </tr>
-                                <tr>
-                                    <th><f:message key="formTeatro.form.cidade" /></th>
-                                    <td><input type="text" name="cidade" size="50" required value="<c:out value='${teatro.cidade}' />"/></td>
-                                </tr>
-                                <tr>
-                                    <th><f:message key="formTeatro.form.nome" /></th>
-                                    <td><input type="text" name="nome" size="50" required value="<c:out value='${teatro.nome}' />"/></td>
-                                </tr>
-                                <tr>
-                                    <th><f:message key="formTeatro.form.cnpj" /></th>
-                                    <td><input type="number" name="cnpj" size="50" required value="<c:out value='${teatro.cnpj}' />"/></td>
-                                </tr>
-                                <tr>
-                                    <td colspan="2" align="center">
-                                        <input type="submit" value="<f:message key="formTeatro.form.submit" />" />
-                                    </td>
-                                </tr>
-                            </table>
+                        <div class="center_div">
+                            <div class="col-lg-12">
+                                <table class="table table-borderless">
+                                    <div class="form-group row">
+                                        <c:if test="${site != null}">
+                                            <input type="hidden" name="id" value="<c:out value='${site.id}' />" />
+                                        </c:if>            
+                                        <tr>
+                                            <th><f:message key="formTeatro.form.email" /></th>
+                                            <td><input class="col-sm-10" type="email" name="email" required value="<c:out value='${teatro.email}' />" /></td>
+                                        </tr>
+                                        <tr>
+                                            <th><f:message key="formTeatro.form.senha" /></th>
+                                            <td><input class="col-sm-10" type="password" name="senha" required value="<c:out value='${teatro.senha}' />"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th><f:message key="formTeatro.form.cidade" /></th>
+                                            <td><input class="col-sm-10" type="text" name="cidade" required value="<c:out value='${teatro.cidade}' />"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th><f:message key="formTeatro.form.nome" /></th>
+                                            <td><input class="col-sm-10" type="text" name="nome" required value="<c:out value='${teatro.nome}' />"/></td>
+                                        </tr>
+                                        <tr>
+                                            <th><f:message key="formTeatro.form.cnpj" /></th>
+                                            <td><input class="col-sm-10" type="number" name="cnpj" required value="<c:out value='${teatro.cnpj}' />"/></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" align="center">
+                                                <input class="btn btn-lg btn-outline-primary" type="submit" value="<f:message key="formTeatro.form.submit"/>" />
+                                            </td>
+                                        </tr>
+                                    </div>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </form>
-        </div>
+        </div>                        
         <c:if test="${!empty requestScope.mensagens}">
             <ul class="erro">
                 <c:forEach items="${requestScope.mensagens}" var="mensagem">

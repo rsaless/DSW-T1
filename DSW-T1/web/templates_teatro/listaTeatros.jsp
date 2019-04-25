@@ -13,7 +13,19 @@
         <title><f:message key="listaTeatros.title" /></title>
         <script src="/DSW-T1/js/ListaCidadeAJAX.js"></script>
     </head>
-    <style>body{font-family: 'Questrial', sans-serif;}</style>
+    <style>
+        body{
+            font-family: 'Questrial', sans-serif;
+        }
+        h1{
+            font-size: 2.5em;
+        }
+        p{
+            padding-left: 30px;
+            color: gray;
+            font-size: 1.5em;
+        }
+    </style>
     <body>
         <div class="container">
             <nav class="navbar navbar-default">
@@ -27,17 +39,31 @@
                 </div>
             </nav>
         </div>
+        </br>
         <center>
             <h1><f:message key="listaTeatros.bigTitle" /></h1>
-            <h2>
-                <a href="/DSW-T1/teatro/cadastro" class="btn btn-default btn-lg"><f:message key="listaTeatros.goToAdd" /></a>
-                <a href="/DSW-T1/teatro/lista" class="btn btn-default btn-lg"><f:message key="listaTeatros.goToList" /></a>
-            </h2>
+            </br> </br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p>
+                            Veja aqui a lista de teatros que possuem promoções no nosso sistema.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2>
+                            <a href="/DSW-T1/teatro/cadastro" class="btn btn-success btn-lg"><f:message key="listaTeatros.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
         </center>
+        </br> </br> 
         <div align="center">
             <h2><f:message key="listaTeatros.pageTitle" /></h2>
-            <input class="mb-4" type="text" name="busca" placeholder="<f:message key="listaTeatros.busca" />" oninput='buscarTeatros(this.value)'/>
             </br>
+            <input class="mb-4" type="text" name="busca" placeholder="<f:message key="listaTeatros.busca" />" oninput='buscarTeatros(this.value)'/>
+            </br> </br>
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 col-md-offset-6">
