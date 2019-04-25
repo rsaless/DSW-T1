@@ -29,6 +29,9 @@
         h1{
             font-size: 2.8em;
         }
+        h2{
+            font-size: 2.3em;
+        }
         p{
             padding-left: 30px;
             color: #f7f7f7;

@@ -29,6 +29,9 @@
         h1{
             font-size: 2.8em;
         }
+        h2{
+            font-size: 2.3em;
+        }
     </style>
     <body>
         <div class="bg">
