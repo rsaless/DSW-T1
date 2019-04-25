@@ -26,9 +26,9 @@
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <a href="/DSW-T1" class="btn btn-default btn-lg"><f:message key="index.pageTitle" /></a>
-                        <a href="/DSW-T1/promocao" class="btn btn-default btn-lg"><f:message key="index.promocoes" /></a>
-                        <a href="/DSW-T1/site" class="btn btn-default btn-lg"><f:message key="index.sites" /> </a>
-                        <a href="/DSW-T1/teatro" class="btn btn-default btn-lg"><f:message key="index.teatros" /></a>
+                        <a href="/DSW-T1/promocao/lista" class="btn btn-default btn-lg"><f:message key="index.promocoes" /></a>
+                        <a href="/DSW-T1/site/lista" class="btn btn-default btn-lg"><f:message key="index.sites" /> </a>
+                        <a href="/DSW-T1/teatro/lista" class="btn btn-default btn-lg"><f:message key="index.teatros" /></a>
                     </div>
                 </div>
             </nav>
@@ -37,7 +37,7 @@
             <h1><f:message key="formSite.bigTitle" /></h1>
             <h2>
                 <a href="cadastro" class="btn btn-default btn-lg"><f:message key="formSite.goToAdd" /> </a>
-                <a href="../site/" class="btn btn-default btn-lg"><f:message key="formSite.goToList" /></a>
+                <a href="../site/lista" class="btn btn-default btn-lg"><f:message key="formSite.goToList" /></a>
             </h2>
         </center>
         <div align="center">
