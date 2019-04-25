@@ -10,7 +10,6 @@
         <link rel="stylesheet" href="/DSW-T1/css/bootstrap.css">
         <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet"> 
         <link rel="stylesheet" type="text/css" href="/DSW-T1/css/glyphicon.css"> <!-- adicionado pra usar ícones-->
-        
         <title><f:message key="listaPromocoes.title" /></title>
         <script src="/DSW-T1/js/ListaTeatroAJAX.js"></script>
     </head>
@@ -64,17 +63,17 @@
                                         <td class="text-center"><c:out value="${promocao.preco}" /></td>
                                         <td class="text-center"><c:out value="${promocao.cnpj}" /></td>
                                         <td class="text-center">
-                                        <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
-                                           onclick="return confirm('<f:message key="remover.confirm" />');">
-                                           <span class="glyphicon glyphicon-trash"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                                            <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </a>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
+                                               onclick="return confirm('<f:message key="remover.confirm" />');">
+                                               <span class="glyphicon glyphicon-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>

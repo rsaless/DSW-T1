@@ -11,12 +11,9 @@
         <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/DSW-T1/css/glyphicon.css"> <!-- adicionado pra usar ícones-->
         <title><f:message key="listaTeatros.title" /></title>
+        <script src="/DSW-T1/js/ListaCidadeAJAX.js"></script>
     </head>
-    <style>
-        body{
-            font-family: 'Questrial', sans-serif;
-        }
-    </style>
+    <style>body{font-family: 'Questrial', sans-serif;}</style>
     <body>
         <div class="container">
             <nav class="navbar navbar-default">
@@ -39,6 +36,7 @@
         </center>
         <div align="center">
             <h2><f:message key="listaTeatros.pageTitle" /></h2>
+            <input class="mb-4" type="text" name="busca" placeholder="<f:message key="listaTeatros.busca" />" oninput='buscarTeatros(this.value)'/>
             </br>
             <div class="container">
                 <div class="row">
@@ -53,24 +51,28 @@
                                 <th class="text-center"><f:message key="listaTeatros.table.cnpj" /></th>
                                 <th class="text-center"><f:message key="listaTeatros.table.acoes" /></th>
                             </tr>
-                            <c:forEach var="teatro" items="${requestScope.listaTeatros}">
-                                <tr>
-                                    <td class="text-center"><c:out value="${teatro.id}" /></td>
-                                    <td class="text-center"><c:out value="${teatro.nome}" /></td>
-                                    <td class="text-center"><c:out value="${teatro.email}" /></td>
-                                    <td class="text-center"><c:out value="${teatro.senha}" /></td>
-                                    <td class="text-center"><c:out value="${teatro.cidade}" /></td>
-                                    <td class="text-center"><c:out value="${teatro.cnpj}" /></td>
-                                    <td class="text-center">
-                                        <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />"><span class="glyphicon glyphicon-pencil"></span></a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="/DSW-T1/teatro/remocao?id=<c:out value='${teatro.id}' />" 
-                                           onclick="return confirm('<f:message key="remover.confirm" />');">
-                                           <span class="glyphicon glyphicon-trash"></span>
-                                        </a>                    	
-                                    </td>
-                                </tr>
-                            </c:forEach>
+                            <tbody id="tbodyresposta">
+                                <c:forEach var="teatro" items="${requestScope.listaTeatros}">
+                                    <tr>
+                                        <td class="text-center"><c:out value="${teatro.id}" /></td>
+                                        <td class="text-center"><c:out value="${teatro.nome}" /></td>
+                                        <td class="text-center"><c:out value="${teatro.email}" /></td>
+                                        <td class="text-center"><c:out value="${teatro.senha}" /></td>
+                                        <td class="text-center"><c:out value="${teatro.cidade}" /></td>
+                                        <td class="text-center"><c:out value="${teatro.cnpj}" /></td>
+                                        <td class="text-center">
+                                            <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </a>
+                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a href="/DSW-T1/teatro/remocao?id=<c:out value='${teatro.id}' />" 
+                                               onclick="return confirm('<f:message key="remover.confirm" />');">
+                                               <span class="glyphicon glyphicon-trash"></span>
+                                            </a>                    	
+                                        </td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>  
                         </table>
                     </div>                
                 </div>
