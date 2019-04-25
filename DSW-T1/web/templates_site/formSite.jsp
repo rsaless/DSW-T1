@@ -8,16 +8,62 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="../css/bootstrap.css">
+        <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/DSW-T1/css/glyphicon.css"> <!-- adicionado pra usar ícones-->
         <title><f:message key="formSite.title" /></title>
     </head>
+    <style>
+        body{
+            font-family: 'Questrial', sans-serif;
+        }
+        .table {
+            margin: 0px auto !important;
+            width: 50%; 
+        }
+        h1{
+            font-size: 2.5em;
+        }
+        p{
+            padding-left: 30px;
+            color: gray;
+            font-size: 1.5em;
+        }
+        .center_div{
+            margin: 0 auto;
+            width: 45%;
+        }
+    </style>
     <body>
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a href="/DSW-T1" class="btn btn-default btn-lg"><f:message key="index.pageTitle" /></a>
+                        <a href="/DSW-T1/promocao" class="btn btn-default btn-lg"><f:message key="index.promocoes" /></a>
+                        <a href="/DSW-T1/site" class="btn btn-default btn-lg"><f:message key="index.sites" /> </a>
+                        <a href="/DSW-T1/teatro" class="btn btn-default btn-lg"><f:message key="index.teatros" /></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+        </br>
         <center>
             <h1><f:message key="formSite.bigTitle" /></h1>
-            <h2>
-                <a href="cadastro"><f:message key="formSite.goToAdd" /> </a>|
-                <a href="../site/"><f:message key="formSite.goToList" /></a>
-            </h2>
+            </br> </br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p> Cadastre seu site aqui. É fácil e rápido. </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2>
+                            <a href="../site/" class="btn btn-primary btn-lg"><f:message key="formSite.goToList" />&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-list"></span></a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
         </center>
+        </br> </br> </br>
         <div align="center">
             <c:if test="${site != null}"><form action="atualizacao" method="post"></c:if>
             <c:if test="${site == null}"><form action="insercao" method="post"></c:if>
@@ -25,36 +71,42 @@
                     <c:if test="${site != null}"><f:message key="formSite.smallTitle.editar" /></c:if>
                     <c:if test="${site == null}"><f:message key="formSite.smallTitle.cadastrar" /></c:if>
                 </h2>
-                <table border="1" cellpadding="5">   
-                    <c:if test="${site != null}">
-                        <input type="hidden" name="id" value="<c:out value='${site.id}' />" />
-                    </c:if>            
-                    <tr>
-                        <th><f:message key="formSite.form.email" /></th>
-                        <td><input type="email" name="email" size="50" required value="<c:out value='${site.email}' />" /></td>
-                    </tr>
-                    <tr>
-                        <th><f:message key="formSite.form.senha" /></th>
-                        <td><input type="password" name="senha" size="50" required value="<c:out value='${site.senha}' />"/></td>
-                    </tr>
-                    <tr>
-                        <th><f:message key="formSite.form.url" /></th>
-                        <td><input type="text" name="url" size="50" required value="<c:out value='${site.url}' />"/></td>
-                    </tr>
-                    <tr>
-                        <th><f:message key="formSite.form.nome" /></th>
-                        <td><input type="text" name="nome" size="50" required value="<c:out value='${site.nome}' />"/></td>
-                    </tr>
-                    <tr>
-                        <th><f:message key="formSite.form.telefone" /></th>
-                        <td><input type="number" name="telefone" size="50" required value="<c:out value='${site.telefone}' />"/></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2" align="center">
-                            <input type="submit" value="<f:message key="formSite.form.submit"/>" />
-                        </td>
-                    </tr>
-                </table>
+                <div class="container center_div">
+                    <div class="row">
+                        <div class="col-form-label-md">
+                            <table class="table table-borderless">  
+                                <c:if test="${site != null}">
+                                    <input type="hidden" name="id" value="<c:out value='${site.id}' />" />
+                                </c:if>            
+                                <tr>
+                                    <th><f:message key="formSite.form.email" /></th>
+                                    <td><input type="email" name="email" size="50" required value="<c:out value='${site.email}' />" /></td>
+                                </tr>
+                                <tr>
+                                    <th><f:message key="formSite.form.senha" /></th>
+                                    <td><input type="password" name="senha" size="50" required value="<c:out value='${site.senha}' />"/></td>
+                                </tr>
+                                <tr>
+                                    <th><f:message key="formSite.form.url" /></th>
+                                    <td><input type="text" name="url" size="50" required value="<c:out value='${site.url}' />"/></td>
+                                </tr>
+                                <tr>
+                                    <th><f:message key="formSite.form.nome" /></th>
+                                    <td><input type="text" name="nome" size="50" required value="<c:out value='${site.nome}' />"/></td>
+                                </tr>
+                                <tr>
+                                    <th><f:message key="formSite.form.telefone" /></th>
+                                    <td><input type="number" name="telefone" size="50" required value="<c:out value='${site.telefone}' />"/></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="2" align="center">
+                                        <input type="submit" value="<f:message key="formSite.form.submit"/>" />
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </div>
             </form>
         </div>
         <c:if test="${!empty requestScope.mensagens}">

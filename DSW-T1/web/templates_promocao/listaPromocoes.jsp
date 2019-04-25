@@ -8,49 +8,78 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/DSW-T1/css/bootstrap.css">
+        <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet"> 
+        <link rel="stylesheet" type="text/css" href="/DSW-T1/css/glyphicon.css"> <!-- adicionado pra usar ícones-->
+        
         <title><f:message key="listaPromocoes.title" /></title>
     </head>
+    <style>
+        body{
+            font-family: 'Questrial', sans-serif;
+        }
+    </style>
     <body>
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a href="/DSW-T1" class="btn btn-default btn-lg"><f:message key="index.pageTitle" /></a>
+                        <a href="/DSW-T1/promocao" class="btn btn-default btn-lg"><f:message key="index.promocoes" /></a>
+                        <a href="/DSW-T1/site" class="btn btn-default btn-lg"><f:message key="index.sites" /> </a>
+                        <a href="/DSW-T1/teatro" class="btn btn-default btn-lg"><f:message key="index.teatros" /></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
         <center>
             <h1><f:message key="listaPromocoes.bigTitle" /></h1>
             <h2>
-                <a href="/DSW-T1/promocao/cadastro"><f:message key="listaPromocoes.goToAdd" /></a>|
-                <a href="/DSW-T1/promocao"><f:message key="listaPromocoes.goToList" /></a>
+                <a href="/DSW-T1/promocao/cadastro" class="btn btn-default btn-lg"><f:message key="listaPromocoes.goToAdd" /></a>
+                <a href="/DSW-T1/promocao" class="btn btn-default btn-lg"><f:message key="listaPromocoes.goToList" /></a>
             </h2>
         </center>
         <div align="center">
             <h2><f:message key="listaPromocoes.pageTitle" /></h2>
-            <table border="1" cellpadding="5">
-                <tr>
-                    <th><f:message key="listaPromocoes.table.id" /></th>
-                    <th><f:message key="listaPromocoes.table.site" /></th>
-                    <th><f:message key="listaPromocoes.table.peca" /></th>
-                    <th><f:message key="listaPromocoes.table.data" /></th>
-                    <th><f:message key="listaPromocoes.table.hora" /></th>
-                    <th><f:message key="listaPromocoes.table.preco" /></th>
-                    <th><f:message key="listaPromocoes.table.cnpj" /></th>
-                    <th><f:message key="listaPromocoes.table.acoes" /></th>
-                </tr>
-                <c:forEach var="promocao" items="${requestScope.listaPromocoes}">
-                    <tr>
-                        <td><c:out value="${promocao.id}" /></td>
-                        <td><c:out value="${promocao.url}" /></td>
-                        <td><c:out value="${promocao.nome_peca}" /></td>
-                        <td><c:out value="${promocao.dia}" /></td>
-                        <td><c:out value="${promocao.hora}" /></td>
-                        <td><c:out value="${promocao.preco}" /></td>
-                        <td><c:out value="${promocao.cnpj}" /></td>
-                        <td>
-                            <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />"><f:message key="listaPromocoes.table.acoes.editar" /></a>
-                            &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
-                               onclick="return confirm('<f:message key="remover.confirm" />');">
-                                <f:message key="listaPromocoes.table.acoes.remover" />
-                            </a>                    	
-                        </td>
-                    </tr>
-                </c:forEach>
-            </table>
+            </br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-6">
+                        <table class="table table-bordered table-striped table-hover">
+                            <tr class="col-md-2">
+                                <th class="text-center"><f:message key="listaPromocoes.table.id" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.site" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.peca" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.data" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.hora" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.preco" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.cnpj" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.acoes" /></th>
+                            </tr>
+                            <c:forEach var="promocao" items="${requestScope.listaPromocoes}">
+                                <tr>
+                                    <td class="text-center"><c:out value="${promocao.id}" /></td>
+                                    <td class="text-center"><c:out value="${promocao.url}" /></td>
+                                    <td class="text-center"><c:out value="${promocao.nome_peca}" /></td>
+                                    <td class="text-center"><c:out value="${promocao.dia}" /></td>
+                                    <td class="text-center"><c:out value="${promocao.hora}" /></td>
+                                    <td class="text-center"><c:out value="${promocao.preco}" /></td>
+                                    <td class="text-center"><c:out value="${promocao.cnpj}" /></td>
+                                    <td class="text-center">
+                                        <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
+                                           onclick="return confirm('<f:message key="remover.confirm" />');">
+                                           <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>
+                </div>
+            </div>        
         </div>
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

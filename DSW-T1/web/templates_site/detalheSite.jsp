@@ -8,14 +8,32 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/DSW-T1/css/bootstrap.css">
+        <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
         <title><f:message key="detalhesSite.title" /></title>
     </head>
+    <style>
+        body{
+            font-family: 'Questrial', sans-serif;
+        }
+    </style>
     <body>
+        <div class="container">
+            <nav class="navbar navbar-default">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a href="/DSW-T1" class="btn btn-default btn-lg"><f:message key="index.pageTitle" /></a>
+                        <a href="/DSW-T1/promocao" class="btn btn-default btn-lg"><f:message key="index.promocoes" /></a>
+                        <a href="/DSW-T1/site" class="btn btn-default btn-lg"><f:message key="index.sites" /> </a>
+                        <a href="/DSW-T1/teatro" class="btn btn-default btn-lg"><f:message key="index.teatros" /></a>
+                    </div>
+                </div>
+            </nav>
+        </div>
         <center>
             <h1><f:message key="detalhesSite.bigTitle" /></h1>
             <h2>
-                <a href="/DSW-T1/promocao/cadastro"><f:message key="detalhesSite.goToAdd" /></a>|
-                <a href="/DSW-T1/site"><f:message key="detalhesSite.goToList" /></a>
+                <a href="/DSW-T1/promocao/cadastro" class="btn btn-default btn-lg"><f:message key="detalhesSite.goToAdd" /></a>
+                <a href="/DSW-T1/site" class="btn btn-default btn-lg"><f:message key="detalhesSite.goToList" /></a>
             </h2>
         </center>
         <div align="center">

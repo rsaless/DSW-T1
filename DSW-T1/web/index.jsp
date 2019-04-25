@@ -7,16 +7,38 @@
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <link rel="stylesheet" href="css/bootstrap.css">
+            <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
             <title><f:message key="index.title" /></title>
+            <style>
+                body{
+                    font-family: 'Questrial', sans-serif;
+                }
+            </style>
         </head>
         <body>
+            <div class="container">
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <a href="/DSW-T1" class="btn btn-default btn-lg"><f:message key="index.pageTitle" /></a>
+                            <a href="/DSW-T1/promocao" class="btn btn-default btn-lg"><f:message key="index.promocoes" /></a>
+                            <a href="/DSW-T1/site" class="btn btn-default btn-lg"><f:message key="index.sites" /> </a>
+                            <a href="/DSW-T1/teatro" class="btn btn-default btn-lg"><f:message key="index.teatros" /></a>
+                        </div>
+                    </div>
+                </nav>
+            </div>
             <center>
-                    <h1><f:message key="index.pageTitle" /></h1>
-                    <h2>
-                        <a href="/DSW-T1/site"><f:message key="index.sites" /> </a>|
-                        <a href="/DSW-T1/teatro"><f:message key="index.teatros" /></a> |
-                        <a href="/DSW-T1/promocao"><f:message key="index.promocoes" /></a>
-                    </h2>
+                <div class="container">
+                    <div class="page-header">
+                        <h1><f:message key="index.pageTitle" /></h1>
+                    </div>
+                    <div>
+                        <p>
+                            Alguma info
+                        </p>
+                    </div>
+                </div>
             </center>
         </body>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
