@@ -88,23 +88,23 @@
                                         </c:if>            
                                         <tr>
                                             <th><f:message key="formSite.form.email" /></th>
-                                            <td><input class="col-sm-10" type="email" name="email" required value="<c:out value='${site.email}' />" /></td>
+                                            <td><input class="form-control col-sm-10" type="email" name="email" required value="<c:out value='${site.email}' />" /></td>
                                         </tr>
                                         <tr>
                                             <th><f:message key="formSite.form.senha" /></th>
-                                            <td><input class="col-sm-10" type="password" name="senha" required value="<c:out value='${site.senha}' />"/></td>
+                                            <td><input class="form-control col-sm-10" type="password" name="senha" required value="<c:out value='${site.senha}' />"/></td>
                                         </tr>
                                         <tr>
                                             <th><f:message key="formSite.form.url" /></th>
-                                            <td><input class="col-sm-10" type="text" name="url" required value="<c:out value='${site.url}' />"/></td>
+                                            <td><input class="form-control col-sm-10" type="text" name="url" required value="<c:out value='${site.url}' />"/></td>
                                         </tr>
                                         <tr>
                                             <th><f:message key="formSite.form.nome" /></th>
-                                            <td><input class="col-sm-10" type="text" name="nome" required value="<c:out value='${site.nome}' />"/></td>
+                                            <td><input class="form-control col-sm-10" type="text" name="nome" required value="<c:out value='${site.nome}' />"/></td>
                                         </tr>
                                         <tr>
                                             <th><f:message key="formSite.form.telefone" /></th>
-                                            <td><input class="col-sm-10" type="number" name="telefone" required value="<c:out value='${site.telefone}' />"/></td>
+                                            <td><input class="form-control col-sm-10" type="number" name="telefone" required value="<c:out value='${site.telefone}' />"/></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2" align="center">

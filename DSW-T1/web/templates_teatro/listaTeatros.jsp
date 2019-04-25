@@ -62,7 +62,7 @@
         <div align="center">
             <h2><f:message key="listaTeatros.pageTitle" /></h2>
             </br>
-            <input class="mb-4 col-md-2" type="text" name="busca" placeholder="<f:message key="listaTeatros.busca" />" oninput='buscarTeatros(this.value)'/>
+            <input class="form-control mb-4 col-md-2" type="text" name="busca" placeholder="<f:message key="listaTeatros.busca" />" oninput='buscarTeatros(this.value)'/>
             </br> </br>
             <div class="container">
                 <div class="row">

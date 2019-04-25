@@ -88,27 +88,27 @@
                                     </c:if>      
                                     <tr>
                                         <th><f:message key="formPromocao.form.url" /></th>
-                                        <td><input class="col-sm-10" type="text" name="url" required value="<c:out value='${promocao.url}' />"/></td>
+                                        <td><input class="form-control col-sm-10" type="text" name="url" required value="<c:out value='${promocao.url}' />"/></td>
                                     </tr>
                                     <tr>
                                         <th><f:message key="formPromocao.form.nome" /></th>
-                                        <td><input class="col-sm-10" type="text" name="nome_peca" required value="<c:out value='${promocao.nome_peca}' />"/></td>
+                                        <td><input class="form-control col-sm-10" type="text" name="nome_peca" required value="<c:out value='${promocao.nome_peca}' />"/></td>
                                     </tr>
                                     <tr>
                                         <th><f:message key="formPromocao.form.data" /> </th>
-                                        <td><input class="col-sm-10" type="date" name="dia" required value="<c:out value='${promocao.dia}' />" /></td>
+                                        <td><input class="form-control col-sm-10" type="date" name="dia" required value="<c:out value='${promocao.dia}' />" /></td>
                                     </tr>
                                     <tr>
                                         <th><f:message key="formPromocao.form.hora" /> </th>
-                                        <td><input class="col-sm-10" type="text" name="hora" required value="<c:out value='${promocao.hora}' />"/></td>
+                                        <td><input class="form-control col-sm-10" type="text" name="hora" required value="<c:out value='${promocao.hora}' />"/></td>
                                     </tr>
                                     <tr>
                                         <th><f:message key="formPromocao.form.preco" /> </th>
-                                        <td><input class="col-sm-10" type="number" name="preco" step="0.1" required value="<c:out value='${promocao.preco}' />"/></td>
+                                        <td><input class="form-control col-sm-10" type="number" name="preco" step="0.1" required value="<c:out value='${promocao.preco}' />"/></td>
                                     </tr>
                                     <tr>
                                         <th><f:message key="formPromocao.form.cnpj" /> </th>
-                                        <td><input class="col-sm-10" type="number" name="cnpj" required value="<c:out value='${promocao.cnpj}' />"/></td>
+                                        <td><input class="form-control col-sm-10" type="number" name="cnpj" required value="<c:out value='${promocao.cnpj}' />"/></td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" align="center">

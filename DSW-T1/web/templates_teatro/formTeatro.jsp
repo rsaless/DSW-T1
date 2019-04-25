@@ -88,23 +88,23 @@
                                         </c:if>            
                                         <tr>
                                             <th><f:message key="formTeatro.form.email" /></th>
-                                            <td><input class="col-sm-10" type="email" name="email" required value="<c:out value='${teatro.email}' />" /></td>
+                                            <td><input class="form-control col-sm-10" type="email" name="email" required value="<c:out value='${teatro.email}' />" /></td>
                                         </tr>
                                         <tr>
                                             <th><f:message key="formTeatro.form.senha" /></th>
-                                            <td><input class="col-sm-10" type="password" name="senha" required value="<c:out value='${teatro.senha}' />"/></td>
+                                            <td><input class="form-control col-sm-10" type="password" name="senha" required value="<c:out value='${teatro.senha}' />"/></td>
                                         </tr>
                                         <tr>
                                             <th><f:message key="formTeatro.form.cidade" /></th>
-                                            <td><input class="col-sm-10" type="text" name="cidade" required value="<c:out value='${teatro.cidade}' />"/></td>
+                                            <td><input class="form-control col-sm-10" type="text" name="cidade" required value="<c:out value='${teatro.cidade}' />"/></td>
                                         </tr>
                                         <tr>
                                             <th><f:message key="formTeatro.form.nome" /></th>
-                                            <td><input class="col-sm-10" type="text" name="nome" required value="<c:out value='${teatro.nome}' />"/></td>
+                                            <td><input class="form-control col-sm-10" type="text" name="nome" required value="<c:out value='${teatro.nome}' />"/></td>
                                         </tr>
                                         <tr>
                                             <th><f:message key="formTeatro.form.cnpj" /></th>
-                                            <td><input class="col-sm-10" type="number" name="cnpj" required value="<c:out value='${teatro.cnpj}' />"/></td>
+                                            <td><input class="form-control col-sm-10" type="number" name="cnpj" required value="<c:out value='${teatro.cnpj}' />"/></td>
                                         </tr>
                                         <tr>
                                             <td colspan="2" align="center">

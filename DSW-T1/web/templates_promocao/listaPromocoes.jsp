@@ -62,7 +62,7 @@
         <div align="center">
             <h2><f:message key="listaPromocoes.pageTitle" /></h2>
             </br>
-            <input class="mb-4 col-md-2" type="number" name="busca" placeholder="<f:message key="listaPromocoes.busca" />" oninput='buscarPromocoes(this.value)'/>
+            <input class="form-control mb-4 col-md-2" type="number" name="busca" placeholder="<f:message key="listaPromocoes.busca" />" oninput='buscarPromocoes(this.value)'/>
             </br> </br>
             <div class="container">
                 <div class="row">
