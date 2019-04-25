@@ -15,8 +15,8 @@
     <style>
         .bg{
             background-color: #8E2DE2;  /* fallback for old browsers */
-            background: -webkit-linear-gradient(to bottom, #4A00E0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
-            background: linear-gradient(to bottom, #4A00E0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+            background: -webkit-linear-gradient(to bottom, #7700e0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to bottom, #7700e0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         }
         body{
             font-family: 'Questrial', sans-serif;
@@ -52,7 +52,7 @@
     </style>
     <body>
         <div class="bg">
-            <div class="container">
+            <div class="container-fullwidth">
                 <nav class="navbar navbar-expand-lg bg-light navbar-light">
                     <div class="container-fluid">
                         <div class="navbar-header">
@@ -75,7 +75,7 @@
                         </div>
                         <div class="col-lg-6">
                             <h2>
-                                <a href="../teatro/lista" class="btn btn-primary btn-lg"><f:message key="formTeatro.goToList" />&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-list"></span></a>
+                                <a href="../teatro/lista" class="btn btn-light btn-lg"><f:message key="formTeatro.goToList" />&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-list"></span></a>
                             </h2>
                         </div>
                     </div>
