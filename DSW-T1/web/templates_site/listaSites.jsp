@@ -16,6 +16,14 @@
         body{
             font-family: 'Questrial', sans-serif;
         }
+        h1{
+            font-size: 2.5em;
+        }
+        p{
+            padding-left: 30px;
+            color: gray;
+            font-size: 1.5em;
+        }
     </style>
     <body>
         <div class="container">
@@ -30,13 +38,26 @@
                 </div>
             </nav>
         </div>
+        </br>
         <center>
             <h1><f:message key="listaSites.bigTitle" /></h1>
-            <h2>
-                <a href="/DSW-T1/site/cadastro" class="btn btn-default btn-lg"><f:message key="listaSites.goToAdd" /></a>
-                <a href="/DSW-T1/site" class="btn btn-default btn-lg"><f:message key="listaSites.goToList" /></a>
-            </h2>
+            </br> </br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <p>
+                            Veja aqui a lista de sites que ofertam promoções no nosso sistema.
+                        </p>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2>
+                            <a href="/DSW-T1/site/cadastro" class="btn btn-success btn-lg"><f:message key="listaSites.goToAdd" /> <span class="glyphicon glyphicon-plus-sign"></span></a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
         </center>
+        </br> </br> 
         <div align="center">
             <h2><f:message key="listaSites.pageTitle" /></h2>
             </br>
