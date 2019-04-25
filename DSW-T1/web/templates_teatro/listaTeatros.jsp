@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/DSW-T1/css/bootstrap.css">
         <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/DSW-T1/css/glyphicon.css"> <!-- adicionado pra usar ícones-->
         <title><f:message key="listaTeatros.title" /></title>
     </head>
     <style>
@@ -61,11 +62,11 @@
                                     <td class="text-center"><c:out value="${teatro.cidade}" /></td>
                                     <td class="text-center"><c:out value="${teatro.cnpj}" /></td>
                                     <td class="text-center">
-                                        <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />"><f:message key="listaTeatros.table.acoes.editar" /></a>
+                                        <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />"><span class="glyphicon glyphicon-pencil"></span></a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="/DSW-T1/teatro/remocao?id=<c:out value='${teatro.id}' />" 
                                            onclick="return confirm('<f:message key="remover.confirm" />');">
-                                            <f:message key="listaTeatros.table.acoes.remover" />
+                                           <span class="glyphicon glyphicon-trash"></span>
                                         </a>                    	
                                     </td>
                                 </tr>

@@ -8,7 +8,9 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/DSW-T1/css/bootstrap.css">
-        <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet"> 
+        <link rel="stylesheet" type="text/css" href="/DSW-T1/css/glyphicon.css"> <!-- adicionado pra usar ícones-->
+        
         <title><f:message key="listaPromocoes.title" /></title>
     </head>
     <style>
@@ -63,12 +65,14 @@
                                     <td class="text-center"><c:out value="${promocao.preco}" /></td>
                                     <td class="text-center"><c:out value="${promocao.cnpj}" /></td>
                                     <td class="text-center">
-                                        <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />"><f:message key="listaPromocoes.table.acoes.editar" /></a>
+                                        <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </a>
                                         &nbsp;&nbsp;&nbsp;&nbsp;
                                         <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
                                            onclick="return confirm('<f:message key="remover.confirm" />');">
-                                            <f:message key="listaPromocoes.table.acoes.remover" />
-                                        </a>                    	
+                                           <span class="glyphicon glyphicon-trash"></span>
+                                        </a>
                                     </td>
                                 </tr>
                             </c:forEach>

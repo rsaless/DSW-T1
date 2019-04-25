@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/DSW-T1/css/bootstrap.css">
         <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/DSW-T1/css/glyphicon.css"> <!-- adicionado pra usar ícones-->
         <title><f:message key="listaSites.title" /></title>
     </head>
     <style>
@@ -61,14 +62,14 @@
                                     <td><c:out value="${site.url}" /></td>
                                     <td class="text-center"><c:out value="${site.telefone}" /></td>
                                     <td class="text-center">
-                                        <a href="/DSW-T1/site/edicao?id=<c:out value='${site.id}' />"><f:message key="listaSites.table.acoes.editar" /></a>
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                        <a href="/DSW-T1/site/remocao?id=<c:out value='${site.id}' />" 
-                               onclick="return confirm('<f:message key="remover.confirm" />');">
-                                            <f:message key="listaSites.table.acoes.remover" />
-                                        </a>  
-                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                            <a href="/DSW-T1/site/detalhes?id=<c:out value='${site.id}' />"><f:message key="listaSites.table.acoes.detalhes"/></a>
+                                    <a href="/DSW-T1/site/edicao?id=<c:out value='${site.id}' />"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="/DSW-T1/site/remocao?id=<c:out value='${site.id}' />" 
+                                        onclick="return confirm('<f:message key="remover.confirm" />');">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                    </a>  
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="/DSW-T1/site/detalhes?id=<c:out value='${site.id}' />"><f:message key="listaSites.table.acoes.detalhes"/></a>
                                     </td>
                                 </tr>
                             </c:forEach>
