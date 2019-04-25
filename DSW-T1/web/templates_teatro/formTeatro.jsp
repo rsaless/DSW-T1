@@ -53,7 +53,7 @@
     <body>
         <div class="bg">
             <div class="container">
-                <nav class="dat-div navbar navbar-expand-lg bg-light navbar-light">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light">
                     <div class="container-fluid">
                         <div class="navbar-header">
                             <a href="/DSW-T1" class="btn btn-light btn-lg"><f:message key="index.pageTitle" /></a>
