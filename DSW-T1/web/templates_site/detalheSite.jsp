@@ -53,70 +53,81 @@
         <div align="center">
             <h2>Detalhes do Site</h2>
             <br/>
-            <table border="1" cellpadding="5">
-                <tr>
-                    <th><f:message key="detalhesSite.table.id" /></th>
-                    <th><f:message key="detalhesSite.table.nome" /></th>
-                    <th><f:message key="detalhesSite.table.email" /></th>
-                    <th><f:message key="detalhesSite.table.senha" /></th>
-                    <th><f:message key="detalhesSite.table.url" /></th>
-                    <th><f:message key="detalhesSite.table.telefone" /></th>
-                    <!--<th><//f:message key="detalhesSite.table.acoes" /></th>-->
-                </tr>
-                <tr>
-                    <td><c:out value="${site.id}" /></td>
-                    <td><c:out value="${site.nome}" /></td>
-                    <td><c:out value="${site.email}" /></td>
-                    <td><c:out value="${site.senha}" /></td>
-                    <td><c:out value="${site.url}" /></td>
-                    <td><c:out value="${site.telefone}" /></td>
-                    <!-- <td>
-                        <a href="/DSW-T1/site/edicao?id=<//c:out value='${site.id}' />">Edição</a>
-                        &nbsp;&nbsp;&nbsp;&nbsp;
-                        <a href="/DSW-T1/site/remocao?id=<//c:out value='${site.id}' />" 
-                           onclick="return confirm('Tem certeza de que deseja excluir este item?');">
-                            Remoção
-                        </a>                    	
-                    </td> -->
-                </tr>
-            </table>
-                           
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-6">
+                        <table class="table table-bordered table-striped table-hover">
+                            <tr>
+                                <th><f:message key="detalhesSite.table.id" /></th>
+                                <th><f:message key="detalhesSite.table.nome" /></th>
+                                <th><f:message key="detalhesSite.table.email" /></th>
+                                <th><f:message key="detalhesSite.table.senha" /></th>
+                                <th><f:message key="detalhesSite.table.url" /></th>
+                                <th><f:message key="detalhesSite.table.telefone" /></th>
+                                <!--<th><//f:message key="detalhesSite.table.acoes" /></th>-->
+                            </tr>
+                            <tr>
+                                <td><c:out value="${site.id}" /></td>
+                                <td><c:out value="${site.nome}" /></td>
+                                <td><c:out value="${site.email}" /></td>
+                                <td><c:out value="${site.senha}" /></td>
+                                <td><c:out value="${site.url}" /></td>
+                                <td><c:out value="${site.telefone}" /></td>
+                                <!-- <td>
+                                    <a href="/DSW-T1/site/edicao?id=<//c:out value='${site.id}' />">Edição</a>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <a href="/DSW-T1/site/remocao?id=<//c:out value='${site.id}' />" 
+                                       onclick="return confirm('Tem certeza de que deseja excluir este item?');">
+                                        Remoção
+                                    </a>                    	
+                                </td> -->
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div> 
             <br/> <br/>
             
             <h2><f:message key="detalhesSite.active" /></h2>
             <br/>
             <c:if test="${!listaPromocoes.isEmpty()}">
-                <table border="1" cellpadding="5">
-                    <tr>
-                        <th><f:message key="listaPromocoes.table.id" /></th>
-                        <th><f:message key="listaPromocoes.table.site" /></th>
-                        <th><f:message key="listaPromocoes.table.peca" /></th>
-                        <th><f:message key="listaPromocoes.table.data" /></th>
-                        <th><f:message key="listaPromocoes.table.hora" /></th>
-                        <th><f:message key="listaPromocoes.table.preco" /></th>
-                        <th><f:message key="listaPromocoes.table.cnpj" /></th>
-                        <th><f:message key="listaPromocoes.table.acoes" /></th>
-                    </tr>
-                    <c:forEach var="promocao" items="${requestScope.listaPromocoes}">
-                        <tr>
-                            <td><c:out value="${promocao.id}" /></td>
-                            <td><c:out value="${promocao.url}" /></td>
-                            <td><c:out value="${promocao.nome_peca}" /></td>
-                            <td><c:out value="${promocao.dia}" /></td>
-                            <td><c:out value="${promocao.hora}" /></td>
-                            <td><c:out value="${promocao.preco}" /></td>
-                            <td><c:out value="${promocao.cnpj}" /></td>
-                            <td>
-                                <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />"><f:message key="detalhesSite.table.acoes.editar" /></a>
-                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
-                                   onclick="return confirm('<f:message key="remover.confirm" />');">
-                                    <f:message key="detalhesSite.table.acoes.remover" />
-                                </a>                    	
-                            </td>
-                        </tr>
-                    </c:forEach>
-                </table>
+                <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-6">
+                        <table class="table table-bordered table-striped table-hover">
+                            <tr>
+                                <th><f:message key="listaPromocoes.table.id" /></th>
+                                <th><f:message key="listaPromocoes.table.site" /></th>
+                                <th><f:message key="listaPromocoes.table.peca" /></th>
+                                <th><f:message key="listaPromocoes.table.data" /></th>
+                                <th><f:message key="listaPromocoes.table.hora" /></th>
+                                <th><f:message key="listaPromocoes.table.preco" /></th>
+                                <th><f:message key="listaPromocoes.table.cnpj" /></th>
+                                <th><f:message key="listaPromocoes.table.acoes" /></th>
+                            </tr>
+                            <c:forEach var="promocao" items="${requestScope.listaPromocoes}">
+                                <tr>
+                                    <td><c:out value="${promocao.id}" /></td>
+                                    <td><c:out value="${promocao.url}" /></td>
+                                    <td><c:out value="${promocao.nome_peca}" /></td>
+                                    <td><c:out value="${promocao.dia}" /></td>
+                                    <td><c:out value="${promocao.hora}" /></td>
+                                    <td><c:out value="${promocao.preco}" /></td>
+                                    <td><c:out value="${promocao.cnpj}" /></td>
+                                    <td>
+                                        <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
+                                           onclick="return confirm('<f:message key="remover.confirm" />');">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </a>                    	
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                        </table>
+                    </div>
+                </div>
+            </div>
             </c:if>
             <c:if test="${listaPromocoes.isEmpty()}">
                 <p><f:message key="detalhesSite.not.active" /></p>
