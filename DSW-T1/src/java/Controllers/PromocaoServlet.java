@@ -3,10 +3,13 @@ package Controllers;
 import DAO.PromocaoDAO;
 import Models.Promocao;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Locale;
+import java.util.Properties;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -47,6 +50,9 @@ public class PromocaoServlet extends HttpServlet {
                     break;
                 case "/lista": 
                     lista(request, response);
+                    break;
+                case "/ajax":
+                    buscarPorTeatro(request,response);
                     break;
                 default: 
                     erro(request, response);
@@ -91,7 +97,7 @@ public class PromocaoServlet extends HttpServlet {
 
         Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj);
         dao.inserir(promocao);
-        response.sendRedirect("/DSW-T1/promocao");
+        response.sendRedirect("/DSW-T1/promocao/lista");
     }
     
     private void atualize(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -107,7 +113,7 @@ public class PromocaoServlet extends HttpServlet {
 
         Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
         dao.atualizar(promocao);
-        response.sendRedirect("/DSW-T1/promocao");
+        response.sendRedirect("/DSW-T1/promocao/lista");
     }
     
     private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -115,12 +121,47 @@ public class PromocaoServlet extends HttpServlet {
 
         Promocao promocao = new Promocao(id);
         dao.deletar(promocao);
-        response.sendRedirect("/DSW-T1/promocao");
+        response.sendRedirect("/DSW-T1/promocao/lista");
     }
     
     private void erro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_erro/404.jsp");
         dispatcher.forward(request, response);
+    }
+    
+    private void buscarPorTeatro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        String cnpj_desejado_s = request.getParameter("cnpj");
+        List<Promocao> resultados;
+        if(cnpj_desejado_s != ""){
+            resultados = dao.listar_teatro(Integer.parseInt(cnpj_desejado_s));
+        } else {
+            resultados = dao.listar();
+        }
+        Locale currentLocale = request.getLocale();
+        Properties prop = new Properties();
+        String resposta = "";
+        
+        String filename = "/WEB-INF/properties/sistema_"+ currentLocale.getLanguage() +"_"+ currentLocale.getCountry() +".properties";    
+        prop.load(getServletContext().getResourceAsStream(filename));
+        
+        for(Promocao promocao : resultados){
+            resposta += 
+                "<tr>"+
+                    "<td class=\"text-center\">" + promocao.getId() + "</td>" +
+                    "<td class=\"text-center\">" + promocao.getUrl() + "</td>" +
+                    "<td class=\"text-center\">" + promocao.getNome_peca() + "</td>" +
+                    "<td class=\"text-center\">" + promocao.getDia() + "</td>" +
+                    "<td class=\"text-center\">" + promocao.getHora() + "</td>" +
+                    "<td class=\"text-center\">" + promocao.getPreco() + "</td>" +
+                    "<td class=\"text-center\">" + promocao.getCnpj() + "</td>" +
+                    "<td class=\"text-center\">" +
+                        "<a href=\"/DSW-T1/promocao/edicao?id=" + promocao.getId() +"\">" + prop.getProperty("listaPromocoes.table.acoes.editar") + "</a>" +
+                        "&nbsp;&nbsp;&nbsp;&nbsp;"+
+                        "<a href=\"/DSW-T1/promocao/remocao?id="+ promocao.getId() + "\" onclick=\"return confirm('" + prop.getProperty("remover.confirm") + "');\">" + prop.getProperty("listaPromocoes.table.acoes.remover") + "</a></td>" +
+                "</tr>";
+        }
+        response.getWriter().println(resposta);
     }
 
     @Override

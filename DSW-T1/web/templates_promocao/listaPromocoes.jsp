@@ -12,12 +12,9 @@
         <link rel="stylesheet" type="text/css" href="/DSW-T1/css/glyphicon.css"> <!-- adicionado pra usar ícones-->
         
         <title><f:message key="listaPromocoes.title" /></title>
+        <script src="/DSW-T1/js/ListaTeatroAJAX.js"></script>
     </head>
-    <style>
-        body{
-            font-family: 'Questrial', sans-serif;
-        }
-    </style>
+    <style>body{font-family: 'Questrial', sans-serif;}</style>
     <body>
         <div class="container">
             <nav class="navbar navbar-default">
@@ -40,6 +37,7 @@
         </center>
         <div align="center">
             <h2><f:message key="listaPromocoes.pageTitle" /></h2>
+            <input class="mb-4" type="number" name="busca" placeholder="<f:message key="listaPromocoes.busca" />" oninput='buscarPromocoes(this.value)'/>
             </br>
             <div class="container">
                 <div class="row">
@@ -55,16 +53,17 @@
                                 <th class="text-center"><f:message key="listaPromocoes.table.cnpj" /></th>
                                 <th class="text-center"><f:message key="listaPromocoes.table.acoes" /></th>
                             </tr>
-                            <c:forEach var="promocao" items="${requestScope.listaPromocoes}">
-                                <tr>
-                                    <td class="text-center"><c:out value="${promocao.id}" /></td>
-                                    <td class="text-center"><c:out value="${promocao.url}" /></td>
-                                    <td class="text-center"><c:out value="${promocao.nome_peca}" /></td>
-                                    <td class="text-center"><c:out value="${promocao.dia}" /></td>
-                                    <td class="text-center"><c:out value="${promocao.hora}" /></td>
-                                    <td class="text-center"><c:out value="${promocao.preco}" /></td>
-                                    <td class="text-center"><c:out value="${promocao.cnpj}" /></td>
-                                    <td class="text-center">
+                            <tbody id="tbodyresposta">
+                                <c:forEach var="promocao" items="${requestScope.listaPromocoes}">
+                                    <tr>
+                                        <td class="text-center"><c:out value="${promocao.id}" /></td>
+                                        <td class="text-center"><c:out value="${promocao.url}" /></td>
+                                        <td class="text-center"><c:out value="${promocao.nome_peca}" /></td>
+                                        <td class="text-center"><c:out value="${promocao.dia}" /></td>
+                                        <td class="text-center"><c:out value="${promocao.hora}" /></td>
+                                        <td class="text-center"><c:out value="${promocao.preco}" /></td>
+                                        <td class="text-center"><c:out value="${promocao.cnpj}" /></td>
+                                        <td class="text-center">
                                         <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </a>
@@ -76,10 +75,11 @@
                                     </td>
                                 </tr>
                             </c:forEach>
+                            </tbody>
                         </table>
                     </div>
                 </div>
-            </div>        
+            </div>
         </div>
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
