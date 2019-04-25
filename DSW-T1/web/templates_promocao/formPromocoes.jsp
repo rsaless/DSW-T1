@@ -7,9 +7,43 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
         <link rel="stylesheet" href="../css/bootstrap.css">
         <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="/DSW-T1/css/glyphicon.css"> <!-- adicionado pra usar ícones-->
+        <link rel="stylesheet" href="../css/datepicker.min.css" type="text/css">
+        <link rel="stylesheet" href="../css/jquery-clockpicker.min.css" type="text/css">
+        
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        
+        <script src="../js/datepicker.min.js"></script>
+        <script src="../js/datepicker_i18n/datepicker.en.js"></script>
+        <script src="../js/datepicker_i18n/datepicker.pt-BR.js"></script>
+        <script src="../js/jquery.mask.min.js"></script>
+        <script src="../js/jquery-clockpicker.min.js"></script>
+        <script src="../js/jquery.maskMoney.min.js"></script>
+        
+        <script>
+            $(document).ready(function(){
+                $('.data').mask('00/00/0000')
+                $(".cnpj").mask('00.000.000/0000-00')
+                $('.horario').mask('00:00:00')
+                $('.data').datepicker({autoClose: true})
+                $('.horario').clockpicker({
+                    placement: 'bottom',
+                    align: 'right',
+                    autoclose: true,
+                    'default': '00:00'
+                });
+                $('.preco').maskMoney({
+                    prefix:'R$ ', 
+                    allowNegative: false, 
+                    thousands:'.', 
+                    decimal:','
+                })
+            })
+        </script>
+        
         <title><f:message key="formPromocao.title" /></title>
     </head>
     <style>
@@ -88,27 +122,81 @@
                                     </c:if>      
                                     <tr>
                                         <th><f:message key="formPromocao.form.url" /></th>
-                                        <td><input class="form-control col-sm-10" type="text" name="url" required value="<c:out value='${promocao.url}' />"/></td>
+                                        <td>
+                                            <input type="text" 
+                                                   name="url" 
+                                                   size="50" 
+                                                   required 
+                                                   value="<c:out value='${promocao.url}' />"
+                                                                                   class="form-control col-sm-10"
+                                            />
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th><f:message key="formPromocao.form.nome" /></th>
-                                        <td><input class="form-control col-sm-10" type="text" name="nome_peca" required value="<c:out value='${promocao.nome_peca}' />"/></td>
+                                        <td>
+                                            <input type="text" 
+                                                   name="nome_peca" 
+                                                   size="50" 
+                                                   required 
+                                                   value="<c:out value='${promocao.nome_peca}' />"
+                                                                                   class="form-control col-sm-10"
+                                            />
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th><f:message key="formPromocao.form.data" /> </th>
-                                        <td><input class="form-control col-sm-10" type="date" name="dia" required value="<c:out value='${promocao.dia}' />" /></td>
+                                        <td>
+                                            <input type="text" 
+                                                   data-language="pt-BR"
+                                                   name="dia"
+                                                   class="datepicker-here data form-control col-sm-10" 
+                                                   required
+                                                   size="10"
+                                                   value="<c:out value='${promocao.dia}' />"
+                                                   autoClose="true"
+                                                   placeholder="DD/MM/AAAA"
+                                            />
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th><f:message key="formPromocao.form.hora" /> </th>
-                                        <td><input class="form-control col-sm-10" type="text" name="hora" required value="<c:out value='${promocao.hora}' />"/></td>
+                                        <td>
+                                            <input type="text" 
+                                                   class="horario form-control col-sm-10" 
+                                                   name="hora" 
+                                                   size="8" 
+                                                   required 
+                                                   value="<c:out value='${promocao.hora}' />" 
+                                                   placeholder="HH:MM"
+                                            />
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th><f:message key="formPromocao.form.preco" /> </th>
-                                        <td><input class="form-control col-sm-10" type="number" name="preco" step="0.1" required value="<c:out value='${promocao.preco}' />"/></td>
+                                        <td>
+                                            <input type="text" 
+                                                   class="preco form-control col-sm-10"
+                                                   name="preco" 
+                                                   size="50" 
+                                                   step="0.1" 
+                                                   required 
+                                                   value="<c:out value='${promocao.preco}' />"
+                                                   placeholder="R$ "
+                                            />
+                                        </td>
                                     </tr>
                                     <tr>
                                         <th><f:message key="formPromocao.form.cnpj" /> </th>
-                                        <td><input class="form-control col-sm-10" type="number" name="cnpj" required value="<c:out value='${promocao.cnpj}' />"/></td>
+                                        <td>
+                                            <input type="text" 
+                                                   name="cnpj" 
+                                                   size="18" 
+                                                   required 
+                                                   value="<c:out value='${promocao.cnpj}' />" 
+                                                   class="cnpj form-control col-sm-10"
+                                            />
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td colspan="2" align="center">
@@ -130,7 +218,6 @@
             </ul>
         </c:if>
     </body>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 </html>
 </f:bundle>
