@@ -96,7 +96,7 @@ public class TeatroServlet extends HttpServlet {
         dao.inserir(teatro);
         usuarioDAO.inserir_usuario(new Usuario (email, senha));
         usuarioDAO.inserir_role(new Papel(email, "USER_TEATRO"));
-        response.sendRedirect("/DSW-T1/teatro");
+        response.sendRedirect("/DSW-T1/teatro/lista");
     }
     
     
@@ -112,7 +112,7 @@ public class TeatroServlet extends HttpServlet {
 
         Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
         dao.atualizar(teatro);
-        response.sendRedirect("/DSW-T1/teatro");
+        response.sendRedirect("/DSW-T1/teatro/lista");
     }
     
 
@@ -121,7 +121,7 @@ public class TeatroServlet extends HttpServlet {
 
         Teatro teatro = new Teatro(id);
         dao.deletar(teatro);
-        response.sendRedirect("/DSW-T1/teatro");
+        response.sendRedirect("/DSW-T1/teatro/lista");
     }
     
     private void erro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{

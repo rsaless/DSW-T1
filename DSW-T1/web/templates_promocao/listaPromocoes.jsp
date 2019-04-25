@@ -10,12 +10,9 @@
         <link rel="stylesheet" href="/DSW-T1/css/bootstrap.css">
         <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
         <title><f:message key="listaPromocoes.title" /></title>
+        <script src="/DSW-T1/js/ListaTeatroAJAX.js"></script>
     </head>
-    <style>
-        body{
-            font-family: 'Questrial', sans-serif;
-        }
-    </style>
+    <style>body{font-family: 'Questrial', sans-serif;}</style>
     <body>
         <div class="container">
             <nav class="navbar navbar-default">
@@ -75,7 +72,29 @@
                         </table>
                     </div>
                 </div>
-            </div>        
+            </div>   
+            <h1> Testes com AJAX </h1>
+            <input type="text" name="busca" placeholder="buscar" onchange='buscarPromocoes(this.value)'/>
+            </br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12 col-md-offset-6">
+                        <table class="table table-bordered table-striped table-hover">
+                            <tr class="col-md-2">
+                                <th class="text-center"><f:message key="listaPromocoes.table.id" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.site" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.peca" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.data" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.hora" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.preco" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.cnpj" /></th>
+                                <th class="text-center"><f:message key="listaPromocoes.table.acoes" /></th>
+                            </tr>
+                            <tbody id="tbodyresposta"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </body>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
