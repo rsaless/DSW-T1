@@ -16,6 +16,9 @@
         body{
             font-family: 'Questrial', sans-serif;
         }
+        h1{
+            font-size: 2.5em;
+        }
     </style>
     <body>
         <div class="container">
