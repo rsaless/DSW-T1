@@ -10,10 +10,19 @@
             <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
             <title><f:message key="index.title" /></title>
             <style>
-                body{
-                    font-family: 'Questrial', sans-serif;
-                }
-            </style>
+            body{
+                font-family: 'Questrial', sans-serif;
+            }
+            h1{
+                font-size: 2.5em;
+            }
+            p{
+                padding-left: 100px;
+                color: gray;
+                font-size: 1.5em;
+                text-align: center;
+            }
+        </style>
         </head>
         <body>
             <div class="container">
@@ -28,17 +37,18 @@
                     </div>
                 </nav>
             </div>
+            </br>
             <center>
-                <div class="container">
-                    <div class="page-header">
-                        <h1><f:message key="index.pageTitle" /></h1>
+                    <h1><f:message key="index.pageTitle" /></h1>
+                    </br> </br>
+                    <div class="container">
+                        </br>
+                        <div class="row">
+                            <p>
+                               Bem-vindo ao Sistema WEB desenvolvido para a disciplina de Desenvolvimento WEB.
+                            </p>
+                        </div>
                     </div>
-                    <div>
-                        <p>
-                            Alguma info
-                        </p>
-                    </div>
-                </div>
             </center>
         </body>
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
