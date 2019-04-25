@@ -55,8 +55,11 @@ public class SiteServlet extends HttpServlet {
                 case "/detalhes": 
                     detalhes(request, response); 
                     break;
+                case "/lista": 
+                    lista(request, response);
+                    break;
                 default: 
-                    lista(request, response); 
+                    erro(request, response);
                     break;
             }
         } catch (RuntimeException | IOException | ServletException e) {
@@ -136,6 +139,11 @@ public class SiteServlet extends HttpServlet {
         Site site = new Site(id);
         siteDao.deletar(site);
         response.sendRedirect("/DSW-T1/site");
+    }
+    
+    private void erro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_erro/404.jsp");
+        dispatcher.forward(request, response);
     }
     
     @Override

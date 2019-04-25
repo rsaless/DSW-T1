@@ -45,8 +45,11 @@ public class PromocaoServlet extends HttpServlet {
                 case "/atualizacao": 
                     atualize(request, response); 
                     break;
+                case "/lista": 
+                    lista(request, response);
+                    break;
                 default: 
-                    lista(request, response); 
+                    erro(request, response);
                     break;
             }
         } catch (RuntimeException | IOException | ServletException e) {
@@ -113,6 +116,11 @@ public class PromocaoServlet extends HttpServlet {
         Promocao promocao = new Promocao(id);
         dao.deletar(promocao);
         response.sendRedirect("/DSW-T1/promocao");
+    }
+    
+    private void erro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_erro/404.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
