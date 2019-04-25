@@ -35,7 +35,7 @@
         </center>
         <div align="center">
             <h2><f:message key="listaPromocoes.pageTitle" /></h2>
-            <input class="mb-4" type="text" name="busca" placeholder="buscar" oninput='buscarPromocoes(this.value)'/>
+            <input class="mb-4" type="number" name="busca" placeholder="<f:message key="listaPromocoes.busca" />" oninput='buscarPromocoes(this.value)'/>
             </br>
             <div class="container">
                 <div class="row">
