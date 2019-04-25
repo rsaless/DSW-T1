@@ -51,7 +51,7 @@
                     </div>
                     <div class="col-lg-6">
                         <h2>
-                            <a href="/DSW-T1/site/cadastro" class="btn btn-success btn-lg"><f:message key="listaSites.goToAdd" /> <span class="glyphicon glyphicon-plus-sign"></span></a>
+                            <a href="/DSW-T1/site/cadastro" class="btn btn-success btn-lg"><f:message key="listaSites.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
                         </h2>
                     </div>
                 </div>
