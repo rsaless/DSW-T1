@@ -9,6 +9,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="/DSW-T1/css/bootstrap.css">
         <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="/DSW-T1/css/glyphicon.css"> <!-- adicionado pra usar ícones-->
         <title><f:message key="detalhesSite.title" /></title>
     </head>
     <style>
@@ -29,15 +30,29 @@
                 </div>
             </nav>
         </div>
+        </br>
         <center>
             <h1><f:message key="detalhesSite.bigTitle" /></h1>
-            <h2>
-                <a href="/DSW-T1/promocao/cadastro" class="btn btn-default btn-lg"><f:message key="detalhesSite.goToAdd" /></a>
-                <a href="/DSW-T1/site/lista" class="btn btn-default btn-lg"><f:message key="detalhesSite.goToList" /></a>
-            </h2>
+            </br> </br>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6">
+                        <h2>
+                            <a href="/DSW-T1/site/lista" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;&nbsp;<f:message key="detalhesSite.goToList" /></a>
+                        </h2>
+                    </div>
+                    <div class="col-lg-6">
+                        <h2>
+                            <a href="/DSW-T1/promocao/cadastro" class="btn btn-success btn-lg"><f:message key="detalhesSite.goToAdd" />&nbsp;&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
+                        </h2>
+                    </div>
+                </div>
+            </div>
         </center>
+        </br> </br> </br>
         <div align="center">
             <h2>Detalhes do Site</h2>
+            <br/>
             <table border="1" cellpadding="5">
                 <tr>
                     <th><f:message key="detalhesSite.table.id" /></th>
@@ -66,9 +81,10 @@
                 </tr>
             </table>
                            
-            <br/>
+            <br/> <br/>
             
             <h2><f:message key="detalhesSite.active" /></h2>
+            <br/>
             <c:if test="${!listaPromocoes.isEmpty()}">
                 <table border="1" cellpadding="5">
                     <tr>
