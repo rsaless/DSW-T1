@@ -1,0 +1,9 @@
+body {
+    font-family: 'Questrial', sans-serif;
+}
+
+ul {
+    text-align: left;
+    align-content: flex-start;
+    width: 500px;
+}

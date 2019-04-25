@@ -6,14 +6,10 @@
         <head>
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" href="css/bootstrap.css">
+            <link rel="stylesheet" href="/DSW-T1/css/bootstrap.css">
+            <link rel="stylesheet" href="/DSW-T1/css/style.css">
             <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
-            <title><f:message key="index.title" /></title>
-            <style>
-                body{
-                    font-family: 'Questrial', sans-serif;
-                }
-            </style>
+            <title><f:message key="403.title" /></title>
         </head>
         <body>
             <div class="container">
@@ -30,14 +26,18 @@
             </div>
             <center>
                 <div class="container">
-                    <div class="page-header">
-                        <h1><f:message key="index.pageTitle" /></h1>
+                    <div class="page-header pb-5">
+                        <h1><f:message key="403.pageTitle" /></h1>
+                        <h3><f:message key="403.pageSubTitle" /></h3>
                     </div>
-                    <div>
-                        <p>
-                            Alguma info
-                        </p>
-                    </div>
+                    <div class="page-content">
+                        <h4><f:message key="403.suggestions" /></h4>
+                        <ul  class="list-unstyled">
+                            <li>•<f:message key="403.suggestions.1" /></li>
+                            <li>•<f:message key="403.suggestions.2" /></li>
+                            <li>•<f:message key="403.suggestions.3" /></li>
+                        </ul>
+                    </div>    
                 </div>
             </center>
         </body>

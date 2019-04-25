@@ -48,12 +48,16 @@ public class TeatroServlet extends HttpServlet {
                 case "/atualizacao": 
                     atualize(request, response); 
                     break;
+                case "/lista": 
+                    lista(request, response);
+                    break;
                 default: 
-                    lista(request, response); 
+                    erro(request, response);
                     break;
             }
         } catch (RuntimeException | IOException | ServletException e) {
-            throw new ServletException(e);
+            e.printStackTrace();
+            request.getRequestDispatcher("/templates_erro/500.jsp").forward(request, response);
         }
         
     }
@@ -118,6 +122,11 @@ public class TeatroServlet extends HttpServlet {
         Teatro teatro = new Teatro(id);
         dao.deletar(teatro);
         response.sendRedirect("/DSW-T1/teatro");
+    }
+    
+    private void erro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_erro/404.jsp");
+        dispatcher.forward(request, response);
     }
 
     @Override
