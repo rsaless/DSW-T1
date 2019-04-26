@@ -111,8 +111,10 @@ public class PromocaoServlet extends HttpServlet {
         Integer id = Integer.parseInt(request.getParameter("id"));
         String url = request.getParameter("url");
         String nome_peca = request.getParameter("nome_peca");
-        Float preco = Float.parseFloat(request.getParameter("preco").replaceAll(".", "").replaceAll(",", ""));
-        LocalDate dia = LocalDate.parse(request.getParameter("dia"));//"2017-02-05"
+        Float preco = Float.parseFloat(request.getParameter("preco").replaceAll("[^\\d,]", "").replaceAll(",", "."));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.println(request.getParameter("dia"));
+        LocalDate dia = LocalDate.parse(request.getParameter("dia"), formatter);//"2017-02-05"
         LocalTime hora = LocalTime.parse(request.getParameter("hora"));//"10:15:30"
         Long cnpj = Long.parseLong(request.getParameter("cnpj").replaceAll("[^\\d]", ""));
 
