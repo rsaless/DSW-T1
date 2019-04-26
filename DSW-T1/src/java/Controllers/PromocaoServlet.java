@@ -7,6 +7,7 @@ import java.io.InputStream;
 import java.io.PrintWriter;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
@@ -88,15 +89,19 @@ public class PromocaoServlet extends HttpServlet {
     private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         request.setCharacterEncoding("UTF-8");
+        System.out.println("ola");
         String url = request.getParameter("url");
         String nome_peca = request.getParameter("nome_peca");
-        Float preco = Float.parseFloat(request.getParameter("preco"));
-        LocalDate dia = LocalDate.parse(request.getParameter("dia"));//"2017-02-05"
+        Float preco = Float.parseFloat(request.getParameter("preco").replaceAll("[^\\d,]", "").replaceAll(",", "."));
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        System.out.println(request.getParameter("dia"));
+        LocalDate dia = LocalDate.parse(request.getParameter("dia"), formatter);//"2017-02-05"
         LocalTime hora = LocalTime.parse(request.getParameter("hora"));//"10:15:30"
-        Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
+        Long cnpj = Long.parseLong(request.getParameter("cnpj").replaceAll("[^\\d]", ""));
 
         Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj);
         dao.inserir(promocao);
+        
         response.sendRedirect("/DSW-T1/promocao/lista");
     }
     
@@ -106,10 +111,10 @@ public class PromocaoServlet extends HttpServlet {
         Integer id = Integer.parseInt(request.getParameter("id"));
         String url = request.getParameter("url");
         String nome_peca = request.getParameter("nome_peca");
-        Float preco = Float.parseFloat(request.getParameter("preco"));
+        Float preco = Float.parseFloat(request.getParameter("preco").replaceAll(".", "").replaceAll(",", ""));
         LocalDate dia = LocalDate.parse(request.getParameter("dia"));//"2017-02-05"
         LocalTime hora = LocalTime.parse(request.getParameter("hora"));//"10:15:30"
-        Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
+        Long cnpj = Long.parseLong(request.getParameter("cnpj").replaceAll("[^\\d]", ""));
 
         Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
         dao.atualizar(promocao);
