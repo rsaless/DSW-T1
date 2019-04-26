@@ -108,8 +108,8 @@
                                 <div class="col-lg-12">
                                     <table class="table table-borderless">
                                         <div class="form-group row">
-                                            <c:if test="${site != null}">
-                                                <input type="hidden" name="id" value="<c:out value='${site.id}' />" />
+                                            <c:if test="${teatro != null}">
+                                                <input type="hidden" name="id" value="<c:out value='${teatro.id}' />" />
                                             </c:if>            
                                             <tr>
                                                 <th><f:message key="formTeatro.form.email" /></th>
