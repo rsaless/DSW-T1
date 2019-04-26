@@ -96,8 +96,8 @@
             </center>
             </br> </br> </br>                         
             <div align="center">
-                <c:if test="${site != null}"><form action="atualizacao" method="post"></c:if>
-                <c:if test="${site == null}"><form action="insercao" method="post"></c:if>
+                <c:if test="${teatro != null}"><form action="atualizacao" method="post"></c:if>
+                <c:if test="${teatro == null}"><form action="insercao" method="post"></c:if>
                     <h2>
                         <c:if test="${teatro != null}"><f:message key="formTeatro.smallTitle.editar" /></c:if>
                         <c:if test="${teatro == null}"><f:message key="formTeatro.smallTitle.cadastrar" /></c:if>
