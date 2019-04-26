@@ -96,7 +96,7 @@ public class TeatroServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         String cidade = request.getParameter("cidade");
         String nome = request.getParameter("nome");
-        Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
+        Long cnpj = Long.parseLong(request.getParameter("cnpj").replaceAll("[^\\d]", ""));
 
         Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj);
         dao.inserir(teatro);
@@ -114,7 +114,7 @@ public class TeatroServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         String cidade = request.getParameter("cidade");
         String nome = request.getParameter("nome");
-        Integer cnpj = Integer.parseInt(request.getParameter("cnpj"));
+        Long cnpj = Long.parseLong(request.getParameter("cnpj").replaceAll("[^\\d]", ""));
 
         Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
         dao.atualizar(teatro);

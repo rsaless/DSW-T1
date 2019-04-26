@@ -32,7 +32,7 @@ public class PromocaoDAO extends GenericDAO{
             statement.setFloat(3, promocao.getPreco());
             statement.setDate(4, Date.valueOf(promocao.getDia()));            
             statement.setTime(5, Time.valueOf(promocao.getHora()));
-            statement.setInt(6, promocao.getCnpj());
+            statement.setLong(6, promocao.getCnpj());
             
             statement.executeUpdate();
             statement.close();
@@ -56,7 +56,7 @@ public class PromocaoDAO extends GenericDAO{
                 Float preco = resultSet.getFloat("preco");
                 LocalDate dia = resultSet.getDate("dia").toLocalDate();
                 LocalTime hora = resultSet.getTime("hora").toLocalTime();
-                Integer cnpj = resultSet.getInt("cnpj");
+                Long cnpj = resultSet.getLong("cnpj");
                 Integer id = resultSet.getInt("id");
                 
                 Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
@@ -82,7 +82,7 @@ public class PromocaoDAO extends GenericDAO{
             statement.setFloat(3, promocao.getPreco());
             statement.setDate(4, Date.valueOf(promocao.getDia()));            
             statement.setTime(5, Time.valueOf(promocao.getHora()));
-            statement.setInt(6, promocao.getCnpj());
+            statement.setLong(6, promocao.getCnpj());
             statement.setInt(7, promocao.getId());
 
             statement.executeUpdate();
@@ -122,7 +122,7 @@ public class PromocaoDAO extends GenericDAO{
                 Float preco = resultSet.getFloat("preco");
                 LocalDate dia = resultSet.getDate("dia").toLocalDate();
                 LocalTime hora = resultSet.getTime("hora").toLocalTime();
-                Integer cnpj = resultSet.getInt("cnpj");
+                Long cnpj = resultSet.getLong("cnpj");
                 Integer id = resultSet.getInt("id");
                 
                 Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
@@ -153,7 +153,7 @@ public class PromocaoDAO extends GenericDAO{
                 Float preco = resultSet.getFloat("preco");
                 LocalDate dia = resultSet.getDate("dia").toLocalDate();
                 LocalTime hora = resultSet.getTime("hora").toLocalTime();
-                Integer cnpj = resultSet.getInt("cnpj");
+                Long cnpj = resultSet.getLong("cnpj");
                 Integer id = resultSet.getInt("id");
                 
                 Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
@@ -183,7 +183,7 @@ public class PromocaoDAO extends GenericDAO{
                 Float preco = resultSet.getFloat("preco");
                 LocalDate dia = resultSet.getDate("dia").toLocalDate();
                 LocalTime hora = resultSet.getTime("hora").toLocalTime();
-                Integer cnpj = resultSet.getInt("cnpj");
+                Long cnpj = resultSet.getLong("cnpj");
                 
                 promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
             }
