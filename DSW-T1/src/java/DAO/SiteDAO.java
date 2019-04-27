@@ -32,10 +32,6 @@ public class SiteDAO extends GenericDAO{
             statement.executeUpdate();
             statement.close();
             connection.close();
-            
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
-            usuarioDAO.inserir_usuario(new Usuario(site.getEmail(), site.getSenha()));
-            usuarioDAO.inserir_role(new Papel(site.getEmail(), "ROLE_SITE"));
 
         } catch(SQLException e) {
             throw new RuntimeException(e);

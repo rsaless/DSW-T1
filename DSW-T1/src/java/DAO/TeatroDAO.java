@@ -33,10 +33,6 @@ public class TeatroDAO extends GenericDAO{
             statement.executeUpdate();
             statement.close();
             connection.close();
-            
-            UsuarioDAO usuarioDAO = new UsuarioDAO();
-            usuarioDAO.inserir_usuario(new Usuario(teatro.getEmail(), teatro.getSenha()));
-            usuarioDAO.inserir_role(new Papel(teatro.getEmail(), "ROLE_TEATRO"));
 
         } catch(SQLException e) {
             throw new RuntimeException(e);

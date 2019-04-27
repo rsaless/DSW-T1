@@ -33,7 +33,7 @@ public class AppConfig extends WebSecurityConfigurerAdapter{
             .antMatchers("/site/cadastro","/site/insercao","/site/remocao","/site/edicao","/site/atualizacao").hasRole("USER_ADMIN")
             //.antMatchers("/site/detalhes/**").hasRole("USER_SITE")
             //.antMatchers("/promocao/cadastro","/promocao/insercao","/promocao/remocao","/promocao/edicao","/promocao/atualizacao").hasRole("USER_TEATRO")
-            .anyRequest().anonymous()
+            .anyRequest().authenticated()
             .and().formLogin()
             .and().rememberMe()
             .and().httpBasic()
