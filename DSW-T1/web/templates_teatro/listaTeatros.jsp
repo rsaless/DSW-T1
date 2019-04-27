@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <f:bundle basename="i18n.sistema">
 <html>
@@ -64,11 +65,13 @@
                                 Veja aqui a lista de teatros que possuem promoções no nosso sistema.
                             </p>
                         </div>
-                        <div class="col-lg-6">
-                            <h2>
-                                <a href="/DSW-T1/teatro/cadastro" class="btn btn-success btn-lg"><f:message key="listaTeatros.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
-                            </h2>
-                        </div>
+                        <sec:authorize access="hasRole('ADMIN')">
+                            <div class="col-lg-6">
+                                <h2>
+                                    <a href="/DSW-T1/teatro/cadastro" class="btn btn-success btn-lg"><f:message key="listaTeatros.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
+                                </h2>
+                            </div>
+                        </sec:authorize>
                     </div>
                 </div>
             </center>
@@ -102,16 +105,18 @@
                                             <td class="text-center"><c:out value="${teatro.senha}" /></td>
                                             <td class="text-center"><c:out value="${teatro.cidade}" /></td>
                                             <td class="text-center"><c:out value="${teatro.cnpj}" /></td>
-                                            <td class="text-center">
-                                                <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />">
-                                                    <span class="glyphicon glyphicon-pencil"></span>
-                                                </a>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a href="/DSW-T1/teatro/remocao?id=<c:out value='${teatro.id}' />" 
-                                                   onclick="return confirm('<f:message key="remover.confirm" />');">
-                                                   <span class="glyphicon glyphicon-trash" style="color:red"></span>
-                                                </a>                    	
-                                            </td>
+                                            <sec:authorize access="hasRole('ADMIN')">
+                                                <td class="text-center">
+                                                    <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />">
+                                                        <span class="glyphicon glyphicon-pencil"></span>
+                                                    </a>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="/DSW-T1/teatro/remocao?id=<c:out value='${teatro.id}' />" 
+                                                       onclick="return confirm('<f:message key="remover.confirm" />');">
+                                                       <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                                    </a>                    	
+                                                </td>
+                                            </sec:authorize>
                                         </tr>
                                     </c:forEach>
                                 </tbody>  
