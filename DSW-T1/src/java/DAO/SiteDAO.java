@@ -1,6 +1,8 @@
 package DAO;
 
+import Models.Papel;
 import Models.Site;
+import Models.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,7 +18,7 @@ public class SiteDAO extends GenericDAO{
     /* D */ private final String DELETAR = "DELETE FROM Site WHERE id=?";
     /* - */ private final String GET = "SELECT * FROM Site where id=?"; 
     
-    /* C */ public void inserir(Site site) {
+    /* C */ public void inserir(Site site) throws ClassNotFoundException {
         try {
             Connection connection = this.getConnection();
             PreparedStatement statement = connection.prepareStatement(INSERIR);
@@ -30,6 +32,10 @@ public class SiteDAO extends GenericDAO{
             statement.executeUpdate();
             statement.close();
             connection.close();
+            
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            usuarioDAO.inserir_usuario(new Usuario(site.getEmail(), site.getSenha()));
+            usuarioDAO.inserir_role(new Papel(site.getEmail(), "ROLE_SITE"));
 
         } catch(SQLException e) {
             throw new RuntimeException(e);

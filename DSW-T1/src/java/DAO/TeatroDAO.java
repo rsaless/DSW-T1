@@ -1,6 +1,8 @@
 package DAO;
 
+import Models.Papel;
 import Models.Teatro;
+import Models.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,7 +19,7 @@ public class TeatroDAO extends GenericDAO{
     /* - */ private final String LISTAR_CIDADE = "SELECT * FROM Teatro WHERE cidade=?"; 
     /* - */ private final String GET = "SELECT * FROM Teatro where id=?"; 
     
-    /* C */ public void inserir(Teatro teatro) {
+    /* C */ public void inserir(Teatro teatro) throws ClassNotFoundException {
         try {
             Connection connection = this.getConnection();
             PreparedStatement statement = connection.prepareStatement(INSERIR);
@@ -31,6 +33,10 @@ public class TeatroDAO extends GenericDAO{
             statement.executeUpdate();
             statement.close();
             connection.close();
+            
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            usuarioDAO.inserir_usuario(new Usuario(teatro.getEmail(), teatro.getSenha()));
+            usuarioDAO.inserir_role(new Papel(teatro.getEmail(), "ROLE_TEATRO"));
 
         } catch(SQLException e) {
             throw new RuntimeException(e);

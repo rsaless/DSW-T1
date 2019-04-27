@@ -30,7 +30,6 @@ public class AppConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-            .antMatchers("/teatro/**").hasRole("ADMIN")
             //.antMatchers("/","index.jsp", "/teatro", "/site", "/promocao").permitAll()
             //.antMatchers("/site/detalhes/**").hasRole("USER_SITE")
             //.antMatchers("/teatro/cadastro","/teatro/insercao","/teatro/remocao","/teatro/edicao","/teatro/atualizacao").hasRole("USER_ADM")
@@ -43,7 +42,7 @@ public class AppConfig extends WebSecurityConfigurerAdapter{
             .and().logout()
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
                     
-            http.csrf().disable();
+        http.csrf().disable();
     }
     
 }

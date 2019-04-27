@@ -1,5 +1,6 @@
 package DAO;
 
+import Login.JDBCUtil;
 import Models.Papel;
 import Models.Usuario;
 import Models.UsuarioRole;
@@ -10,6 +11,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.sql.DataSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UsuarioDAO extends GenericDAO{
@@ -25,34 +27,31 @@ public class UsuarioDAO extends GenericDAO{
     /* D */ private final String DELETAR_ID = "DELETE FROM Usuario WHERE id=?";
     /* D */ private final String DELETAR_EMAIL = "DELETE FROM Usuario WHERE email=?";   
 
-    /* C */ public void inserir_usuario(Usuario usuario) {
+    /* C */ public void inserir_usuario(Usuario usuario) throws ClassNotFoundException {
         try {
+            
             BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(INSERIR_USUARIO);
+            DataSource ds = JDBCUtil.getDataSource();
+            Connection conn = ds.getConnection();
             
-            statement.setString(1, usuario.getEmail());
-            statement.setString(2, encoder.encode(usuario.getSenha()));
-            
-            statement.executeUpdate();
-            statement.close();
-            connection.close();
+            PreparedStatement userStatement = conn.prepareStatement(INSERIR_USUARIO);
+            userStatement.setString(1, usuario.getEmail());
+            userStatement.setString(2, encoder.encode(usuario.getSenha()));
+            userStatement.execute();
 
         } catch(SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    /* C */ public void inserir_role(Papel papel) {
+    /* C */ public void inserir_role(Papel papel) throws ClassNotFoundException {
         try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(INSERIR_ROLE);
+            DataSource ds = JDBCUtil.getDataSource();
+            Connection conn = ds.getConnection();
             
-            statement.setString(1, papel.getEmail());
-            statement.setString(2, papel.getNome());
-            
-            statement.executeUpdate();
-            statement.close();
-            connection.close();
+            PreparedStatement roleStatement = conn.prepareStatement(INSERIR_ROLE);
+            roleStatement.setString(1, papel.getEmail());
+            roleStatement.setString(2, papel.getNome());
+            roleStatement.execute();
 
         } catch(SQLException e) {
             throw new RuntimeException(e);
