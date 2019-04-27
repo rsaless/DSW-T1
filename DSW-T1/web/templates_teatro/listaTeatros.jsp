@@ -65,13 +65,11 @@
                                 Veja aqui a lista de teatros que possuem promoções no nosso sistema.
                             </p>
                         </div>
-                        <sec:authorize access="hasRole('ADMIN')">
-                            <div class="col-lg-6">
-                                <h2>
-                                    <a href="/DSW-T1/teatro/cadastro" class="btn btn-success btn-lg"><f:message key="listaTeatros.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
-                                </h2>
-                            </div>
-                        </sec:authorize>
+                        <div class="col-lg-6">
+                            <h2>
+                                <a href="/DSW-T1/teatro/cadastro" class="btn btn-success btn-lg"><f:message key="listaTeatros.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
+                            </h2>
+                        </div>
                     </div>
                 </div>
             </center>
@@ -105,18 +103,16 @@
                                             <td class="text-center"><c:out value="${teatro.senha}" /></td>
                                             <td class="text-center"><c:out value="${teatro.cidade}" /></td>
                                             <td class="text-center"><c:out value="${teatro.cnpj}" /></td>
-                                            <sec:authorize access="hasRole('ADMIN')">
-                                                <td class="text-center">
-                                                    <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />">
-                                                        <span class="glyphicon glyphicon-pencil"></span>
-                                                    </a>
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <a href="/DSW-T1/teatro/remocao?id=<c:out value='${teatro.id}' />" 
-                                                       onclick="return confirm('<f:message key="remover.confirm" />');">
-                                                       <span class="glyphicon glyphicon-trash" style="color:red"></span>
-                                                    </a>                    	
-                                                </td>
-                                            </sec:authorize>
+                                            <td class="text-center">
+                                                <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </a>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <a href="/DSW-T1/teatro/remocao?id=<c:out value='${teatro.id}' />" 
+                                                   onclick="return confirm('<f:message key="remover.confirm" />');">
+                                                   <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                                </a>                    	
+                                            </td>
                                         </tr>
                                     </c:forEach>
                                 </tbody>  
