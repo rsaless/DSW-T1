@@ -34,7 +34,6 @@ public class AppConfig extends WebSecurityConfigurerAdapter{
             .antMatchers("/teatro/cadastro","/teatro/insercao","/teatro/remocao","/teatro/edicao","/teatro/atualizacao").hasRole("ADMIN")  
             //.antMatchers("/site/detalhes/**").hasRole("USER_SITE")
             //.antMatchers("/promocao/cadastro","/promocao/insercao","/promocao/remocao","/promocao/edicao","/promocao/atualizacao").hasRole("USER_TEATRO")
-            .and().formLogin()
             .and().rememberMe()
             .and().httpBasic()
             .and().logout().logoutSuccessUrl("/")

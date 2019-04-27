@@ -52,6 +52,9 @@
                             <sec:authorize access="hasAnyRole('ADMIN', 'SITE', 'TEATRO')">
                                 <a href="/DSW-T1/logout" class="btn btn-default btn-lg">Logout</a>
                             </sec:authorize>
+                            <sec:authorize access="isAnonymous()">
+                                <a href="/DSW-T1/login" class="btn btn-default btn-lg">Login</a>
+                            </sec:authorize>
                         </div>
                     </div>
                 </nav>
