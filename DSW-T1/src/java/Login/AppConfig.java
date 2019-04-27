@@ -30,10 +30,10 @@ public class AppConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-            .antMatchers("/site/cadastro","/site/insercao","/site/remocao","/site/edicao","/site/atualizacao").hasRole("USER_ADMIN")
+            .antMatchers("/site/cadastro","/site/insercao","/site/remocao","/site/edicao","/site/atualizacao").hasRole("ADMIN")
+            .antMatchers("/teatro/cadastro","/teatro/insercao","/teatro/remocao","/teatro/edicao","/teatro/atualizacao").hasRole("ADMIN")  
             //.antMatchers("/site/detalhes/**").hasRole("USER_SITE")
             //.antMatchers("/promocao/cadastro","/promocao/insercao","/promocao/remocao","/promocao/edicao","/promocao/atualizacao").hasRole("USER_TEATRO")
-            .anyRequest().authenticated()
             .and().formLogin()
             .and().rememberMe()
             .and().httpBasic()
