@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <f:bundle basename="i18n.sistema">
 <html>
@@ -63,11 +64,13 @@
                                 Veja aqui a lista de sites que ofertam promoções no nosso sistema.
                             </p>
                         </div>
-                        <div class="col-lg-6">
-                            <h2>
-                                <a href="/DSW-T1/site/cadastro" class="btn btn-success btn-lg"><f:message key="listaSites.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
-                            </h2>
-                        </div>
+                        <sec:authorize access="hasRole('ADMIN')">
+                            <div class="col-lg-6">
+                                <h2>
+                                    <a href="/DSW-T1/site/cadastro" class="btn btn-success btn-lg"><f:message key="listaSites.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
+                                </h2>
+                            </div>
+                       </sec:authorize>
                     </div>
                 </div>
             </center>
