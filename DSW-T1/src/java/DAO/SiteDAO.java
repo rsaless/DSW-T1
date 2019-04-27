@@ -25,7 +25,7 @@ public class SiteDAO extends GenericDAO{
             statement.setString(2, site.getSenha());
             statement.setString(3, site.getUrl());
             statement.setString(4, site.getNome());
-            statement.setInt(5, site.getTelefone());
+            statement.setLong(5, site.getTelefone());
             
             statement.executeUpdate();
             statement.close();
@@ -48,7 +48,7 @@ public class SiteDAO extends GenericDAO{
                 String senha = resultSet.getString("senha");
                 String url = resultSet.getString("url");
                 String nome = resultSet.getString("nome");
-                Integer telefone = resultSet.getInt("telefone");
+                Long telefone = resultSet.getLong("telefone");
                 Integer id = resultSet.getInt("id");
                 
                 Site site = new Site(email, senha, url, nome, telefone, id);
@@ -73,7 +73,7 @@ public class SiteDAO extends GenericDAO{
             statement.setString(2, site.getSenha());
             statement.setString(3, site.getUrl());
             statement.setString(4, site.getNome());
-            statement.setInt(5, site.getTelefone());            
+            statement.setLong(5, site.getTelefone());            
             statement.setInt(6, site.getId());
 
             statement.executeUpdate();
@@ -111,7 +111,7 @@ public class SiteDAO extends GenericDAO{
                 String senha = resultSet.getString("senha");
                 String url = resultSet.getString("url");
                 String nome = resultSet.getString("nome");
-                Integer telefone = resultSet.getInt("telefone");
+                Long telefone = resultSet.getLong("telefone");
                 
                 site = new Site(email, senha, url, nome, telefone, id);
             }

@@ -1,7 +1,12 @@
 package Controllers;
 
+import DAO.PromocaoDAO;
 import DAO.SiteDAO;
+import DAO.UsuarioDAO;
+import Models.Papel;
+import Models.Promocao;
 import Models.Site;
+import Models.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -15,11 +20,15 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/site/*")
 public class SiteServlet extends HttpServlet {
     
-    private SiteDAO dao;
+    private SiteDAO siteDao;
+    private PromocaoDAO promocaoDao;
+    private UsuarioDAO usuarioDAO;
     
     @Override
     public void init() {
-        dao = new SiteDAO();
+        siteDao = new SiteDAO();
+        promocaoDao = new PromocaoDAO();
+        usuarioDAO = new UsuarioDAO();
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -43,18 +52,25 @@ public class SiteServlet extends HttpServlet {
                 case "/atualizacao": 
                     atualize(request, response); 
                     break;
+                case "/detalhes": 
+                    detalhes(request, response); 
+                    break;
+                case "/lista": 
+                    lista(request, response);
+                    break;
                 default: 
-                    lista(request, response); 
+                    erro(request, response);
                     break;
             }
         } catch (RuntimeException | IOException | ServletException e) {
-            throw new ServletException(e);
+            e.printStackTrace();
+            request.getRequestDispatcher("/templates_erro/500.jsp").forward(request, response);
         }
         
     }
     
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Site> sites = dao.listar();
+        List<Site> sites = siteDao.listar();
         request.setAttribute("listaSites", sites);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_site/listaSites.jsp");
         dispatcher.forward(request, response);
@@ -67,12 +83,23 @@ public class SiteServlet extends HttpServlet {
 
     private void apresentaFormEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        Site site = dao.get(id);
+        Site site = siteDao.get(id);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_site/formSite.jsp");
         request.setAttribute("site", site);
         dispatcher.forward(request, response);
     }
     
+    private void detalhes(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        int id = Integer.parseInt(request.getParameter("id"));
+        Site site = siteDao.get(id);
+        System.out.println(id);
+        System.out.println(site.getUrl());
+        List<Promocao> promocoes = promocaoDao.listar_site(site.getUrl());
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_site/detalheSite.jsp");
+        request.setAttribute("site", site);
+        request.setAttribute("listaPromocoes", promocoes);
+        dispatcher.forward(request, response);
+    }
     
     private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
@@ -81,11 +108,13 @@ public class SiteServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         String url = request.getParameter("url");
         String nome = request.getParameter("nome");
-        Integer telefone = Integer.parseInt(request.getParameter("telefone"));
+        Long telefone = Long.parseLong(request.getParameter("telefone"));
 
         Site site = new Site(email, senha, url, nome, telefone);
-        dao.inserir(site);
-        response.sendRedirect("/DSW-T1/site");
+        siteDao.inserir(site);
+        usuarioDAO.inserir_usuario(new Usuario(email, senha));
+        usuarioDAO.inserir_role(new Papel(email, "USER_SITE"));
+        response.sendRedirect("/DSW-T1/site/lista");
     }
     
     
@@ -97,28 +126,31 @@ public class SiteServlet extends HttpServlet {
         String senha = request.getParameter("senha");
         String url = request.getParameter("url");
         String nome = request.getParameter("nome");
-        Integer telefone = Integer.parseInt(request.getParameter("telefone"));
+        Long telefone = Long.parseLong(request.getParameter("telefone"));
 
         Site site = new Site(email, senha, url, nome, telefone, id);
-        dao.atualizar(site);
-        response.sendRedirect("/DSW-T1/site");
+        siteDao.atualizar(site);
+        response.sendRedirect("/DSW-T1/site/lista");
     }
     
-
     private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
 
         Site site = new Site(id);
-        dao.deletar(site);
-        response.sendRedirect("/DSW-T1/site");
+        siteDao.deletar(site);
+        response.sendRedirect("/DSW-T1/site/lista");
     }
-
+    
+    private void erro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_erro/404.jsp");
+        dispatcher.forward(request, response);
+    }
+    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
         processRequest(request, response);
     }
-
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
