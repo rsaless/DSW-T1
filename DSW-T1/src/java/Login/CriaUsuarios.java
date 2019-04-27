@@ -45,6 +45,8 @@ public class CriaUsuarios {
                 String role = "ROLE_TEATRO";
                 
                 teatroDAO.inserir(new Teatro(email, senha, cidade, nome, cnpj));
+                usuarioDAO.inserir_usuario(new Usuario(email, senha));
+                usuarioDAO.inserir_role(new Papel(email, "ROLE_TEATRO"));
             }
             
             // insere sites
@@ -56,6 +58,8 @@ public class CriaUsuarios {
                 Long telefone = 33330000L + i;
                 String role = "ROLE_SITE";
                 siteDAO.inserir(new Site(email, senha, site, nome, telefone));
+                usuarioDAO.inserir_usuario(new Usuario (email, senha));
+                usuarioDAO.inserir_role(new Papel(email, "ROLE_SITE"));
             }
 
             // insere promocoes
