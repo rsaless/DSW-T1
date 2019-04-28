@@ -30,12 +30,17 @@ public class AppConfig extends WebSecurityConfigurerAdapter{
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
-            .antMatchers("/site/cadastro","/site/insercao","/site/remocao","/site/edicao","/site/atualizacao").hasRole("ADMIN")
-            .antMatchers("/teatro/cadastro","/teatro/insercao","/teatro/remocao","/teatro/edicao","/teatro/atualizacao").hasRole("ADMIN")  
-            .antMatchers("/promocao/cadastro","/promocao/insercao","/promocao/remocao","/promocao/edicao","/promocao/atualizacao").hasRole("ADMIN")
-            .antMatchers("/promocao/cadastro","/promocao/insercao","/promocao/remocao","/promocao/edicao","/promocao/atualizacao").hasRole("TEATRO")
-            //.antMatchers("/site/detalhes/**").hasRole("USER_SITE")
-            //.antMatchers("/promocao/cadastro","/promocao/insercao","/promocao/remocao","/promocao/edicao","/promocao/atualizacao").hasRole("USER_TEATRO")
+            // teatro
+            .antMatchers("/teatro/cadastro", "/teatro/insercao", "/teatro/remocao", "/teatro/edicao", "/teatro/atualizacao").hasAnyRole("ADMIN") 
+                
+            // site
+            .antMatchers("/site/cadastro", "/site/insercao", "/site/remocao", "/site/edicao", "/site/atualizacao").hasAnyRole("ADMIN")
+            .antMatchers("/site/detalhes/**").hasAnyRole("SITE, ADMIN")
+                
+            // promocoes
+            .antMatchers("/promocao/cadastro", "/promocao/insercao", "/promocao/remocao",
+                         "/promocao/edicao", "/promocao/atualizacao").hasAnyRole("ADMIN, TEATRO")
+            
             .and().formLogin()
             .and().rememberMe()
             .and().httpBasic()
