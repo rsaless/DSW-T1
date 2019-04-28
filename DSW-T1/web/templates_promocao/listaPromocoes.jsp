@@ -66,16 +66,23 @@
                 </br> </br>
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <p>
-                                Veja aqui a lista de promoções ofertadas no nosso sistema.
-                            </p>
-                        </div>
-                        <div class="col-lg-6">
-                            <h2>
-                                <a href="/DSW-T1/promocao/cadastro" class="btn btn-success btn-lg"><f:message key="listaPromocoes.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
-                            </h2>
-                        </div>
+                        <sec:authorize access="hasAnyRole('ADMIN', 'TEATRO')">
+                            <div class="col-lg-6">
+                        </sec:authorize>
+                        <sec:authorize access="isAnonymous() or hasAnyRole('SITE')">
+                            <div class="col-lg-12">
+                        </sec:authorize>
+                                <p>
+                                    Veja aqui a lista de promoções ofertadas no nosso sistema.
+                                </p>
+                            </div>
+                        <sec:authorize access="hasAnyRole('ADMIN', 'TEATRO')">
+                            <div class="col-lg-6">
+                                <h2>
+                                    <a href="/DSW-T1/promocao/cadastro" class="btn btn-success btn-lg"><f:message key="listaPromocoes.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
+                                </h2>
+                            </div>
+                        </sec:authorize>
                     </div>
                 </div>
             </center>
