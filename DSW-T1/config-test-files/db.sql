@@ -16,6 +16,7 @@ create table Papel (
     id integer not null generated always as identity (start with 1, increment by 1),
     email varchar(50) not null unique,
     nome varchar(50) not null,
+    constraint Usuario_FK FOREIGN KEY (email) REFERENCES Usuario(email) ON DELETE CASCADE,
     constraint Papel_PK PRIMARY KEY (id)
 );
 

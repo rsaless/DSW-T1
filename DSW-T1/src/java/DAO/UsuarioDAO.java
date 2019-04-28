@@ -1,5 +1,6 @@
 package DAO;
 
+import Login.JDBCUtil;
 import Models.Papel;
 import Models.Usuario;
 import Models.UsuarioRole;
@@ -10,6 +11,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import javax.sql.DataSource;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UsuarioDAO extends GenericDAO{
     /* C */ private final String INSERIR_USUARIO = "INSERT INTO Usuario(email, senha, ativo) values (?,?,1)";   
@@ -22,35 +25,33 @@ public class UsuarioDAO extends GenericDAO{
     /* U */ private final String ATUALIZAR_ROLE = "UPDATE Usuario SET nome=?, WHERE email=?"; 
     /* U */ private final String ATIVA_DESATIVA = "UPDATE Usuario SET ativo=?, WHERE email=?"; 
     /* D */ private final String DELETAR_ID = "DELETE FROM Usuario WHERE id=?";
-    /* D */ private final String DELETAR_EMAIL = "DELETE FROM Usuario WHERE email=?";            
+    /* D */ private final String DELETAR_EMAIL = "DELETE FROM Usuario WHERE email=?";   
 
-    /* C */ public void inserir_usuario(Usuario usuario) {
+    /* C */ public void inserir_usuario(Usuario usuario) throws ClassNotFoundException {
         try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(INSERIR_USUARIO);
             
-            statement.setString(1, usuario.getEmail());
-            statement.setString(2, usuario.getSenha());
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            DataSource ds = JDBCUtil.getDataSource();
+            Connection conn = ds.getConnection();
             
-            statement.executeUpdate();
-            statement.close();
-            connection.close();
+            PreparedStatement userStatement = conn.prepareStatement(INSERIR_USUARIO);
+            userStatement.setString(1, usuario.getEmail());
+            userStatement.setString(2, encoder.encode(usuario.getSenha()));
+            userStatement.execute();
 
         } catch(SQLException e) {
             throw new RuntimeException(e);
         }
     }
-    /* C */ public void inserir_role(Papel papel) {
+    /* C */ public void inserir_role(Papel papel) throws ClassNotFoundException {
         try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(INSERIR_ROLE);
+            DataSource ds = JDBCUtil.getDataSource();
+            Connection conn = ds.getConnection();
             
-            statement.setString(1, papel.getEmail());
-            statement.setString(2, papel.getNome());
-            
-            statement.executeUpdate();
-            statement.close();
-            connection.close();
+            PreparedStatement roleStatement = conn.prepareStatement(INSERIR_ROLE);
+            roleStatement.setString(1, papel.getEmail());
+            roleStatement.setString(2, papel.getNome());
+            roleStatement.execute();
 
         } catch(SQLException e) {
             throw new RuntimeException(e);
@@ -168,11 +169,12 @@ public class UsuarioDAO extends GenericDAO{
     }    
     /* U */ public void atualizar_usuario(Usuario usuario) {
         try {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
             Connection connection = this.getConnection();
             PreparedStatement statement = connection.prepareStatement(ATUALIZAR_USUARIO);
             
             statement.setString(1, usuario.getEmail());
-            statement.setString(2, usuario.getSenha());          
+            statement.setString(2, encoder.encode(usuario.getSenha()));          
             statement.setInt(3, usuario.getId());
 
             statement.executeUpdate();
@@ -190,8 +192,7 @@ public class UsuarioDAO extends GenericDAO{
             
             statement.setString(1, papel.getNome());
             statement.setString(2, papel.getEmail());
-            
-
+           
             statement.executeUpdate();
             statement.close();
             connection.close();
@@ -207,7 +208,6 @@ public class UsuarioDAO extends GenericDAO{
             
             statement.setBoolean(1, usuario.getAtivo());         
             statement.setInt(2, usuario.getId());
-
             statement.executeUpdate();
             statement.close();
             connection.close();

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <f:bundle basename="i18n.sistema">
 <html>
@@ -48,6 +49,12 @@
                             <a href="/DSW-T1/promocao/lista" class="btn btn-default btn-lg"><f:message key="index.promocoes" /></a>
                             <a href="/DSW-T1/site/lista" class="btn btn-default btn-lg"><f:message key="index.sites" /> </a>
                             <a href="/DSW-T1/teatro/lista" class="btn btn-default btn-lg"><f:message key="index.teatros" /></a>
+                            <sec:authorize access="hasAnyRole('ADMIN', 'SITE', 'TEATRO')">
+                                <a href="/DSW-T1/logout" class="btn btn-default btn-lg">Logout</a>
+                            </sec:authorize>
+                            <sec:authorize access="isAnonymous()">
+                                <a href="/DSW-T1/login" class="btn btn-default btn-lg">Login</a>
+                            </sec:authorize>
                         </div>
                     </div>
                 </nav>
@@ -58,16 +65,23 @@
                 </br> </br>
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6">
-                            <p>
-                                Veja aqui a lista de sites que ofertam promoções no nosso sistema.
-                            </p>
-                        </div>
-                        <div class="col-lg-6">
-                            <h2>
-                                <a href="/DSW-T1/site/cadastro" class="btn btn-success btn-lg"><f:message key="listaSites.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
-                            </h2>
-                        </div>
+                        <sec:authorize access="hasAnyRole('ADMIN')">
+                            <div class="col-lg-6">
+                        </sec:authorize>
+                        <sec:authorize access="isAnonymous() or hasAnyRole('SITE', 'TEATRO')">
+                            <div class="col-lg-12">
+                        </sec:authorize>
+                                <p>
+                                   Veja aqui a lista de sites que ofertam promoções no nosso sistema.
+                                </p>
+                            </div>
+                        <sec:authorize access="hasAnyRole('ADMIN')">
+                            <div class="col-lg-6">
+                                <h2>
+                                    <a href="/DSW-T1/site/cadastro" class="btn btn-success btn-lg"><f:message key="listaSites.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
+                                </h2>
+                            </div>
+                        </sec:authorize>
                     </div>
                 </div>
             </center>
@@ -87,26 +101,32 @@
                                         <th class="text-center"><f:message key="listaSites.table.senha" /></th>
                                         <th class="text-center"><f:message key="listaSites.table.telefone" /></th>
                                         <th class="text-center"><f:message key="listaSites.table.url" /></th>
-                                        <th class="text-center"><f:message key="listaSites.table.acoes" /></th>
+                                        <sec:authorize access="hasAnyRole('ADMIN', 'SITE')">
+                                            <th class="text-center"><f:message key="listaSites.table.acoes" /></th>
+                                        </sec:authorize>
                                     </tr>
                                     <c:forEach var="site" items="${requestScope.listaSites}">
                                         <tr>
                                             <td class="text-center" ><c:out value="${site.id}" /></td>
-                                            <td><c:out value="${site.nome}" /></td>
-                                            <td class="text-center"><c:out value="${site.email}" /></td>
-                                            <td><c:out value="${site.senha}" /></td>
-                                            <td><c:out value="${site.url}" /></td>
-                                            <td class="text-center"><c:out value="${site.telefone}" /></td>
-                                            <td class="text-center">
-                                            <a href="/DSW-T1/site/edicao?id=<c:out value='${site.id}' />"><span class="glyphicon glyphicon-pencil"></span></a>
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a href="/DSW-T1/site/remocao?id=<c:out value='${site.id}' />" 
-                                                onclick="return confirm('<f:message key="remover.confirm" />');">
-                                                    <span class="glyphicon glyphicon-trash" style="color:red"></span>
-                                            </a>  
-                                            &nbsp;&nbsp;&nbsp;&nbsp;
-                                            <a href="/DSW-T1/site/detalhes?id=<c:out value='${site.id}' />"><f:message key="listaSites.table.acoes.detalhes"/></a>
-                                            </td>
+                                            <td class="text-center" ><c:out value="${site.nome}" /></td>
+                                            <td class="text-center" ><c:out value="${site.email}" /></td>
+                                            <td class="text-center" ><c:out value="${site.senha}" /></td>
+                                            <td class="text-center" ><c:out value="${site.url}" /></td>
+                                            <td class="text-center" ><c:out value="${site.telefone}" /></td>
+                                            <sec:authorize access="hasAnyRole('SITE, ADMIN')">
+                                                <td class="text-center">
+                                                <sec:authorize access="hasAnyRole('ADMIN')">
+                                                    <a href="/DSW-T1/site/edicao?id=<c:out value='${site.id}' />"><span class="glyphicon glyphicon-pencil"></span></a>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="/DSW-T1/site/remocao?id=<c:out value='${site.id}' />" 
+                                                        onclick="return confirm('<f:message key="remover.confirm" />');">
+                                                            <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                                    </a>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                </sec:authorize>
+                                                    <a href="/DSW-T1/site/detalhes?id=<c:out value='${site.id}' />"><f:message key="listaSites.table.acoes.detalhes"/></a>
+                                                </td>
+                                            </sec:authorize>
                                         </tr>
                                     </c:forEach>
                                 </thead>

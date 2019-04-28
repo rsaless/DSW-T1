@@ -9,7 +9,7 @@ import Models.Site;
 import java.util.List;
 
 public class DAOTester {
-    public static void main(String[] args){
+    public static void main(String[] args) throws ClassNotFoundException{
         PromocaoDAO promocaoDao = new PromocaoDAO();
         SiteDAO siteDao = new SiteDAO();
         TeatroDAO teatroDao = new TeatroDAO();

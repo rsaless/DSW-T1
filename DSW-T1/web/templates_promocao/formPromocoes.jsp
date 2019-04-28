@@ -1,6 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f" %>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <f:bundle basename="i18n.sistema">
 <html>
@@ -28,8 +29,16 @@
                 $('.data').mask('00/00/0000')
                 $(".cnpj").mask('00.000.000/0000-00')
                 $('.horario').mask('00:00:00')
+                let data = $('.data').get(0).value.split('/')
+                let ano = data[0]+data[1]
+                let mes = data[2].substr(0, 2)
+                let dia = data[2].substr(2, 2)
                 $('.data').datepicker({autoClose: true})
-                $('.horario').clockpicker({
+                $('.data').get(0).value = dia+'/'+mes+'/'+ano
+                console.log(dia)
+        console.log(mes)
+        console.log(ano)
+        $('.horario').clockpicker({
                     placement: 'bottom',
                     align: 'right',
                     autoclose: true,
@@ -97,6 +106,12 @@
                             <a href="/DSW-T1/promocao/lista" class="btn btn-default btn-lg"><f:message key="index.promocoes" /></a>
                             <a href="/DSW-T1/site/lista" class="btn btn-default btn-lg"><f:message key="index.sites" /> </a>
                             <a href="/DSW-T1/teatro/lista" class="btn btn-default btn-lg"><f:message key="index.teatros" /></a>
+                            <sec:authorize access="hasAnyRole('ADMIN', 'SITE', 'TEATRO')">
+                                <a href="/DSW-T1/logout" class="btn btn-default btn-lg">Logout</a>
+                            </sec:authorize>
+                            <sec:authorize access="isAnonymous()">
+                                <a href="/DSW-T1/login" class="btn btn-default btn-lg">Login</a>
+                            </sec:authorize>
                         </div>
                     </div>
                 </nav>

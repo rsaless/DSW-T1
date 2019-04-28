@@ -11,6 +11,8 @@ import java.io.PrintWriter;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -31,7 +33,7 @@ public class TeatroServlet extends HttpServlet {
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-        throws ServletException, IOException {
+        throws ServletException, IOException, ClassNotFoundException {
         String action = request.getPathInfo();
         if(action == null) action = "";
         try {
@@ -89,7 +91,7 @@ public class TeatroServlet extends HttpServlet {
     }
     
     
-    private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    private void insere(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ClassNotFoundException {
         
         request.setCharacterEncoding("UTF-8");
         String email = request.getParameter("email");
@@ -101,7 +103,7 @@ public class TeatroServlet extends HttpServlet {
         Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj);
         dao.inserir(teatro);
         usuarioDAO.inserir_usuario(new Usuario (email, senha));
-        usuarioDAO.inserir_role(new Papel(email, "USER_TEATRO"));
+        usuarioDAO.inserir_role(new Papel(email, "ROLE_TEATRO"));
         response.sendRedirect("/DSW-T1/teatro/lista");
     }
     
@@ -172,13 +174,21 @@ public class TeatroServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TeatroServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) 
         throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(TeatroServlet.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
