@@ -1,0 +1,24 @@
+-> SGBD utilizado: JavaDB
+	- nome do banco: Trabalho1
+	- usuário: root
+	- senha: root
+	
+-> Como criar e popular as tabelas:
+	1: executar o script db.sql para criar as tabelas (localização: DSW-T1\config-test-files\db.sql)
+	2: executar o arquivo CriaUsuarios.java para inserir os dados iniciais no banco (localização: DSW-T1\src\java\Login\CriaUsuarios.java)
+
+-> Acesso ao sistema:
+	- A página inicial e as de listagens são acessíveis para qualquer usuário, até mesmo os não logados.
+	
+	- Para logar como um admin: 
+		Usuário: admin1@gmail.com
+		Senha: admin1_pass
+	
+	- Para logar como um teatro:
+		Usuário: teatro1@gmail.com
+		Senha: teatro1_pass
+	
+	- Para logar como um site:
+		Usuário: site1@gmail.com
+		Senha: site1_pass
+		
