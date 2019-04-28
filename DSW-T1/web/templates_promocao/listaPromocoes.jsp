@@ -105,7 +105,9 @@
                                         <th class="text-center"><f:message key="listaPromocoes.table.hora" /></th>
                                         <th class="text-center"><f:message key="listaPromocoes.table.preco" /></th>
                                         <th class="text-center"><f:message key="listaPromocoes.table.cnpj" /></th>
-                                        <th class="text-center"><f:message key="listaPromocoes.table.acoes" /></th>
+                                        <sec:authorize access="hasAnyRole('ADMIN', 'TEATRO')">
+                                            <th class="text-center"><f:message key="listaPromocoes.table.acoes" /></th>
+                                        </sec:authorize>
                                     </tr>
                                 </thead>
                                     <tbody id="tbodyresposta">
@@ -118,16 +120,18 @@
                                                 <td class="text-center"><c:out value="${promocao.hora}" /></td>
                                                 <td class="text-center"><c:out value="${promocao.preco}" /></td>
                                                 <td class="text-center"><c:out value="${promocao.cnpj}" /></td>
-                                                <td class="text-center">
-                                                    <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />">
-                                                        <span class="glyphicon glyphicon-pencil"></span>
-                                                    </a>
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
-                                                       onclick="return confirm('<f:message key="remover.confirm" />');">
-                                                       <span class="glyphicon glyphicon-trash" style="color:red"></span>
-                                                    </a>
-                                                </td>
+                                                <sec:authorize access="hasAnyRole('ADMIN', 'TEATRO')">
+                                                    <td class="text-center">
+                                                        <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />">
+                                                            <span class="glyphicon glyphicon-pencil"></span>
+                                                        </a>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
+                                                           onclick="return confirm('<f:message key="remover.confirm" />');">
+                                                           <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                                        </a>
+                                                    </td>
+                                                </sec:authorize>
                                             </tr>
                                         </c:forEach>
                                     </tbody>

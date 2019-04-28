@@ -66,16 +66,23 @@
                 </br> </br>
                 <div class="container">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <sec:authorize access="hasAnyRole('ADMIN')">
+                            <div class="col-lg-6">
+                        </sec:authorize>
+                        <sec:authorize access="isAnonymous() or hasAnyRole('SITE', 'TEATRO')">
+                            <div class="col-lg-12">
+                        </sec:authorize>
                             <p>
                                 Veja aqui a lista de teatros que possuem promoções no nosso sistema.
                             </p>
                         </div>
-                        <div class="col-lg-6">
-                            <h2>
-                                <a href="/DSW-T1/teatro/cadastro" class="btn btn-success btn-lg"><f:message key="listaTeatros.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
-                            </h2>
-                        </div>
+                        <sec:authorize access="hasAnyRole('ADMIN')">
+                            <div class="col-lg-6">
+                                <h2>
+                                    <a href="/DSW-T1/teatro/cadastro" class="btn btn-success btn-lg"><f:message key="listaTeatros.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
+                                </h2>
+                            </div>
+                        </sec:authorize>
                     </div>
                 </div>
             </center>
@@ -97,7 +104,9 @@
                                         <th class="text-center"><f:message key="listaTeatros.table.senha" /></th>
                                         <th class="text-center"><f:message key="listaTeatros.table.cidade" /></th>
                                         <th class="text-center"><f:message key="listaTeatros.table.cnpj" /></th>
-                                        <th class="text-center"><f:message key="listaTeatros.table.acoes" /></th>
+                                        <sec:authorize access="hasAnyRole('ADMIN')">
+                                            <th class="text-center"><f:message key="listaTeatros.table.acoes" /></th>
+                                        </sec:authorize>
                                     </tr>
                                 </thead>
                                 <tbody id="tbodyresposta">
@@ -109,16 +118,18 @@
                                             <td class="text-center"><c:out value="${teatro.senha}" /></td>
                                             <td class="text-center"><c:out value="${teatro.cidade}" /></td>
                                             <td class="text-center"><c:out value="${teatro.cnpj}" /></td>
-                                            <td class="text-center">
-                                                <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />">
-                                                    <span class="glyphicon glyphicon-pencil"></span>
-                                                </a>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a href="/DSW-T1/teatro/remocao?id=<c:out value='${teatro.id}' />" 
-                                                   onclick="return confirm('<f:message key="remover.confirm" />');">
-                                                   <span class="glyphicon glyphicon-trash" style="color:red"></span>
-                                                </a>                    	
-                                            </td>
+                                            <sec:authorize access="hasAnyRole('ADMIN')">
+                                                <td class="text-center">
+                                                    <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />">
+                                                        <span class="glyphicon glyphicon-pencil"></span>
+                                                    </a>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <a href="/DSW-T1/teatro/remocao?id=<c:out value='${teatro.id}' />" 
+                                                       onclick="return confirm('<f:message key="remover.confirm" />');">
+                                                       <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                                    </a>                    	
+                                                </td>
+                                            </sec:authorize>
                                         </tr>
                                     </c:forEach>
                                 </tbody>  
