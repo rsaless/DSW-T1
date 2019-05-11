@@ -16,8 +16,9 @@ public class TeatroDAO extends GenericDAO{
     /* R */ private final String LISTAR = "SELECT * FROM Teatro";                                                        
     /* U */ private final String ATUALIZAR = "UPDATE Teatro SET email=?, senha=?, cidade=?, nome=?, cnpj=? WHERE id=?"; 
     /* D */ private final String DELETAR = "DELETE FROM Teatro WHERE id=?";            
-    /* - */ private final String LISTAR_CIDADE = "SELECT * FROM Teatro WHERE cidade=?"; 
+    /* - */ private final String LISTAR_CIDADE = "SELECT * FROM Teatro WHERE cidade LIKE?"; 
     /* - */ private final String GET = "SELECT * FROM Teatro where id=?"; 
+    /* - */ private final String GET_EMAIL = "SELECT cnpj FROM Teatro where email = ?";
     
     /* C */ public void inserir(Teatro teatro) throws ClassNotFoundException {
         try {
@@ -28,7 +29,7 @@ public class TeatroDAO extends GenericDAO{
             statement.setString(2, teatro.getSenha());
             statement.setString(3, teatro.getCidade());
             statement.setString(4, teatro.getNome());
-            statement.setLong(5, teatro.getCnpj());
+            statement.setString(5, teatro.getCnpj());
             
             statement.executeUpdate();
             statement.close();
@@ -51,7 +52,7 @@ public class TeatroDAO extends GenericDAO{
                 String senha = resultSet.getString("senha");
                 String cidade = resultSet.getString("cidade");
                 String nome = resultSet.getString("nome");
-                Long cnpj = resultSet.getLong("cnpj");
+                String cnpj = resultSet.getString("cnpj");
                 Integer id = resultSet.getInt("id");
                 
                 Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
@@ -76,7 +77,7 @@ public class TeatroDAO extends GenericDAO{
             statement.setString(2, teatro.getSenha());
             statement.setString(3, teatro.getCidade());
             statement.setString(4, teatro.getNome());
-            statement.setLong(5, teatro.getCnpj());            
+            statement.setString(5, teatro.getCnpj());            
             statement.setInt(6, teatro.getId());
 
             statement.executeUpdate();
@@ -107,7 +108,7 @@ public class TeatroDAO extends GenericDAO{
         try {
             Connection connection = this.getConnection();
             PreparedStatement statement = connection.prepareStatement(LISTAR_CIDADE);
-            statement.setString(1, cidade_desejada);
+            statement.setString(1, "%" + cidade_desejada + "%");
             ResultSet resultSet = statement.executeQuery();
             
             while (resultSet.next()) {                
@@ -115,7 +116,7 @@ public class TeatroDAO extends GenericDAO{
                 String senha = resultSet.getString("senha");
                 String cidade = resultSet.getString("cidade");
                 String nome = resultSet.getString("nome");
-                Long cnpj = resultSet.getLong("cnpj");
+                String cnpj = resultSet.getString("cnpj");
                 Integer id = resultSet.getInt("id");
                 
                 Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
@@ -144,18 +145,31 @@ public class TeatroDAO extends GenericDAO{
                 String senha = resultSet.getString("senha");
                 String cidade = resultSet.getString("cidade");
                 String nome = resultSet.getString("nome");
-                Long cnpj = resultSet.getLong("cnpj");
+                String cnpj = resultSet.getString("cnpj");
                 
                 teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
-            }
-            
+            }           
             resultSet.close();
             statement.close();
-            connection.close();
-            
-        } catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
+            connection.close();           
+        } catch(SQLException e) {throw new RuntimeException(e);}
         return teatro; 
+    }
+    /* - */ public String get_email(String email){
+        String cnpj_encontrado = "ADMIN";
+        try {
+            Connection connection = this.getConnection();
+            PreparedStatement statement = connection.prepareStatement(GET_EMAIL);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            
+            if (resultSet.next()) {
+                cnpj_encontrado = resultSet.getString("cnpj");   
+            }          
+            resultSet.close();
+            statement.close();
+            connection.close();           
+        } catch(SQLException e) {throw new RuntimeException(e);}
+        return cnpj_encontrado; 
     }
 }

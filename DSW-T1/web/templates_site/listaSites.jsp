@@ -98,9 +98,9 @@
                                         <th class="text-center"><f:message key="listaSites.table.id" /></th>
                                         <th class="text-center"><f:message key="listaSites.table.nome" /></th>
                                         <th class="text-center"><f:message key="listaSites.table.email" /></th>
-                                        <th class="text-center"><f:message key="listaSites.table.senha" /></th>
-                                        <th class="text-center"><f:message key="listaSites.table.telefone" /></th>
+                                        <!--<th class="text-center"><//f:message key="listaSites.table.senha" /></th>-->
                                         <th class="text-center"><f:message key="listaSites.table.url" /></th>
+                                        <th class="text-center"><f:message key="listaSites.table.telefone" /></th>
                                         <sec:authorize access="hasAnyRole('ADMIN', 'SITE')">
                                             <th class="text-center"><f:message key="listaSites.table.acoes" /></th>
                                         </sec:authorize>
@@ -110,22 +110,26 @@
                                             <td class="text-center" ><c:out value="${site.id}" /></td>
                                             <td class="text-center" ><c:out value="${site.nome}" /></td>
                                             <td class="text-center" ><c:out value="${site.email}" /></td>
-                                            <td class="text-center" ><c:out value="${site.senha}" /></td>
+                                            <!--<td class="text-center" ><//c:out value="${site.senha}" /></td>-->
                                             <td class="text-center" ><c:out value="${site.url}" /></td>
                                             <td class="text-center" ><c:out value="${site.telefone}" /></td>
                                             <sec:authorize access="hasAnyRole('SITE, ADMIN')">
-                                                <td class="text-center">
-                                                <sec:authorize access="hasAnyRole('ADMIN')">
-                                                    <a href="/DSW-T1/site/edicao?id=<c:out value='${site.id}' />"><span class="glyphicon glyphicon-pencil"></span></a>
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <a href="/DSW-T1/site/remocao?id=<c:out value='${site.id}' />" 
-                                                        onclick="return confirm('<f:message key="remover.confirm" />');">
-                                                            <span class="glyphicon glyphicon-trash" style="color:red"></span>
-                                                    </a>
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                                </sec:authorize>
-                                                    <a href="/DSW-T1/site/detalhes?id=<c:out value='${site.id}' />"><f:message key="listaSites.table.acoes.detalhes"/></a>
-                                                </td>
+                                                <c:if test="${ADMIN == true || site.email == email_encontrado}">
+                                                    <td class="text-center">
+                                                        <a href="/DSW-T1/site/edicao?id=<c:out value='${site.id}' />"><span class="glyphicon glyphicon-pencil"></span></a>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <a href="/DSW-T1/site/remocao?id=<c:out value='${site.id}' />" 
+                                                            onclick="return confirm('<f:message key="remover.confirm" />');">
+                                                                <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                                        </a>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <a href="/DSW-T1/site/detalhes?id=<c:out value='${site.id}' />"><f:message key="listaSites.table.acoes.detalhes"/></a>
+                                                    </td>
+                                                </c:if>
+                                                <c:if test="${ADMIN != true && site.email != email_encontrado}">
+                                                    <td class="text-center"> -                	
+                                                    </td>
+                                                </c:if>
                                             </sec:authorize>
                                         </tr>
                                     </c:forEach>

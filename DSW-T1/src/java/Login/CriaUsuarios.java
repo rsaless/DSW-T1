@@ -41,7 +41,7 @@ public class CriaUsuarios {
                 String senha = "teatro" + i + "_pass";
                 String cidade = "Cidade" + i;
                 String nome = "Teatro da Cidade" + i;
-                Long cnpj = 111000000L + i;
+                String cnpj = "111000000" + i;
                 String role = "ROLE_TEATRO";
                 
                 teatroDAO.inserir(new Teatro(email, senha, cidade, nome, cnpj));
@@ -70,7 +70,7 @@ public class CriaUsuarios {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
                 LocalDate dia = LocalDate.parse("20/05/2000", formatter);
                 LocalTime hora = LocalTime.parse("05:05");
-                Long cnpj = 111000000L + i;
+                String cnpj = "111000000" + i;
                 promocaoDAO.inserir(new Promocao(url, nome_peca, preco, dia, hora, cnpj));
             }
             

@@ -216,18 +216,37 @@
                                                 />
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <th><f:message key="formPromocao.form.cnpj" /> </th>
-                                            <td>
-                                                <input type="text" 
-                                                       name="cnpj" 
-                                                       size="18" 
-                                                       required 
-                                                       value="<c:out value='${promocao.cnpj}' />" 
-                                                       class="cnpj form-control col-sm-10"
-                                                />
-                                            </td>
-                                        </tr>
+                                        
+                                        <c:if test="${cnpj_encontrado != null}">
+                                            <tr>
+                                                <th><f:message key="formPromocao.form.cnpj" /> </th>
+                                                <td>
+                                                    <input type="text" 
+                                                           name="cnpj" 
+                                                           size="18" 
+                                                           required 
+                                                           value="<c:out value='${cnpj_encontrado}' />" 
+                                                           class="cnpj form-control col-sm-10"
+                                                           readonly
+                                                    />
+                                                </td>
+                                            </tr>
+                                        </c:if>
+                                        <c:if test="${cnpj_encontrado == null}">
+                                            <tr>
+                                                <th><f:message key="formPromocao.form.cnpj" /> </th>
+                                                <td>
+                                                    <input type="text" 
+                                                           name="cnpj" 
+                                                           size="18" 
+                                                           required 
+                                                           value="<c:out value='${promocao.cnpj}' />" 
+                                                           class="cnpj form-control col-sm-10"
+                                                    />
+                                                </td>
+                                            </tr>
+                                        </c:if>
+                                            
                                         <tr>
                                             <td colspan="2" align="center">
                                                 <input class="btn btn-lg btn-outline-light" type="submit" value="<f:message key="formPromocao.form.submit" />" />
