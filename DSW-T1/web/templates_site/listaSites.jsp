@@ -101,7 +101,6 @@
                                         <!--<th class="text-center"><//f:message key="listaSites.table.senha" /></th>-->
                                         <th class="text-center"><f:message key="listaSites.table.url" /></th>
                                         <th class="text-center"><f:message key="listaSites.table.telefone" /></th>
-                                        <th class="text-center"><f:message key="listaSites.table.url" /></th>
                                         <sec:authorize access="hasAnyRole('ADMIN', 'SITE')">
                                             <th class="text-center"><f:message key="listaSites.table.acoes" /></th>
                                         </sec:authorize>
