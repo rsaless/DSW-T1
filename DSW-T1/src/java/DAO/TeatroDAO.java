@@ -16,7 +16,7 @@ public class TeatroDAO extends GenericDAO{
     /* R */ private final String LISTAR = "SELECT * FROM Teatro";                                                        
     /* U */ private final String ATUALIZAR = "UPDATE Teatro SET email=?, senha=?, cidade=?, nome=?, cnpj=? WHERE id=?"; 
     /* D */ private final String DELETAR = "DELETE FROM Teatro WHERE id=?";            
-    /* - */ private final String LISTAR_CIDADE = "SELECT * FROM Teatro WHERE cidade=?"; 
+    /* - */ private final String LISTAR_CIDADE = "SELECT * FROM Teatro WHERE cidade LIKE?"; 
     /* - */ private final String GET = "SELECT * FROM Teatro where id=?"; 
     
     /* C */ public void inserir(Teatro teatro) throws ClassNotFoundException {
@@ -107,7 +107,7 @@ public class TeatroDAO extends GenericDAO{
         try {
             Connection connection = this.getConnection();
             PreparedStatement statement = connection.prepareStatement(LISTAR_CIDADE);
-            statement.setString(1, cidade_desejada);
+            statement.setString(1, "%" + cidade_desejada + "%");
             ResultSet resultSet = statement.executeQuery();
             
             while (resultSet.next()) {                
