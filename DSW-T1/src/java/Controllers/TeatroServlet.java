@@ -161,12 +161,16 @@ public class TeatroServlet extends HttpServlet {
                     "<td class=\"text-center\">" + teatro.getEmail()+ "</td>" +
                     "<td class=\"text-center\">" + teatro.getSenha() + "</td>" +
                     "<td class=\"text-center\">" + teatro.getCidade() + "</td>" +
-                    "<td class=\"text-center\">" + teatro.getCnpj() + "</td>" +
+                    "<td class=\"text-center\">" + teatro.getCnpj() + "</td>";
+            if (request.isUserInRole("ADMIN") || request.isUserInRole("TEATRO")) {
+                resposta += 
                     "<td class=\"text-center\">" +
                         "<a href=\"/DSW-T1/teatro/edicao?id=" + teatro.getId() +"\"><span class=\"glyphicon glyphicon-pencil\"></span></a>" +
                         "&nbsp;&nbsp;&nbsp;&nbsp;"+
-                        "<a href=\"/DSW-T1/teatro/remocao?id="+ teatro.getId() + "\" onclick=\"return confirm('" + prop.getProperty("remover.confirm") + "');\"><span class=\"glyphicon glyphicon-trash\"></span></a></td>" +
-                "</tr>";                                    
+                        "<a href=\"/DSW-T1/teatro/remocao?id="+ teatro.getId() + "\" onclick=\"return confirm('" + prop.getProperty("remover.confirm") + "');\"><span class=\"glyphicon glyphicon-trash\"></span></a>" + 
+                    "</td>";
+            }    
+            resposta += "</tr>";                                    
         }
         response.getWriter().println(resposta);
     }

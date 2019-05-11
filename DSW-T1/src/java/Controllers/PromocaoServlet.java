@@ -161,12 +161,17 @@ public class PromocaoServlet extends HttpServlet {
                     "<td class=\"text-center\">" + promocao.getDia() + "</td>" +
                     "<td class=\"text-center\">" + promocao.getHora() + "</td>" +
                     "<td class=\"text-center\">" + promocao.getPreco() + "</td>" +
-                    "<td class=\"text-center\">" + promocao.getCnpj() + "</td>" +
+                    "<td class=\"text-center\">" + promocao.getCnpj() + "</td>";
+            
+            if (request.isUserInRole("ADMIN") || request.isUserInRole("TEATRO")) {
+                resposta += 
                     "<td class=\"text-center\">" +
                         "<a href=\"/DSW-T1/promocao/edicao?id=" + promocao.getId() +"\"><span class=\"glyphicon glyphicon-pencil\"></span></a>" +
                         "&nbsp;&nbsp;&nbsp;&nbsp;"+
-                        "<a href=\"/DSW-T1/promocao/remocao?id="+ promocao.getId() + "\" onclick=\"return confirm('" + prop.getProperty("remover.confirm") + "');\"><span class=\"glyphicon glyphicon-trash\"></span></a></td>" +
-                "</tr>";
+                        "<a href=\"/DSW-T1/promocao/remocao?id="+ promocao.getId() + "\" onclick=\"return confirm('" + prop.getProperty("remover.confirm") + "');\"><span class=\"glyphicon glyphicon-trash\"></span></a>" + 
+                    "</td>";
+            }
+            resposta +=   "</tr>";
         }
         response.getWriter().println(resposta);
     }
