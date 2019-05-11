@@ -98,7 +98,7 @@
                                         <th class="text-center"><f:message key="listaSites.table.id" /></th>
                                         <th class="text-center"><f:message key="listaSites.table.nome" /></th>
                                         <th class="text-center"><f:message key="listaSites.table.email" /></th>
-                                        <th class="text-center"><f:message key="listaSites.table.senha" /></th>
+                                        <!--<th class="text-center"><//f:message key="listaSites.table.senha" /></th>-->
                                         <th class="text-center"><f:message key="listaSites.table.telefone" /></th>
                                         <th class="text-center"><f:message key="listaSites.table.url" /></th>
                                         <sec:authorize access="hasAnyRole('ADMIN', 'SITE')">
@@ -110,7 +110,7 @@
                                             <td class="text-center" ><c:out value="${site.id}" /></td>
                                             <td class="text-center" ><c:out value="${site.nome}" /></td>
                                             <td class="text-center" ><c:out value="${site.email}" /></td>
-                                            <td class="text-center" ><c:out value="${site.senha}" /></td>
+                                            <!--<td class="text-center" ><//c:out value="${site.senha}" /></td>-->
                                             <td class="text-center" ><c:out value="${site.url}" /></td>
                                             <td class="text-center" ><c:out value="${site.telefone}" /></td>
                                             <sec:authorize access="hasAnyRole('SITE, ADMIN')">

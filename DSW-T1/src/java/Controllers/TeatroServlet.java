@@ -159,7 +159,7 @@ public class TeatroServlet extends HttpServlet {
                     "<td class=\"text-center\">" + teatro.getId() + "</td>" +
                     "<td class=\"text-center\">" + teatro.getNome() + "</td>" +
                     "<td class=\"text-center\">" + teatro.getEmail()+ "</td>" +
-                    "<td class=\"text-center\">" + teatro.getSenha() + "</td>" +
+                    //"<td class=\"text-center\">" + teatro.getSenha() + "</td>" +
                     "<td class=\"text-center\">" + teatro.getCidade() + "</td>" +
                     "<td class=\"text-center\">" + teatro.getCnpj() + "</td>";
             if (request.isUserInRole("ADMIN") || request.isUserInRole("TEATRO")) {

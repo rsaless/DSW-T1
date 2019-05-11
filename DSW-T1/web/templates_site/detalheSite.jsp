@@ -86,7 +86,7 @@
                                         <th><f:message key="detalhesSite.table.id" /></th>
                                         <th><f:message key="detalhesSite.table.nome" /></th>
                                         <th><f:message key="detalhesSite.table.email" /></th>
-                                        <th><f:message key="detalhesSite.table.senha" /></th>
+                                        <!--<th><//f:message key="detalhesSite.table.senha" /></th>-->
                                         <th><f:message key="detalhesSite.table.url" /></th>
                                         <th><f:message key="detalhesSite.table.telefone" /></th>
                                         <!--<th><//f:message key="detalhesSite.table.acoes" /></th>-->
@@ -95,7 +95,7 @@
                                         <td><c:out value="${site.id}" /></td>
                                         <td><c:out value="${site.nome}" /></td>
                                         <td><c:out value="${site.email}" /></td>
-                                        <td><c:out value="${site.senha}" /></td>
+                                        <!--<td><//c:out value="${site.senha}" /></td>-->
                                         <td><c:out value="${site.url}" /></td>
                                         <td><c:out value="${site.telefone}" /></td>
                                         <!-- <td>

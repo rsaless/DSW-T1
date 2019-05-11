@@ -101,7 +101,7 @@
                                         <th class="text-center"><f:message key="listaTeatros.table.id" /></th>
                                         <th class="text-center"><f:message key="listaTeatros.table.nome" /></th>
                                         <th class="text-center"><f:message key="listaTeatros.table.email" /></th>
-                                        <th class="text-center"><f:message key="listaTeatros.table.senha" /></th>
+                                        <!--<th class="text-center"><//f:message key="listaTeatros.table.senha" /></th>-->
                                         <th class="text-center"><f:message key="listaTeatros.table.cidade" /></th>
                                         <th class="text-center"><f:message key="listaTeatros.table.cnpj" /></th>
                                         <sec:authorize access="hasAnyRole('ADMIN')">
@@ -115,7 +115,7 @@
                                             <td class="text-center"><c:out value="${teatro.id}" /></td>
                                             <td class="text-center"><c:out value="${teatro.nome}" /></td>
                                             <td class="text-center"><c:out value="${teatro.email}" /></td>
-                                            <td class="text-center"><c:out value="${teatro.senha}" /></td>
+                                            <!--<td class="text-center"><//c:out value="${teatro.senha}" /></td>-->
                                             <td class="text-center"><c:out value="${teatro.cidade}" /></td>
                                             <td class="text-center"><c:out value="${teatro.cnpj}" /></td>
                                             <sec:authorize access="hasAnyRole('ADMIN')">
