@@ -168,7 +168,7 @@ public class PromocaoServlet extends HttpServlet {
                     "<td class=\"text-center\">" +
                         "<a href=\"/DSW-T1/promocao/edicao?id=" + promocao.getId() +"\"><span class=\"glyphicon glyphicon-pencil\"></span></a>" +
                         "&nbsp;&nbsp;&nbsp;&nbsp;"+
-                        "<a href=\"/DSW-T1/promocao/remocao?id="+ promocao.getId() + "\" onclick=\"return confirm('" + prop.getProperty("remover.confirm") + "');\"><span class=\"glyphicon glyphicon-trash\"></span></a>" + 
+                        "<a href=\"/DSW-T1/promocao/remocao?id="+ promocao.getId() + "\" onclick=\"return confirm('" + prop.getProperty("remover.confirm") + "');\"><span class=\"glyphicon glyphicon-trash\" style=\"color:red\"></span></a>" + 
                     "</td>";
             }
             resposta +=   "</tr>";
