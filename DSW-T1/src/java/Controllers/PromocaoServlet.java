@@ -1,6 +1,7 @@
 package Controllers;
 
 import DAO.PromocaoDAO;
+import DAO.TeatroDAO;
 import Models.Promocao;
 import java.io.IOException;
 import java.io.InputStream;
@@ -17,15 +18,20 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @WebServlet(urlPatterns = "/promocao/*")
 public class PromocaoServlet extends HttpServlet {
     
     private PromocaoDAO dao;
+    private TeatroDAO teatroDao;
     
     @Override
     public void init() {
         dao = new PromocaoDAO();
+        teatroDao = new TeatroDAO();
     }
     
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -74,6 +80,15 @@ public class PromocaoServlet extends HttpServlet {
     }
 
     private void apresentaFormCadastro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserEmail = authentication.getName();
+            //System.out.println(currentUserEmail);
+            String cnpj_encontrado = teatroDao.get_email(currentUserEmail);
+            if(cnpj_encontrado != ""){
+                request.setAttribute("cnpj_encontrado", cnpj_encontrado);
+            }
+        }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/formPromocoes.jsp");
         dispatcher.forward(request, response);
     }

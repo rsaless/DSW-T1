@@ -18,6 +18,7 @@ public class TeatroDAO extends GenericDAO{
     /* D */ private final String DELETAR = "DELETE FROM Teatro WHERE id=?";            
     /* - */ private final String LISTAR_CIDADE = "SELECT * FROM Teatro WHERE cidade LIKE?"; 
     /* - */ private final String GET = "SELECT * FROM Teatro where id=?"; 
+    /* - */ private final String GET_EMAIL = "SELECT cnpj FROM Teatro where email = ?";
     
     /* C */ public void inserir(Teatro teatro) throws ClassNotFoundException {
         try {
@@ -147,15 +148,28 @@ public class TeatroDAO extends GenericDAO{
                 String cnpj = resultSet.getString("cnpj");
                 
                 teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
-            }
-            
+            }           
             resultSet.close();
             statement.close();
-            connection.close();
-            
-        } catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
+            connection.close();           
+        } catch(SQLException e) {throw new RuntimeException(e);}
         return teatro; 
+    }
+    /* - */ public String get_email(String email){
+        String cnpj_encontrado = "";
+        try {
+            Connection connection = this.getConnection();
+            PreparedStatement statement = connection.prepareStatement(GET_EMAIL);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            
+            if (resultSet.next()) {
+                cnpj_encontrado = resultSet.getString("cnpj");   
+            }          
+            resultSet.close();
+            statement.close();
+            connection.close();           
+        } catch(SQLException e) {throw new RuntimeException(e);}
+        return cnpj_encontrado; 
     }
 }
