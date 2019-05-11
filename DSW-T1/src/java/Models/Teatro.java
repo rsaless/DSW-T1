@@ -5,10 +5,10 @@ public class Teatro {
     private String senha;
     private String cidade;
     private String nome;
-    private Long cnpj;
+    private String cnpj;
     private Integer id;
 
-    public Teatro(String email, String senha, String cidade, String nome, Long cnpj, Integer id) {
+    public Teatro(String email, String senha, String cidade, String nome, String cnpj, Integer id) {
         this.email = email;
         this.senha = senha;
         this.cidade = cidade;
@@ -16,7 +16,7 @@ public class Teatro {
         this.cnpj = cnpj;
         this.id = id;
     }
-    public Teatro(String email, String senha, String cidade, String nome, Long cnpj) {
+    public Teatro(String email, String senha, String cidade, String nome, String cnpj) {
         this.email = email;
         this.senha = senha;
         this.cidade = cidade;
@@ -39,7 +39,7 @@ public class Teatro {
     public String getNome() {
         return nome;
     }
-    public Long getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
     public Integer getId() {
@@ -58,7 +58,7 @@ public class Teatro {
     public void setNome(String nome) {
         this.nome = nome;
     }
-    public void setCnpj(Long cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
     public void setId(Integer id) {

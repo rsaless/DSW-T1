@@ -9,10 +9,10 @@ public class Promocao {
     private Float preco;
     private LocalDate dia;    
     private LocalTime hora;
-    private Long cnpj;
+    private String cnpj;
     private Integer id;
 
-    public Promocao(String url, String nome_peca, Float preco, LocalDate dia, LocalTime hora, Long cnpj, Integer id) {
+    public Promocao(String url, String nome_peca, Float preco, LocalDate dia, LocalTime hora, String cnpj, Integer id) {
         this.url = url;
         this.nome_peca = nome_peca;
         this.preco = preco;
@@ -21,7 +21,7 @@ public class Promocao {
         this.cnpj = cnpj;
         this.id = id;
     }
-    public Promocao(String url, String nome_peca, Float preco, LocalDate dia, LocalTime hora, Long cnpj) {
+    public Promocao(String url, String nome_peca, Float preco, LocalDate dia, LocalTime hora, String cnpj) {
         this.url = url;
         this.nome_peca = nome_peca;
         this.preco = preco;
@@ -54,10 +54,10 @@ public class Promocao {
         this.preco = preco;
     }
 
-    public Long getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
-    public void setCnpj(Long cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 

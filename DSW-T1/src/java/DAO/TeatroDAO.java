@@ -28,7 +28,7 @@ public class TeatroDAO extends GenericDAO{
             statement.setString(2, teatro.getSenha());
             statement.setString(3, teatro.getCidade());
             statement.setString(4, teatro.getNome());
-            statement.setLong(5, teatro.getCnpj());
+            statement.setString(5, teatro.getCnpj());
             
             statement.executeUpdate();
             statement.close();
@@ -51,7 +51,7 @@ public class TeatroDAO extends GenericDAO{
                 String senha = resultSet.getString("senha");
                 String cidade = resultSet.getString("cidade");
                 String nome = resultSet.getString("nome");
-                Long cnpj = resultSet.getLong("cnpj");
+                String cnpj = resultSet.getString("cnpj");
                 Integer id = resultSet.getInt("id");
                 
                 Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
@@ -76,7 +76,7 @@ public class TeatroDAO extends GenericDAO{
             statement.setString(2, teatro.getSenha());
             statement.setString(3, teatro.getCidade());
             statement.setString(4, teatro.getNome());
-            statement.setLong(5, teatro.getCnpj());            
+            statement.setString(5, teatro.getCnpj());            
             statement.setInt(6, teatro.getId());
 
             statement.executeUpdate();
@@ -115,7 +115,7 @@ public class TeatroDAO extends GenericDAO{
                 String senha = resultSet.getString("senha");
                 String cidade = resultSet.getString("cidade");
                 String nome = resultSet.getString("nome");
-                Long cnpj = resultSet.getLong("cnpj");
+                String cnpj = resultSet.getString("cnpj");
                 Integer id = resultSet.getInt("id");
                 
                 Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
@@ -144,7 +144,7 @@ public class TeatroDAO extends GenericDAO{
                 String senha = resultSet.getString("senha");
                 String cidade = resultSet.getString("cidade");
                 String nome = resultSet.getString("nome");
-                Long cnpj = resultSet.getLong("cnpj");
+                String cnpj = resultSet.getString("cnpj");
                 
                 teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
             }

@@ -97,7 +97,7 @@ public class PromocaoServlet extends HttpServlet {
         System.out.println(request.getParameter("dia"));
         LocalDate dia = LocalDate.parse(request.getParameter("dia"), formatter);//"2017-02-05"
         LocalTime hora = LocalTime.parse(request.getParameter("hora"));//"10:15:30"
-        Long cnpj = Long.parseLong(request.getParameter("cnpj").replaceAll("[^\\d]", ""));
+        String cnpj = request.getParameter("cnpj").replaceAll("[^\\d]", "");
 
         Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj);
         dao.inserir(promocao);
@@ -116,7 +116,7 @@ public class PromocaoServlet extends HttpServlet {
         System.out.println(request.getParameter("dia"));
         LocalDate dia = LocalDate.parse(request.getParameter("dia"), formatter);//"2017-02-05"
         LocalTime hora = LocalTime.parse(request.getParameter("hora"));//"10:15:30"
-        Long cnpj = Long.parseLong(request.getParameter("cnpj").replaceAll("[^\\d]", ""));
+        String cnpj = request.getParameter("cnpj").replaceAll("[^\\d]", "");
 
         Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
         dao.atualizar(promocao);
@@ -138,10 +138,10 @@ public class PromocaoServlet extends HttpServlet {
     
     private void buscarPorTeatro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        String cnpj_desejado_s = request.getParameter("cnpj");
+        String cnpj_desejado = request.getParameter("cnpj");
         List<Promocao> resultados;
-        if(cnpj_desejado_s != ""){
-            resultados = dao.listar_teatro(Integer.parseInt(cnpj_desejado_s));
+        if(cnpj_desejado != ""){
+            resultados = dao.listar_teatro(cnpj_desejado);
         } else {
             resultados = dao.listar();
         }
