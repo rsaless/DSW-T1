@@ -99,6 +99,7 @@
                                         <th class="text-center"><f:message key="listaSites.table.nome" /></th>
                                         <th class="text-center"><f:message key="listaSites.table.email" /></th>
                                         <!--<th class="text-center"><//f:message key="listaSites.table.senha" /></th>-->
+                                        <th class="text-center"><f:message key="listaSites.table.url" /></th>
                                         <th class="text-center"><f:message key="listaSites.table.telefone" /></th>
                                         <th class="text-center"><f:message key="listaSites.table.url" /></th>
                                         <sec:authorize access="hasAnyRole('ADMIN', 'SITE')">
