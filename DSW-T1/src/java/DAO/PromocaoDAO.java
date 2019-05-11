@@ -18,7 +18,7 @@ public class PromocaoDAO extends GenericDAO{
     /* R */ private final String LISTAR = "SELECT * FROM Promocao";                                                        
     /* U */ private final String ATUALIZAR = "UPDATE Promocao SET url=?, nome=?, preco=?, dia=?, hora=?, cnpj=? WHERE id=?"; 
     /* D */ private final String DELETAR = "DELETE FROM Promocao WHERE id=?";
-    /* - */ private final String LISTAR_TEATRO = "SELECT * FROM Promocao WHERE cnpj=?"; 
+    /* - */ private final String LISTAR_TEATRO = "SELECT * FROM Promocao WHERE cnpj LIKE?"; 
     /* - */ private final String LISTAR_SITE = "SELECT * FROM Promocao WHERE url=?"; 
     /* - */ private final String GET = "SELECT * FROM Promocao where id=?"; 
     
@@ -107,13 +107,13 @@ public class PromocaoDAO extends GenericDAO{
             throw new RuntimeException(e);
         }
     }
-    /* - */ public List<Promocao> listar_teatro(int cnpj_desejado){
+    /* - */ public List<Promocao> listar_teatro(String cnpj_desejado){
         List<Promocao> promocoes = new ArrayList<>();
         
         try {
             Connection connection = this.getConnection();
             PreparedStatement statement = connection.prepareStatement(LISTAR_TEATRO);
-            statement.setInt(1, cnpj_desejado);
+            statement.setString(1, "%" + cnpj_desejado + "%");
             ResultSet resultSet = statement.executeQuery();
             
             while (resultSet.next()) {                
