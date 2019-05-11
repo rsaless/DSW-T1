@@ -121,16 +121,22 @@
                                                 <td class="text-center"><c:out value="${promocao.preco}" /></td>
                                                 <td class="text-center"><c:out value="${promocao.cnpj}" /></td>
                                                 <sec:authorize access="hasAnyRole('ADMIN', 'TEATRO')">
-                                                    <td class="text-center">
-                                                        <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />">
-                                                            <span class="glyphicon glyphicon-pencil"></span>
-                                                        </a>
-                                                        &nbsp;&nbsp;&nbsp;&nbsp;
-                                                        <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
-                                                           onclick="return confirm('<f:message key="remover.confirm" />');">
-                                                           <span class="glyphicon glyphicon-trash" style="color:red"></span>
-                                                        </a>
-                                                    </td>
+                                                    <c:if test="${ADMIN == true || promocao.cnpj == cnpj_encontrado}">
+                                                        <td class="text-center">
+                                                            <a href="/DSW-T1/promocao/edicao?id=<c:out value='${promocao.id}' />">
+                                                                <span class="glyphicon glyphicon-pencil"></span>
+                                                            </a>
+                                                            &nbsp;&nbsp;&nbsp;&nbsp;
+                                                            <a href="/DSW-T1/promocao/remocao?id=<c:out value='${promocao.id}' />" 
+                                                               onclick="return confirm('<f:message key="remover.confirm" />');">
+                                                               <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                                            </a>
+                                                        </td>
+                                                    </c:if>
+                                                    <c:if test="${ADMIN != true && promocao.cnpj != cnpj_encontrado}">
+                                                        <td class="text-center"> -                	
+                                                        </td>
+                                                    </c:if>
                                                 </sec:authorize>
                                             </tr>
                                         </c:forEach>

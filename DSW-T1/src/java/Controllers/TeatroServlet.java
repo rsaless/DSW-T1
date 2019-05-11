@@ -19,6 +19,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @WebServlet(urlPatterns = "/teatro/*")
 public class TeatroServlet extends HttpServlet {
@@ -72,6 +75,17 @@ public class TeatroServlet extends HttpServlet {
     
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Teatro> teatros = dao.listar();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserEmail = authentication.getName();
+            //System.out.println(currentUserEmail);
+            String cnpj_encontrado = dao.get_email(currentUserEmail);
+            if(cnpj_encontrado != "ADMIN"){
+                request.setAttribute("cnpj_encontrado", cnpj_encontrado);
+            } else {
+                request.setAttribute("ADMIN", true);
+            }
+        }
         request.setAttribute("listaTeatros", teatros);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_teatro/listaTeatros.jsp");
         dispatcher.forward(request, response);
@@ -153,6 +167,9 @@ public class TeatroServlet extends HttpServlet {
         String filename = "/WEB-INF/properties/sistema_"+ currentLocale.getLanguage() +"_"+ currentLocale.getCountry() +".properties";    
         prop.load(getServletContext().getResourceAsStream(filename));
         
+        String active_email = request.getUserPrincipal().getName();
+        System.out.println(active_email);
+        
         for(Teatro teatro : resultados){
             resposta += 
                 "<tr>"+
@@ -162,14 +179,16 @@ public class TeatroServlet extends HttpServlet {
                     //"<td class=\"text-center\">" + teatro.getSenha() + "</td>" +
                     "<td class=\"text-center\">" + teatro.getCidade() + "</td>" +
                     "<td class=\"text-center\">" + teatro.getCnpj() + "</td>";
-            if (request.isUserInRole("ADMIN") || request.isUserInRole("TEATRO")) {
+            if (request.isUserInRole("ADMIN") || (request.isUserInRole("TEATRO") && teatro.getEmail().equals(active_email))) {
                 resposta += 
                     "<td class=\"text-center\">" +
                         "<a href=\"/DSW-T1/teatro/edicao?id=" + teatro.getId() +"\"><span class=\"glyphicon glyphicon-pencil\"></span></a>" +
                         "&nbsp;&nbsp;&nbsp;&nbsp;"+
                         "<a href=\"/DSW-T1/teatro/remocao?id="+ teatro.getId() + "\" onclick=\"return confirm('" + prop.getProperty("remover.confirm") + "');\"><span class=\"glyphicon glyphicon-trash\" style=\"color:red\"></span></a>" + 
                     "</td>";
-            }    
+            }  else {
+                resposta += "<td class=\"text-center\">-</td>";
+            }  
             resposta += "</tr>";                                    
         }
         response.getWriter().println(resposta);

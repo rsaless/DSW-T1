@@ -17,6 +17,7 @@ public class SiteDAO extends GenericDAO{
     /* U */ private final String ATUALIZAR = "UPDATE Site SET email=?, senha=?, url=?, nome=?, telefone=? WHERE id=?"; 
     /* D */ private final String DELETAR = "DELETE FROM Site WHERE id=?";
     /* - */ private final String GET = "SELECT * FROM Site where id=?"; 
+    /* - */ private final String GET_EMAIL = "SELECT email FROM Site where email = ?";
     
     /* C */ public void inserir(Site site) throws ClassNotFoundException {
         try {
@@ -126,5 +127,22 @@ public class SiteDAO extends GenericDAO{
             throw new RuntimeException(e);
         }
         return site; 
+    }
+    /* - */ public String get_email(String email){
+        String email_encontrado = "ADMIN";
+        try {
+            Connection connection = this.getConnection();
+            PreparedStatement statement = connection.prepareStatement(GET_EMAIL);
+            statement.setString(1, email);
+            ResultSet resultSet = statement.executeQuery();
+            
+            if (resultSet.next()) {
+                email_encontrado = resultSet.getString("email");   
+            }          
+            resultSet.close();
+            statement.close();
+            connection.close();           
+        } catch(SQLException e) {throw new RuntimeException(e);}
+        return email_encontrado; 
     }
 }

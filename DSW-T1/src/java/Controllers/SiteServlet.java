@@ -18,6 +18,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @WebServlet(urlPatterns = "/site/*")
 public class SiteServlet extends HttpServlet {
@@ -73,6 +76,17 @@ public class SiteServlet extends HttpServlet {
     
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Site> sites = siteDao.listar();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserEmail = authentication.getName();
+            //System.out.println(currentUserEmail);
+            String email_encontrado = siteDao.get_email(currentUserEmail);
+            if(email_encontrado != "ADMIN"){
+                request.setAttribute("email_encontrado", email_encontrado);
+            } else {
+                request.setAttribute("ADMIN", true);
+            }
+        }
         request.setAttribute("listaSites", sites);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_site/listaSites.jsp");
         dispatcher.forward(request, response);

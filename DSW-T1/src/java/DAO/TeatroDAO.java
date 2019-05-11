@@ -156,7 +156,7 @@ public class TeatroDAO extends GenericDAO{
         return teatro; 
     }
     /* - */ public String get_email(String email){
-        String cnpj_encontrado = "";
+        String cnpj_encontrado = "ADMIN";
         try {
             Connection connection = this.getConnection();
             PreparedStatement statement = connection.prepareStatement(GET_EMAIL);

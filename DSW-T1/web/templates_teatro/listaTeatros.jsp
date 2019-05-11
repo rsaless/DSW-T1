@@ -104,7 +104,7 @@
                                         <!--<th class="text-center"><//f:message key="listaTeatros.table.senha" /></th>-->
                                         <th class="text-center"><f:message key="listaTeatros.table.cidade" /></th>
                                         <th class="text-center"><f:message key="listaTeatros.table.cnpj" /></th>
-                                        <sec:authorize access="hasAnyRole('ADMIN')">
+                                        <sec:authorize access="hasAnyRole('ADMIN','TEATRO')">
                                             <th class="text-center"><f:message key="listaTeatros.table.acoes" /></th>
                                         </sec:authorize>
                                     </tr>
@@ -118,17 +118,23 @@
                                             <!--<td class="text-center"><//c:out value="${teatro.senha}" /></td>-->
                                             <td class="text-center"><c:out value="${teatro.cidade}" /></td>
                                             <td class="text-center"><c:out value="${teatro.cnpj}" /></td>
-                                            <sec:authorize access="hasAnyRole('ADMIN')">
-                                                <td class="text-center">
-                                                    <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />">
-                                                        <span class="glyphicon glyphicon-pencil"></span>
-                                                    </a>
-                                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                                    <a href="/DSW-T1/teatro/remocao?id=<c:out value='${teatro.id}' />" 
-                                                       onclick="return confirm('<f:message key="remover.confirm" />');">
-                                                       <span class="glyphicon glyphicon-trash" style="color:red"></span>
-                                                    </a>                    	
-                                                </td>
+                                            <sec:authorize access="hasAnyRole('ADMIN','TEATRO')">
+                                                <c:if test="${ADMIN == true || teatro.cnpj == cnpj_encontrado}">
+                                                    <td class="text-center">
+                                                        <a href="/DSW-T1/teatro/edicao?id=<c:out value='${teatro.id}' />">
+                                                            <span class="glyphicon glyphicon-pencil"></span>
+                                                        </a>
+                                                        &nbsp;&nbsp;&nbsp;&nbsp;
+                                                        <a href="/DSW-T1/teatro/remocao?id=<c:out value='${teatro.id}' />" 
+                                                           onclick="return confirm('<f:message key="remover.confirm" />');">
+                                                           <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                                        </a>                    	
+                                                    </td>
+                                                </c:if>
+                                                <c:if test="${ADMIN != true && teatro.cnpj != cnpj_encontrado}">
+                                                    <td class="text-center"> -                	
+                                                    </td>
+                                                </c:if>
                                             </sec:authorize>
                                         </tr>
                                     </c:forEach>

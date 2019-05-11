@@ -74,6 +74,17 @@ public class PromocaoServlet extends HttpServlet {
     
     private void lista(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Promocao> promocoes = dao.listar();
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (!(authentication instanceof AnonymousAuthenticationToken)) {
+            String currentUserEmail = authentication.getName();
+            //System.out.println(currentUserEmail);
+            String cnpj_encontrado = teatroDao.get_email(currentUserEmail);
+            if(cnpj_encontrado != "ADMIN"){
+                request.setAttribute("cnpj_encontrado", cnpj_encontrado);
+            } else {
+                request.setAttribute("ADMIN", true);
+            }
+        }
         request.setAttribute("listaPromocoes", promocoes);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/listaPromocoes.jsp");
         dispatcher.forward(request, response);
@@ -85,8 +96,10 @@ public class PromocaoServlet extends HttpServlet {
             String currentUserEmail = authentication.getName();
             //System.out.println(currentUserEmail);
             String cnpj_encontrado = teatroDao.get_email(currentUserEmail);
-            if(cnpj_encontrado != ""){
+            if(cnpj_encontrado != "ADMIN"){
                 request.setAttribute("cnpj_encontrado", cnpj_encontrado);
+            } else {
+                request.setAttribute("ADMIN", true);
             }
         }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/formPromocoes.jsp");
@@ -167,6 +180,9 @@ public class PromocaoServlet extends HttpServlet {
         String filename = "/WEB-INF/properties/sistema_"+ currentLocale.getLanguage() +"_"+ currentLocale.getCountry() +".properties";    
         prop.load(getServletContext().getResourceAsStream(filename));
         
+        String active_email = request.getUserPrincipal().getName();
+        String active_cnpj = teatroDao.get_email(active_email);
+        
         for(Promocao promocao : resultados){
             resposta += 
                 "<tr>"+
@@ -178,14 +194,16 @@ public class PromocaoServlet extends HttpServlet {
                     "<td class=\"text-center\">" + promocao.getPreco() + "</td>" +
                     "<td class=\"text-center\">" + promocao.getCnpj() + "</td>";
             
-            if (request.isUserInRole("ADMIN") || request.isUserInRole("TEATRO")) {
+            if (request.isUserInRole("ADMIN") || (request.isUserInRole("TEATRO") && promocao.getCnpj().equals(active_cnpj))) {
                 resposta += 
                     "<td class=\"text-center\">" +
                         "<a href=\"/DSW-T1/promocao/edicao?id=" + promocao.getId() +"\"><span class=\"glyphicon glyphicon-pencil\"></span></a>" +
                         "&nbsp;&nbsp;&nbsp;&nbsp;"+
                         "<a href=\"/DSW-T1/promocao/remocao?id="+ promocao.getId() + "\" onclick=\"return confirm('" + prop.getProperty("remover.confirm") + "');\"><span class=\"glyphicon glyphicon-trash\" style=\"color:red\"></span></a>" + 
                     "</td>";
-            }
+            } else {
+                resposta += "<td class=\"text-center\">-</td>";
+            }  
             resposta +=   "</tr>";
         }
         response.getWriter().println(resposta);
