@@ -80,12 +80,13 @@ public class SiteServlet extends HttpServlet {
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserEmail = authentication.getName();
             //System.out.println(currentUserEmail);
+            /*
             String email_encontrado = siteDao.get_email(currentUserEmail);
             if(email_encontrado != "ADMIN"){
                 request.setAttribute("email_encontrado", email_encontrado);
             } else {
                 request.setAttribute("ADMIN", true);
-            }
+            }*/
         }
         request.setAttribute("listaSites", sites);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_site/listaSites.jsp");

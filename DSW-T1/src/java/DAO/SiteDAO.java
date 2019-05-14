@@ -1,14 +1,6 @@
 package DAO;
 
-import Models.Papel;
 import Models.Site;
-import Models.Usuario;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -21,7 +13,7 @@ public class SiteDAO extends GenericDAO<Site>{
     /* U */ private final String ATUALIZAR = "UPDATE Site SET email=?, senha=?, url=?, nome=?, telefone=? WHERE id=?"; 
     /* D */ private final String DELETAR = "DELETE FROM Site WHERE id=?";
     /* - */ private final String GET = "SELECT * FROM Site where id=?"; 
-    /* - */ private final String GET_EMAIL = "SELECT email FROM Site where email = ?";
+    /* - */ private final String GET_EMAIL = "SELECT * FROM Site where email = :email";
     
     /* C */ @Override public void inserir(Site site) {
         EntityManager em = this.getEntityManager();
@@ -33,7 +25,7 @@ public class SiteDAO extends GenericDAO<Site>{
     }
     /* R */ @Override public List<Site> listar(){
         EntityManager em = this.getEntityManager();
-        Query q = em.createQuery("SELECT * FROM Site", Site.class); // ORIGINAL: select l from Site l
+        Query q = em.createQuery(LISTAR, Site.class); // ORIGINAL: select l from Site l
         List<Site> sites = q.getResultList();
         em.close();
         return sites; 
@@ -60,10 +52,10 @@ public class SiteDAO extends GenericDAO<Site>{
         em.close();
         return site;
     }
+   
     /* - */ public Site get_email(String email){
         EntityManager em = this.getEntityManager();
-        String sql = "SELECT s FROM Site s WHERE s.email = :email";
-        TypedQuery<Site> q = em.createQuery(sql, Site.class);
+        TypedQuery<Site> q = em.createQuery(GET_EMAIL, Site.class);
         q.setParameter("email", email);
         return q.getSingleResult();
     }

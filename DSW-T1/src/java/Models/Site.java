@@ -47,6 +47,6 @@ public class Site implements Serializable {
 	if (obj == null) return false;
 	if (!(obj instanceof Site)) return false;
 	Site other = (Site) obj;
-	return other.nome.equals(this.nome);
+	return other.url.equals(this.url);
     }
 }
