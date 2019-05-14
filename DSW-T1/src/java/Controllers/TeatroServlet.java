@@ -79,12 +79,12 @@ public class TeatroServlet extends HttpServlet {
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserEmail = authentication.getName();
             //System.out.println(currentUserEmail);
-            String cnpj_encontrado = dao.get_email(currentUserEmail);
+            /*String cnpj_encontrado = dao.get_email(currentUserEmail);
             if(cnpj_encontrado != "ADMIN"){
                 request.setAttribute("cnpj_encontrado", cnpj_encontrado);
             } else {
                 request.setAttribute("ADMIN", true);
-            }
+            }*/
         }
         request.setAttribute("listaTeatros", teatros);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_teatro/listaTeatros.jsp");
@@ -114,8 +114,8 @@ public class TeatroServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         String cnpj = request.getParameter("cnpj").replaceAll("[^\\d]", "");
 
-        Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj);
-        dao.inserir(teatro);
+        //Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj);
+        //dao.inserir(teatro);
         usuarioDAO.inserir_usuario(new Usuario (email, senha));
         usuarioDAO.inserir_role(new Papel(email, "ROLE_TEATRO"));
         response.sendRedirect("/DSW-T1/teatro/lista");
@@ -132,8 +132,8 @@ public class TeatroServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         String cnpj = request.getParameter("cnpj").replaceAll("[^\\d]", "");
 
-        Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
-        dao.atualizar(teatro);
+        //Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
+        //dao.atualizar(teatro);
         response.sendRedirect("/DSW-T1/teatro/lista");
     }
     
@@ -141,8 +141,8 @@ public class TeatroServlet extends HttpServlet {
     private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
 
-        Teatro teatro = new Teatro(id);
-        dao.deletar(teatro);
+        //Teatro teatro = new Teatro(id);
+        //dao.deletar(teatro);
         response.sendRedirect("/DSW-T1/teatro/lista");
     }
     
