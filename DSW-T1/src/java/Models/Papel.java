@@ -1,6 +1,7 @@
 package Models;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -11,13 +12,16 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Papel implements Serializable{
     
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     
-    @ManyToOne private Usuario usuario;
+    @ManyToOne 
+    private Usuario usuario;
     
+    @Column(nullable = false, unique=false)
     private String email;
+    
+    @Column(nullable = false, unique=false)
     private String nome;
 
     public String getEmail() {return email;}

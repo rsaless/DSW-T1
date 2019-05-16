@@ -3,27 +3,49 @@ package Models;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
 
-@Entity
+
+/** 
+ * O mesmo teatro não pode apresentar duas promoções para mesma data e hora
+ * Cada coluna possui unique = false
+ * Mas o conjunto formado pelos 3 atributos deve ser único
+ */
+@Entity @Table(uniqueConstraints=@UniqueConstraint(columnNames = {"cnpj", "dia", "hora"}))  
 public class Promocao implements Serializable{
     
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     
-    @ManyToOne private Site site;
-    @ManyToOne private Teatro teatro;
+    @ManyToOne 
+    private Site site;
     
+    @ManyToOne 
+    private Teatro teatro;
+    
+    @Column(nullable = false, unique=false)
     private String url;
+    
+    @Column(nullable = false, unique=false)
     private String nome_peca;
+    
+    @Column(nullable = false, unique=false)
     private Float preco;
+    
+    @Column(nullable = false, unique=false)
     private LocalDate dia;    
+    
+    @Column(nullable = false, unique=false)
     private LocalTime hora;
+    
+    @Column(nullable = false, unique=false)
     private String cnpj;
 
     public String getUrl() {return url;}

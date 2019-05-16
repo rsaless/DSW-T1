@@ -2,6 +2,7 @@ package Models;
 
 import java.io.Serializable;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -12,17 +13,25 @@ import javax.persistence.OneToMany;
 @Entity
 public class Teatro implements Serializable{
     
-    @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     
     @OneToMany(mappedBy = "teatro", fetch = FetchType.LAZY)
     private List<Promocao> promocoes;
     
+    @Column(nullable = false, unique=true)
     private String email;
+    
+    @Column(nullable = false, unique=false)
     private String senha;
+    
+    @Column(nullable = false, unique=false)
     private String cidade;
+    
+    @Column(nullable = false, unique=false)
     private String nome;
+    
+    @Column(nullable = false, unique=false)
     private String cnpj;
     
     public String getEmail() {return email;}
