@@ -1,88 +1,57 @@
 package Models;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
-public class Promocao {
+@Entity
+public class Promocao implements Serializable{
+    
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+    
+    @ManyToOne private Site site;
+    @ManyToOne private Teatro teatro;
+    
     private String url;
     private String nome_peca;
     private Float preco;
     private LocalDate dia;    
     private LocalTime hora;
     private String cnpj;
-    private Integer id;
 
-    public Promocao(String url, String nome_peca, Float preco, LocalDate dia, LocalTime hora, String cnpj, Integer id) {
-        this.url = url;
-        this.nome_peca = nome_peca;
-        this.preco = preco;
-        this.dia = dia;
-        this.hora = hora;
-        this.cnpj = cnpj;
-        this.id = id;
-    }
-    public Promocao(String url, String nome_peca, Float preco, LocalDate dia, LocalTime hora, String cnpj) {
-        this.url = url;
-        this.nome_peca = nome_peca;
-        this.preco = preco;
-        this.dia = dia;
-        this.hora = hora;
-        this.cnpj = cnpj;
-    }
-    public Promocao(Integer id) {
-        this.id = id;
-    }
+    public String getUrl() {return url;}
+    public void setUrl(String url) {this.url = url;}
 
-    public String getUrl() {
-        return url;
-    }
-    public void setUrl(String url) {
-        this.url = url;
-    }
+    public String getNome_peca() {return nome_peca;}
+    public void setNome_peca(String nome_peca) {this.nome_peca = nome_peca;}
 
-    public String getNome_peca() {
-        return nome_peca;
-    }
-    public void setNome_peca(String nome_peca) {
-        this.nome_peca = nome_peca;
-    }
+    public Float getPreco() {return preco;}
+    public void setPreco(Float preco) {this.preco = preco;}
 
-    public Float getPreco() {
-        return preco;
-    }
-    public void setPreco(Float preco) {
-        this.preco = preco;
-    }
+    public String getCnpj() {return cnpj;}
+    public void setCnpj(String cnpj) {this.cnpj = cnpj;}
 
-    public String getCnpj() {
-        return cnpj;
-    }
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
+    public Integer getId() {return id;}
+    public void setId(Integer id) {this.id = id;}
 
-    public Integer getId() {
-        return id;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    public LocalDate getDia() {return dia;}
+    public void setDia(LocalDate dia) {this.dia = dia;}
 
-    public LocalDate getDia() {
-        return dia;
-    }
-    public void setDia(LocalDate dia) {
-        this.dia = dia;
-    }
+    public LocalTime getHora() {return hora;}
+    public void setHora(LocalTime hora) {this.hora = hora;}
 
-    public LocalTime getHora() {
-        return hora;
-    }
-    public void setHora(LocalTime hora) {
-        this.hora = hora;
-    }
-    
-    
+    public Site getSite() {return site;}
+    public void setSite(Site site) {this.site = site;}
+
+    public Teatro getTeatro() {return teatro;}
+    public void setTeatro(Teatro teatro) {this.teatro = teatro;}
 }
 
 /*

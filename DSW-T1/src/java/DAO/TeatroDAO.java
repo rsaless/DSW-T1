@@ -56,7 +56,7 @@ public class TeatroDAO extends GenericDAO<Teatro>{
     
     /* - */ public List<Teatro> listar_cidade(String cidade_desejada){
         EntityManager em = this.getEntityManager();
-        TypedQuery<Teatro> q = em.createQuery(LISTAR_CIDADE, Teatro.class); // ORIGINAL: select l from Teatro l
+        TypedQuery<Teatro> q = em.createQuery(LISTAR_CIDADE, Teatro.class);
         q.setParameter("cidade", cidade_desejada);
         List<Teatro> teatros = q.getResultList();
         em.close();
