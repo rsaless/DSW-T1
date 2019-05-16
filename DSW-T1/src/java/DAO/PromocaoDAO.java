@@ -1,6 +1,7 @@
 package DAO;
 
 import Models.Promocao;
+import Models.Site;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -12,189 +13,73 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
-public class PromocaoDAO extends GenericDAO{
-    /* C */ private final String INSERIR = "INSERT INTO Promocao(url, nome, preco, dia, hora, cnpj) values (?,?,?,?,?,?)";   
-    /* R */ private final String LISTAR = "SELECT * FROM Promocao";                                                        
-    /* U */ private final String ATUALIZAR = "UPDATE Promocao SET url=?, nome=?, preco=?, dia=?, hora=?, cnpj=? WHERE id=?"; 
-    /* D */ private final String DELETAR = "DELETE FROM Promocao WHERE id=?";
-    /* - */ private final String LISTAR_TEATRO = "SELECT * FROM Promocao WHERE cnpj LIKE?"; 
-    /* - */ private final String LISTAR_SITE = "SELECT * FROM Promocao WHERE url=?"; 
-    /* - */ private final String GET = "SELECT * FROM Promocao where id=?"; 
+public class PromocaoDAO extends GenericDAO<Promocao>{
+    // private final String INSERIR = "INSERT INTO Promocao(url, nome, preco, dia, hora, cnpj) values (?,?,?,?,?,?)";                                                      
+    // private final String ATUALIZAR = "UPDATE Promocao SET url=?, nome=?, preco=?, dia=?, hora=?, cnpj=? WHERE id=?"; 
+    // private final String DELETAR = "DELETE FROM Promocao WHERE id=?";
+    private final String LISTAR = "SELECT p FROM Promocao p";     
+    private final String LISTAR_TEATRO = "SELECT p FROM Promocao p WHERE p.cnpj LIKE :cnpj"; 
+    private final String LISTAR_SITE = "SELECT p FROM Promocao WHERE p.url LIKE :url"; 
+    private final String GET = "SELECT p FROM Promocao p where p.id = :id"; 
     
-    /* C */ public void inserir(Promocao promocao) {
-        try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(INSERIR);
-            
-            statement.setString(1, promocao.getUrl());
-            statement.setString(2, promocao.getNome_peca());
-            statement.setFloat(3, promocao.getPreco());
-            statement.setDate(4, Date.valueOf(promocao.getDia()));            
-            statement.setTime(5, Time.valueOf(promocao.getHora()));
-            statement.setString(6, promocao.getCnpj());
-            
-            statement.executeUpdate();
-            statement.close();
-            connection.close();
-
-        } catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
+    /* C */ @Override public void inserir(Promocao promocao) {
+        EntityManager em = this.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(promocao);
+        tx.commit();
+        em.close();
     }
-    /* R */ public List<Promocao> listar(){
-        List<Promocao> promocoes = new ArrayList<>();
-        
-        try {
-            Connection connection = this.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(LISTAR);
-            
-            while (resultSet.next()) {                
-                String url = resultSet.getString("url");
-                String nome_peca = resultSet.getString("nome");
-                Float preco = resultSet.getFloat("preco");
-                LocalDate dia = resultSet.getDate("dia").toLocalDate();
-                LocalTime hora = resultSet.getTime("hora").toLocalTime();
-                String cnpj = resultSet.getString("cnpj");
-                Integer id = resultSet.getInt("id");
-                
-                Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
-                promocoes.add(promocao);
-            }
-            
-            resultSet.close();
-            statement.close();
-            connection.close();
-            
-        } catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
+    /* R */ @Override public List<Promocao> listar(){
+        EntityManager em = this.getEntityManager();
+        Query q = em.createQuery(LISTAR, Promocao.class);
+        List<Promocao> promocoes = q.getResultList();
+        em.close();
         return promocoes; 
     }
-    /* U */ public void atualizar(Promocao promocao) {
-        try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(ATUALIZAR);
-            
-            statement.setString(1, promocao.getUrl());
-            statement.setString(2, promocao.getNome_peca());
-            statement.setFloat(3, promocao.getPreco());
-            statement.setDate(4, Date.valueOf(promocao.getDia()));            
-            statement.setTime(5, Time.valueOf(promocao.getHora()));
-            statement.setString(6, promocao.getCnpj());
-            statement.setInt(7, promocao.getId());
-
-            statement.executeUpdate();
-            statement.close();
-            connection.close();
-            
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    /* U */ @Override public void atualizar(Promocao promocao) {
+        EntityManager em = this.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.merge(promocao);
+        tx.commit();
+        em.close();
     }
-    /* D */ public void deletar(Promocao promocao) {
-        try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(DELETAR);
-
-            statement.setInt(1, promocao.getId());
-            statement.executeUpdate();
-            statement.close();
-            connection.close();
-            
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    /* D */ @Override public void deletar(Promocao promocao) {
+        EntityManager em = this.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        promocao = em.getReference(Promocao.class, promocao.getId());
+        tx.begin();
+        em.remove(promocao);
+        tx.commit();
     }
+    /* - */ @Override public Promocao get(int id){     
+        EntityManager em = this.getEntityManager();
+        Promocao promocao = em.find(Promocao.class, id);
+        em.close();
+        return promocao;
+    }
+    
     /* - */ public List<Promocao> listar_teatro(String cnpj_desejado){
-        List<Promocao> promocoes = new ArrayList<>();
-        
-        try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(LISTAR_TEATRO);
-            statement.setString(1, "%" + cnpj_desejado + "%");
-            ResultSet resultSet = statement.executeQuery();
-            
-            while (resultSet.next()) {                
-                String url = resultSet.getString("url");
-                String nome_peca = resultSet.getString("nome");
-                Float preco = resultSet.getFloat("preco");
-                LocalDate dia = resultSet.getDate("dia").toLocalDate();
-                LocalTime hora = resultSet.getTime("hora").toLocalTime();
-                String cnpj = resultSet.getString("cnpj");
-                Integer id = resultSet.getInt("id");
-                
-                Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
-                promocoes.add(promocao);
-            }
-            
-            resultSet.close();
-            statement.close();
-            connection.close();
-            
-        } catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
+        EntityManager em = this.getEntityManager();
+        TypedQuery<Promocao> q = em.createQuery(LISTAR_TEATRO, Promocao.class);
+        q.setParameter("cnpj", "%" + cnpj_desejado + "%");
+        List<Promocao> promocoes = q.getResultList();
+        em.close();
         return promocoes; 
     }
     /* - */ public List<Promocao> listar_site(String url_desejada){
-        List<Promocao> promocoes = new ArrayList<>();
-        
-        try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(LISTAR_SITE);
-            statement.setString(1, url_desejada);
-            ResultSet resultSet = statement.executeQuery();
-            
-            while (resultSet.next()) {                
-                String url = resultSet.getString("url");
-                String nome_peca = resultSet.getString("nome");
-                Float preco = resultSet.getFloat("preco");
-                LocalDate dia = resultSet.getDate("dia").toLocalDate();
-                LocalTime hora = resultSet.getTime("hora").toLocalTime();
-                String cnpj = resultSet.getString("cnpj");
-                Integer id = resultSet.getInt("id");
-                
-                Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
-                promocoes.add(promocao);
-            }
-            
-            resultSet.close();
-            statement.close();
-            connection.close();
-            
-        } catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
+        EntityManager em = this.getEntityManager();
+        TypedQuery<Promocao> q = em.createQuery(LISTAR_SITE, Promocao.class);
+        q.setParameter("url", "%" + url_desejada + "%");
+        List<Promocao> promocoes = q.getResultList();
+        em.close();
         return promocoes; 
     }
-    /* - */ public Promocao get(int id){     
-        Promocao promocao = null;
-        try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(GET);
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            
-            if (resultSet.next()) {                
-                String url = resultSet.getString("url");
-                String nome_peca = resultSet.getString("nome");
-                Float preco = resultSet.getFloat("preco");
-                LocalDate dia = resultSet.getDate("dia").toLocalDate();
-                LocalTime hora = resultSet.getTime("hora").toLocalTime();
-                String cnpj = resultSet.getString("cnpj");
-                
-                promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
-            }
-            
-            resultSet.close();
-            statement.close();
-            connection.close();
-            
-        } catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return promocao; 
-    }
+    
 }
