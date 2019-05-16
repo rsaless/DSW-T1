@@ -8,12 +8,12 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 public class SiteDAO extends GenericDAO<Site>{
-    /* C */ private final String INSERIR = "INSERT INTO Site(email, senha, url, nome, telefone) values (?,?,?,?,?)";   
-    /* R */ private final String LISTAR = "SELECT * FROM Site";                                                        
-    /* U */ private final String ATUALIZAR = "UPDATE Site SET email=?, senha=?, url=?, nome=?, telefone=? WHERE id=?"; 
-    /* D */ private final String DELETAR = "DELETE FROM Site WHERE id=?";
-    /* - */ private final String GET = "SELECT * FROM Site where id=?"; 
-    /* - */ private final String GET_EMAIL = "SELECT * FROM Site where email = :email";
+    //private final String INSERIR = "INSERT INTO Site(email, senha, url, nome, telefone) values (?,?,?,?,?)";                                                       
+    // private final String ATUALIZAR = "UPDATE Site SET email=?, senha=?, url=?, nome=?, telefone=? WHERE id=?"; 
+    // private final String DELETAR = "DELETE FROM Site WHERE id=?";   
+    private final String LISTAR = "SELECT s FROM Site s"; 
+    private final String GET = "SELECT s FROM Site s WHERE s.id = :id"; 
+    private final String GET_EMAIL = "SELECT s FROM Site s WHERE s.email = :email";
     
     /* C */ @Override public void inserir(Site site) {
         EntityManager em = this.getEntityManager();
@@ -25,7 +25,7 @@ public class SiteDAO extends GenericDAO<Site>{
     }
     /* R */ @Override public List<Site> listar(){
         EntityManager em = this.getEntityManager();
-        Query q = em.createQuery(LISTAR, Site.class); // ORIGINAL: select l from Site l
+        Query q = em.createQuery(LISTAR, Site.class); 
         List<Site> sites = q.getResultList();
         em.close();
         return sites; 

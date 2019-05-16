@@ -8,13 +8,14 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 public class TeatroDAO extends GenericDAO<Teatro>{
-    /* C */ private final String INSERIR = "INSERT INTO Teatro(email, senha, cidade, nome, cnpj) values (?,?,?,?,?)";   
-    /* R */ private final String LISTAR = "SELECT * FROM Teatro";                                                        
-    /* U */ private final String ATUALIZAR = "UPDATE Teatro SET email=?, senha=?, cidade=?, nome=?, cnpj=? WHERE id=?"; 
-    /* D */ private final String DELETAR = "DELETE FROM Teatro WHERE id=?";            
-    /* - */ private final String LISTAR_CIDADE = "SELECT * FROM Teatro WHERE cidade LIKE %:cidade%"; 
-    /* - */ private final String GET = "SELECT * FROM Teatro where id=?"; 
-    /* - */ private final String GET_EMAIL = "SELECT * FROM Teatro where email = :email";
+    // private final String INSERIR = "INSERT INTO Teatro(email, senha, cidade, nome, cnpj) values (?,?,?,?,?)";                                                           
+    // private final String ATUALIZAR = "UPDATE Teatro SET email=?, senha=?, cidade=?, nome=?, cnpj=? WHERE id=?"; 
+    // private final String DELETAR = "DELETE FROM Teatro WHERE id=?";    
+    
+    private final String LISTAR = "SELECT t FROM Teatro t";
+    private final String GET = "SELECT t FROM Teatro t where t.id = :id"; 
+    private final String LISTAR_CIDADE = "SELECT t FROM Teatro t WHERE t.cidade LIKE :cidade"; 
+    private final String GET_EMAIL = "SELECT t FROM Teatro t where t.email = :email";
     
     /* C */ @Override public void inserir(Teatro teatro){
         EntityManager em = this.getEntityManager();
@@ -26,7 +27,7 @@ public class TeatroDAO extends GenericDAO<Teatro>{
     }
     /* R */ @Override public List<Teatro> listar(){
         EntityManager em = this.getEntityManager();
-        Query q = em.createQuery(LISTAR, Teatro.class); // ORIGINAL: select l from Teatro l
+        Query q = em.createQuery(LISTAR, Teatro.class);
         List<Teatro> teatros = q.getResultList();
         em.close();
         return teatros;  
@@ -57,7 +58,7 @@ public class TeatroDAO extends GenericDAO<Teatro>{
     /* - */ public List<Teatro> listar_cidade(String cidade_desejada){
         EntityManager em = this.getEntityManager();
         TypedQuery<Teatro> q = em.createQuery(LISTAR_CIDADE, Teatro.class);
-        q.setParameter("cidade", cidade_desejada);
+        q.setParameter("cidade", "%" + cidade_desejada + "%");
         List<Teatro> teatros = q.getResultList();
         em.close();
         return teatros;

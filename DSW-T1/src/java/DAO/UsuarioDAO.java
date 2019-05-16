@@ -1,34 +1,25 @@
 package DAO;
 
-import Login.JDBCUtil;
 import Models.Papel;
-import Models.Teatro;
 import Models.Usuario;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
-import javax.sql.DataSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UsuarioDAO extends GenericDAO<Usuario>{
     /* C */ private final String INSERIR_USUARIO = "INSERT INTO Usuario(email, senha, ativo) values (?,?,1)";   
-    /* R */ private final String LISTAR_USUARIOS = "SELECT * FROM Usuario";
+    /* R */ private final String LISTAR_USUARIOS = "SELECT u FROM Usuario u";
     /* U */ private final String ATUALIZAR_USUARIO = "UPDATE Usuario SET email=?, senha=? WHERE id=?"; 
     /* D */ private final String DELETAR_USUARIO = "DELETE FROM Usuario WHERE id=?";
         
     /* C */ private final String INSERIR_ROLE = "INSERT INTO Papel(email, nome) values (?,?)";     
-    /* R */ private final String LISTAR_ROLES = "SELECT * FROM Papel";    
+    /* R */ private final String LISTAR_ROLES = "SELECT p FROM Papel p";    
     /* U */ private final String ATUALIZAR_ROLE = "UPDATE Usuario SET nome=?, WHERE email=?"; 
     /* D */ private final String DELETAR_ROLE = "DELETE FROM Papel WHERE id=?";
     
-    /* - */ private final String GET_USUARIO = "SELECT * FROM Usuario where email=?";
+    /* - */ private final String GET_USUARIO = "SELECT u FROM Usuario u where u.email = :email";
     /* - */ private final String ATIVA_DESATIVA = "UPDATE Usuario SET ativo=?, WHERE email=?"; 
        
 
