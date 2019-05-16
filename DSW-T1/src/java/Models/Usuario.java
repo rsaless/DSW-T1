@@ -1,56 +1,49 @@
 package Models;
-//E-mail, senha, url, nome e telefone
-public class Usuario {
+
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Usuario implements Serializable{
+    
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+    
+    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
+    private List<Papel> roles;
+    
     private String email;
     private String senha;
     private Boolean ativo;
-    private Integer id;
 
-    public Usuario(String email, String senha) {
-        this.email = email;
-        this.senha = senha;
-        this.ativo = true;
-    }
-    public Usuario(Integer id) {
-        this.id = id;
-    }
-    public Usuario(String email, String senha, Boolean ativo, Integer id) {
-        this.email = email;
-        this.senha = senha;
-        this.ativo = ativo;
-        this.id = id;
-    }
+    public String getEmail() {return email;}
+    public void setEmail(String email) {this.email = email;}
 
-    public String getEmail() {
-        return email;
-    }
+    public String getSenha() {return senha;}
+    public void setSenha(String senha) {this.senha = senha;}
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+    public Boolean getAtivo() {return ativo;}
+    public void setAtivo(Boolean ativo) {this.ativo = ativo;}
 
-    public String getSenha() {
-        return senha;
-    }
+    public Integer getId() {return id;}
+    public void setId(Integer id) {this.id = id;}
 
-    public void setSenha(String senha) {
-        this.senha = senha;
+    public List<Papel> getRoles() {return roles;}
+    public void setRoles(List<Papel> roles) {this.roles = roles;}
+    
+    @Override public String toString() { return email;}
+    @Override public boolean equals(Object obj) {
+        if (this == obj) return true;
+	if (obj == null) return false;
+	if (!(obj instanceof Usuario)) return false;
+	Usuario other = (Usuario) obj;
+	return other.email.equals(this.email);
     }
-
-    public Boolean getAtivo() {
-        return ativo;
-    }
-
-    public void setAtivo(Boolean ativo) {
-        this.ativo = ativo;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
 }

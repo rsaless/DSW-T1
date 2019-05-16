@@ -31,8 +31,8 @@ public class CriaUsuarios {
                 String senha = "admin" + i + "_pass";
                 String role = "ROLE_ADMIN";
                 
-                usuarioDAO.inserir_usuario(new Usuario(email, senha));
-                usuarioDAO.inserir_role(new Papel(email, role));
+                // usuarioDAO.inserir_usuario(new Usuario(email, senha));
+                // usuarioDAO.inserir_role(new Papel(email, role));
             }
 
             // insere teatros
@@ -44,9 +44,9 @@ public class CriaUsuarios {
                 String cnpj = "111000000" + i;
                 String role = "ROLE_TEATRO";
                 
-                teatroDAO.inserir(new Teatro(email, senha, cidade, nome, cnpj));
-                usuarioDAO.inserir_usuario(new Usuario(email, senha));
-                usuarioDAO.inserir_role(new Papel(email, "ROLE_TEATRO"));
+                // teatroDAO.inserir(new Teatro(email, senha, cidade, nome, cnpj));
+                // usuarioDAO.inserir_usuario(new Usuario(email, senha));
+                // usuarioDAO.inserir_role(new Papel(email, "ROLE_TEATRO"));
             }
             
             // insere sites
@@ -57,9 +57,9 @@ public class CriaUsuarios {
                 String nome = "Site" + i;
                 Long telefone = 33330000L + i;
                 String role = "ROLE_SITE";
-                siteDAO.inserir(new Site(email, senha, site, nome, telefone));
-                usuarioDAO.inserir_usuario(new Usuario (email, senha));
-                usuarioDAO.inserir_role(new Papel(email, "ROLE_SITE"));
+                // siteDAO.inserir(new Site(email, senha, site, nome, telefone));
+                // usuarioDAO.inserir_usuario(new Usuario (email, senha));
+                // usuarioDAO.inserir_role(new Papel(email, "ROLE_SITE"));
             }
 
             // insere promocoes
@@ -71,7 +71,7 @@ public class CriaUsuarios {
                 LocalDate dia = LocalDate.parse("20/05/2000", formatter);
                 LocalTime hora = LocalTime.parse("05:05");
                 String cnpj = "111000000" + i;
-                promocaoDAO.inserir(new Promocao(url, nome_peca, preco, dia, hora, cnpj));
+                // promocaoDAO.inserir(new Promocao(url, nome_peca, preco, dia, hora, cnpj));
             }
             
         
