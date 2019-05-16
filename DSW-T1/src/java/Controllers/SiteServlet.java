@@ -129,8 +129,8 @@ public class SiteServlet extends HttpServlet {
 
         //Site site = new Site(email, senha, url, nome, telefone);
         //siteDao.inserir(site);
-        usuarioDAO.inserir_usuario(new Usuario(email, senha));
-        usuarioDAO.inserir_role(new Papel(email, "ROLE_SITE"));
+        //usuarioDAO.inserir_usuario(new Usuario(email, senha));
+        //usuarioDAO.inserir_role(new Papel(email, "ROLE_SITE"));
         response.sendRedirect("/DSW-T1/site/lista");
     }
     

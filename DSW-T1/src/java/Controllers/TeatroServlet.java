@@ -116,8 +116,8 @@ public class TeatroServlet extends HttpServlet {
 
         //Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj);
         //dao.inserir(teatro);
-        usuarioDAO.inserir_usuario(new Usuario (email, senha));
-        usuarioDAO.inserir_role(new Papel(email, "ROLE_TEATRO"));
+        //usuarioDAO.inserir_usuario(new Usuario (email, senha));
+        //usuarioDAO.inserir_role(new Papel(email, "ROLE_TEATRO"));
         response.sendRedirect("/DSW-T1/teatro/lista");
     }
     

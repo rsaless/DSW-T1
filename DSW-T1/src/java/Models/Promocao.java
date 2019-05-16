@@ -52,6 +52,15 @@ public class Promocao implements Serializable{
 
     public Teatro getTeatro() {return teatro;}
     public void setTeatro(Teatro teatro) {this.teatro = teatro;}
+    
+    @Override public String toString() { return nome_peca;}
+    @Override public boolean equals(Object obj) {
+        if (this == obj) return true;
+	if (obj == null) return false;
+	if (!(obj instanceof Promocao)) return false;
+	Promocao other = (Promocao) obj;
+	return other.nome_peca.equals(this.nome_peca);
+    }
 }
 
 /*
