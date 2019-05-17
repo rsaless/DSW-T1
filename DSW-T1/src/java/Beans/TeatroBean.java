@@ -16,18 +16,18 @@ public class TeatroBean implements Serializable{
     private Teatro teatro;
     
     public String lista() {
-        return "templates_teatro/listaTeatros.xhtml";
+        return "/templates_teatro/listaTeatros.xhtml";
     }
     
     public String apresentaFormCadastro() {
         teatro = new Teatro();
-        return "templates_teatro/formTeatro.xhtml";
+        return "/templates_teatro/formTeatro.xhtml";
     }
     
     public String apresentaFormEdicao(int id){
         TeatroDAO dao = new TeatroDAO();
         teatro = dao.get(id);
-        return "templates_teatro/formTeatro.xhtml";
+        return "/templates_teatro/formTeatro.xhtml";
     }
     
     public String salva(){
@@ -42,20 +42,24 @@ public class TeatroBean implements Serializable{
             // ao atualizar um site, atializar o login pro usuário site
             // udao.atualizar(site);
         }
-        return "templates_teatro/listaTeatros.xhtml";
+        return "/templates_teatro/listaTeatros.xhtml";
     }
     
     public String remove(Teatro teatro){
         TeatroDAO dao = new TeatroDAO();
         dao.deletar(teatro);
-        return "templates_teatro/listaTeatros.xhtml";
+        return "/templates_teatro/listaTeatros.xhtml";
     }
     
     public String erro(){
         return "/templates_erro/404.xhtml";
     }
     
-    private List<Teatro> buscarPorCidade(String cidade_desejada_s) {
+    public String home() {
+        return "/index.xhtml?faces-redirect=true";
+    }
+    
+    public List<Teatro> buscarPorCidade(String cidade_desejada_s) {
         List<Teatro> resultados;
         TeatroDAO dao = new TeatroDAO();
         if(cidade_desejada_s != ""){

@@ -15,18 +15,18 @@ public class PromocaoBean implements Serializable{
     private Promocao promocao;
     
     public String lista() {
-        return "templates_promocao/listaPromocoes.xhtml";
+        return "/templates_promocao/listaPromocoes.xhtml";
     }
     
     public String apresentaFormCadastro() {
         promocao = new Promocao();
-        return "templates_promocao/formPromocao.xhtml";
+        return "/templates_promocao/formPromocao.xhtml";
     }
     
     public String apresentaFormEdicao(int id) {
         PromocaoDAO dao = new PromocaoDAO();
         promocao = dao.get(id);
-        return "templates_promocao/formPromocao.xhtml";
+        return "/templates_promocao/formPromocao.xhtml";
     }
     
     public String salva(){
@@ -38,20 +38,24 @@ public class PromocaoBean implements Serializable{
         } else {
             dao.atualizar(promocao);
         }
-        return "templates_promocao/listaPromocoes.xhtml";
+        return "/templates_promocao/listaPromocoes.xhtml";
     }
     
     public String remove(Promocao promocao){
         PromocaoDAO dao = new PromocaoDAO();
         dao.deletar(promocao);
-        return "templates_promocao/listaPromocoes.xhtml";
+        return "/templates_promocao/listaPromocoes.xhtml";
     }
     
     public String erro(){
         return "/templates_erro/404.xhtml";
     }
     
-    private List<Promocao> buscarPorTeatro(String cnpj_desejado){
+    public String home() {
+        return "/index.xhtml?faces-redirect=true";
+    }
+    
+    public List<Promocao> buscarPorTeatro(String cnpj_desejado){
         List<Promocao> resultados;
         PromocaoDAO dao = new PromocaoDAO();
         
