@@ -1,48 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
-    <!--   
-    <servlet>
-        <servlet-name>TeatroServlet</servlet-name>
-        <servlet-class>Controllers.TeatroServlet</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>LoginServlet</servlet-name>
-        <servlet-class>Controllers.LoginServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>LoginServlet</servlet-name>
-        <url-pattern>/LoginServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TeatroServlet</servlet-name>
-        <url-pattern>/teatro/*</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>TeatroServlet</servlet-name>
-        <url-pattern>/site/*</url-pattern>
-    </servlet-mapping>
--->
-    <welcome-file-list>
-        <welcome-file>faces/index.xhtml</welcome-file>
-    </welcome-file-list>
-    <error-page>
-        <!-- Forbidden directory listing -->
-        <error-code>403</error-code>
-        <location>/templates_erro/403.jsp</location>
-    </error-page>
-    <error-page>
-        <!-- Missing resource -->
-        <error-code>404</error-code>
-        <location>/templates_erro/404.jsp</location>
-    </error-page>
-    <error-page>
-        <!-- Uncaught exception -->
-        <error-code>500</error-code>
-        <location>/templates_erro/500.jsp</location>
-    </error-page>
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
+    </context-param>
+    <context-param>
+        <param-name>javax.faces.VALIDATE_EMPTY_FIELDS</param-name>
+        <param-value>true</param-value>
     </context-param>
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
@@ -51,11 +15,30 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>Faces Servlet</servlet-name>
-        <url-pattern>/faces/*</url-pattern>
+        <url-pattern>*.jsf</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
     </session-config>
+    <welcome-file-list>
+        <welcome-file>index.jsf</welcome-file>
+    </welcome-file-list>
+    <error-page>
+        <!-- Forbidden directory listing -->
+        <error-code>403</error-code>
+        <location>/templates_erro/403.xhtml</location>
+    </error-page><!-- 403 -->
+    <error-page>
+        <!-- Missing resource -->
+        <error-code>404</error-code>
+        <location>/templates_erro/404.xhtml</location>
+    </error-page><!-- 404 -->
+    <error-page>
+        <!-- Uncaught exception -->
+        <error-code>500</error-code>
+        <location>/templates_erro/500.xhtml</location>
+    </error-page><!-- 500 -->
+    
 </web-app>
