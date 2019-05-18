@@ -1,5 +1,5 @@
 package Controllers;
-
+/*
 import DAO.PromocaoDAO;
 import DAO.SiteDAO;
 import DAO.UsuarioDAO;
@@ -87,7 +87,7 @@ public class SiteServlet extends HttpServlet {
             } else {
                 request.setAttribute("ADMIN", true);
             }*/
-        }
+        /*}
         request.setAttribute("listaSites", sites);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_site/listaSites.jsp");
         dispatcher.forward(request, response);
@@ -183,3 +183,4 @@ public class SiteServlet extends HttpServlet {
         }
     }
 }
+*/

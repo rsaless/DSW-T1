@@ -1,5 +1,5 @@
 package Controllers;
-
+/*
 import DAO.PromocaoDAO;
 import DAO.TeatroDAO;
 import Models.Promocao;
@@ -85,7 +85,7 @@ public class PromocaoServlet extends HttpServlet {
             } else {
                 request.setAttribute("ADMIN", true);
             }*/
-        }
+        /*}
         request.setAttribute("listaPromocoes", promocoes);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/listaPromocoes.jsp");
         dispatcher.forward(request, response);
@@ -102,7 +102,7 @@ public class PromocaoServlet extends HttpServlet {
             } else {
                 request.setAttribute("ADMIN", true);
             }*/
-        }
+       /* }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/formPromocoes.jsp");
         dispatcher.forward(request, response);
     }
@@ -194,9 +194,9 @@ public class PromocaoServlet extends HttpServlet {
                     "<td class=\"text-center\">" + promocao.getHora() + "</td>" +
                     "<td class=\"text-center\">" + promocao.getPreco() + "</td>" +
                     "<td class=\"text-center\">" + promocao.getCnpj() + "</td>";
-            
-            if (request.isUserInRole("ADMIN") || (request.isUserInRole("TEATRO") && promocao.getCnpj().equals(""/*active_cnpj*/))) {
-                resposta += 
+            */
+            //if (request.isUserInRole("ADMIN") || (request.isUserInRole("TEATRO") && promocao.getCnpj().equals(""/*active_cnpj*/))) {
+                /*resposta += 
                     "<td class=\"text-center\">" +
                         "<a href=\"/DSW-T1/promocao/edicao?id=" + promocao.getId() +"\"><span class=\"glyphicon glyphicon-pencil\"></span></a>" +
                         "&nbsp;&nbsp;&nbsp;&nbsp;"+
@@ -222,4 +222,4 @@ public class PromocaoServlet extends HttpServlet {
         throws ServletException, IOException {
         processRequest(request, response);
     }
-}
+}*/

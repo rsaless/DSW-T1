@@ -1,5 +1,5 @@
 package Controllers;
-
+/*
 import DAO.TeatroDAO;
 import DAO.UsuarioDAO;
 import Models.Papel;
@@ -85,7 +85,7 @@ public class TeatroServlet extends HttpServlet {
             } else {
                 request.setAttribute("ADMIN", true);
             }*/
-        }
+        /*}
         request.setAttribute("listaTeatros", teatros);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_teatro/listaTeatros.jsp");
         dispatcher.forward(request, response);
@@ -215,3 +215,4 @@ public class TeatroServlet extends HttpServlet {
         }
     }
 }
+*/
