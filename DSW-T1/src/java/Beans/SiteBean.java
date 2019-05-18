@@ -6,6 +6,7 @@ import DAO.UsuarioDAO;
 import Models.Promocao;
 import Models.Site;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -17,18 +18,18 @@ public class SiteBean implements Serializable {
     private List<Promocao> promocoes;
     
     public String lista() {
-        return "/templates_site/listaSites.xhtml";
+        return "site/index.xhtml";
     }
     
     public String apresentaFormCadastro(){
         site = new Site();
-        return "/templates_site/formSite.xhtml";
+        return "form.xhtml";
     }
     
     public String apresentaFormEdicao(int id){
         SiteDAO dao = new SiteDAO();
         site = dao.get(id);
-        return "/templates_site/formSite.xhtml";
+        return "form.xhtml";
     }
     
     public String salva(){
@@ -43,13 +44,13 @@ public class SiteBean implements Serializable {
             // ao atualizar um site, atializar o login pro usuário site
             // udao.atualizar(site);
         }
-        return "/templates_site/listaSites.xhtml";
+        return "index.xhtml";
     }
     
     public String remove(Site site){
         SiteDAO dao = new SiteDAO();
         dao.deletar(site);
-        return "/templates_site/listaSites.xhtml";
+        return "index.xhtml";
     }
     
     public String detalhes(int id){
@@ -57,7 +58,7 @@ public class SiteBean implements Serializable {
         PromocaoDAO pdao = new PromocaoDAO();
         site = dao.get(id);
         promocoes = pdao.listar_site(site.getUrl());
-        return "/templates_site/detalheSite.xhtml";
+        return "detalhes.xhtml";
     }
     
     public String erro(){
@@ -67,4 +68,14 @@ public class SiteBean implements Serializable {
     public String home() {
         return "/index.xhtml?faces-redirect=true";
     }
+    
+    public List<Site> getSites() throws SQLException {
+        SiteDAO dao = new SiteDAO();
+        return dao.listar();
+    }
+    
+    public Site getSite() {
+        return site;
+    }
+    
 }
