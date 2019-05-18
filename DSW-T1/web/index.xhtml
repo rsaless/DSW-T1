@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
         <h:outputStylesheet name="/css/bootstrap.css"/>
         <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet"></link>
-        <title>#{msg.index.title}</title>
+        <title>#{msg['index.title']}</title>
         <style>
             .bg{
                 background-color: #8E2DE2;  /* fallback for old browsers */
@@ -39,10 +39,12 @@
                     <nav class="navbar navbar-expand-lg bg-light navbar-light">
                         <div class="container-fluid">
                             <div class="navbar-header">
-                                <h:commandLink styleClass="btn btn-default btn-lg" action="#{siteBean.home()}">#{msg.index.pageTitle}</h:commandLink>
-                                <h:commandLink styleClass="btn btn-default btn-lg" action="#{promocaoBean.lista()}">#{msg.index.promocoes}</h:commandLink>
-                                <h:commandLink styleClass="btn btn-default btn-lg" action="#{siteBean.lista()}">#{msg.index.sites}</h:commandLink>
-                                <h:commandLink styleClass="btn btn-default btn-lg" action="#{teatroBean.lista()}">#{msg.index.teatros}</h:commandLink>
+                                <h:form>                                
+                                    <h:commandLink styleClass="btn btn-default btn-lg" action="#{siteBean.home()}">#{msg['index.pageTitle']}</h:commandLink>
+                                    <h:commandLink styleClass="btn btn-default btn-lg" action="#{promocaoBean.lista()}">#{msg['index.promocoes']}</h:commandLink>
+                                    <h:commandLink styleClass="btn btn-default btn-lg" action="#{siteBean.lista()}">#{msg['index.sites']}</h:commandLink>
+                                    <h:commandLink styleClass="btn btn-default btn-lg" action="#{teatroBean.lista()}">#{msg['index.teatros']}</h:commandLink>
+                                </h:form>
                                 <!-- ARRUMAR O LOGIN
                                     <sec:authorize access="hasAnyRole('ADMIN', 'SITE', 'TEATRO')">
                                         <a href="/DSW-T1/logout" class="btn btn-default btn-lg">Logout</a>
@@ -56,9 +58,9 @@
                     </nav>
                 </div>
                 <center>
-                        <h1>#{msg.index.pageTitle}</h1>
+                        <h1>#{msg['index.pageTitle']}</h1>
                         <div class="container">
-                            </br>
+                            
                             <div class="row">
                                 <p>
                                    Bem-vindo ao Sistema WEB desenvolvido para a disciplina de Desenvolvimento WEB.

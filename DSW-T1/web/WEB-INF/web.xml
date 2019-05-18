@@ -25,20 +25,19 @@
     <welcome-file-list>
         <welcome-file>index.jsf</welcome-file>
     </welcome-file-list>
+<!--
     <error-page>
-        <!-- Forbidden directory listing -->
+        Forbidden directory listing
         <error-code>403</error-code>
         <location>/templates_erro/403.xhtml</location>
-    </error-page><!-- 403 -->
+    </error-page>
     <error-page>
-        <!-- Missing resource -->
         <error-code>404</error-code>
         <location>/templates_erro/404.xhtml</location>
-    </error-page><!-- 404 -->
+    </error-page>
     <error-page>
-        <!-- Uncaught exception -->
         <error-code>500</error-code>
         <location>/templates_erro/500.xhtml</location>
-    </error-page><!-- 500 -->
-    
+    </error-page>
+-->  
 </web-app>
