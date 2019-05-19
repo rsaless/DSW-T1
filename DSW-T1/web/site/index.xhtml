@@ -110,39 +110,47 @@
                     <div class="row">
                         <div class="col-md-12 col-md-offset-6">
                             <h:form>
-                                <p:dataTable value="#{siteBean.sites}" var="site" class="table table-light table-bordered table-striped table-hover thead-dark">
-                                    <p:columnGroup type="header">
-                                        <p:row>
-                                            <p:column headerText="#{msg['listaSites.table.id']}" class="text-center"/>
-                                            <p:column headerText="#{msg['listaSites.table.nome']}" class="text-center"/>
-                                            <p:column headerText="#{msg['listaSites.table.email']}" class="text-center"/>
-                                            <!--<p:column headerText="#{msg['listaSites.table.senha']}" class="text-center"/>-->
-                                            <p:column headerText="#{msg['listaSites.table.url']}" class="text-center"/>
-                                            <p:column headerText="#{msg['listaSites.table.telefone']}" class="text-center"/>
-                                            <p:column headerText="#{msg['listaSites.table.acoes']}" class="text-center" colspan="3"/>
-                                        </p:row>
-                                    </p:columnGroup>
-                                    <h:column class="col-md-2"><h:outputText value="#{site.id}"/></h:column> 
-                                    <h:column class="col-md-2"><h:outputText value="#{site.nome}"/></h:column> 
-                                    <h:column class="col-md-2"><h:outputText value="#{site.email}"/></h:column> 
+                                <h:dataTable value="#{siteBean.sites}" var="site" class="table table-light table-bordered table-striped table-hover thead-dark">
+                                    
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaSites.table.id']}</f:facet>  
+                                        <h:outputText value="#{site.id}"/>
+                                    </h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaSites.table.nome']}</f:facet>  
+                                        <h:outputText value="#{site.nome}"/>
+                                    </h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaSites.table.email']}</f:facet>  
+                                        <h:outputText value="#{site.email}"/>
+                                    </h:column> 
                                     <!--<h:column class="col-md-2"><h:outputText value="#{site.senha}"/></h:column> -->
-                                    <h:column class="col-md-2"><h:outputText value="#{site.url}"/></h:column> 
-                                    <h:column class="col-md-2"><h:outputText value="#{site.telefone}"/></h:column>
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaSites.table.url']}</f:facet>  
+                                        <h:outputText value="#{site.url}"/>
+                                    </h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaSites.table.telefone']}</f:facet>  
+                                        <h:outputText value="#{site.telefone}"/>
+                                    </h:column>
                                     <!-- CORRIGIR O LOGIN
                                     <sec:authorize access="hasAnyRole('ADMIN', 'SITE')">
                                         <th class="text-center"><f:message key="listaSites.table.acoes" /></th>
                                     </sec:authorize> -->
                                     <h:column class="col-md-2">
+                                        <f:facet name="header"></f:facet>  
                                         <h:commandLink action="#{siteBean.apresentaFormEdicao(site.id)}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </h:commandLink>
                                     </h:column>
                                     <h:column class="col-md-2">
+                                        <f:facet name="header"></f:facet> 
                                         <h:commandLink action="#{siteBean.remove(site)}" onclick="return confirm('#{msg['remover.confirm']}');">
                                             <span class="glyphicon glyphicon-trash" style="color:red"></span>
                                         </h:commandLink>
                                     </h:column>
                                     <h:column class="col-md-2">
+                                        <f:facet name="header"></f:facet> 
                                         <h:commandLink action="#{siteBean.detalhes(site.id)}" value="#{msg['listaSites.table.acoes.detalhes']}">
                                         </h:commandLink>
                                     </h:column>
@@ -165,7 +173,7 @@
                                             </td>
                                         </c:if>
                                     </sec:authorize>-->
-                                </p:dataTable>
+                                </h:dataTable>
                             </h:form>
                         </div>
                     </div>
