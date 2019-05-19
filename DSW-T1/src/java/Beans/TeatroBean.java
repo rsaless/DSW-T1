@@ -4,6 +4,7 @@ import DAO.TeatroDAO;
 import DAO.UsuarioDAO;
 import Models.Teatro;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Locale;
 import java.util.Properties;
@@ -16,18 +17,18 @@ public class TeatroBean implements Serializable{
     private Teatro teatro;
     
     public String lista() {
-        return "/templates_teatro/listaTeatros.xhtml";
+        return "/teatro/index.xhtml";
     }
     
     public String apresentaFormCadastro() {
         teatro = new Teatro();
-        return "/templates_teatro/formTeatro.xhtml";
+        return "/teatro/form.xhtml";
     }
     
     public String apresentaFormEdicao(int id){
         TeatroDAO dao = new TeatroDAO();
         teatro = dao.get(id);
-        return "/templates_teatro/formTeatro.xhtml";
+        return "/teatro/form.xhtml";
     }
     
     public String salva(){
@@ -42,17 +43,17 @@ public class TeatroBean implements Serializable{
             // ao atualizar um site, atializar o login pro usuário site
             // udao.atualizar(site);
         }
-        return "/templates_teatro/listaTeatros.xhtml";
+        return "/teatro/index.xhtml";
     }
     
     public String remove(Teatro teatro){
         TeatroDAO dao = new TeatroDAO();
         dao.deletar(teatro);
-        return "/templates_teatro/listaTeatros.xhtml";
+        return "/teatro/index.xhtml";
     }
     
     public String erro(){
-        return "/templates_erro/404.xhtml";
+        return "/erro/404.xhtml";
     }
     
     public String home() {
@@ -68,5 +69,14 @@ public class TeatroBean implements Serializable{
             resultados = dao.listar();
         }
         return resultados;
+    }
+    
+    public List<Teatro> getTeatros() throws SQLException {
+        TeatroDAO dao = new TeatroDAO();
+        return dao.listar();
+    }
+    
+    public Teatro getTeatro() {
+        return teatro;
     }
 }

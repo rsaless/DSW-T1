@@ -18,18 +18,18 @@ public class SiteBean implements Serializable {
     private List<Promocao> promocoes;
     
     public String lista() {
-        return "site/index.xhtml";
+        return "/site/index.xhtml";
     }
     
     public String apresentaFormCadastro(){
         site = new Site();
-        return "form.xhtml";
+        return "/site/form.xhtml";
     }
     
     public String apresentaFormEdicao(int id){
         SiteDAO dao = new SiteDAO();
         site = dao.get(id);
-        return "form.xhtml";
+        return "/site/form.xhtml";
     }
     
     public String salva(){
@@ -44,13 +44,13 @@ public class SiteBean implements Serializable {
             // ao atualizar um site, atializar o login pro usuário site
             // udao.atualizar(site);
         }
-        return "index.xhtml";
+        return "/site/index.xhtml";
     }
     
     public String remove(Site site){
         SiteDAO dao = new SiteDAO();
         dao.deletar(site);
-        return "index.xhtml";
+        return "/site/index.xhtml";
     }
     
     public String detalhes(int id){
@@ -58,11 +58,11 @@ public class SiteBean implements Serializable {
         PromocaoDAO pdao = new PromocaoDAO();
         site = dao.get(id);
         promocoes = pdao.listar_site(site.getUrl());
-        return "detalhes.xhtml";
+        return "/site/detalhes.xhtml";
     }
     
     public String erro(){
-        return "/templates_erro/404.xhtml";
+        return "/erro/404.xhtml";
     }
     
     public String home() {
