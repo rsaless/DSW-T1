@@ -16,6 +16,7 @@ import javax.faces.bean.SessionScoped;
 public class SiteBean implements Serializable {
     private Site site;
     private List<Promocao> promocoes;
+    private String form_title;
     
     public String lista() {
         return "/site/index.xhtml";
@@ -23,12 +24,14 @@ public class SiteBean implements Serializable {
     
     public String apresentaFormCadastro(){
         site = new Site();
+        form_title = "formSite.smallTitle.cadastrar";
         return "/site/form.xhtml";
     }
     
     public String apresentaFormEdicao(int id){
         SiteDAO dao = new SiteDAO();
         site = dao.get(id);
+        form_title = "formSite.smallTitle.editar";
         return "/site/form.xhtml";
     }
     
@@ -44,7 +47,7 @@ public class SiteBean implements Serializable {
             // ao atualizar um site, atializar o login pro usuário site
             // udao.atualizar(site);
         }
-        return "/site/index.xhtml";
+        return "index.xhtml";
     }
     
     public String remove(Site site){
@@ -76,6 +79,10 @@ public class SiteBean implements Serializable {
     
     public Site getSite() {
         return site;
+    }
+    
+    public String getForm_title() {
+        return form_title;
     }
     
 }

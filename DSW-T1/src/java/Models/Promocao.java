@@ -18,7 +18,7 @@ import javax.persistence.UniqueConstraint;
  * Cada coluna possui unique = false
  * Mas o conjunto formado pelos 3 atributos deve ser único
  */
-@Entity @Table(uniqueConstraints=@UniqueConstraint(columnNames = {"cnpj", "dia", "hora"}))  
+@Entity 
 public class Promocao implements Serializable{
     
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
