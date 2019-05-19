@@ -5,6 +5,7 @@ import DAO.TeatroDAO;
 import Models.Promocao;
 import Models.Teatro;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -15,18 +16,18 @@ public class PromocaoBean implements Serializable{
     private Promocao promocao;
     
     public String lista() {
-        return "/templates_promocao/listaPromocoes.xhtml";
+        return "/promocao/index.xhtml";
     }
     
     public String apresentaFormCadastro() {
         promocao = new Promocao();
-        return "/templates_promocao/formPromocao.xhtml";
+        return "/promocao/form.xhtml";
     }
     
     public String apresentaFormEdicao(int id) {
         PromocaoDAO dao = new PromocaoDAO();
         promocao = dao.get(id);
-        return "/templates_promocao/formPromocao.xhtml";
+        return "/promocao/form.xhtml";
     }
     
     public String salva(){
@@ -38,13 +39,13 @@ public class PromocaoBean implements Serializable{
         } else {
             dao.atualizar(promocao);
         }
-        return "/templates_promocao/listaPromocoes.xhtml";
+        return "/promocao/index.xhtml";
     }
     
     public String remove(Promocao promocao){
         PromocaoDAO dao = new PromocaoDAO();
         dao.deletar(promocao);
-        return "/templates_promocao/listaPromocoes.xhtml";
+        return "/promocao/index.xhtml";
     }
     
     public String erro(){
@@ -66,6 +67,15 @@ public class PromocaoBean implements Serializable{
         }
         
         return resultados;
+    }
+    
+    public List<Promocao> getPromocoes() throws SQLException {
+        PromocaoDAO dao = new PromocaoDAO();
+        return dao.listar();
+    }
+    
+    public Promocao getPromocao() {
+        return promocao;
     }
     
 }
