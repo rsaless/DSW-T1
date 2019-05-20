@@ -152,12 +152,12 @@
                                     <div class="form-group">  
                                         <h:outputLabel for="telefone" class="control-label col-sm-4 col-lg-6">#{msg['formSite.form.telefone']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="telefone" value="#{siteBean.site.telefone}" class="form-control"   
-                                                         validatorMessage="#{msg['formSite.required.telephone']}" a:type="Number">
+                                            <p:inputMask id="telefone" value="#{siteBean.site.telefone}" class="form-control" mask="(99) 9999-9999"   
+                                                         validatorMessage="#{msg['formSite.required.telephone']}" a:type="Number" >
                                                 <f:validateRequired/>
-                                            </h:inputText>
+                                            </p:inputMask>
                                             <h:message for="telefone"/>
-                                        </div>  
+                                        </div>
                                     </div> <!-- Telefone -->
                                     <div class="form-group">  
                                         <div class="col-sm-4 col-lg-6">  
