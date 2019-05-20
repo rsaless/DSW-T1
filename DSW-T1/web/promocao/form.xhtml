@@ -4,8 +4,8 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
-      xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+          
+      xmlns:p="http://primefaces.org/ui"> 
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -172,25 +172,15 @@
                                         </div>  
                                     </div> <!-- Nome -->
                                     <div class="form-group">  
-                                        <h:outputLabel for="data" class="control-label col-sm-4 col-lg-6">#{msg['formPromocao.form.data']}</h:outputLabel>  
-                                        <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="data" value="#{promocaoBean.promocao.dia}" class="form-control"   
-                                                         validatorMessage="#{msg['formPromocao.required.data']}" >
+                                        <h:outputLabel for="data_hora" class="control-label col-sm-4 col-lg-6">#{msg['formPromocao.form.data']}</h:outputLabel>  
+                                        <div class="col-sm-4 col-lg-6"> 
+                                            <p:datePicker id="data_hora" value="#{promocaoBean.promocao.dia_hora}" showTime="true" 
+                                                           validatorMessage="#{msg['formPromocao.required.data']}">
                                                 <f:validateRequired/>
-                                            </h:inputText>
-                                            <h:message for="data"/>
+                                            </p:datePicker>
+                                            <h:message for="data_hora"/>
                                         </div>  
-                                    </div> <!-- Data -->
-                                    <div class="form-group">  
-                                        <h:outputLabel for="hora" class="control-label col-sm-4 col-lg-6">#{msg['formPromocao.form.hora']}</h:outputLabel>  
-                                        <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="hora" value="#{promocaoBean.promocao.hora}" class="form-control"   
-                                                         validatorMessage="#{msg['formPromocao.required.hora']}">
-                                                <f:validateRequired/>
-                                            </h:inputText>
-                                            <h:message for="hora"/>
-                                        </div>  
-                                    </div> <!-- Hora -->
+                                    </div> <!-- Data e Hora -->
                                     <div class="form-group">  
                                         <h:outputLabel for="preco" class="control-label col-sm-4 col-lg-6">#{msg['formPromocao.form.preco']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
