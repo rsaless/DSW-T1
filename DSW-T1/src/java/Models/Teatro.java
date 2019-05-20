@@ -13,12 +13,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Teatro implements Serializable{
     
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
-    
-    @OneToMany(mappedBy = "teatro", fetch = FetchType.LAZY)
-    private List<Promocao> promocoes;
-    
     @Column(nullable = false, unique=true)
     private String email;
     
@@ -33,6 +27,12 @@ public class Teatro implements Serializable{
     
     @Column(nullable = false, unique=false)
     private String cnpj;
+    
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+    
+    @OneToMany(mappedBy = "teatro", fetch = FetchType.LAZY)
+    private List<Promocao> promocoes;
     
     public String getEmail() {return email;}
     public String getSenha() {return senha;}

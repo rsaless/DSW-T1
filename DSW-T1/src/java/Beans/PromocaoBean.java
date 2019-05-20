@@ -14,6 +14,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class PromocaoBean implements Serializable{
     private Promocao promocao;
+    private String form_title;
     
     public String lista() {
         return "/promocao/index.xhtml";
@@ -21,12 +22,14 @@ public class PromocaoBean implements Serializable{
     
     public String apresentaFormCadastro() {
         promocao = new Promocao();
+        form_title = "formPromocao.smallTitle.cadastrar";
         return "/promocao/form.xhtml";
     }
     
     public String apresentaFormEdicao(int id) {
         PromocaoDAO dao = new PromocaoDAO();
         promocao = dao.get(id);
+        form_title = "formPromocao.smallTitle.editar";
         return "/promocao/form.xhtml";
     }
     
@@ -76,6 +79,10 @@ public class PromocaoBean implements Serializable{
     
     public Promocao getPromocao() {
         return promocao;
+    }
+    
+    public String getForm_title() {
+        return form_title;
     }
     
 }

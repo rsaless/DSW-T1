@@ -15,6 +15,7 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class TeatroBean implements Serializable{
     private Teatro teatro;
+    private String form_title;
     
     public String lista() {
         return "/teatro/index.xhtml";
@@ -22,12 +23,14 @@ public class TeatroBean implements Serializable{
     
     public String apresentaFormCadastro() {
         teatro = new Teatro();
+        form_title = "formTeatro.smallTitle.cadastrar";
         return "/teatro/form.xhtml";
     }
     
     public String apresentaFormEdicao(int id){
         TeatroDAO dao = new TeatroDAO();
         teatro = dao.get(id);
+        form_title = "formTeatro.smallTitle.editar";
         return "/teatro/form.xhtml";
     }
     
@@ -78,5 +81,9 @@ public class TeatroBean implements Serializable{
     
     public Teatro getTeatro() {
         return teatro;
+    }
+    
+    public String getForm_title() {
+        return form_title;
     }
 }
