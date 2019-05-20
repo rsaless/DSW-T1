@@ -175,7 +175,8 @@
                                         <h:outputLabel for="data_hora" class="control-label col-sm-4 col-lg-6">#{msg['formPromocao.form.data']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6"> 
                                             <p:datePicker id="data_hora" value="#{promocaoBean.promocao.dia_hora}" showTime="true" 
-                                                           validatorMessage="#{msg['formPromocao.required.data']}">
+                                                          validatorMessage="#{msg['formPromocao.required.data']}" pattern="dd/MM/yyyy">
+                                                <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
                                                 <f:validateRequired/>
                                             </p:datePicker>
                                             <h:message for="data_hora"/>
