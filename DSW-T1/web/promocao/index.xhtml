@@ -120,37 +120,49 @@
                     <div class="row">
                         <div class="col-md-12 col-md-offset-6">
                             <h:form>
-                                <p:dataTable value="#{promocaoBean.promocoes}" var="promocao" class="table table-light table-bordered table-striped table-hover ">
-                                    <p:columnGroup type="header">
-                                        <p:row>
-                                            <p:column headerText="#{msg['listaPromocoes.table.id']}" class="text-center thead-dark"/>
-                                            <p:column headerText="#{msg['listaPromocoes.table.site']}" class="text-center thead-dark"/>
-                                            <p:column headerText="#{msg['listaPromocoes.table.peca']}" class="text-center thead-dark"/>
-                                            <p:column headerText="#{msg['listaPromocoes.table.data']}" class="text-center thead-dark"/>
-                                            <p:column headerText="#{msg['listaPromocoes.table.hora']}" class="text-center thead-dark"/>
-                                            <p:column headerText="#{msg['listaPromocoes.table.preco']}" class="text-center thead-dark"/>
-                                            <p:column headerText="#{msg['listaPromocoes.table.cnpj']}" class="text-center thead-dark"/>
-                                            <p:column headerText="#{msg['listaPromocoes.table.acoes']}" class="text-center thead-dark" colspan="2"/>
-                                        </p:row>
-                                    </p:columnGroup>
-                                    <h:column class="col-md-2"><h:outputText value="#{promocao.id}"/></h:column> 
-                                    <h:column class="col-md-2"><h:outputText value="#{promocao.url}"/></h:column> 
-                                    <h:column class="col-md-2"><h:outputText value="#{promocao.nome_peca}"/></h:column> 
-                                    <h:column class="col-md-2"><h:outputText value="#{promocao.dia}"/></h:column>
-                                    <h:column class="col-md-2"><h:outputText value="#{promocao.hora}"/></h:column> 
-                                    <h:column class="col-md-2"><h:outputText value="#{promocao.preco}"/></h:column>
-                                    <h:column class="col-md-2"><h:outputText value="#{promocao.cnpj}"/></h:column> 
+                                <h:dataTable value="#{promocaoBean.promocoes}" var="promocao" class="table table-light table-bordered table-striped table-hover ">
+                                    
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaPromocoes.table.id']}</f:facet>  
+                                        <h:outputText value="#{promocao.id}"/>
+                                    </h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaPromocoes.table.site']}</f:facet>  
+                                        <h:outputText value="#{promocao.url}"/>
+                                    </h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaPromocoes.table.peca']}</f:facet>  
+                                        <h:outputText value="#{promocao.nome_peca}"/>
+                                    </h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaPromocoes.table.data']}</f:facet>  
+                                        <h:outputText value="#{promocao.dia}"/>
+                                    </h:column>
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaPromocoes.table.hora']}</f:facet>  
+                                        <h:outputText value="#{promocao.hora}"/>
+                                    </h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaPromocoes.table.preco']}</f:facet>  
+                                        <h:outputText value="#{promocao.preco}"/>
+                                    </h:column>
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaPromocoes.table.cnpj']}</f:facet>  
+                                        <h:outputText value="#{promocao.cnpj}"/>
+                                    </h:column> 
                                     <!-- LOGIN
                                     <sec:authorize access="hasAnyRole('ADMIN', 'TEATRO')">
                                         <th class="text-center"><f:message key="listaPromocoes.table.acoes" /></th>
                                     </sec:authorize>
                                     -->
                                     <h:column class="col-md-2">
+                                        <f:facet name="header"></f:facet> 
                                         <h:commandLink action="#{promocaoBean.apresentaFormEdicao(promocao.id)}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </h:commandLink>
                                     </h:column>
                                     <h:column class="col-md-2">
+                                        <f:facet name="header"></f:facet> 
                                         <h:commandLink action="#{promocaoBean.remove(promocao)}" onclick="return confirm('#{msg['remover.confirm']}');">
                                             <span class="glyphicon glyphicon-trash" style="color:red"></span>
                                         </h:commandLink>
@@ -174,7 +186,7 @@
                                             </td>
                                         </c:if>
                                     </sec:authorize>-->
-                                </p:dataTable>
+                                </h:dataTable>
                             </h:form>
                         </div>
                     </div>

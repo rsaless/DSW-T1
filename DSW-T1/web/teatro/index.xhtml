@@ -119,32 +119,36 @@
                     <div class="row">
                         <div class="col-md-12 col-md-offset-6">
                             <h:form>
-                                <p:dataTable value="#{teatroBean.teatros}" var="teatro" class="table table-light table-bordered table-striped table-hover ">
-                                    <p:columnGroup type="header">
-                                        <p:row>
-                                            <p:column headerText="#{msg['listaTeatros.table.id']}" class="text-center thead-dark"/>
-                                            <p:column headerText="#{msg['listaTeatros.table.nome']}" class="text-center thead-dark"/>
-                                            <p:column headerText="#{msg['listaTeatros.table.email']}" class="text-center thead-dark"/>
-                                            <!--<p:column headerText="#{msg['listaTeatros.table.senha']}" class="text-center thead-dark"/>-->
-                                            <p:column headerText="#{msg['listaTeatros.table.cidade']}" class="text-center thead-dark"/>
-                                            <p:column headerText="#{msg['listaTeatros.table.acoes']}" class="text-center thead-dark" colspan="2"/>
-                                        </p:row>
-                                    </p:columnGroup>
-                                    <h:column class="col-md-2"><h:outputText value="#{teatro.id}"/></h:column> 
-                                    <h:column class="col-md-2"><h:outputText value="#{teatro.nome}"/></h:column> 
-                                    <h:column class="col-md-2"><h:outputText value="#{teatro.email}"/></h:column> 
+                                <h:dataTable value="#{teatroBean.teatros}" var="teatro" class="table table-light table-bordered table-striped table-hover ">
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaTeatros.table.id']}</f:facet>  
+                                        <h:outputText value="#{teatro.id}"/>
+                                    </h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaTeatros.table.nome']}</f:facet> 
+                                        <h:outputText value="#{teatro.nome}"/>
+                                    </h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaTeatros.table.email']}</f:facet> 
+                                        <h:outputText value="#{teatro.email}"/>
+                                    </h:column> 
                                     <!--<h:column class="col-md-2"><h:outputText value="#{teatro.senha}"/></h:column> -->
-                                    <h:column class="col-md-2"><h:outputText value="#{teatro.cidade}"/></h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaTeatros.table.cidade']}</f:facet> 
+                                        <h:outputText value="#{teatro.cidade}"/>
+                                    </h:column> 
                                     <!-- CORRIGIR O LOGIN
                                     <sec:authorize access="hasAnyRole('ADMIN', 'TEATRO')">
                                         <th class="text-center"><f:message key="listaTeatros.table.acoes" /></th>
                                     </sec:authorize> -->
                                     <h:column class="col-md-2">
+                                        <f:facet name="header"></f:facet> 
                                         <h:commandLink action="#{teatroBean.apresentaFormEdicao(site.id)}">
                                             <span class="glyphicon glyphicon-pencil"></span>
                                         </h:commandLink>
                                     </h:column>
                                     <h:column class="col-md-2">
+                                        <f:facet name="header"></f:facet> 
                                         <h:commandLink action="#{teatroBean.remove(teatro)}" onclick="return confirm('#{msg['remover.confirm']}');">
                                             <span class="glyphicon glyphicon-trash" style="color:red"></span>
                                         </h:commandLink>
@@ -168,7 +172,7 @@
                                         </td>
                                     </c:if>
                                 </sec:authorize>-->
-                                </p:dataTable>
+                                </h:dataTable>
                             </h:form>
                         </div>
                     </div>
