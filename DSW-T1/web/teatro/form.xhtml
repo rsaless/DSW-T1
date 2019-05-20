@@ -1,18 +1,193 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
+        <h:outputStylesheet name="/css/bootstrap.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet"/>
+        <h:outputStylesheet name="/css/glyphicon.css"/><!-- adicionado pra usar ícones-->
+        <script src="../js/jquery-3.3.1.min.js"></script>
+        <script src="../js/jquery.mask.min.js"></script>
+        <script>
+            $(document).ready(function(){
+                $('.cnpj').mask('00.000.000/0000-00');
+            });
+        </script>
+        <title>#{msg['formTeatro.title']}</title>
+    </h:head>
+    <style>
+        .bg{
+            background-color: #8E2DE2;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to bottom, #7700e0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to bottom, #7700e0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        .body{
+            font-family: 'Questrial', sans-serif;
+            color: white;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #8E2DE2;
+        }
+        h1{
+            font-size: 2.8em;
+        }
+        h2{
+            font-size: 2.3em;
+        }
+        p{
+            padding-left: 30px;
+            color: #f7f7f7;
+            font-size: 1.5em;
+        }
+        .dat_div{
+            border: 2px solid red;
+        }
+        .center_div{
+            width: 50%;
+            margin: 0px auto;
+        }
+        tr{
+            width: 50%;
+            color: white;
+        }
+        th{
+            margin: 0px auto;
+            width: 10%;
+        }
+    </style>
+    <h:body styleClass="body">
+        <div class="bg">
+            <div class="container-fullwidth">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{siteBean.home()}" value="#{msg['index.pageTitle']}"/>
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{promocaoBean.lista()}" value="#{msg['index.promocoes']}"/>
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{siteBean.lista()}" value="#{msg['index.sites']}"/>
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{teatroBean.lista()}" value="#{msg['index.teatros']}"/>
+                            <!-- ARRUMAR O LOGIN
+                                <sec:authorize access="hasAnyRole('ADMIN', 'SITE', 'TEATRO')">
+                                <a href="/DSW-T1/logout" class="btn btn-default btn-lg">Logout</a>
+                            </sec:authorize>
+                            <sec:authorize access="isAnonymous()">
+                                <a href="/DSW-T1/login" class="btn btn-default btn-lg">Login</a>
+                            </sec:authorize>
+                            -->
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+            <center>
+                <h1>#{msg['formSite.bigTitle']}</h1>
+                <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+                <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <p> Cadastre seu teatro aqui. É fácil e rápido. </p>
+                        </div>
+                        <div class="col-lg-6">
+                            <h2>
+                                <h:link styleClass="btn btn-success btn-lg" outcome="#{teatroBean.lista()}">
+                                    <span class="glyphicon glyphicon-list"></span>#{msg['formTeatro.goToList']}
+                                </h:link>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </center>
+            <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+            <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+            <div align="center">
+                <h2>#{msg[siteBean.form_title]}</h2>
+
+                <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+                <h:form>
+                    <div class="container">
+                        <div class="row">
+                            <div class="center_div">
+                                <div class="col-lg-12">
+                                    <div class="form-group">  
+                                        <h:outputLabel for="email" class="control-label col-sm-4 col-lg-6">#{msg['formTeatro.form.email']}</h:outputLabel>  
+                                        <div class="col-sm-4 col-lg-6">  
+                                            <h:inputText id="email" value="#{teatroBean.teatro.email}" class="form-control"   
+                                                         validatorMessage="#{msg['formTeatro.required.email']}"
+                                                         a:type="Email">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="email"/>
+                                        </div>  
+                                    </div> <!-- Email -->
+                                    <div class="form-group">  
+                                        <h:outputLabel for="senha" class="control-label col-sm-4 col-lg-6">#{msg['formTeatro.form.senha']}</h:outputLabel>  
+                                        <div class="col-sm-4 col-lg-6">  
+                                            <h:inputSecret id="senha" value="#{teatroBean.teatro.senha}" class="form-control"   
+                                                         validatorMessage="#{msg['formTeatro.required.password']}">
+                                                <f:validateRequired/>
+                                            </h:inputSecret>
+                                            <h:message for="senha"/>
+                                        </div>  
+                                    </div> <!-- Senha -->
+                                    <div class="form-group">  
+                                        <h:outputLabel for="cidade" class="control-label col-sm-4 col-lg-6">#{msg['formTeatro.form.cidade']}</h:outputLabel>  
+                                        <div class="col-sm-4 col-lg-6">  
+                                            <h:inputText id="cidade" value="#{teatroBean.teatro.cidade}" class="form-control"   
+                                                         validatorMessage="#{msg['formTeatro.required.city']}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="cidade"/>
+                                        </div>  
+                                    </div> <!-- Cidade -->
+                                    <div class="form-group">  
+                                        <h:outputLabel for="nome" class="control-label col-sm-4 col-lg-6">#{msg['formTeatro.form.nome']}</h:outputLabel>  
+                                        <div class="col-sm-4 col-lg-6">  
+                                            <h:inputText id="nome" value="#{teatroBean.teatro.nome}" class="form-control"   
+                                                         validatorMessage="#{msg['formTeatro.required.name']}">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="nome"/>
+                                        </div>  
+                                    </div> <!-- Nome -->
+                                    <div class="form-group">  
+                                        <h:outputLabel for="cnpj" class="control-label col-sm-4 col-lg-6">#{msg['formTeatro.form.cnpj']}</h:outputLabel>  
+                                        <div class="col-sm-4 col-lg-6">  
+                                            <h:inputText id="cnpj" value="#{teatroBean.teatro.cnpj}" class="form-control"   
+                                                         validatorMessage="#{msg['formTeatro.required.cnpj']}" a:type="Number">
+                                                <f:validateRequired/>
+                                            </h:inputText>
+                                            <h:message for="cnpj"/>
+                                        </div>  
+                                    </div> <!-- CNPJ -->
+                                    <div class="form-group">  
+                                        <div class="col-sm-4 col-lg-6">  
+                                            <div class="col-sm-4 col-lg-6">
+                                                <h:commandButton 
+                                                    value="#{msg['formSite.form.submit']}" 
+                                                    action="#{siteBean.salva()}" 
+                                                    class="btn btn-primary"   
+                                                    style="width: 80px;">
+                                                </h:commandButton>  
+                                            </div>
+                                        </div>  
+                                    </div> 
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </h:body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 </html>
 a:type="Number" a:min="1500"
                                                                 
