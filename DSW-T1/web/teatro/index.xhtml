@@ -137,6 +137,10 @@
                                         <f:facet name="header">#{msg['listaTeatros.table.cidade']}</f:facet> 
                                         <h:outputText value="#{teatro.cidade}"/>
                                     </h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaTeatros.table.cnpj']}</f:facet> 
+                                        <h:outputText value="#{teatro.cnpj}"/>
+                                    </h:column> 
                                     <!-- CORRIGIR O LOGIN
                                     <sec:authorize access="hasAnyRole('ADMIN', 'TEATRO')">
                                         <th class="text-center"><f:message key="listaTeatros.table.acoes" /></th>
