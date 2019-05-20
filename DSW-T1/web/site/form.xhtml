@@ -122,10 +122,10 @@
                                     <div class="form-group">  
                                         <h:outputLabel for="senha" class="control-label col-sm-4 col-lg-6">#{msg['formSite.form.senha']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputSecret id="senha" value="#{siteBean.site.senha}" class="form-control"   
+                                            <h:inputText id="senha" value="#{siteBean.site.senha}" class="form-control" a:type="password"  
                                                          validatorMessage="#{msg['formSite.required.password']}">
                                                 <f:validateRequired/>
-                                            </h:inputSecret>
+                                            </h:inputText>
                                             <h:message for="senha"/>
                                         </div>  
                                     </div> <!-- Senha -->

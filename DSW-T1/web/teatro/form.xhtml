@@ -128,10 +128,10 @@
                                     <div class="form-group">  
                                         <h:outputLabel for="senha" class="control-label col-sm-4 col-lg-6">#{msg['formTeatro.form.senha']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputSecret id="senha" value="#{teatroBean.teatro.senha}" class="form-control"   
+                                            <h:inputText id="senha" value="#{teatroBean.teatro.senha}" class="form-control"  a:type="password" 
                                                          validatorMessage="#{msg['formTeatro.required.password']}">
                                                 <f:validateRequired/>
-                                            </h:inputSecret>
+                                            </h:inputText>
                                             <h:message for="senha"/>
                                         </div>  
                                     </div> <!-- Senha -->
