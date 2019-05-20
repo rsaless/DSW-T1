@@ -77,6 +77,11 @@ public class SiteBean implements Serializable {
         return dao.listar();
     }
     
+    public List<Promocao> getPromocoes() throws SQLException {
+        PromocaoDAO dao = new PromocaoDAO();
+        return dao.listar_site(site.getUrl());
+    }    
+    
     public Site getSite() {
         return site;
     }

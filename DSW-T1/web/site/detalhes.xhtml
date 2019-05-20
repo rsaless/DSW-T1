@@ -1,16 +1,205 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
-    </body>
-</html>
+        <h:outputStylesheet name="/css/bootstrap.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet"/>
+        <h:outputStylesheet name="/css/glyphicon.css"/><!-- adicionado pra usar ícones-->
+        <title>#{msg['detalhesSite.title']}</title>
+    </h:head>
+    <style>
+        .bg{
+            background-color: #8E2DE2;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to bottom, #7700e0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to bottom, #7700e0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        .body{
+            font-family: 'Questrial', sans-serif;
+            color: white;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #8E2DE2;
+        }
+        h1{
+            font-size: 2.8em;
+        }
+        h2{
+            font-size: 2.3em;
+        }
+    </style>
+    <h:body styleClass="body">
+        <div class="bg">
+            <div class="container-fullwidth">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{siteBean.home()}" value="#{msg['index.pageTitle']}"/>
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{promocaoBean.lista()}" value="#{msg['index.promocoes']}"/>
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{siteBean.lista()}" value="#{msg['index.sites']}"/>
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{teatroBean.lista()}" value="#{msg['index.teatros']}"/>
+                            <!-- ARRUMAR O LOGIN
+                                <sec:authorize access="hasAnyRole('ADMIN', 'SITE', 'TEATRO')">
+                                    <a href="/DSW-T1/logout" class="btn btn-default btn-lg">Logout</a>
+                                </sec:authorize>
+                                <sec:authorize access="isAnonymous()">
+                                    <a href="/DSW-T1/login" class="btn btn-default btn-lg">Login</a>
+                                </sec:authorize>
+                            -->
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+            <center>
+                <h1>#{msg['detalhesSite.bigTitle']}</h1>
+                <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+                <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <h2>
+                                <h:link styleClass="btn btn-success btn-lg" outcome="#{siteBean.lista()}">
+                                    <span class="glyphicon glyphicon-chevron-left"></span>#{msg['detalhesSite.goToList']}
+                                </h:link>
+                            </h2>
+                        </div>
+                        <div class="col-lg-6">
+                            <h2>
+                                <h:link styleClass="btn btn-success btn-lg" outcome="#{promocaoBean.apresentaFormCadastro()}">
+                                    <span class="glyphicon glyphicon-plus-sign"></span>#{msg['detalhesSite.goToAdd']}
+                                </h:link>
+                            </h2>
+                        </div>
+                    </div>
+                </div>
+            </center>
+            <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+            <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+            <div align="center">
+                <h2>#{msg['detalhesSite.pageTitle']}</h2>
+                <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-md-offset-6">
+                            <h:form>
+                                <h:dataTable value="#{siteBean.sites}" var="site" class="table table-light table-bordered table-striped table-hover thead-dark">
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['detalhesSite.table.id']}</f:facet>  
+                                        <h:outputText value="#{site.id}"/>
+                                    </h:column> <!-- ID -->
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['detalhesSite.table.nome']}</f:facet>  
+                                        <h:outputText value="#{site.nome}"/>
+                                    </h:column> <!-- Nome -->
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['detalhesSite.table.email']}</f:facet>  
+                                        <h:outputText value="#{site.email}"/>
+                                    </h:column> <!-- Email -->
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['detalhesSite.table.url']}</f:facet>  
+                                        <h:outputText value="#{site.url}"/>
+                                    </h:column> <!-- URL -->
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['detalhesSite.table.telefone']}</f:facet>  
+                                        <h:outputText value="#{site.telefone}"/>
+                                    </h:column> <!-- Telefone -->
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header"></f:facet>  
+                                        <h:commandLink action="#{siteBean.apresentaFormEdicao(site.id)}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </h:commandLink>
+                                    </h:column>
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header"></f:facet> 
+                                        <h:commandLink action="#{siteBean.remove(site)}" onclick="return confirm('#{msg['remover.confirm']}');">
+                                            <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                        </h:commandLink>
+                                    </h:column>
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header"></f:facet> 
+                                        <h:commandLink action="#{siteBean.detalhes(site.id)}" value="#{msg['listaSites.table.acoes.detalhes']}">
+                                        </h:commandLink>
+                                    </h:column>
+                                </h:dataTable>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                
+                <h2>#{msg['detalhesSite.active']}</h2>
+                <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+                <c:if test="${!siteBean.promocoes.isEmpty()}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-md-offset-6">
+                            <h:form>
+                                <h:dataTable value="#{siteBean.promocoes}" var="promocao" class="table table-light table-bordered table-striped table-hover ">
+                                    
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaPromocoes.table.id']}</f:facet>  
+                                        <h:outputText value="#{promocao.id}"/>
+                                    </h:column> <!-- ID -->
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaPromocoes.table.site']}</f:facet>  
+                                        <h:outputText value="#{promocao.url}"/>
+                                    </h:column> <!-- URL -->
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaPromocoes.table.peca']}</f:facet>  
+                                        <h:outputText value="#{promocao.nome_peca}"/>
+                                    </h:column> <!-- Nome  -->
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaPromocoes.table.data']}</f:facet>  
+                                        <h:outputText value="#{promocao.dia_hora}">
+                                            <f:convertDateTime pattern="dd/MM/yyyy" />
+                                        </h:outputText>
+                                    </h:column><!-- Dia -->
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaPromocoes.table.hora']}</f:facet>  
+                                        <h:outputText value="#{promocao.dia_hora}">
+                                            <f:convertDateTime pattern="HH:mm" />
+                                        </h:outputText>
+                                    </h:column> <!-- Hora -->
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaPromocoes.table.preco']}</f:facet>  
+                                        <h:outputText value="#{promocao.preco}"/>
+                                    </h:column> <!-- Preço -->
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaPromocoes.table.cnpj']}</f:facet>  
+                                        <h:outputText value="#{promocao.cnpj}"/>
+                                    </h:column> <!-- CNPJ -->
+                                    
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header"></f:facet> 
+                                        <h:commandLink action="#{promocaoBean.apresentaFormEdicao(promocao.id)}">
+                                            <span class="glyphicon glyphicon-pencil"></span>
+                                        </h:commandLink>
+                                    </h:column> <!-- Editar -->
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header"></f:facet> 
+                                        <h:commandLink action="#{promocaoBean.remove(promocao)}" onclick="return confirm('#{msg['remover.confirm']}');">
+                                            <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                        </h:commandLink>
+                                    </h:column> <!-- Apagar -->
+                                    
+                                </h:dataTable>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+                </c:if>           
+                <c:if test="${siteBean.promocoes.isEmpty()}">
+                    <p>#{msg['detalhesSite.not.active']}</p>
+                </c:if>
+            </div>
+        </div>
+    </h:body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+</html>   
