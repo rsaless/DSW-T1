@@ -23,7 +23,7 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
     /* - */ private final String ATIVA_DESATIVA = "UPDATE Usuario SET ativo=?, WHERE email=?"; 
        
 
-    /* C */ @Override void inserir(Usuario usuario) {
+    /* C */ @Override public void inserir(Usuario usuario) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -35,14 +35,14 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
         tx.commit();
         em.close();
     }
-    /* R */ @Override List<Usuario> listar() {
+    /* R */ @Override public List<Usuario> listar() {
         EntityManager em = this.getEntityManager();
         Query q = em.createQuery(LISTAR_USUARIOS, Usuario.class); 
         List<Usuario> usuarios = q.getResultList();
         em.close();
         return usuarios;
     } 
-    /* U */ @Override void atualizar(Usuario usuario) {
+    /* U */ @Override public void atualizar(Usuario usuario) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -54,7 +54,7 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
         tx.commit();
         em.close();
     }
-    /* D */ @Override void deletar(Usuario usuario) {
+    /* D */ @Override public void deletar(Usuario usuario) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         usuario = em.getReference(Usuario.class, usuario.getId());
@@ -62,7 +62,7 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
         em.remove(usuario);
         tx.commit();
     }
-    /* - */ @Override Usuario get(int id) {
+    /* - */ @Override public Usuario get(int id) {
         EntityManager em = this.getEntityManager();
         Usuario usuario = em.find(Usuario.class, id);
         em.close();
