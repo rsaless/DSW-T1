@@ -34,15 +34,15 @@ public class AppConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
             // teatro
-            //.antMatchers("/teatro/form.jsf").hasAnyRole("ADMIN") 
+            .antMatchers("/teatro/form.jsf").hasAnyRole("ADMIN") 
                 
             // site
-            //.antMatchers("/site/form.jsf").hasAnyRole("ADMIN")
-            //.antMatchers("/site/detalhes.jsf").hasAnyRole("SITE, ADMIN")
+            .antMatchers("/site/form.jsf").hasAnyRole("ADMIN")
+            .antMatchers("/site/detalhes.jsf").hasAnyRole("SITE, ADMIN")
                 
             // promocoes
-            //.antMatchers("/promocao/form.jsf").hasAnyRole("ADMIN, TEATRO")
-            .anyRequest().permitAll()
+            .antMatchers("/promocao/form.jsf").hasAnyRole("ADMIN, TEATRO")
+            //.anyRequest().permitAll()
             .and().formLogin()
             .and().rememberMe()
             .and().httpBasic()
@@ -56,7 +56,7 @@ public class AppConfig extends WebSecurityConfigurerAdapter{
 
         if (dataSource == null) {
             Class.forName("org.apache.derby.jdbc.ClientDriver");
-            String url = "jdbc:derby://localhost:1527/Login";
+            String url = "jdbc:derby://localhost:1527/Trabalho1";
             String user = "root";
             String password = "root";
             dataSource = new DriverManagerDataSource(url, user, password);

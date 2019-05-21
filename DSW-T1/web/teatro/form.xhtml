@@ -158,10 +158,10 @@
                                     <div class="form-group">  
                                         <h:outputLabel for="cnpj" class="control-label col-sm-4 col-lg-6">#{msg['formTeatro.form.cnpj']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <p:inputMask id="cnpj" value="#{teatroBean.teatro.cnpj}" class="form-control"  mask="99.999.999/9999-99" 
+                                            <h:inputText id="cnpj" value="#{teatroBean.teatro.cnpj}" class="form-control"   
                                                          validatorMessage="#{msg['formTeatro.required.cnpj']}" a:type="Number">
                                                 <f:validateRequired/>
-                                            </p:inputMask>
+                                            </h:inputText>
                                             <h:message for="cnpj"/>
                                         </div>  
                                     </div> <!-- CNPJ -->
