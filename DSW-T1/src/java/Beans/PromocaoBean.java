@@ -17,20 +17,20 @@ public class PromocaoBean implements Serializable{
     private String form_title;
     
     public String lista() {
-        return "/promocao/index.xhtml";
+        return "/promocao/index.xhtml?faces-redirect=true";
     }
     
     public String apresentaFormCadastro() {
         promocao = new Promocao();
         form_title = "formPromocao.smallTitle.cadastrar";
-        return "/promocao/form.xhtml";
+        return "/promocao/form.xhtml?faces-redirect=true";
     }
     
     public String apresentaFormEdicao(int id) {
         PromocaoDAO dao = new PromocaoDAO();
         promocao = dao.get(id);
         form_title = "formPromocao.smallTitle.editar";
-        return "/promocao/form.xhtml";
+        return "/promocao/form.xhtml?faces-redirect=true";
     }
     
     public String salva(){
@@ -42,17 +42,13 @@ public class PromocaoBean implements Serializable{
         } else {
             dao.atualizar(promocao);
         }
-        return "/promocao/index.xhtml";
+        return "/promocao/index.xhtml?faces-redirect=true";
     }
     
     public String remove(Promocao promocao){
         PromocaoDAO dao = new PromocaoDAO();
         dao.deletar(promocao);
-        return "/promocao/index.xhtml";
-    }
-    
-    public String erro(){
-        return "/templates_erro/404.xhtml";
+        return "/promocao/index.xhtml?faces-redirect=true";
     }
     
     public String home() {

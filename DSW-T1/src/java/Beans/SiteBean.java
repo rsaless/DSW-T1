@@ -19,7 +19,7 @@ public class SiteBean implements Serializable {
     private String form_title;
     
     public String lista() {
-        return "/site/index.xhtml";
+        return "/site/index.xhtml?faces-redirect=true";
     }
     
     public String apresentaFormCadastro(){
@@ -32,7 +32,7 @@ public class SiteBean implements Serializable {
         SiteDAO dao = new SiteDAO();
         site = dao.get(id);
         form_title = "formSite.smallTitle.editar";
-        return "/site/form.xhtml";
+        return "/site/form.xhtml?faces-redirect=true";
     }
     
     public String salva(){
@@ -47,13 +47,13 @@ public class SiteBean implements Serializable {
             // ao atualizar um site, atializar o login pro usuário site
             // udao.atualizar(site);
         }
-        return "index.xhtml";
+        return "index.xhtml?faces-redirect=true";
     }
     
     public String remove(Site site){
         SiteDAO dao = new SiteDAO();
         dao.deletar(site);
-        return "/site/index.xhtml";
+        return "/site/index.xhtml?faces-redirect=true";
     }
     
     public String detalhes(int id){
@@ -61,11 +61,7 @@ public class SiteBean implements Serializable {
         PromocaoDAO pdao = new PromocaoDAO();
         site = dao.get(id);
         promocoes = pdao.listar_site(site.getUrl());
-        return "/site/detalhes.xhtml";
-    }
-    
-    public String erro(){
-        return "/erro/404.xhtml";
+        return "/site/detalhes.xhtml?faces-redirect=true";
     }
     
     public String home() {

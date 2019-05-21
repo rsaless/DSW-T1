@@ -18,20 +18,20 @@ public class TeatroBean implements Serializable{
     private String form_title;
     
     public String lista() {
-        return "/teatro/index.xhtml";
+        return "/teatro/index.xhtml?faces-redirect=true";
     }
     
     public String apresentaFormCadastro() {
         teatro = new Teatro();
         form_title = "formTeatro.smallTitle.cadastrar";
-        return "/teatro/form.xhtml";
+        return "/teatro/form.xhtml?faces-redirect=true";
     }
     
     public String apresentaFormEdicao(int id){
         TeatroDAO dao = new TeatroDAO();
         teatro = dao.get(id);
         form_title = "formTeatro.smallTitle.editar";
-        return "/teatro/form.xhtml";
+        return "/teatro/form.xhtml?faces-redirect=true";
     }
     
     public String salva(){
@@ -46,19 +46,15 @@ public class TeatroBean implements Serializable{
             // ao atualizar um site, atializar o login pro usuário site
             // udao.atualizar(site);
         }
-        return "/teatro/index.xhtml";
+        return "/teatro/index.xhtml?faces-redirect=true";
     }
     
     public String remove(Teatro teatro){
         TeatroDAO dao = new TeatroDAO();
         dao.deletar(teatro);
-        return "/teatro/index.xhtml";
+        return "/teatro/index.xhtml?faces-redirect=true";
     }
-    
-    public String erro(){
-        return "/erro/404.xhtml";
-    }
-    
+
     public String home() {
         return "/index.xhtml?faces-redirect=true";
     }
