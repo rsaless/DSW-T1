@@ -1,6 +1,7 @@
 package Login;
 
 import javax.sql.DataSource;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -10,13 +11,15 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @EnableWebSecurity
 public class AppConfig extends WebSecurityConfigurerAdapter{
-    private final DataSource dataSource;
-    private final String USER_SELECT = "SELECT email, senha, ativo FROM Usuario WHERE email=?";
-    private final String ROLE_SELECT = "SELECT email, nome FROM Papel WHERE email=?";
+    private static DataSource dataSource;
+    private final String USER_SELECT = "SELECT email, senha, ativo FROM Usuario WHERE email = ?";
+    private final String ROLE_SELECT = "SELECT u.email, p.nome FROM Usuario u, Papel p,"
+                + " Usuario_Papel up WHERE up.usuario_id = u.id and"
+                + " up.papel_id = p.id and u.email = ?";
 
     
     public AppConfig() throws ClassNotFoundException {
-        dataSource = JDBCUtil.getDataSource();
+        dataSource = AppConfig.getDataSource();
     }
     
     @Override
@@ -48,6 +51,19 @@ public class AppConfig extends WebSecurityConfigurerAdapter{
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
                     
         http.csrf().disable();
+    }
+    
+    public static DataSource getDataSource() throws ClassNotFoundException {
+
+        if (dataSource == null) {
+            Class.forName("org.apache.derby.jdbc.ClientDriver");
+            String url = "jdbc:derby://localhost:1527/Login";
+            String user = "root";
+            String password = "root";
+            dataSource = new DriverManagerDataSource(url, user, password);
+        }
+
+        return dataSource;
     }
     
 }

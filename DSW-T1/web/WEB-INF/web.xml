@@ -6,15 +6,15 @@
          http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <error-page>
         <error-code>403</error-code>
-        <location>/erro/403.xhtml</location>
+        <location>/erro/403.jsf</location>
     </error-page>
     <error-page>
         <error-code>404</error-code>
-        <location>/erro/404.xhtml</location>
+        <location>/erro/404.jsf</location>
     </error-page>
     <error-page>
         <error-code>500</error-code>
-        <location>/erro/500.xhtml</location>
+        <location>/erro/500.jsf</location>
     </error-page>
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>

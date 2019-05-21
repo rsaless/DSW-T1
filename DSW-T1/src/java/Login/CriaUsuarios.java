@@ -1,5 +1,6 @@
 package Login;
 
+import DAO.PapelDAO;
 import DAO.PromocaoDAO;
 import DAO.SiteDAO;
 import DAO.TeatroDAO;
@@ -24,73 +25,74 @@ public class CriaUsuarios {
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         try {
             UsuarioDAO usuarioDAO = new UsuarioDAO();
+            PapelDAO papelDAO = new PapelDAO();
             TeatroDAO teatroDAO = new TeatroDAO();
             SiteDAO siteDAO = new SiteDAO();
             PromocaoDAO promocaoDAO = new PromocaoDAO();
 
+            //insere papeis
+            Papel papel_admin = new Papel();
+            papel_admin.setNome("ROLE_ADMIN");
+            papelDAO.inserir(papel_admin);
+            
+            Papel papel_teatro = new Papel();
+            papel_teatro.setNome("ROLE_TEATRO");
+            papelDAO.inserir(papel_teatro);
+            
+            Papel papel_site = new Papel();
+            papel_site.setNome("ROLE_SITE");
+            papelDAO.inserir(papel_site);
+            
             // insere admins
             for(int i = 1; i <= 5; i++){
                 Usuario usuario_admin = new Usuario();
-                Papel papel = new Papel();
-                
                 usuario_admin.setEmail("admin" + i + "@gmail.com");
-                usuario_admin.setSenha("admin" + i + "_pass");
+                usuario_admin.setSenha(encoder.encode("admin" + i + "_pass"));
                 usuario_admin.setAtivo(true);
-                
-                papel.setEmail(usuario_admin.getEmail());
-                papel.setNome("ROLE_ADMIN");
-                
                 usuarioDAO.inserir(usuario_admin);
-                usuarioDAO.inserir_role(papel);
+
+                usuario_admin.getPapel().add(papel_admin);
+                usuarioDAO.atualizar(usuario_admin);
             }
 
             // insere teatros
             for(int i = 1; i <= 5; i++){
                 Teatro teatro = new Teatro();
-                Usuario usuario_teatro = new Usuario();
-                Papel papel = new Papel();
-                
                 teatro.setEmail("teatro" + i + "@gmail.com");
                 teatro.setSenha("teatro" + i + "_pass");
                 teatro.setCidade("Cidade" + i);
                 teatro.setNome("Teatro da Cidade" + i);
                 teatro.setCnpj("111000000" + i);
+                teatroDAO.inserir(teatro);
                 
+                Usuario usuario_teatro = new Usuario();
                 usuario_teatro.setEmail(teatro.getEmail());
                 usuario_teatro.setSenha(encoder.encode(teatro.getSenha()));
                 usuario_teatro.setAtivo(true);
-                
-                papel.setEmail(teatro.getEmail());
-                papel.setNome("ROLE_TEATRO");
-                
-                teatroDAO.inserir(teatro);
                 usuarioDAO.inserir(usuario_teatro);
-                usuarioDAO.inserir_role(papel);
+                
+                usuario_teatro.getPapel().add(papel_teatro);
+                usuarioDAO.atualizar(usuario_teatro);
             }
             
             // insere sites
             for(int i = 1; i <= 5; i++){
                 Site site = new Site();
-                Usuario usuario_site = new Usuario();
-                Papel papel = new Papel();
-                
                 site.setEmail("site" + i + "@gmail.com");
                 site.setSenha("site" + i + "_pass");
                 site.setUrl("https://www.site" + i + ".com.br");
                 site.setNome("Site" + i);
                 site.setTelefone(33330000L + i);
+                siteDAO.inserir(site);
                 
-                
+                Usuario usuario_site = new Usuario();
                 usuario_site.setEmail(site.getEmail());
                 usuario_site.setSenha(encoder.encode(site.getSenha()));
                 usuario_site.setAtivo(true);
-                
-                papel.setEmail(site.getEmail());
-                papel.setNome("ROLE_SITE");
-                
-                siteDAO.inserir(site);
                 usuarioDAO.inserir(usuario_site);
-                usuarioDAO.inserir_role(papel);
+                
+                usuario_site.getPapel().add(papel_site);
+                usuarioDAO.atualizar(usuario_site);
             }
 
             // insere promocoes
