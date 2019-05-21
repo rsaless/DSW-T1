@@ -42,7 +42,7 @@ public class AppConfig extends WebSecurityConfigurerAdapter{
                 
             // promocoes
             //.antMatchers("/promocao/form.jsf").hasAnyRole("ADMIN, TEATRO")
-            
+            .anyRequest().permitAll()
             .and().formLogin()
             .and().rememberMe()
             .and().httpBasic()

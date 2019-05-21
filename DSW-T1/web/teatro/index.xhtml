@@ -11,7 +11,7 @@
         <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet"/>
         <h:outputStylesheet name="/css/glyphicon.css"/><!-- adicionado pra usar ícones-->
         <title>#{msg['listaTeatros.title']}</title>
-        <script src="/DSW-T1/js/ListaCidadeAJAX.js"></script>
+        <h:outputScript library="js" name="ListaCidadeAJAX.js"/>
     </h:head>
     <style>
         .bg{
@@ -107,19 +107,17 @@
             <div align="center">
                 <h2>#{msg['listaTeatros.pageTitle']}</h2>
                 <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
-                <!-- IMPLEMENTAR AJAX DE BUSCA DE TEATROS POR CIDADE
-                <input 
-                    class="form-control mb-4 col-md-2" 
-                    type="text" 
-                    name="busca" 
-                    placeholder="<f:message key="listaTeatros.busca" />" 
-                    oninput='buscarTeatros(this.value)'/>
+                <!--
+                <h:inputText id="cidade" class="form-control mb-4 col-md-2" value="#{teatroBean.cidade}">
+                   <f:ajax event="keyup" execute="cidade" render="teatros" />
+                </h:inputText>
                 -->
+                <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->            
                 <div class="container">
                     <div class="row">
                         <div class="col-md-12 col-md-offset-6">
                             <h:form>
-                                <h:dataTable value="#{teatroBean.teatros}" var="teatro" class="table table-light table-bordered table-striped table-hover ">
+                                <h:dataTable id="teatros" value="#{teatroBean.teatros}" var="teatro" class="table table-light table-bordered table-striped table-hover ">
                                     <h:column class="col-md-2">
                                         <f:facet name="header">#{msg['listaTeatros.table.id']}</f:facet>  
                                         <h:outputText value="#{teatro.id}"/>
