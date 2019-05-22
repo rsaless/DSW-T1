@@ -1,5 +1,6 @@
 package DAO;
 
+import Models.Site;
 import Models.Teatro;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -67,6 +68,11 @@ public class TeatroDAO extends GenericDAO<Teatro>{
         EntityManager em = this.getEntityManager();
         TypedQuery<Teatro> q = em.createQuery(GET_EMAIL, Teatro.class);
         q.setParameter("email", email);
-        return q.getSingleResult();
+        q.setMaxResults(1);
+        List<Teatro> list = q.getResultList();
+        if (list == null || list.isEmpty()) {
+            return new Teatro();
+        }
+        return list.get(0); 
     }
 }

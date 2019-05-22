@@ -10,8 +10,6 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 @ManagedBean
@@ -22,7 +20,6 @@ public class SiteBean implements Serializable {
     private String form_title;
     private String currentUserEmail;
     private String currentRole;
-    private String email_encontrado;
     
     public String lista() {
         currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -31,8 +28,6 @@ public class SiteBean implements Serializable {
         currentRole = currentRole.substring(0, currentRole.indexOf("]"));
         System.out.println("\n\nEmail atual: " + currentUserEmail + "\n");
         System.out.println("Principal: " + currentRole + "\n\n");
-        //SiteDAO siteDAO = new SiteDAO();
-        //email_encontrado = siteDAO.get_email(currentUserEmail).getEmail();
         return "/site/index.xhtml?faces-redirect=true";
     }
     

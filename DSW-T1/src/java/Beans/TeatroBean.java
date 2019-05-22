@@ -6,18 +6,25 @@ import Models.Teatro;
 import java.io.Serializable;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.Locale;
-import java.util.Properties;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @ManagedBean
 @SessionScoped
 public class TeatroBean implements Serializable{
     private Teatro teatro;
     private String form_title;
+    private String currentUserEmail;
+    private String currentRole;
     
     public String lista() {
+        currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+        currentRole = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+        currentRole = currentRole.substring(currentRole.indexOf("[") + 1);
+        currentRole = currentRole.substring(0, currentRole.indexOf("]"));
+        System.out.println("\n\nEmail atual: " + currentUserEmail + "\n");
+        System.out.println("Principal: " + currentRole + "\n\n");
         return "/teatro/index.xhtml?faces-redirect=true";
     }
     
@@ -81,5 +88,13 @@ public class TeatroBean implements Serializable{
     
     public String getForm_title() {
         return form_title;
+    }
+    
+    public String getCurrentUserEmail() {
+        return currentUserEmail;
+    }
+
+    public String getCurrentRole() {
+        return currentRole;
     }
 }
