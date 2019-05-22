@@ -43,5 +43,9 @@ public class Usuario implements Serializable{
     
     public List<Papel> getPapel() {return papel;}
     public void setPapel(List<Papel> papel) {this.papel = papel;}
-    
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", email=" + email + ", senha=" + senha + ", ativo=" + ativo + ", papel=" + papel + '}';
+    }
 }

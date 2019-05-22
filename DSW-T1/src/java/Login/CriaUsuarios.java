@@ -10,14 +10,7 @@ import Models.Promocao;
 import Models.Site;
 import Models.Teatro;
 import Models.Usuario;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
-import javax.sql.DataSource;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class CriaUsuarios {

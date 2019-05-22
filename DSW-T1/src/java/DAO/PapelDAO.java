@@ -6,12 +6,14 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 public class PapelDAO extends GenericDAO<Papel>{
     /* C */ private final String INSERIR_ROLE = "INSERT INTO Papel(email, nome) values (?,?)";     
     /* R */ private final String LISTAR_ROLES = "SELECT p FROM Papel p";    
     /* U */ private final String ATUALIZAR_ROLE = "UPDATE Usuario SET nome=?, WHERE email=?"; 
     /* D */ private final String DELETAR_ROLE = "DELETE FROM Papel WHERE id=?";
+    /* - */ private final String GET_ROLE = "SELECT p FROM Papel p WHERE p.nome = :papel";
     
     /* C */ @Override public void inserir(Papel papel) {
         EntityManager em = this.getEntityManager();
@@ -50,6 +52,18 @@ public class PapelDAO extends GenericDAO<Papel>{
         Papel papel = em.find(Papel.class, id);
         em.close();
         return papel;
+    }
+    
+    /* - */ public Papel get_role(String papel){
+        EntityManager em = this.getEntityManager();
+        TypedQuery<Papel> q = em.createQuery(GET_ROLE, Papel.class);
+        q.setParameter("papel", papel);
+        q.setMaxResults(1);
+        List<Papel> list = q.getResultList();
+        if (list == null || list.isEmpty()) {
+            return new Papel();
+        }
+        return list.get(0); 
     }
 }
 

@@ -6,6 +6,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 public class UsuarioDAO extends GenericDAO<Usuario>{
@@ -20,8 +21,7 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
     /* C */ @Override public void inserir(Usuario usuario) {
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
-        // BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        // usuario.setSenha(encoder.encode(usuario.getSenha()));
+        System.out.println(usuario.toString());
         
         tx.begin();
         em.persist(usuario);
@@ -39,9 +39,8 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
         EntityManager em = this.getEntityManager();
         EntityTransaction tx = em.getTransaction();
         
-        // BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        // usuario.setSenha(encoder.encode(usuario.getSenha()));
         
+        System.out.println(usuario.toString());
         tx.begin();
         em.merge(usuario);
         tx.commit();
@@ -61,4 +60,18 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
         em.close();
         return usuario;
     }
+    
+    /* - */ public Usuario get_usuario(String email){
+        EntityManager em = this.getEntityManager();
+        TypedQuery<Usuario> q = em.createQuery(GET_USUARIO, Usuario.class);
+        q.setParameter("email", email);
+        q.setMaxResults(1);
+        List<Usuario> list = q.getResultList();
+        if (list == null || list.isEmpty()) {
+            return new Usuario();
+        }
+        return list.get(0); 
+    }
+    
+    
 }

@@ -49,8 +49,12 @@ public class Teatro implements Serializable{
     public void setCnpj(String cnpj) {this.cnpj = cnpj;}
     public void setId(Integer id) {this.id = id;}
     public void setPromocoes(List<Promocao> promocoes) {this.promocoes = promocoes;}
+
+    @Override
+    public String toString() {
+        return "Teatro{" + "email=" + email + ", senha=" + senha + ", cidade=" + cidade + ", nome=" + nome + ", cnpj=" + cnpj + ", id=" + id + '}';
+    }
     
-    @Override public String toString() { return nome;}
     @Override public boolean equals(Object obj) {
         if (this == obj) return true;
 	if (obj == null) return false;
