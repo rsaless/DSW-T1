@@ -34,10 +34,10 @@ public class AppConfig extends WebSecurityConfigurerAdapter{
     protected void configure(HttpSecurity http) throws Exception{
         http.authorizeRequests()
             // teatro
-            .antMatchers("/teatro/form.jsf").hasAnyRole("ADMIN") 
+            .antMatchers("/teatro/form.jsf").hasAnyRole("TEATRO, ADMIN") 
                 
             // site
-            .antMatchers("/site/form.jsf").hasAnyRole("ADMIN")
+            .antMatchers("/site/form.jsf").hasAnyRole("SITE, ADMIN")
             .antMatchers("/site/detalhes.jsf").hasAnyRole("SITE, ADMIN")
                 
             // promocoes
