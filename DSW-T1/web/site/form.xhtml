@@ -5,7 +5,8 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:a="http://xmlns.jcp.org/jsf/passthrough"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:sec="http://www.springframework.org/security/tags">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -65,14 +66,12 @@
                             <h:link styleClass="btn btn-default btn-lg" outcome="#{promocaoBean.lista()}" value="#{msg['index.promocoes']}"/>
                             <h:link styleClass="btn btn-default btn-lg" outcome="#{siteBean.lista()}" value="#{msg['index.sites']}"/>
                             <h:link styleClass="btn btn-default btn-lg" outcome="#{teatroBean.lista()}" value="#{msg['index.teatros']}"/>
-                            <!-- ARRUMAR O LOGIN
-                                <sec:authorize access="hasAnyRole('ADMIN', 'SITE', 'TEATRO')">
-                                    <a href="/DSW-T1/logout" class="btn btn-default btn-lg">Logout</a>
-                                </sec:authorize>
-                                <sec:authorize access="isAnonymous()">
-                                    <a href="/DSW-T1/login" class="btn btn-default btn-lg">Login</a>
-                                </sec:authorize>
-                            -->
+                            <sec:authorize access="hasAnyRole('ADMIN', 'SITE', 'TEATRO')">
+                                <a href="/DSW-T1/logout" class="btn btn-default btn-lg">Logout</a>
+                            </sec:authorize>
+                            <sec:authorize access="isAnonymous()">
+                                <a href="/DSW-T1/login" class="btn btn-default btn-lg">Login</a>
+                            </sec:authorize>
                         </div>
                     </div>
                 </nav>
