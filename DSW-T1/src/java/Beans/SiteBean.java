@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 @ManagedBean
 @SessionScoped
@@ -17,8 +20,19 @@ public class SiteBean implements Serializable {
     private Site site;
     private List<Promocao> promocoes;
     private String form_title;
+    private String currentUserEmail;
+    private String currentRole;
+    private String email_encontrado;
     
     public String lista() {
+        currentUserEmail = SecurityContextHolder.getContext().getAuthentication().getName();
+        currentRole = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
+        currentRole = currentRole.substring(currentRole.indexOf("[") + 1);
+        currentRole = currentRole.substring(0, currentRole.indexOf("]"));
+        System.out.println("\n\nEmail atual: " + currentUserEmail + "\n");
+        System.out.println("Principal: " + currentRole + "\n\n");
+        //SiteDAO siteDAO = new SiteDAO();
+        //email_encontrado = siteDAO.get_email(currentUserEmail).getEmail();
         return "/site/index.xhtml?faces-redirect=true";
     }
     
@@ -85,5 +99,15 @@ public class SiteBean implements Serializable {
     public String getForm_title() {
         return form_title;
     }
+
+    public String getCurrentUserEmail() {
+        return currentUserEmail;
+    }
+
+    public String getCurrentRole() {
+        return currentRole;
+    }
+    
+    
     
 }

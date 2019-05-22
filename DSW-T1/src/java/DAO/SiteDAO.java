@@ -57,7 +57,11 @@ public class SiteDAO extends GenericDAO<Site>{
         EntityManager em = this.getEntityManager();
         TypedQuery<Site> q = em.createQuery(GET_EMAIL, Site.class);
         q.setParameter("email", email);
-        return q.getSingleResult();
+        q.setMaxResults(1);
+        List<Site> list = q.getResultList();
+        if (list == null || list.isEmpty()) {
+            return new Site();
+        }
+        return list.get(0);   
     }
-
 }

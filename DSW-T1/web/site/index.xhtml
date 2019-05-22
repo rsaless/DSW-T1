@@ -3,7 +3,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags"
+      xmlns:c="http://java.sun.com/jsp/jstl/core">
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -48,14 +50,14 @@
                             <h:link styleClass="btn btn-default btn-lg" outcome="#{promocaoBean.lista()}" value="#{msg['index.promocoes']}"/>
                             <h:link styleClass="btn btn-default btn-lg" outcome="#{siteBean.lista()}" value="#{msg['index.sites']}"/>
                             <h:link styleClass="btn btn-default btn-lg" outcome="#{teatroBean.lista()}" value="#{msg['index.teatros']}"/>
-                            <!-- ARRUMAR O LOGIN
-                                <sec:authorize access="hasAnyRole('ADMIN', 'SITE', 'TEATRO')">
-                                    <a href="/DSW-T1/logout" class="btn btn-default btn-lg">Logout</a>
-                                </sec:authorize>
-                                <sec:authorize access="isAnonymous()">
-                                    <a href="/DSW-T1/login" class="btn btn-default btn-lg">Login</a>
-                                </sec:authorize>
-                            -->
+                            
+                            <sec:authorize access="hasAnyRole('ADMIN', 'SITE', 'TEATRO')">
+                                <a href="/DSW-T1/logout" class="btn btn-default btn-lg">Logout</a>
+                            </sec:authorize>
+                            <sec:authorize access="isAnonymous()">
+                                <a href="/DSW-T1/login" class="btn btn-default btn-lg">Login</a>
+                            </sec:authorize>
+                            
                         </div>
                     </div>
                 </nav>
@@ -67,37 +69,26 @@
                 <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
                 <div class="container">
                     <div class="row">
-                        <!-- ARRUMAR O LOGIN
-                        <sec:authorize access="hasAnyRole('ADMIN')">
-                            <div class="col-lg-6">
-                        </sec:authorize>
+                        
+                        
                         <sec:authorize access="isAnonymous() or hasAnyRole('SITE', 'TEATRO')">
                             <div class="col-lg-12">
-                        </sec:authorize>
-                                <p>
-                                   Veja aqui a lista de sites que ofertam promoções no nosso sistema.
-                                </p>
+                                <p>Veja aqui a lista de sites que ofertam promoções no nosso sistema.</p>
                             </div>
+                        </sec:authorize>
                         <sec:authorize access="hasAnyRole('ADMIN')">
                             <div class="col-lg-6">
+                                <p>Veja aqui a lista de sites que ofertam promoções no nosso sistema.</p>
+                            </div>
+                            <div class="col-lg-6">
                                 <h2>
-                                    <a href="/DSW-T1/site/cadastro" class="btn btn-success btn-lg"><f:message key="listaSites.goToAdd" />&nbsp;&nbsp;<span class="glyphicon glyphicon-plus-sign"></span></a>
+                                    <h:link styleClass="btn btn-success btn-lg" outcome="#{siteBean.apresentaFormCadastro()}">
+                                        <span class="glyphicon glyphicon-plus-sign"></span>#{msg['listaSites.goToAdd']}
+                                    </h:link>
                                 </h2>
                             </div>
                         </sec:authorize>
-                        -->
-                        <div class="col-lg-6">
-                            <p>
-                                Veja aqui a lista de sites que ofertam promoções no nosso sistema.
-                            </p>
-                        </div>
-                        <div class="col-lg-6">
-                            <h2>
-                                <h:link styleClass="btn btn-success btn-lg" outcome="#{siteBean.apresentaFormCadastro()}">
-                                    <span class="glyphicon glyphicon-plus-sign"></span>#{msg['listaSites.goToAdd']}
-                                </h:link>
-                            </h2>
-                        </div>
+                       
                     </div>
                 </div>
             </center>
@@ -123,7 +114,6 @@
                                         <f:facet name="header">#{msg['listaSites.table.email']}</f:facet>  
                                         <h:outputText value="#{site.email}"/>
                                     </h:column> 
-                                    <!--<h:column class="col-md-2"><h:outputText value="#{site.senha}"/></h:column> -->
                                     <h:column class="col-md-2">
                                         <f:facet name="header">#{msg['listaSites.table.url']}</f:facet>  
                                         <h:outputText value="#{site.url}"/>
@@ -132,46 +122,28 @@
                                         <f:facet name="header">#{msg['listaSites.table.telefone']}</f:facet>  
                                         <h:outputText value="#{site.telefone}"/>
                                     </h:column>
-                                    <!-- CORRIGIR O LOGIN
                                     <sec:authorize access="hasAnyRole('ADMIN', 'SITE')">
-                                        <th class="text-center"><f:message key="listaSites.table.acoes" /></th>
-                                    </sec:authorize> -->
-                                    <h:column class="col-md-2">
-                                        <f:facet name="header"></f:facet>  
-                                        <h:commandLink action="#{siteBean.apresentaFormEdicao(site.id)}">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </h:commandLink>
-                                    </h:column>
-                                    <h:column class="col-md-2">
-                                        <f:facet name="header"></f:facet> 
-                                        <h:commandLink action="#{siteBean.remove(site)}" onclick="return confirm('#{msg['remover.confirm']}');">
-                                            <span class="glyphicon glyphicon-trash" style="color:red"></span>
-                                        </h:commandLink>
-                                    </h:column>
-                                    <h:column class="col-md-2">
-                                        <f:facet name="header"></f:facet> 
-                                        <h:commandLink action="#{siteBean.detalhes(site.id)}" value="#{msg['listaSites.table.acoes.detalhes']}">
-                                        </h:commandLink>
-                                    </h:column>
-                                    <!-- CORRIGIR O LOGIN
-                                    <sec:authorize access="hasAnyRole('SITE, ADMIN')">
-                                        <c:if test="$//{ADMIN == true || site.email == email_encontrado}">
-                                            <td class="text-center">
-                                                <a href="/DSW-T1/site/edicao?id=<c:out value='$//{site.id}' />"><span class="glyphicon glyphicon-pencil"></span></a>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a href="/DSW-T1/site/remocao?id=<c:out value='$//{site.id}' />" 
-                                                    onclick="return confirm('<f:message key="remover.confirm" />');">
-                                                        <span class="glyphicon glyphicon-trash" style="color:red"></span>
-                                                </a>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <a href="/DSW-T1/site/detalhes?id=<c:out value='$//{site.id}' />"><f:message key="listaSites.table.acoes.detalhes"/></a>
-                                            </td>
-                                        </c:if>
-                                        <c:if test="$//{ADMIN != true && site.email != email_encontrado}">
-                                            <td class="text-center"> -                	
-                                            </td>
-                                        </c:if>
-                                    </sec:authorize>-->
+                                        <h:column class="col-md-2">
+                                            <f:facet name="header"></f:facet>  
+                                                <h:commandLink action="#{siteBean.apresentaFormEdicao(site.id)}" rendered="#{site.email == siteBean.currentUserEmail || siteBean.currentRole == 'ROLE_ADMIN'}">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </h:commandLink>
+                                                <h:outputText value="-" rendered="#{site.email != siteBean.currentUserEmail and siteBean.currentRole != 'ROLE_ADMIN'}"/>
+                                        </h:column>
+                                        <h:column class="col-md-2">
+                                            <f:facet name="header"></f:facet> 
+                                                <h:commandLink action="#{siteBean.remove(site)}" onclick="return confirm('#{msg['remover.confirm']}');" rendered="#{site.email == siteBean.currentUserEmail || siteBean.currentRole == 'ROLE_ADMIN'}">
+                                                    <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                                </h:commandLink>
+                                            <h:outputText value="-" rendered="#{site.email != siteBean.currentUserEmail and siteBean.currentRole != 'ROLE_ADMIN'}"/>
+                                        </h:column>
+                                        <h:column class="col-md-2">
+                                            <f:facet name="header"></f:facet> 
+                                                <h:commandLink action="#{siteBean.detalhes(site.id)}" value="#{msg['listaSites.table.acoes.detalhes']}" rendered="#{site.email == siteBean.currentUserEmail || siteBean.currentRole == 'ROLE_ADMIN'}">
+                                                </h:commandLink>
+                                            <h:outputText value="-" rendered="#{site.email != siteBean.currentUserEmail and siteBean.currentRole != 'ROLE_ADMIN'}"/>
+                                        </h:column>
+                                    </sec:authorize>
                                 </h:dataTable>
                             </h:form>
                         </div>
