@@ -8,6 +8,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -15,9 +16,6 @@ public class Usuario implements Serializable{
     
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
-    
-    @OneToMany(mappedBy = "usuario", fetch = FetchType.LAZY)
-    private List<Papel> roles;
     
     @Column(nullable = false, unique=true)
     private String email;
@@ -27,6 +25,9 @@ public class Usuario implements Serializable{
     
     @Column(nullable = false, unique=false)
     private Boolean ativo;
+    
+    @ManyToMany
+    private List<Papel> papel;
 
     public String getEmail() {return email;}
     public void setEmail(String email) {this.email = email;}
@@ -39,16 +40,12 @@ public class Usuario implements Serializable{
 
     public Integer getId() {return id;}
     public void setId(Integer id) {this.id = id;}
-
-    public List<Papel> getRoles() {return roles;}
-    public void setRoles(List<Papel> roles) {this.roles = roles;}
     
-    @Override public String toString() { return email;}
-    @Override public boolean equals(Object obj) {
-        if (this == obj) return true;
-	if (obj == null) return false;
-	if (!(obj instanceof Usuario)) return false;
-	Usuario other = (Usuario) obj;
-	return other.email.equals(this.email);
+    public List<Papel> getPapel() {return papel;}
+    public void setPapel(List<Papel> papel) {this.papel = papel;}
+
+    @Override
+    public String toString() {
+        return "Usuario{" + "id=" + id + ", email=" + email + ", senha=" + senha + ", ativo=" + ativo + ", papel=" + papel + '}';
     }
 }

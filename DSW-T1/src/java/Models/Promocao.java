@@ -1,16 +1,15 @@
 package Models;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalTime;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 
 /** 
@@ -18,7 +17,7 @@ import javax.persistence.UniqueConstraint;
  * Cada coluna possui unique = false
  * Mas o conjunto formado pelos 3 atributos deve ser único
  */
-@Entity @Table(uniqueConstraints=@UniqueConstraint(columnNames = {"cnpj", "dia", "hora"}))  
+@Entity 
 public class Promocao implements Serializable{
     
     @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -40,10 +39,8 @@ public class Promocao implements Serializable{
     private Float preco;
     
     @Column(nullable = false, unique=false)
-    private LocalDate dia;    
-    
-    @Column(nullable = false, unique=false)
-    private LocalTime hora;
+    @Temporal(TemporalType.DATE)
+    private Date dia_hora;
     
     @Column(nullable = false, unique=false)
     private String cnpj;
@@ -63,11 +60,8 @@ public class Promocao implements Serializable{
     public Integer getId() {return id;}
     public void setId(Integer id) {this.id = id;}
 
-    public LocalDate getDia() {return dia;}
-    public void setDia(LocalDate dia) {this.dia = dia;}
-
-    public LocalTime getHora() {return hora;}
-    public void setHora(LocalTime hora) {this.hora = hora;}
+    public Date getDia_hora() {return dia_hora;}
+    public void setDia_hora(Date dia_hora) {this.dia_hora = dia_hora;}
 
     public Site getSite() {return site;}
     public void setSite(Site site) {this.site = site;}

@@ -10,7 +10,7 @@ public abstract class GenericDAO<T> {
     private final EntityManagerFactory emf;
 
     public GenericDAO() {
-        emf = Persistence.createEntityManagerFactory("DSWPU");
+        emf = Persistence.createEntityManagerFactory("DSW-T1PU");
     }
 
     protected EntityManager getEntityManager() {

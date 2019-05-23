@@ -13,12 +13,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Teatro implements Serializable{
     
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
-    
-    @OneToMany(mappedBy = "teatro", fetch = FetchType.LAZY)
-    private List<Promocao> promocoes;
-    
     @Column(nullable = false, unique=true)
     private String email;
     
@@ -33,6 +27,12 @@ public class Teatro implements Serializable{
     
     @Column(nullable = false, unique=false)
     private String cnpj;
+    
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+    
+    @OneToMany(mappedBy = "teatro", fetch = FetchType.LAZY)
+    private List<Promocao> promocoes;
     
     public String getEmail() {return email;}
     public String getSenha() {return senha;}
@@ -49,8 +49,12 @@ public class Teatro implements Serializable{
     public void setCnpj(String cnpj) {this.cnpj = cnpj;}
     public void setId(Integer id) {this.id = id;}
     public void setPromocoes(List<Promocao> promocoes) {this.promocoes = promocoes;}
+
+    @Override
+    public String toString() {
+        return "Teatro{" + "email=" + email + ", senha=" + senha + ", cidade=" + cidade + ", nome=" + nome + ", cnpj=" + cnpj + ", id=" + id + '}';
+    }
     
-    @Override public String toString() { return nome;}
     @Override public boolean equals(Object obj) {
         if (this == obj) return true;
 	if (obj == null) return false;

@@ -1,17 +1,6 @@
 package DAO;
 
 import Models.Promocao;
-import Models.Site;
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.sql.Time;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -24,7 +13,7 @@ public class PromocaoDAO extends GenericDAO<Promocao>{
     // private final String DELETAR = "DELETE FROM Promocao WHERE id=?";
     private final String LISTAR = "SELECT p FROM Promocao p";     
     private final String LISTAR_TEATRO = "SELECT p FROM Promocao p WHERE p.cnpj LIKE :cnpj"; 
-    private final String LISTAR_SITE = "SELECT p FROM Promocao WHERE p.url LIKE :url"; 
+    private final String LISTAR_SITE = "SELECT p FROM Promocao p WHERE p.url LIKE :url"; 
     private final String GET = "SELECT p FROM Promocao p where p.id = :id"; 
     
     /* C */ @Override public void inserir(Promocao promocao) {

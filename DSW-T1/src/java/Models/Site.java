@@ -13,12 +13,6 @@ import javax.persistence.OneToMany;
 @Entity
 public class Site implements Serializable {
     
-    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Integer id;
-    
-    @OneToMany(mappedBy = "site", fetch = FetchType.LAZY)
-    private List<Promocao> promocoes;
-    
     @Column(nullable = false, unique=true)
     private String email;
     
@@ -33,6 +27,12 @@ public class Site implements Serializable {
     
     @Column(nullable = false, unique=false)
     private Long telefone;
+    
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private Integer id;
+    
+    @OneToMany(mappedBy = "site", fetch = FetchType.LAZY)
+    private List<Promocao> promocoes;
     
     public Integer getId() {return id;}
     public String getEmail() {return email;}
