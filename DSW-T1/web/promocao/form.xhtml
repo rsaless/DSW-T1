@@ -152,20 +152,20 @@
                                     <div class="form-group">  
                                         <h:outputLabel for="url" class="control-label col-sm-4 col-lg-6">#{msg['formPromocao.form.url']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="url" value="#{promocaoBean.promocao.url}" class="form-control"   
+                                            <p:inputText id="url" value="#{promocaoBean.promocao.url}" class="form-control"   
                                                          validatorMessage="#{msg['formPromocao.required.url']}">
                                                 <f:validateRequired/>
-                                            </h:inputText>
+                                            </p:inputText>
                                             <h:message for="url"/>
                                         </div>  
                                     </div> <!-- URL -->
                                     <div class="form-group">  
                                         <h:outputLabel for="nome" class="control-label col-sm-4 col-lg-6">#{msg['formPromocao.form.nome']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="nome" value="#{promocaoBean.promocao.nome_peca}" class="form-control"   
+                                            <p:inputText id="nome" value="#{promocaoBean.promocao.nome_peca}" class="form-control"   
                                                          validatorMessage="#{msg['formPromocao.required.name']}">
                                                 <f:validateRequired/>
-                                            </h:inputText>
+                                            </p:inputText>
                                             <h:message for="nome"/>
                                         </div>  
                                     </div> <!-- Nome -->
@@ -183,10 +183,10 @@
                                     <div class="form-group">  
                                         <h:outputLabel for="preco" class="control-label col-sm-4 col-lg-6">#{msg['formPromocao.form.preco']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="preco" value="#{promocaoBean.promocao.preco}" class="form-control"   
+                                            <p:inputText id="preco" value="#{promocaoBean.promocao.preco}" class="form-control"   
                                                          validatorMessage="#{msg['formPromocao.required.preco']}" a:type="Number" a:step="any" a:min="0.01">
                                                 <f:validateRequired/>
-                                            </h:inputText>
+                                            </p:inputText>
                                             <h:message for="preco"/>
                                         </div>  
                                     </div> <!-- Preço -->
@@ -194,10 +194,10 @@
                                     <div class="form-group">  
                                         <h:outputLabel for="cnpj" class="control-label col-sm-4 col-lg-6">#{msg['formPromocao.form.cnpj']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="cnpj" value="#{promocaoBean.promocao.cnpj}" class="form-control"   
+                                            <p:inputText id="cnpj" value="#{promocaoBean.promocao.cnpj}" class="form-control"   
                                                          validatorMessage="#{msg['formPromocao.required.cnpj']}" a:type="Number">
                                                 <f:validateRequired/>
-                                            </h:inputText>
+                                            </p:inputText>
                                             <h:message for="cnpj"/>
                                         </div>  
                                     </div> <!-- CNPJ -->
