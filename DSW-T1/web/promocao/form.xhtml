@@ -9,44 +9,48 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <h:outputStylesheet name="/css/bootstrap.css"/>
+        <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet"/>
-        <h:outputStylesheet name="/css/glyphicon.css"/><!-- adicionado pra usar ícones-->
+        <link href="../resources/css/glyphicon.css" rel="stylesheet"/> <!-- adicionado pra usar ícones-->
         <title>#{msg['formSite.title']}</title>
         
         
-        <link rel="stylesheet" href="../css/datepicker.min.css" type="text/css"></link>
-        <link rel="stylesheet" href="../css/jquery-clockpicker.min.css" type="text/css"></link>
+        <link rel="stylesheet" href="../resources/css/datepicker.min.css" type="text/css"></link>
+        <link rel="stylesheet" href="../resources/css/jquery-clockpicker.min.css" type="text/css"></link>
         
-        <script src="../js/jquery-3.3.1.min.js"></script>
-        
-        <script src="../js/datepicker.min.js"></script>
-        <script src="../js/datepicker_i18n/datepicker.en.js"></script>
-        <script src="../js/datepicker_i18n/datepicker.pt-BR.js"></script>
-        <script src="../js/jquery.mask.min.js"></script>
-        <script src="../js/jquery-clockpicker.min.js"></script>
-        <script src="../js/jquery.maskMoney.min.js"></script>
+        <script src="../resources/js/datepicker.min.js"></script>
+        <script src="../resources/js/datepicker_i18n/datepicker.en.js"></script>
+        <script src="../resources/js/datepicker_i18n/datepicker.pt-BR.js"></script>
+        <script src="../resources/js/jquery.mask.min.js"></script>
+        <script src="../resources/js/jquery-clockpicker.min.js"></script>
+        <script src="../resources/js/jquery.maskMoney.min.js"></script>
         
         <script>
             $(document).ready(function(){
-                $('.data').mask('00/00/0000')
-                $(".cnpj").mask('00.000.000/0000-00')
+                $('.data').mask('00/00/0000 00:00')
+                $('.cnpj').mask('00.000.000/0000-00')
+                /*
                 $('.horario').mask('00:00:00')
                 let data = $('.data').get(0).value.split('/')
                 let ano = data[0]+data[1]
                 let mes = data[2].substr(0, 2)
                 let dia = data[2].substr(2, 2)
-                $('.data').datepicker({autoClose: true})
+                
                 $('.data').get(0).value = dia+'/'+mes+'/'+ano
-                console.log(dia)
-        console.log(mes)
-        console.log(ano)
-        $('.horario').clockpicker({
+                $('.horario').clockpicker({
                     placement: 'bottom',
                     align: 'right',
                     autoclose: true,
                     'default': '00:00'
-                });
+                })
+                */
+               $('.data').datepicker({
+                   autoClose: true,
+                   dateFormat: 'dd/mm/yyyy',
+                   language: 'pt-BR',
+                   timepicker: true,
+                   timeFormat: 'hh:ii'
+               })
                 $('.preco').maskMoney({
                     prefix:'R$ ', 
                     allowNegative: false, 
@@ -152,41 +156,42 @@
                                     <div class="form-group">  
                                         <h:outputLabel for="url" class="control-label col-sm-4 col-lg-6">#{msg['formPromocao.form.url']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="url" value="#{promocaoBean.promocao.url}" class="form-control"   
+                                            <p:inputText id="url" value="#{promocaoBean.promocao.url}" class="form-control"   
                                                          validatorMessage="#{msg['formPromocao.required.url']}">
                                                 <f:validateRequired/>
-                                            </h:inputText>
+                                            </p:inputText>
                                             <h:message for="url"/>
                                         </div>  
                                     </div> <!-- URL -->
                                     <div class="form-group">  
                                         <h:outputLabel for="nome" class="control-label col-sm-4 col-lg-6">#{msg['formPromocao.form.nome']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="nome" value="#{promocaoBean.promocao.nome_peca}" class="form-control"   
+                                            <p:inputText id="nome" value="#{promocaoBean.promocao.nome_peca}" class="form-control"   
                                                          validatorMessage="#{msg['formPromocao.required.name']}">
                                                 <f:validateRequired/>
-                                            </h:inputText>
+                                            </p:inputText>
                                             <h:message for="nome"/>
                                         </div>  
                                     </div> <!-- Nome -->
                                     <div class="form-group">  
                                         <h:outputLabel for="data_hora" class="control-label col-sm-4 col-lg-6">#{msg['formPromocao.form.data']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6"> 
-                                            <p:datePicker id="data_hora" value="#{promocaoBean.promocao.dia_hora}" showTime="true" 
-                                                          validatorMessage="#{msg['formPromocao.required.data']}" pattern="dd/MM/yyyy">
+                                            <p:inputText id="data_hora" value="#{promocaoBean.promocao.dia_hora}" class="form-control data"
+                                                          validatorMessage="#{msg['formPromocao.required.data']}">
                                                 <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
                                                 <f:validateRequired/>
-                                            </p:datePicker>
+                                            </p:inputText>
                                             <h:message for="data_hora"/>
                                         </div>  
                                     </div> <!-- Data e Hora -->
                                     <div class="form-group">  
                                         <h:outputLabel for="preco" class="control-label col-sm-4 col-lg-6">#{msg['formPromocao.form.preco']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="preco" value="#{promocaoBean.promocao.preco}" class="form-control"   
-                                                         validatorMessage="#{msg['formPromocao.required.preco']}" a:type="Number" a:step="any" a:min="0.01">
+                                            <p:inputText id="preco" value="#{promocaoBean.promocao.preco}" class="form-control preco"   
+                                                         validatorMessage="#{msg['formPromocao.required.preco']}">
+                                                <f:convertNumber type="currency" locale="pt_BR" />
                                                 <f:validateRequired/>
-                                            </h:inputText>
+                                            </p:inputText>
                                             <h:message for="preco"/>
                                         </div>  
                                     </div> <!-- Preço -->
@@ -194,10 +199,10 @@
                                     <div class="form-group">  
                                         <h:outputLabel for="cnpj" class="control-label col-sm-4 col-lg-6">#{msg['formPromocao.form.cnpj']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="cnpj" value="#{promocaoBean.promocao.cnpj}" class="form-control"   
-                                                         validatorMessage="#{msg['formPromocao.required.cnpj']}" a:type="Number">
+                                            <p:inputText id="cnpj" value="#{promocaoBean.promocao.cnpj}" class="form-control cnpj"
+                                                         validatorMessage="#{msg['formPromocao.required.cnpj']}">
                                                 <f:validateRequired/>
-                                            </h:inputText>
+                                            </p:inputText>
                                             <h:message for="cnpj"/>
                                         </div>  
                                     </div> <!-- CNPJ -->

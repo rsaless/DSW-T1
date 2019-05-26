@@ -47,6 +47,17 @@ public class CriaUsuarios {
                 usuario_admin.getPapel().add(papel_admin);
                 usuarioDAO.atualizar(usuario_admin);
             }
+            
+            for(int i = 1; i <= 1; i++){
+                Usuario usuario_admin = new Usuario();
+                usuario_admin.setEmail("a");
+                usuario_admin.setSenha(encoder.encode("a"));
+                usuario_admin.setAtivo(true);
+                usuarioDAO.inserir(usuario_admin);
+
+                usuario_admin.getPapel().add(papel_admin);
+                usuarioDAO.atualizar(usuario_admin);
+            }
 
             // insere teatros
             for(int i = 1; i <= 5; i++){
@@ -101,7 +112,6 @@ public class CriaUsuarios {
                 
                 promocaoDAO.inserir(promocao);
             }
-            
         
         } catch (Exception e) {
             e.printStackTrace();

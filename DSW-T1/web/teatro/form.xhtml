@@ -10,11 +10,10 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <h:outputStylesheet name="/css/bootstrap.css"/>
+        <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
         <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet"/>
-        <h:outputStylesheet name="/css/glyphicon.css"/><!-- adicionado pra usar ícones-->
-        <script src="../js/jquery-3.3.1.min.js"></script>
-        <script src="../js/jquery.mask.min.js"></script>
+        <link href="../resources/css/glyphicon.css" rel="stylesheet"/> <!-- adicionado pra usar ícones-->
+        <script src="../resources/js/jquery.mask.min.js"></script>
         <script>
             $(document).ready(function(){
                 $('.cnpj').mask('00.000.000/0000-00');
@@ -85,7 +84,7 @@
             </div>
             <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
             <center>
-                <h1>#{msg['formSite.bigTitle']}</h1>
+                <h1>#{msg['formTeatro.bigTitle']}</h1>
                 <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
                 <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
                 <div class="container">
@@ -117,50 +116,51 @@
                                     <div class="form-group">  
                                         <h:outputLabel for="email" class="control-label col-sm-4 col-lg-6">#{msg['formTeatro.form.email']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="email" value="#{teatroBean.teatro.email}" class="form-control"   
-                                                         validatorMessage="#{msg['formTeatro.required.email']}">
+                                            <p:inputText id="email" value="#{teatroBean.teatro.email}" class="form-control"   
+                                                         validatorMessage="#{msg['formTeatro.required.email']}"
+                                                         a:type="Email">
                                                 <f:validateRequired/>
-                                            </h:inputText>
+                                            </p:inputText>
                                             <h:message for="email"/>
                                         </div>  
                                     </div> <!-- Email -->
                                     <div class="form-group">  
                                         <h:outputLabel for="senha" class="control-label col-sm-4 col-lg-6">#{msg['formTeatro.form.senha']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="senha" value="#{teatroBean.teatro.senha}" class="form-control"  a:type="password" 
+                                            <p:inputText id="senha" value="#{teatroBean.teatro.senha}" class="form-control"  a:type="password" 
                                                          validatorMessage="#{msg['formTeatro.required.password']}">
                                                 <f:validateRequired/>
-                                            </h:inputText>
+                                            </p:inputText>
                                             <h:message for="senha"/>
                                         </div>  
                                     </div> <!-- Senha -->
                                     <div class="form-group">  
                                         <h:outputLabel for="cidade" class="control-label col-sm-4 col-lg-6">#{msg['formTeatro.form.cidade']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="cidade" value="#{teatroBean.teatro.cidade}" class="form-control"   
+                                            <p:inputText id="cidade" value="#{teatroBean.teatro.cidade}" class="form-control"   
                                                          validatorMessage="#{msg['formTeatro.required.city']}">
                                                 <f:validateRequired/>
-                                            </h:inputText>
+                                            </p:inputText>
                                             <h:message for="cidade"/>
                                         </div>  
                                     </div> <!-- Cidade -->
                                     <div class="form-group">  
                                         <h:outputLabel for="nome" class="control-label col-sm-4 col-lg-6">#{msg['formTeatro.form.nome']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="nome" value="#{teatroBean.teatro.nome}" class="form-control"   
+                                            <p:inputText id="nome" value="#{teatroBean.teatro.nome}" class="form-control"   
                                                          validatorMessage="#{msg['formTeatro.required.name']}">
                                                 <f:validateRequired/>
-                                            </h:inputText>
+                                            </p:inputText>
                                             <h:message for="nome"/>
                                         </div>  
                                     </div> <!-- Nome -->
                                     <div class="form-group">  
                                         <h:outputLabel for="cnpj" class="control-label col-sm-4 col-lg-6">#{msg['formTeatro.form.cnpj']}</h:outputLabel>  
                                         <div class="col-sm-4 col-lg-6">  
-                                            <h:inputText id="cnpj" value="#{teatroBean.teatro.cnpj}" class="form-control"   
-                                                         validatorMessage="#{msg['formTeatro.required.cnpj']}" a:type="Number">
+                                            <p:inputText id="cnpj" value="#{teatroBean.teatro.cnpj}" class="form-control cnpj"   
+                                                         validatorMessage="#{msg['formTeatro.required.cnpj']}">
                                                 <f:validateRequired/>
-                                            </h:inputText>
+                                            </p:inputText>
                                             <h:message for="cnpj"/>
                                         </div>  
                                     </div> <!-- CNPJ -->
@@ -184,6 +184,5 @@
             </div>
         </div>
     </h:body>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 </html>

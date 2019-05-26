@@ -55,7 +55,7 @@ public class Promocao implements Serializable{
     public void setPreco(Float preco) {this.preco = preco;}
 
     public String getCnpj() {return cnpj;}
-    public void setCnpj(String cnpj) {this.cnpj = cnpj;}
+    public void setCnpj(String cnpj) {this.cnpj = cnpj.replaceAll("[^\\d]", "");}
 
     public Integer getId() {return id;}
     public void setId(Integer id) {this.id = id;}
