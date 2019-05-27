@@ -1,5 +1,5 @@
 package Controllers;
-
+/*
 import DAO.PromocaoDAO;
 import DAO.SiteDAO;
 import DAO.UsuarioDAO;
@@ -80,13 +80,14 @@ public class SiteServlet extends HttpServlet {
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserEmail = authentication.getName();
             //System.out.println(currentUserEmail);
+            /*
             String email_encontrado = siteDao.get_email(currentUserEmail);
             if(email_encontrado != "ADMIN"){
                 request.setAttribute("email_encontrado", email_encontrado);
             } else {
                 request.setAttribute("ADMIN", true);
-            }
-        }
+            }*/
+        /*}
         request.setAttribute("listaSites", sites);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_site/listaSites.jsp");
         dispatcher.forward(request, response);
@@ -126,10 +127,10 @@ public class SiteServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         Long telefone = Long.parseLong(request.getParameter("telefone"));
 
-        Site site = new Site(email, senha, url, nome, telefone);
-        siteDao.inserir(site);
-        usuarioDAO.inserir_usuario(new Usuario(email, senha));
-        usuarioDAO.inserir_role(new Papel(email, "ROLE_SITE"));
+        //Site site = new Site(email, senha, url, nome, telefone);
+        //siteDao.inserir(site);
+        //usuarioDAO.inserir_usuario(new Usuario(email, senha));
+        //usuarioDAO.inserir_role(new Papel(email, "ROLE_SITE"));
         response.sendRedirect("/DSW-T1/site/lista");
     }
     
@@ -144,16 +145,16 @@ public class SiteServlet extends HttpServlet {
         String nome = request.getParameter("nome");
         Long telefone = Long.parseLong(request.getParameter("telefone"));
 
-        Site site = new Site(email, senha, url, nome, telefone, id);
-        siteDao.atualizar(site);
+        //Site site = new Site(email, senha, url, nome, telefone, id);
+        //siteDao.atualizar(site);
         response.sendRedirect("/DSW-T1/site/lista");
     }
     
     private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
 
-        Site site = new Site(id);
-        siteDao.deletar(site);
+        //Site site = new Site(id);
+        //siteDao.deletar(site);
         response.sendRedirect("/DSW-T1/site/lista");
     }
     
@@ -182,3 +183,4 @@ public class SiteServlet extends HttpServlet {
         }
     }
 }
+*/

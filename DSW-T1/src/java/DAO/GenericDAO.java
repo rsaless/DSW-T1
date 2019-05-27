@@ -1,20 +1,30 @@
 package DAO;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
-abstract public class GenericDAO {
+public abstract class GenericDAO<T> {
+
+    private final EntityManagerFactory emf;
 
     public GenericDAO() {
-        try {
-            Class.forName("org.apache.derby.jdbc.ClientDriver");
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        emf = Persistence.createEntityManagerFactory("DSW-T1PU");
     }
 
-    protected Connection getConnection() throws SQLException {
-        return DriverManager.getConnection("jdbc:derby://localhost:1527/Trabalho1", "root", "root");
+    protected EntityManager getEntityManager() {
+        return emf.createEntityManager();
     }
+    
+    //Adicionar demais métodos necessários
+    /* C */ abstract void inserir(T t);
+    /* R */ abstract List<T> listar();
+    /* U */ abstract void atualizar(T t);
+    /* D */ abstract void deletar(T t);
+    /* - */ abstract T get(int id);
+    
+    
+         
+    
 }

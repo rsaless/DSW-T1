@@ -4,7 +4,7 @@
 	- senha: root
 	
 -> Como criar e popular as tabelas:
-	1: executar o script db.sql para criar as tabelas (localização: DSW-T1\config-test-files\db.sql)
+	1: limpar o banco e colocar o valor 'create' para a persistencia de dados no arquivo persistence.xml (localização: DSW-T1\src\conf\persistence.xml)
 	2: executar o arquivo CriaUsuarios.java para inserir os dados iniciais no banco (localização: DSW-T1\src\java\Login\CriaUsuarios.java)
 
 -> Acesso ao sistema:

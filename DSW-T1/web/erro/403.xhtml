@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"> 
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <h:outputStylesheet name="/css/bootstrap.css"/>
+        <h:outputStylesheet name="/css/style.css"/>
+        <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet"/>
+        <h:outputStylesheet name="/css/glyphicon.css"/><!-- adicionado pra usar ícones-->
+        <title>#{msg['403.title']}</title>
+    </h:head>
+    <h:body styleClass="body">
+        <div class="bg">
+            <div class="container-fullwidth">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{siteBean.home()}" value="#{msg['index.pageTitle']}"/>
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{promocaoBean.lista()}" value="#{msg['index.promocoes']}"/>
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{siteBean.lista()}" value="#{msg['index.sites']}"/>
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{teatroBean.lista()}" value="#{msg['index.teatros']}"/>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+            <div align="center">
+                <div class="container">
+                    <div class="page-header pb-5">
+                        <h1>#{msg['403.pageTitle']}</h1>
+                        <h3>#{msg['403.pageSubTitle']}</h3>
+                    </div>
+                    <div class="page-content">
+                        <h4>#{msg['403.suggestions']}</h4>
+                        <ul  class="list-unstyled">
+                            <li>• #{msg['403.suggestions.1']}</li>
+                            <li>• #{msg['403.suggestions.2']}</li>
+                            <li>• #{msg['403.suggestions.3']}</li>
+                        </ul>
+                    </div>    
+                </div>
+            </div>
+        </div>
+    </h:body>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+</html>

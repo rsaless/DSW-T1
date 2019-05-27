@@ -1,175 +1,78 @@
 package DAO;
 
-import Models.Papel;
+import Models.Site;
 import Models.Teatro;
-import Models.Usuario;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.ArrayList;
 import java.util.List;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
-public class TeatroDAO extends GenericDAO{
-    /* C */ private final String INSERIR = "INSERT INTO Teatro(email, senha, cidade, nome, cnpj) values (?,?,?,?,?)";   
-    /* R */ private final String LISTAR = "SELECT * FROM Teatro";                                                        
-    /* U */ private final String ATUALIZAR = "UPDATE Teatro SET email=?, senha=?, cidade=?, nome=?, cnpj=? WHERE id=?"; 
-    /* D */ private final String DELETAR = "DELETE FROM Teatro WHERE id=?";            
-    /* - */ private final String LISTAR_CIDADE = "SELECT * FROM Teatro WHERE cidade LIKE?"; 
-    /* - */ private final String GET = "SELECT * FROM Teatro where id=?"; 
-    /* - */ private final String GET_EMAIL = "SELECT cnpj FROM Teatro where email = ?";
+public class TeatroDAO extends GenericDAO<Teatro>{
+    // private final String INSERIR = "INSERT INTO Teatro(email, senha, cidade, nome, cnpj) values (?,?,?,?,?)";                                                           
+    // private final String ATUALIZAR = "UPDATE Teatro SET email=?, senha=?, cidade=?, nome=?, cnpj=? WHERE id=?"; 
+    // private final String DELETAR = "DELETE FROM Teatro WHERE id=?";    
     
-    /* C */ public void inserir(Teatro teatro) throws ClassNotFoundException {
-        try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(INSERIR);
-            
-            statement.setString(1, teatro.getEmail());
-            statement.setString(2, teatro.getSenha());
-            statement.setString(3, teatro.getCidade());
-            statement.setString(4, teatro.getNome());
-            statement.setString(5, teatro.getCnpj());
-            
-            statement.executeUpdate();
-            statement.close();
-            connection.close();
-
-        } catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
+    private final String LISTAR = "SELECT t FROM Teatro t";
+    private final String GET = "SELECT t FROM Teatro t where t.id = :id"; 
+    private final String LISTAR_CIDADE = "SELECT t FROM Teatro t WHERE t.cidade LIKE :cidade"; 
+    private final String GET_EMAIL = "SELECT t FROM Teatro t where t.email = :email";
+    
+    /* C */ @Override public void inserir(Teatro teatro){
+        EntityManager em = this.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.persist(teatro);
+        tx.commit();
+        em.close();
     }
-    /* R */ public List<Teatro> listar(){
-        List<Teatro> teatros = new ArrayList<>();
-        
-        try {
-            Connection connection = this.getConnection();
-            Statement statement = connection.createStatement();
-            ResultSet resultSet = statement.executeQuery(LISTAR);
-            
-            while (resultSet.next()) {                
-                String email = resultSet.getString("email");
-                String senha = resultSet.getString("senha");
-                String cidade = resultSet.getString("cidade");
-                String nome = resultSet.getString("nome");
-                String cnpj = resultSet.getString("cnpj");
-                Integer id = resultSet.getInt("id");
-                
-                Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
-                teatros.add(teatro);
-            }
-            
-            resultSet.close();
-            statement.close();
-            connection.close();
-            
-        } catch(SQLException e) {
-            throw new RuntimeException(e);
-        }
-        return teatros; 
+    /* R */ @Override public List<Teatro> listar(){
+        EntityManager em = this.getEntityManager();
+        Query q = em.createQuery(LISTAR, Teatro.class);
+        List<Teatro> teatros = q.getResultList();
+        em.close();
+        return teatros;  
     }
-    /* U */ public void atualizar(Teatro teatro) {
-        try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(ATUALIZAR);
-            
-            statement.setString(1, teatro.getEmail());
-            statement.setString(2, teatro.getSenha());
-            statement.setString(3, teatro.getCidade());
-            statement.setString(4, teatro.getNome());
-            statement.setString(5, teatro.getCnpj());            
-            statement.setInt(6, teatro.getId());
-
-            statement.executeUpdate();
-            statement.close();
-            connection.close();
-            
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    /* U */ @Override public void atualizar(Teatro teatro) {
+        EntityManager em = this.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        tx.begin();
+        em.merge(teatro);
+        tx.commit();
+        em.close();
     }
-    /* D */ public void deletar(Teatro teatro) {
-        try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(DELETAR);
-
-            statement.setInt(1, teatro.getId());
-            statement.executeUpdate();
-            statement.close();
-            connection.close();
-            
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+    /* D */ @Override public void deletar(Teatro teatro) {
+        EntityManager em = this.getEntityManager();
+        EntityTransaction tx = em.getTransaction();
+        teatro = em.getReference(Teatro.class, teatro.getId());
+        tx.begin();
+        em.remove(teatro);
+        tx.commit();
     }
+    /* - */ @Override public Teatro get(int id){     
+        EntityManager em = this.getEntityManager();
+        Teatro teatro = em.find(Teatro.class, id);
+        em.close();
+        return teatro;
+    }
+    
     /* - */ public List<Teatro> listar_cidade(String cidade_desejada){
-        List<Teatro> teatros = new ArrayList<>();
-        
-        try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(LISTAR_CIDADE);
-            statement.setString(1, "%" + cidade_desejada + "%");
-            ResultSet resultSet = statement.executeQuery();
-            
-            while (resultSet.next()) {                
-                String email = resultSet.getString("email");
-                String senha = resultSet.getString("senha");
-                String cidade = resultSet.getString("cidade");
-                String nome = resultSet.getString("nome");
-                String cnpj = resultSet.getString("cnpj");
-                Integer id = resultSet.getInt("id");
-                
-                Teatro teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
-                teatros.add(teatro);
-            }
-            
-            resultSet.close();
-            statement.close();
-            connection.close();
-            
-        } catch(SQLException e) {
-            throw new RuntimeException(e);
+        EntityManager em = this.getEntityManager();
+        TypedQuery<Teatro> q = em.createQuery(LISTAR_CIDADE, Teatro.class);
+        q.setParameter("cidade", "%" + cidade_desejada + "%");
+        List<Teatro> teatros = q.getResultList();
+        em.close();
+        return teatros;
+    }  
+    /* - */ public Teatro get_email(String email){
+        EntityManager em = this.getEntityManager();
+        TypedQuery<Teatro> q = em.createQuery(GET_EMAIL, Teatro.class);
+        q.setParameter("email", email);
+        q.setMaxResults(1);
+        List<Teatro> list = q.getResultList();
+        if (list == null || list.isEmpty()) {
+            return new Teatro();
         }
-        return teatros; 
-    }
-    /* - */ public Teatro get(int id){     
-        Teatro teatro = null;
-        try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(GET);
-            statement.setInt(1, id);
-            ResultSet resultSet = statement.executeQuery();
-            
-            if (resultSet.next()) {                
-                String email = resultSet.getString("email");
-                String senha = resultSet.getString("senha");
-                String cidade = resultSet.getString("cidade");
-                String nome = resultSet.getString("nome");
-                String cnpj = resultSet.getString("cnpj");
-                
-                teatro = new Teatro(email, senha, cidade, nome, cnpj, id);
-            }           
-            resultSet.close();
-            statement.close();
-            connection.close();           
-        } catch(SQLException e) {throw new RuntimeException(e);}
-        return teatro; 
-    }
-    /* - */ public String get_email(String email){
-        String cnpj_encontrado = "ADMIN";
-        try {
-            Connection connection = this.getConnection();
-            PreparedStatement statement = connection.prepareStatement(GET_EMAIL);
-            statement.setString(1, email);
-            ResultSet resultSet = statement.executeQuery();
-            
-            if (resultSet.next()) {
-                cnpj_encontrado = resultSet.getString("cnpj");   
-            }          
-            resultSet.close();
-            statement.close();
-            connection.close();           
-        } catch(SQLException e) {throw new RuntimeException(e);}
-        return cnpj_encontrado; 
+        return list.get(0); 
     }
 }

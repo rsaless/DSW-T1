@@ -1,69 +1,65 @@
 package Models;
-//E-mail, senha, CNPJ, nome e cidade
-public class Teatro {
+
+import java.io.Serializable;
+import java.util.List;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Teatro implements Serializable{
+    
+    @Column(nullable = false, unique=true)
     private String email;
+    
+    @Column(nullable = false, unique=false)
     private String senha;
+    
+    @Column(nullable = false, unique=false)
     private String cidade;
+    
+    @Column(nullable = false, unique=false)
     private String nome;
+    
+    @Column(nullable = false, unique=false)
     private String cnpj;
+    
+    @Id @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
+    
+    @OneToMany(mappedBy = "teatro", fetch = FetchType.LAZY)
+    private List<Promocao> promocoes;
+    
+    public String getEmail() {return email;}
+    public String getSenha() {return senha;}
+    public String getCidade() {return cidade;}
+    public String getNome() {return nome;}
+    public String getCnpj() {return cnpj;}
+    public Integer getId() {return id;}
+    public List<Promocao> getPromocoes() {return promocoes;}
 
-    public Teatro(String email, String senha, String cidade, String nome, String cnpj, Integer id) {
-        this.email = email;
-        this.senha = senha;
-        this.cidade = cidade;
-        this.nome = nome;
-        this.cnpj = cnpj;
-        this.id = id;
-    }
-    public Teatro(String email, String senha, String cidade, String nome, String cnpj) {
-        this.email = email;
-        this.senha = senha;
-        this.cidade = cidade;
-        this.nome = nome;
-        this.cnpj = cnpj;
-    }
-    public Teatro(Integer id) {
-        this.id = id;
+    public void setSenha(String senha) {this.senha = senha;}
+    public void setEmail(String email) {this.email = email;}
+    public void setCidade(String cidade) {this.cidade = cidade;}
+    public void setNome(String nome) {this.nome = nome;}
+    public void setCnpj(String cnpj) {this.cnpj = cnpj;}
+    public void setId(Integer id) {this.id = id;}
+    public void setPromocoes(List<Promocao> promocoes) {this.promocoes = promocoes;}
+
+    @Override
+    public String toString() {
+        return "Teatro{" + "email=" + email + ", senha=" + senha + ", cidade=" + cidade + ", nome=" + nome + ", cnpj=" + cnpj + ", id=" + id + '}';
     }
     
-    public String getEmail() {
-        return email;
+    @Override public boolean equals(Object obj) {
+        if (this == obj) return true;
+	if (obj == null) return false;
+	if (!(obj instanceof Teatro)) return false;
+	Teatro other = (Teatro) obj;
+	return other.nome.equals(this.nome);
     }
-    public String getSenha() {
-        return senha;
-    }
-    public String getCidade() {
-        return cidade;
-    }
-    public String getNome() {
-        return nome;
-    }
-    public String getCnpj() {
-        return cnpj;
-    }
-    public Integer getId() {
-        return id;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
-    public void setEmail(String email) {
-        this.email = email;
-    }
-    public void setCidade(String cidade) {
-        this.cidade = cidade;
-    }
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-    public void setCnpj(String cnpj) {
-        this.cnpj = cnpj;
-    }
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    
 }

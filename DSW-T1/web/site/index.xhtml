@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:sec="http://www.springframework.org/security/tags">
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link href="../resources/css/bootstrap.css" rel="stylesheet"/>
+        <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet"/>
+        <link href="../resources/css/glyphicon.css" rel="stylesheet"/> <!-- adicionado pra usar ícones-->
+        <title>#{msg['listaSites.title']}</title>
+    </h:head>
+    <style>
+        .bg{
+            background-color: #8E2DE2;  /* fallback for old browsers */
+            background: -webkit-linear-gradient(to bottom, #7700e0, #8E2DE2);  /* Chrome 10-25, Safari 5.1-6 */
+            background: linear-gradient(to bottom, #7700e0, #8E2DE2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+        }
+        .body{
+            font-family: 'Questrial', sans-serif;
+            color: white;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-color: #8E2DE2;
+        }
+        h1{
+            font-size: 2.8em;
+        }
+        h2{
+            font-size: 2.3em;
+        }
+        p{
+            padding-left: 30px;
+            color: #f7f7f7;
+            font-size: 1.5em;
+        }
+    </style>
+    <h:body styleClass="body">
+        <div class="bg">
+            <div class="container-fullwidth">
+                <nav class="navbar navbar-expand-lg bg-light navbar-light">
+                    <div class="container-fluid">
+                        <div class="navbar-header">
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{siteBean.home()}" value="#{msg['index.pageTitle']}"/>
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{promocaoBean.lista()}" value="#{msg['index.promocoes']}"/>
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{siteBean.lista()}" value="#{msg['index.sites']}"/>
+                            <h:link styleClass="btn btn-default btn-lg" outcome="#{teatroBean.lista()}" value="#{msg['index.teatros']}"/>
+                            
+                            <sec:authorize access="hasAnyRole('ADMIN', 'SITE', 'TEATRO')">
+                                <a href="/DSW-T1/logout" class="btn btn-default btn-lg">Logout</a>
+                            </sec:authorize>
+                            <sec:authorize access="isAnonymous()">
+                                <a href="/DSW-T1/login" class="btn btn-default btn-lg">Login</a>
+                            </sec:authorize>
+                            
+                        </div>
+                    </div>
+                </nav>
+            </div>
+            <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+            <center>
+                <h1>#{msg['listaSites.bigTitle']}</h1>
+                <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+                <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+                <div class="container">
+                    <div class="row">
+                        
+                        
+                        <sec:authorize access="isAnonymous() or hasAnyRole('SITE', 'TEATRO')">
+                            <div class="col-lg-12">
+                                <p>Veja aqui a lista de sites que ofertam promoções no nosso sistema.</p>
+                            </div>
+                        </sec:authorize>
+                        <sec:authorize access="hasAnyRole('ADMIN')">
+                            <div class="col-lg-6">
+                                <p>Veja aqui a lista de sites que ofertam promoções no nosso sistema.</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <h2>
+                                    <h:link styleClass="btn btn-success btn-lg" outcome="#{siteBean.apresentaFormCadastro()}">
+                                        <span class="glyphicon glyphicon-plus-sign"></span>#{msg['listaSites.goToAdd']}
+                                    </h:link>
+                                </h2>
+                            </div>
+                        </sec:authorize>
+                       
+                    </div>
+                </div>
+            </center>
+            <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+            <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+            <div align="center">
+                <h2>#{msg['listaSites.pageTitle']}</h2>
+                <h:outputText value="&lt;br/&gt;" escape="false" /><!-- <br/> -->
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12 col-md-offset-6">
+                            <h:form>
+                                <h:dataTable value="#{siteBean.sites}" var="site" class="table table-light table-bordered table-striped table-hover thead-dark">
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaSites.table.id']}</f:facet>  
+                                        <h:outputText value="#{site.id}"/>
+                                    </h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaSites.table.nome']}</f:facet>  
+                                        <h:outputText value="#{site.nome}"/>
+                                    </h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaSites.table.email']}</f:facet>  
+                                        <h:outputText value="#{site.email}"/>
+                                    </h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaSites.table.url']}</f:facet>  
+                                        <h:outputText value="#{site.url}"/>
+                                    </h:column> 
+                                    <h:column class="col-md-2">
+                                        <f:facet name="header">#{msg['listaSites.table.telefone']}</f:facet>  
+                                        <h:outputText value="#{site.telefone}"/>
+                                    </h:column>
+                                    <sec:authorize access="hasAnyRole('ADMIN', 'SITE')">
+                                        <h:column class="col-md-2">
+                                            <f:facet name="header"></f:facet>  
+                                                <h:commandLink action="#{siteBean.apresentaFormEdicao(site.id)}" rendered="#{site.email == siteBean.currentUserEmail || siteBean.currentRole == 'ROLE_ADMIN'}">
+                                                    <span class="glyphicon glyphicon-pencil"></span>
+                                                </h:commandLink>
+                                                <h:outputText value="-" rendered="#{site.email != siteBean.currentUserEmail and siteBean.currentRole != 'ROLE_ADMIN'}"/>
+                                        </h:column>
+                                        <h:column class="col-md-2">
+                                            <f:facet name="header"></f:facet> 
+                                                <h:commandLink action="#{siteBean.remove(site)}" onclick="return confirm('#{msg['remover.confirm']}');" rendered="#{site.email == siteBean.currentUserEmail || siteBean.currentRole == 'ROLE_ADMIN'}">
+                                                    <span class="glyphicon glyphicon-trash" style="color:red"></span>
+                                                </h:commandLink>
+                                            <h:outputText value="-" rendered="#{site.email != siteBean.currentUserEmail and siteBean.currentRole != 'ROLE_ADMIN'}"/>
+                                        </h:column>
+                                        <h:column class="col-md-2">
+                                            <f:facet name="header"></f:facet> 
+                                                <h:commandLink action="#{siteBean.detalhes(site.id)}" value="#{msg['listaSites.table.acoes.detalhes']}" rendered="#{site.email == siteBean.currentUserEmail || siteBean.currentRole == 'ROLE_ADMIN'}">
+                                                </h:commandLink>
+                                            <h:outputText value="-" rendered="#{site.email != siteBean.currentUserEmail and siteBean.currentRole != 'ROLE_ADMIN'}"/>
+                                        </h:column>
+                                    </sec:authorize>
+                                </h:dataTable>
+                            </h:form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </h:body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+</html>

@@ -1,5 +1,5 @@
 package Controllers;
-
+/*
 import DAO.PromocaoDAO;
 import DAO.TeatroDAO;
 import Models.Promocao;
@@ -78,13 +78,14 @@ public class PromocaoServlet extends HttpServlet {
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserEmail = authentication.getName();
             //System.out.println(currentUserEmail);
+            /*
             String cnpj_encontrado = teatroDao.get_email(currentUserEmail);
             if(cnpj_encontrado != "ADMIN"){
                 request.setAttribute("cnpj_encontrado", cnpj_encontrado);
             } else {
                 request.setAttribute("ADMIN", true);
-            }
-        }
+            }*/
+        /*}
         request.setAttribute("listaPromocoes", promocoes);
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/listaPromocoes.jsp");
         dispatcher.forward(request, response);
@@ -95,13 +96,13 @@ public class PromocaoServlet extends HttpServlet {
         if (!(authentication instanceof AnonymousAuthenticationToken)) {
             String currentUserEmail = authentication.getName();
             //System.out.println(currentUserEmail);
-            String cnpj_encontrado = teatroDao.get_email(currentUserEmail);
-            if(cnpj_encontrado != "ADMIN"){
+            //String cnpj_encontrado = teatroDao.get_email(currentUserEmail);
+            /* if(cnpj_encontrado != "ADMIN"){
                 request.setAttribute("cnpj_encontrado", cnpj_encontrado);
             } else {
                 request.setAttribute("ADMIN", true);
-            }
-        }
+            }*/
+       /* }
         RequestDispatcher dispatcher = request.getRequestDispatcher("/templates_promocao/formPromocoes.jsp");
         dispatcher.forward(request, response);
     }
@@ -127,8 +128,8 @@ public class PromocaoServlet extends HttpServlet {
         LocalTime hora = LocalTime.parse(request.getParameter("hora"));//"10:15:30"
         String cnpj = request.getParameter("cnpj").replaceAll("[^\\d]", "");
 
-        Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj);
-        dao.inserir(promocao);
+        //Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj);
+        //dao.inserir(promocao);
         
         response.sendRedirect("/DSW-T1/promocao/lista");
     }
@@ -146,16 +147,16 @@ public class PromocaoServlet extends HttpServlet {
         LocalTime hora = LocalTime.parse(request.getParameter("hora"));//"10:15:30"
         String cnpj = request.getParameter("cnpj").replaceAll("[^\\d]", "");
 
-        Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
-        dao.atualizar(promocao);
+        //Promocao promocao = new Promocao(url, nome_peca, preco, dia, hora, cnpj, id);
+        //dao.atualizar(promocao);
         response.sendRedirect("/DSW-T1/promocao/lista");
     }
     
     private void remove(HttpServletRequest request, HttpServletResponse response) throws IOException {
         int id = Integer.parseInt(request.getParameter("id"));
 
-        Promocao promocao = new Promocao(id);
-        dao.deletar(promocao);
+        //Promocao promocao = new Promocao(id);
+        //dao.deletar(promocao);
         response.sendRedirect("/DSW-T1/promocao/lista");
     }
     
@@ -181,7 +182,7 @@ public class PromocaoServlet extends HttpServlet {
         prop.load(getServletContext().getResourceAsStream(filename));
         
         String active_email = request.getUserPrincipal().getName();
-        String active_cnpj = teatroDao.get_email(active_email);
+        //String active_cnpj = teatroDao.get_email(active_email);
         
         for(Promocao promocao : resultados){
             resposta += 
@@ -193,9 +194,9 @@ public class PromocaoServlet extends HttpServlet {
                     "<td class=\"text-center\">" + promocao.getHora() + "</td>" +
                     "<td class=\"text-center\">" + promocao.getPreco() + "</td>" +
                     "<td class=\"text-center\">" + promocao.getCnpj() + "</td>";
-            
-            if (request.isUserInRole("ADMIN") || (request.isUserInRole("TEATRO") && promocao.getCnpj().equals(active_cnpj))) {
-                resposta += 
+            */
+            //if (request.isUserInRole("ADMIN") || (request.isUserInRole("TEATRO") && promocao.getCnpj().equals(""/*active_cnpj*/))) {
+                /*resposta += 
                     "<td class=\"text-center\">" +
                         "<a href=\"/DSW-T1/promocao/edicao?id=" + promocao.getId() +"\"><span class=\"glyphicon glyphicon-pencil\"></span></a>" +
                         "&nbsp;&nbsp;&nbsp;&nbsp;"+
@@ -221,4 +222,4 @@ public class PromocaoServlet extends HttpServlet {
         throws ServletException, IOException {
         processRequest(request, response);
     }
-}
+}*/

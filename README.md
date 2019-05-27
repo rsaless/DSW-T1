@@ -1,5 +1,5 @@
-# DSW-T1
-Primeiro projeto da disciplina de Desenvolvimento de Software para a Web. Universidade Federal de São Carlos. 2019.
+# DSW-T12
+Segundo projeto da disciplina de Desenvolvimento de Software para a Web. Universidade Federal de São Carlos. 2019.
 Instruções: ver Roteiro.txt
 
 ## TELAS
@@ -36,10 +36,9 @@ Instruções: ver Roteiro.txt
 * O sistema deve mostrar uma página para problemas técnicos (404 e 500);
 * O sistema deve logar os erros no console;
 * O sistema deve implementar o MVC;
-* O sistema deve usar apenas JSP, Servlets, JDBC, CSS e Javascript;
+* O sistema deve usar apenas JSF, JPA, CSS e Javascript;
 
 ## PREPARANDO O AMBIENTE
 * Criar banco de dados Trabalho1 (usuario: root, senha: root);
-* Executar script db.sql para criar as tabelas (presente na pasta config-test-files);
-* Executar script dados.sql para popular as tabelas (presente na pasta config-test-files);
+* Limpar o banco e colocar o valor 'create' para a persistencia de dados no arquivo persistence.xml;
 * Executar script CriaUsuarios.java para criar os usuários e respectivos papeis (presente na pasta de códigos fonte login);
