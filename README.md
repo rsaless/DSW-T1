@@ -1,5 +1,5 @@
-# DSW-T1
-Primeiro projeto da disciplina de Desenvolvimento de Software para a Web. Universidade Federal de São Carlos. 2019.
+# DSW-T12
+Segundo projeto da disciplina de Desenvolvimento de Software para a Web. Universidade Federal de São Carlos. 2019.
 Instruções: ver Roteiro.txt
 
 ## TELAS
@@ -36,7 +36,7 @@ Instruções: ver Roteiro.txt
 * O sistema deve mostrar uma página para problemas técnicos (404 e 500);
 * O sistema deve logar os erros no console;
 * O sistema deve implementar o MVC;
-* O sistema deve usar apenas JSP, Servlets, JDBC, CSS e Javascript;
+* O sistema deve usar apenas JSF, JPA, CSS e Javascript;
 
 ## PREPARANDO O AMBIENTE
 * Criar banco de dados Trabalho1 (usuario: root, senha: root);
