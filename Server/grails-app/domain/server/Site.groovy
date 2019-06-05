@@ -3,7 +3,12 @@ package server
 
 import grails.rest.*
 
-@Resource(readOnly = false, formats = ['json', 'xml'])
+@Resource(uri = '/sites', readOnly = false, formats = ['json', 'xml'])
 class Site {
-
+    String email
+    String senha
+    String url
+    String nome
+    Long telefone
+    List<Promocao> promocoes
 }

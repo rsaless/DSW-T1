@@ -3,7 +3,8 @@ package server
 
 import grails.rest.*
 
-@Resource(readOnly = false, formats = ['json', 'xml'])
+@Resource(uri = '/papeis', readOnly = false, formats = ['json', 'xml'])
 class Papel {
-
+    String nome
+    List<Usuario> usuarios
 }
