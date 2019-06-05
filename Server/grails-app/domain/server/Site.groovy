@@ -10,5 +10,5 @@ class Site {
     String url
     String nome
     Long telefone
-    List<Promocao> promocoes
+    List<Promocao> promocoes_site
 }

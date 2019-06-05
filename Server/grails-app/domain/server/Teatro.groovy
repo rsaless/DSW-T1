@@ -10,5 +10,5 @@ class Teatro {
     String cidade
     String nome
     String cnpj
-    List<Promocao> promocoes
+    List<Promocao> promocoes_teatro
 }

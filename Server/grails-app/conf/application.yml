@@ -108,4 +108,5 @@ environments:
                 defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
 
 server:
+    port: 8090
     contextPath: '/ServerT3'
