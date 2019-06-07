@@ -12,4 +12,8 @@ class Promocao {
     Float preco
     Date dia_hora
     String cnpj
+
+    def List<Promocao> list() {
+        return Promocao.all
+    }
 }

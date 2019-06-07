@@ -11,4 +11,8 @@ class Site {
     String nome
     Long telefone
     List<Promocao> promocoes_site
+
+    def List<Site> list() {
+        return Site.all
+    }
 }

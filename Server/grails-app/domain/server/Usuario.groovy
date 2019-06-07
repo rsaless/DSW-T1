@@ -9,4 +9,8 @@ class Usuario {
     String senha
     Boolean ativo
     List<Papel> papeis
+
+    def List<Site> list() {
+        return Site.all
+    }
 }

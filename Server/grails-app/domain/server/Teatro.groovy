@@ -11,4 +11,8 @@ class Teatro {
     String nome
     String cnpj
     List<Promocao> promocoes_teatro
+
+    def List<Teatro> list() {
+        return Teatro.all
+    }
 }

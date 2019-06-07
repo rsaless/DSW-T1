@@ -7,4 +7,8 @@ import grails.rest.*
 class Papel {
     String nome
     List<Usuario> usuarios
+
+    def List<Site> list() {
+        return Site.all
+    }
 }
