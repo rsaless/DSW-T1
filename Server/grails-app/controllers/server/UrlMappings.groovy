@@ -13,5 +13,18 @@ class UrlMappings {
         "/"(controller: 'application', action:'index')
         "500"(view: '/error')
         "404"(view: '/notFound')
+
+        "/teatros"(resources:"teatro")
+        "/sites"(resources:"site")
+        "/promocoes"(resources:"promocao")
+        "/usuarios"(resources:"usuario")
+        "/papeis"(resources:"papel")
+
+
+
+
+
+        "/teatros/estado/$estado"(controller: 'teatro', action: 'getByEstado')
+
     }
 }
