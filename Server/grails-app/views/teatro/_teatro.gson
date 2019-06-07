@@ -1,0 +1,19 @@
+import server.Teatro
+
+model {
+	Teatro teatro
+}
+
+json {
+	id teatro.id
+	promocoes_teatro teatro.promocoes_teatro
+	cidade teatro.cidade
+	cnpj teatro.cnpj
+	nome teatro.nome
+	senha teatro.senha
+	email teatro.email
+	link {
+		href "${g.link(resource: 'teatro', absolute: true)}/${teatro.id}"
+	}
+}
+

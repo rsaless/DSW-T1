@@ -1,0 +1,7 @@
+import server.Teatro
+
+model {
+	Teatro teatro
+}
+
+json tmpl.teatro(teatro)

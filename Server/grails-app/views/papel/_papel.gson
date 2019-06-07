@@ -1,0 +1,15 @@
+import server.Papel
+
+model {
+	Papel papel
+}
+
+
+json {
+	id papel.id
+	nome papel.nome
+	usuarios papel.usuarios
+	link {
+		href "${g.link(resource: 'papel', absolute: true)}/${papel.id}"
+	}
+}
