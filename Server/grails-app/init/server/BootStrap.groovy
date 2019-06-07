@@ -27,7 +27,7 @@ class BootStrap {
         }
 
         // Criando Teatros
-        for(int i = 1; i <= 5; i++){
+        for(int i = 1; i <= 12; i++){
             def teatro = new Teatro(
                 email: "teatro" + i + "@gmail.com",
                 senha: "teatro" + i + "_pass",
@@ -49,7 +49,7 @@ class BootStrap {
         }
 
         // Criando Sites
-        for(int i = 1; i <= 5; i++){
+        for(int i = 1; i <= 12; i++){
             def site = new Site(
                     email: "site" + i + "@gmail.com",
                     senha: "site" + i + "_pass",
@@ -71,7 +71,7 @@ class BootStrap {
         }
 
         // Criando Promocoes
-        for(int i = 1; i <= 5; i++){
+        for(int i = 1; i <= 12; i++){
             def date = Date.parse("dd/MM/yyyy hh:mm", "20/05/200" + i +" 23:0" + i)
             def promocao = new Promocao(
                 url: "https://www.site" + i + ".com.br",

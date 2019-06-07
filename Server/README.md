@@ -1,7 +1,11 @@
 # GRAILS API
 API criada usando o framework Grails para atuar em conjunto com o cliente em Angular.
 
-O repositório do projeto em questão pode ser encontrado [aqui](https://github.com/ClouudStrife/Swapper).
+A documentação completa da API também está disponível neste enredeço:  
+https://documenter.getpostman.com/view/5675736/S1TZwa72?version=latest#intro
+
+Para acessar o ambiente de testes (postman) utilizando na confecção da API, e realizar testes localmente acesse:  
+https://www.getpostman.com/collections/34741cf63f9d0f9e00bf 
 
 ## A API  
 Dentre as funcionalidades da API estão:
