@@ -8,7 +8,7 @@ json {
 	id promocao.id
 	cnpj promocao.cnpj
 	nome_peca promocao.nome_peca
-	url promocao.url
+	nome_site promocao.nome_site
 	preco promocao.preco
 	dia_hora promocao.dia_hora
 	link {

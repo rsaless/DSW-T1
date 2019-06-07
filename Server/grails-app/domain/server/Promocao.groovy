@@ -7,7 +7,7 @@ import grails.rest.*
 class Promocao {
     // Site site
     // Teatro teatro
-    String url
+    String nome_site
     String nome_peca
     Float preco
     Date dia_hora

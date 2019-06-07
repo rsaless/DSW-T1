@@ -74,7 +74,7 @@ class BootStrap {
         for(int i = 1; i <= 12; i++){
             def date = Date.parse("dd/MM/yyyy hh:mm", "20/05/200" + i +" 23:0" + i)
             def promocao = new Promocao(
-                url: "https://www.site" + i + ".com.br",
+                nome_site: "Site" + i,
                 nome_peca: "promocao" + i,
                 preco: 20+i*0.1f,
                 dia_hora: date,
