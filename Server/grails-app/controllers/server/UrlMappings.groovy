@@ -20,11 +20,8 @@ class UrlMappings {
         "/usuarios"(resources:"usuario")
         "/papeis"(resources:"papel")
 
-
-
-
-
-        "/teatros/estado/$estado"(controller: 'teatro', action: 'getByEstado')
-
+        "/teatros/cidade/$cidade"(controller: 'teatro', action: 'getByCidade')
+        "/promocoes/teatro/$cnpj"(controller: 'promocao', action: 'getByCnpj')
+        "/promocoes/site/$nome_site"(controller: 'promocao', action: 'getByNomeSite')
     }
 }

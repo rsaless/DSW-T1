@@ -13,4 +13,9 @@ class TeatroController extends RestfulController {
     def List<Teatro> index() {
         respond Teatro.list(), view: 'index'
     }
+
+    def List<Teatro> getByCidade(params) {
+        respond Teatro.findAllByCidade(params.cidade), view: 'index'
+    }
+
 }
