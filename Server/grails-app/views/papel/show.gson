@@ -1,7 +1,0 @@
-import server.Papel
-
-model {
-	Papel papel
-}
-
-json tmpl.papel(papel)

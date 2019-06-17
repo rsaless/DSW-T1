@@ -1,0 +1,7 @@
+import server.Site
+
+model {
+	Site site
+}
+
+json tmpl.site(site)

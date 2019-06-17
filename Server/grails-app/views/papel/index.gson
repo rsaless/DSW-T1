@@ -1,8 +1,0 @@
-import server.Papel
-
-model {
-	Iterable<Papel> papelList
-}
-
-json tmpl.papel(papelList ?: [])
-
