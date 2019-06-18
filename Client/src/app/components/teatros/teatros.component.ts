@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from "../../services/api.service";
+import { Teatro } from '../../models/teatro';
 
 @Component({
   selector: 'app-teatros',
@@ -7,9 +9,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TeatrosComponent implements OnInit {
 
-  constructor() { }
+  displayedColumns: string[] = ['nome', 'email', 'cidade', 'cnpj'];
+  teatros: Teatro[] = [];
+  isLoadingResults = true;
+
+  constructor(private api: ApiService) { }
 
   ngOnInit() {
+    this.getData();
   }
+
+  async getData() {
+    this.teatros = await this.api.getTeatros().toPromise();
+    this.isLoadingResults = false;
+    console.debug('No issues, I will wait until promise is resolved..');
+  }
+
+
 
 }

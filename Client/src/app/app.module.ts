@@ -1,7 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+
+import {MatSelectModule} from '@angular/material/select';
+import {
+  MatInputModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
+  MatSortModule,
+  MatTableModule,
+  MatIconModule,
+  MatButtonModule,
+  MatCardModule,
+  MatFormFieldModule 
+} from "@angular/material";
+
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +33,7 @@ import { PromocaoEdicaoComponent } from './components/promocao-edicao/promocao-e
 import { PromocoesComponent } from './components/promocoes/promocoes.component';
 import { PromocoesSiteComponent } from './components/promocoes-site/promocoes-site.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -42,8 +57,20 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    AppRoutingModule
-  ],
+    AppRoutingModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatInputModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatProgressSpinnerModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatSelectModule,
+    MatFormFieldModule
+  ],  
   providers: [],
   bootstrap: [AppComponent]
 })
