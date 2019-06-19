@@ -1,3 +1,85 @@
-<p>
-  site-cadastro works!
-</p>
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade" *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="button-row">
+      <a mat-flat-button color="primary" [routerLink]="['/sites']">
+        <mat-icon>list</mat-icon>
+      </a>
+    </div>
+    <mat-card class="example-card">
+      <form [formGroup]="siteForm" (ngSubmit)="onFormSubmit(siteForm.value)">
+        <mat-form-field class="example-full-width">
+          <input 
+            matInput 
+            placeholder="Nome do site" 
+            formControlName="nome" 
+            [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!siteForm.get('nome').valid && siteForm.get('nome').touched">
+              Por favor entre o nome do site
+            </span>
+          </mat-error>
+        </mat-form-field><!-- Nome do site -->
+        <mat-form-field class="example-full-width">
+          <input 
+            matInput 
+            placeholder="Email" 
+            formControlName="email" 
+            type="email"
+            [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!siteForm.get('email').valid && siteForm.get('email').touched">
+              Por favor entre o email
+            </span>
+          </mat-error>
+        </mat-form-field><!-- Email -->
+        <mat-form-field class="example-full-width">
+            <input 
+              matInput
+              formControlName="senha" 
+              type="password"
+              [errorStateMatcher]="matcher">
+            <mat-error>
+              <span *ngIf="!siteForm.get('senha').valid && siteForm.get('senha').touched">
+                Por favor entre a senha
+              </span>
+            </mat-error>
+          </mat-form-field><!-- Senha -->
+        <mat-form-field class="example-full-width">
+          <input 
+            matInput 
+            placeholder="Telefone" 
+            formControlName="telefone" 
+            type="number"
+            [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!siteForm.get('telefone').valid && siteForm.get('telefone').touched">
+              Por favor entre o telefone
+            </span>
+          </mat-error>
+        </mat-form-field><!-- Telefone -->
+        <mat-form-field class="example-full-width">
+            <input 
+              matInput 
+              placeholder="URL" 
+              formControlName="url" 
+              [errorStateMatcher]="matcher">
+            <mat-error>
+              <span *ngIf="!siteForm.get('url').valid && siteForm.get('url').touched">
+                Por favor entre a URL
+              </span>
+            </mat-error>
+          </mat-form-field><!-- URL  -->
+        <div class="button-row">
+          <button 
+            type="submit" 
+            [disabled]="!siteForm.valid" 
+            mat-flat-button 
+            color="primary">
+            <mat-icon>save</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
