@@ -12,20 +12,23 @@ import { PromocoesComponent } from './components/promocoes/promocoes.component';
 import { PromocaoDetalhesComponent } from './components/promocao-detalhes/promocao-detalhes.component';
 import { PromocaoCadastroComponent } from './components/promocao-cadastro/promocao-cadastro.component';
 import { PromocaoEdicaoComponent } from './components/promocao-edicao/promocao-edicao.component';
+import { LoginComponent } from './components/login/login.component';
+import { AuthGuard } from './helpers/auth-guard';
 
 const routes: Routes = [
-  {path: 'sites', component: SitesComponent, data: {title: 'Lista de Sites'}},
-  {path: 'site-detalhes/:id', component: SiteDetalhesComponent, data: {title: 'Detalhes do Site'}},
-  {path: 'site-cadastro', component: SiteCadastroComponent, data: {title: 'Cadastro Site'}},
-  {path: 'site-edicao/:id', component: SiteEdicaoComponent, data: {title: 'Edição Site'}},
-  {path: 'teatros', component: TeatrosComponent, data: {title: 'Lista de Teatros'}},
-  {path: 'teatro-detalhes/:id', component: TeatroDetalhesComponent, data: {title: 'Detalhes do Teatro'}},
-  {path: 'teatro-cadastro', component: TeatroCadastroComponent, data: {title: 'Cadastro Teatro'}},
-  {path: 'teatro-edicao/:id', component: TeatroEdicaoComponent, data: {title: 'Edição Teatro'}},
-  {path: 'promocoes', component: PromocoesComponent, data: {title: 'Lista de Promoções'}},
-  {path: 'promocao-detalhes/:id', component: PromocaoDetalhesComponent, data: {title: 'Detalhes da Promoção'}},
-  {path: 'promocao-cadastro', component: PromocaoCadastroComponent, data: {title: 'Cadastro Promoção'}},
-  {path: 'promocao-edicao/:id', component: PromocaoEdicaoComponent, data: {title: 'Edição Promoção'}},
+  {path: 'sites', component: SitesComponent, canActivate: [AuthGuard], data: {title: 'Lista de Sites'}},
+  {path: 'site-detalhes/:id', component: SiteDetalhesComponent, canActivate: [AuthGuard], data: {title: 'Detalhes do Site'}},
+  {path: 'site-cadastro', component: SiteCadastroComponent, canActivate: [AuthGuard], data: {title: 'Cadastro Site'}},
+  {path: 'site-edicao/:id', component: SiteEdicaoComponent, canActivate: [AuthGuard], data: {title: 'Edição Site'}},
+  {path: 'teatros', component: TeatrosComponent, canActivate: [AuthGuard], data: {title: 'Lista de Teatros'}},
+  {path: 'teatro-detalhes/:id', component: TeatroDetalhesComponent, canActivate: [AuthGuard], data: {title: 'Detalhes do Teatro'}},
+  {path: 'teatro-cadastro', component: TeatroCadastroComponent, canActivate: [AuthGuard], data: {title: 'Cadastro Teatro'}},
+  {path: 'teatro-edicao/:id', component: TeatroEdicaoComponent, canActivate: [AuthGuard], data: {title: 'Edição Teatro'}},
+  {path: 'promocoes', component: PromocoesComponent, canActivate: [AuthGuard], data: {title: 'Lista de Promoções'}},
+  {path: 'promocao-detalhes/:id', component: PromocaoDetalhesComponent, canActivate: [AuthGuard], data: {title: 'Detalhes da Promoção'}},
+  {path: 'promocao-cadastro', component: PromocaoCadastroComponent, canActivate: [AuthGuard], data: {title: 'Cadastro Promoção'}},
+  {path: 'promocao-edicao/:id', component: PromocaoEdicaoComponent, canActivate: [AuthGuard], data: {title: 'Edição Promoção'}},
+  {path: 'login', component: LoginComponent, data: { title: 'Login' }},
   {path: '', redirectTo: '/', pathMatch: 'full'}
 ];
   
