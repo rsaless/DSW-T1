@@ -35,6 +35,7 @@ import { PromocoesSiteComponent } from './components/promocoes-site/promocoes-si
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AlertComponent } from './components/alert/alert.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { AlertComponent } from './components/alert/alert.component';
     PromocoesComponent,
     PromocoesSiteComponent,
     NavbarComponent,
-    AlertComponent
+    AlertComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
