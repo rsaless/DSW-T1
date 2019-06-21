@@ -1,4 +1,4 @@
-package Server
+package auth
 
 import groovy.transform.EqualsAndHashCode
 import groovy.transform.ToString

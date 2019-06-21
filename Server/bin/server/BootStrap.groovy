@@ -1,9 +1,9 @@
 package server
 
 import server.*
-import server.User
-import server.UserRole
-import server.Role
+import auth.User
+import auth.UserRole
+import auth.Role
 
 class BootStrap {
 
