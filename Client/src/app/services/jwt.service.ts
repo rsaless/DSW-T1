@@ -7,10 +7,12 @@ import { Observable, of } from 'rxjs';
 @Injectable({providedIn: 'root'})
 export class JWTService {
 
+  base_url: string = "http://localhost:8090/ServerT3"
+
   constructor(private httpClient: HttpClient) { }
 
   login(username: string, password: string) {
-    const url = 'http://localhost:8090/ServerT3/api/login';
+    const url = this.base_url + '/api/login';
     return this.httpClient.post<Authentication> (url, { username, password })
       .pipe(tap(res => {
         res.when = new Date();
@@ -31,7 +33,7 @@ export class JWTService {
     const payload = new HttpParams()
       .set('grant_type', 'refresh_token')
       .set('refresh_token', token);
-    const url = 'http://localhost:8080/LivrosRS/oauth/access_token';
+    const url = this.base_url + '/oauth/access_token';
     return this.httpClient.post<Authentication>(url, payload).pipe(
       tap(_ => console.debug('getAuthentication'))
     );
