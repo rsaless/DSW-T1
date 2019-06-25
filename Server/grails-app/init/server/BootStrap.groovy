@@ -4,11 +4,13 @@ import server.*
 import auth.User
 import auth.UserRole
 import auth.Role
+import grails.converters.JSON
 
 class BootStrap {
 
     def init = { servletContext ->
-
+        JSON.registerObjectMarshaller(Date) {return it?.format("yyyy-MM-dd'T'hh:mm:ss")}/*"dd/MM/yyyy hh:mm"*/
+        
         // Criando os papeis
         Role papel_admin = new Role(authority: 'ROLE_ADMIN').save()
         Role papel_teatro = new Role(authority: 'ROLE_TEATRO').save()
@@ -66,7 +68,7 @@ class BootStrap {
 
         // Criando Promocoes
         for(int i = 0; i < 12; i++){
-            def date = Date.parse("dd/MM/yyyy hh:mm", "20/05/200" + i +" 23:0" + i)
+            def date = Date.parse("dd/MM/yyyy hh:mm", "20/05/"+ (2000 + i) +" 23:" + (10 + i))
             promocoes[i] = new Promocao(
                 nome_site: sites[i].nome,
                 nome_peca: "promocao" + i,
