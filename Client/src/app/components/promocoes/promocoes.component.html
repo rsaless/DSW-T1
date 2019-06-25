@@ -24,10 +24,15 @@
         <th mat-header-cell *matHeaderCellDef>CNPJ</th>
         <td mat-cell *matCellDef="let row">{{row.cnpj}}</td>
       </ng-container>
-      <!-- Coluna Dia_Hora -->
-      <ng-container matColumnDef="dia_hora">
-        <th mat-header-cell *matHeaderCellDef>Dia e Hora</th>
-        <td mat-cell *matCellDef="let row">{{row.dia_hora}}</td>
+      <!-- Coluna Dia_Hora (Dia) -->
+      <ng-container matColumnDef="dia">
+        <th mat-header-cell *matHeaderCellDef>Dia</th>
+        <td mat-cell *matCellDef="let row">{{row.dia_hora | date: 'dd/MM/yyyy'}}</td>
+      </ng-container>
+      <!-- Coluna Dia_Hora (Hora) -->
+      <ng-container matColumnDef="hora">
+        <th mat-header-cell *matHeaderCellDef>Hora</th>
+        <td mat-cell *matCellDef="let row">{{row.dia_hora | date: 'hh:mm'}}</td>
       </ng-container>
       <!-- Coluna Nome_Site -->
       <ng-container matColumnDef="nome_site">

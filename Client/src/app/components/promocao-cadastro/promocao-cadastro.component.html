@@ -26,7 +26,7 @@
           matInput 
           placeholder="Data e Hora" 
           formControlName="dia_hora" 
-          type="date"
+          type="datetime-local"
           [errorStateMatcher]="matcher">
         <mat-error>
           <span *ngIf="!promocaoForm.get('dia_hora').valid && promocaoForm.get('dia_hora').touched">
