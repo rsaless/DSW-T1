@@ -16,8 +16,8 @@ export class PromocaoEdicaoComponent implements OnInit {
   promocaoForm: FormGroup;
   id: string = '';
   isLoadingResults = true;
-  selected_site: Site = null;
-  selected_teatro: Teatro = null;
+  selected_site: Site = new Site();
+  selected_teatro: Teatro = new Teatro();
   sites: Site[];
   teatros: Teatro[];
 
