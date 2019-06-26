@@ -5,11 +5,11 @@ import grails.rest.*
 @Resource(uri = '/promocoes', readOnly = false, formats = ['json', 'xml'])
 class Promocao {
     static constraints = {
-        nome_site blank: false
-        nome_site unique: false
+        //nome_site blank: false
+        //nome_site unique: false
 
-        cnpj blank: false
-        cnpj unique: false
+        //cnpj blank: false
+        //cnpj unique: false
 
         dia_hora blank: false
         dia_hora unique: false
@@ -30,9 +30,9 @@ class Promocao {
 
     String nome_peca
     Float preco
-    String cnpj
+    //String cnpj
     Date dia_hora
-    String nome_site
+    //String nome_site
     Site site
     Teatro teatro
 

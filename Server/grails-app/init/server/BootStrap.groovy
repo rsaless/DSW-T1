@@ -67,11 +67,11 @@ class BootStrap {
         for(int i = 0; i < 12; i++){
             def date = Date.parse("dd/MM/yyyy hh:mm", "20/05/"+ (2000 + i) +" 23:" + (10 + i))
             promocoes[i] = new Promocao(
-                nome_site: sites[i].nome,
+                //nome_site: sites[i].nome,
                 nome_peca: "promocao" + i,
                 preco: 20+i*0.1f,
                 dia_hora: date,
-                cnpj: teatros[i].cnpj,
+                //cnpj: teatros[i].cnpj,
                 teatro: teatros[i],
                 site: sites[i]
             )
