@@ -35,31 +35,6 @@
         <mat-form-field class="example-full-width">
           <input 
             matInput 
-            placeholder="Nome do Site" 
-            formControlName="nome_site" 
-            [errorStateMatcher]="matcher">
-          <mat-error>
-            <span *ngIf="!promocaoForm.get('nome_site').valid && promocaoForm.get('nome_site').touched">
-              Por favor entre o nome do site
-            </span>
-          </mat-error>
-        </mat-form-field><!-- Nome do site -->
-        <mat-form-field class="example-full-width">
-            <input 
-              matInput 
-              placeholder="CNPJ" 
-              formControlName="cnpj" 
-              type="number"
-              [errorStateMatcher]="matcher">
-            <mat-error>
-              <span *ngIf="!promocaoForm.get('cnpj').valid && promocaoForm.get('cnpj').touched">
-                Por favor entre o CNPJ
-              </span>
-            </mat-error>
-          </mat-form-field><!-- CNPJ -->
-        <mat-form-field class="example-full-width">
-          <input 
-            matInput 
             placeholder="Preço" 
             type="number" 
             formControlName="preco"  
@@ -86,7 +61,7 @@
                   {{teatro.nome}}
                 </mat-option>
               </mat-select>
-          </mat-form-field><!-- Teatro -->
+        </mat-form-field><!-- Teatro -->
         <div class="button-row">
           <button type="submit" [disabled]="!promocaoForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
         </div>

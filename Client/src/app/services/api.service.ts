@@ -17,11 +17,7 @@ export class ApiService {
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-  
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
-  
-      // Let the app keep running by returning an empty result.
+      console.error(error);
       return of(result as T);
     };
   }
@@ -50,6 +46,7 @@ export class ApiService {
         catchError(this.handleError('getPromocoes', []))
       );
   }
+
   getSite(id: number): Observable<Site> {
     const url = `${apiUrl}/sites/${id}`;
     return this.http.get<Site>(url).pipe(
@@ -71,6 +68,7 @@ export class ApiService {
       catchError(this.handleError<Promocao>(`getPromocao id=${id}`))
     );
   }
+
   addSite (site): Observable<Site> {
     const url = `${apiUrl}/sites`;
     return this.http.post<Site>(url, site, httpOptions).pipe(
@@ -92,6 +90,7 @@ export class ApiService {
       catchError(this.handleError<Promocao>('addPromocao'))
     );
   }
+
   updateSite (id, site): Observable<any> {
     const url = `${apiUrl}/sites/${id}`;
     return this.http.put(url, site, httpOptions).pipe(
@@ -113,6 +112,7 @@ export class ApiService {
       catchError(this.handleError<any>('updatePromocao'))
     );
   }
+
   deleteSite (id): Observable<Site> {
     const url = `${apiUrl}/sites/${id}`;
     return this.http.delete<Site>(url, httpOptions).pipe(
@@ -134,7 +134,4 @@ export class ApiService {
       catchError(this.handleError<Promocao>('deletePromocao'))
     );
   }
-
-
-  
 }
