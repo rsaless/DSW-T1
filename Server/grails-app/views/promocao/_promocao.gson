@@ -10,7 +10,7 @@ json {
 	nome_peca promocao.nome_peca
 	nome_site promocao.nome_site
 	preco promocao.preco
-	dia_hora promocao.dia_hora.format("yyyy-MM-dd'T'hh:mm")
+	dia_hora promocao.dia_hora.format("yyyy-MM-dd'T'HH:mm")
 	link {
 		href "${g.link(resource: 'promocao', absolute: true)}/${promocao.id}"
 	}

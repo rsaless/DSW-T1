@@ -4,13 +4,10 @@ import server.*
 import auth.User
 import auth.UserRole
 import auth.Role
-import grails.converters.JSON
 
 class BootStrap {
 
-    def init = { servletContext ->
-        JSON.registerObjectMarshaller(Date) {return it?.format("yyyy-MM-dd'T'hh:mm:ss")}/*"dd/MM/yyyy hh:mm"*/
-        
+    def init = { servletContext ->        
         // Criando os papeis
         Role papel_admin = new Role(authority: 'ROLE_ADMIN').save()
         Role papel_teatro = new Role(authority: 'ROLE_TEATRO').save()
