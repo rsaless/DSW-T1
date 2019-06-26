@@ -16,9 +16,7 @@ export class PromocaoDetalhesComponent implements OnInit {
     id: '',
     nome_peca: '',
     preco: null,
-    cnpj: '',
     dia_hora: new Date(),
-    nome_site: '',
     site: new Site(),
     teatro: new Teatro(),
   };

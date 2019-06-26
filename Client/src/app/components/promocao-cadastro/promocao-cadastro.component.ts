@@ -27,9 +27,7 @@ export class PromocaoCadastroComponent implements OnInit {
     this.promocaoForm = this.formBuilder.group({
       nome_peca: [null, Validators.required],
       preco: [0.01, Validators.required],
-      cnpj: [null, Validators.required],
       dia_hora: [null, Validators.required],
-      nome_site: [null, Validators.required],
       site: [null, Validators.required],
       teatro: [null, Validators.required]
     });
