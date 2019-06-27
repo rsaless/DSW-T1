@@ -9,8 +9,8 @@ json {
 	cidade teatro.cidade
 	cnpj teatro.cnpj
 	nome teatro.nome
-	senha teatro.senha
-	email teatro.email
+	password teatro.password
+	username teatro.username
 	link {
 		href "${g.link(resource: 'teatro', absolute: true)}/${teatro.id}"
 	}
