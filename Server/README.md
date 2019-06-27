@@ -43,16 +43,6 @@ URL base: http://localhost:8090/ServerT3
 | `PUT`     | /promocoes/(ID)               |:heavy_check_mark:  |:heavy_check_mark:| Atualizar promocao específico |
 | `DELETE`  | /promocoes/(ID)               |:heavy_check_mark:  |:heavy_check_mark:| Deletar promocao especifico   |
 | `GET`     | /promocoes/(ID)               |:heavy_check_mark:  |:heavy_check_mark:| listar promocao específico    |
-| `GET`     | /usuarios                     |:heavy_check_mark:  |:x:               | Listar usuarios               |
-| `POST`    | /usuarios                     |:heavy_check_mark:  |:x:               | Cadastrar usuario             |
-| `PUT`     | /usuarios/(ID)                |:heavy_check_mark:  |:x:               | Atualizar usuario específico  |
-| `DELETE`  | /usuarios/(ID)                |:heavy_check_mark:  |:x:               | Deletar usuario especifico    |
-| `GET`     | /usuarios/(ID)                |:heavy_check_mark:  |:x:               | listar usuario específico     |
-| `GET`     | /papeis                       |:heavy_check_mark:  |:x:               | Listar papeis                 |
-| `POST`    | /papeis                       |:heavy_check_mark:  |:x:               | Cadastrar papel               |
-| `PUT`     | /papeis/(ID)                  |:heavy_check_mark:  |:x:               | Atualizar papel específico    |
-| `DELETE`  | /papeis/(ID)                  |:heavy_check_mark:  |:x:               | Deletar papel especifico      |
-| `GET`     | /papeis/(ID)                  |:heavy_check_mark:  |:x:               | listar papel específico       |
 | `GET`     | /teatros/cidade/(cidade)      |:heavy_check_mark:  |:x:               | Listar teatros por cidade     |
 | `GET`     | /promocoes/teatro/(cnpj)      |:heavy_check_mark:  |:x:               | Listar promocoes por teatro   |
 | `GET`     | /promocoes/teatro/(nome_site) |:heavy_check_mark:  |:x:               | Listar promocoes por site     |

@@ -1,33 +1,28 @@
 package server
 
 import server.*
+import auth.User
+import auth.UserRole
+import auth.Role
 
 class BootStrap {
 
     def init = { servletContext ->
 
         // Criando os papeis
-        /*
-        def papel_admin = new Papel(nome: "ROLE_ADMIN", usuarios: [])
-        def papel_teatro = new Papel(nome: "ROLE_TEATRO", usuarios: [])
-        def papel_site = new Papel(nome: "ROLE_SITE", usuarios: [])
-        papel_admin.save flush: true
-        papel_teatro.save flush: true
-        papel_site.save flush: true
-        */
+        Role papel_admin = new Role(authority: 'ROLE_ADMIN').save()
+        Role papel_teatro = new Role(authority: 'ROLE_TEATRO').save()
+        Role papel_site = new Role(authority: 'ROLE_SITE').save()
+        
 
         // Criando Admins
-        /*
         for(int i = 1; i <= 5; i++){
-            def usuario_admin = new Usuario(
-                email: "admin" + i + "@gmail.com",
-                senha: "admin" + i + "_pass",
-                ativo: true,
-                papeis: []
-            )
-            usuario_admin.papeis.push(papel_admin)
-            usuario_admin.save flush: true
-        }*/
+            User usuario_admin = new User(
+                username: "admin" + i + "@gmail.com", 
+                password: "admin" + i + "_pass"
+            ).save()
+            UserRole.create(usuario_admin, papel_admin, true)
+        }
 
         def teatros = new Teatro[12];
         def sites = new Site[12];
@@ -43,16 +38,12 @@ class BootStrap {
                 cnpj: "111000000" + i
             )
             teatros[i].save flush: true
-            /*
-            def usuario_teatro = new Usuario(
-                    email: "teatro" + i + "@gmail.com",
-                    senha: "teatro" + i + "_pass",
-                    ativo: true,
-                    papeis: []
-            )
-            usuario_teatro.papeis.push(papel_teatro)
-            usuario_teatro.save flush: true
-            */
+
+            User usuario_teatro = new User(
+                username: "teatro" + i + "@gmail.com", 
+                password: "teatro" + i + "_pass"
+            ).save()
+            UserRole.create(usuario_teatro, papel_teatro, true)
         }
 
         // Criando Sites
@@ -65,16 +56,12 @@ class BootStrap {
                     telefone: 33330000L + i
             )
             sites[i].save flush: true
-            /*
-            def usuario_site = new Usuario(
-                    email: "site" + i + "@gmail.com",
-                    senha: "site" + i + "_pass",
-                    ativo: true,
-                    papeis: []
-            )
-            usuario_site.papeis.push(papel_site)
-            usuario_site.save flush: true
-            */
+            
+            User usuario_site = new User(
+                username: "site" + i + "@gmail.com", 
+                password: "site" + i + "_pass"
+            ).save()
+            UserRole.create(usuario_site, papel_site, true)
         }
 
         // Criando Promocoes

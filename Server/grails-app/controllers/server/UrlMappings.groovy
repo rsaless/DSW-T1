@@ -9,8 +9,8 @@ class UrlMappings {
         post "/$controller(.$format)?"(action:"save")
         put "/$controller/$id(.$format)?"(action:"update")
         patch "/$controller/$id(.$format)?"(action:"patch")
-
         "/"(controller: 'application', action:'index')
+
         "500"(view: '/error')
         "404"(view: '/notFound')
 
@@ -18,8 +18,17 @@ class UrlMappings {
         "/sites"(resources:"site")
         "/promocoes"(resources:"promocao")
 
-        "/teatros/cidade/$cidade"(controller: 'teatro', action: 'getByCidade')
-        "/promocoes/teatro/$cnpj"(controller: 'promocao', action: 'getByCnpj')
-        "/promocoes/site/$nome_site"(controller: 'promocao', action: 'getByNomeSite')
+        /*
+            antes =>  "/teatros/cidade/$cidade"(controller: 'teatro', action: 'getByCidade')
+            depois => "/teatros?cidade=$cidade"
+        */
+        /*
+            antes =>  "/promocoes/site/$nome_site"(controller: 'promocao', action: 'getByNomeSite')
+            depois => "/promocoes?site=$url"
+        */
+        /*
+            antes =>  "/promocoes/teatro/$cnpj"(controller: 'promocao', action: 'getByCnpj')
+            depois => "/promocoes?$cnpj"
+        */
     }
 }

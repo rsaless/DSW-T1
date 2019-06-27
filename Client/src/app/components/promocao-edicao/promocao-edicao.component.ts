@@ -16,8 +16,8 @@ export class PromocaoEdicaoComponent implements OnInit {
   promocaoForm: FormGroup;
   id: string = '';
   isLoadingResults = true;
-  selected_site: Site = null;
-  selected_teatro: Teatro = null;
+  selected_site: Site = new Site();
+  selected_teatro: Teatro = new Teatro();
   sites: Site[];
   teatros: Teatro[];
 
@@ -33,9 +33,7 @@ export class PromocaoEdicaoComponent implements OnInit {
     this.promocaoForm = this.formBuilder.group({
       nome_peca: [null, Validators.required],
       preco: [null, Validators.required],
-      cnpj: [null, Validators.required],
       dia_hora: [null, Validators.required],
-      nome_site: [null, Validators.required],
       site: [new Site(), Validators.required],
       teatro: [new Teatro(), Validators.required]
     });
@@ -50,9 +48,7 @@ export class PromocaoEdicaoComponent implements OnInit {
     this.promocaoForm.setValue({
       nome_peca: promocao.nome_peca,
       preco: promocao.preco,
-      cnpj: promocao.cnpj,
       dia_hora: promocao.dia_hora,
-      nome_site: promocao.nome_site,
       site: promocao.site,
       teatro: promocao.teatro
     });

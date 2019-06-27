@@ -2,8 +2,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { JwtModule } from '@auth0/angular-jwt';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatSelectModule } from '@angular/material/select';
 
-import {MatSelectModule} from '@angular/material/select';
 import {
   MatInputModule,
   MatPaginatorModule,
@@ -16,9 +18,12 @@ import {
   MatFormFieldModule 
 } from "@angular/material";
 
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { AlertComponent } from './components/alert/alert.component';
+import { Authentication } from './models/Authentication';
+import { LoginComponent } from './components/login/login.component';
+
 import { SitesComponent } from './components/sites/sites.component';
 import { SiteCadastroComponent } from './components/site-cadastro/site-cadastro.component';
 import { SiteDetalhesComponent } from './components/site-detalhes/site-detalhes.component';
@@ -33,7 +38,6 @@ import { PromocaoEdicaoComponent } from './components/promocao-edicao/promocao-e
 import { PromocoesComponent } from './components/promocoes/promocoes.component';
 import { PromocoesSiteComponent } from './components/promocoes-site/promocoes-site.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -51,7 +55,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     PromocaoEdicaoComponent,
     PromocoesComponent,
     PromocoesSiteComponent,
-    NavbarComponent
+    NavbarComponent,
+    AlertComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +75,19 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatButtonModule,
     MatCardModule,
     MatSelectModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: function tokenGetter() {
+          return localStorage.getItem('access_token');
+        },
+        whitelistedDomains: ['localhost:8090'],
+        blacklistedRoutes: [
+          'http://localhost:8090/ServerT3/api/login',
+          'http://localhost:8090/ServerT3/oauth/access_token'
+        ]
+      }
+    })
   ],  
   providers: [],
   bootstrap: [AppComponent]

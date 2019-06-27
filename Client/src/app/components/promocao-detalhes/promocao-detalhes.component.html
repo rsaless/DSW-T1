@@ -17,8 +17,9 @@
     </mat-card-header>
     <mat-card-content>
       <dl>
-        <dt>Data:</dt><dd>{{promocao.dia_hora}}</dd>
-        <dt>Preço:</dt><dd>{{promocao.preco}}</dd>
+        <dt>Data:</dt><dd>{{promocao.dia_hora | date: 'dd/MM/yyyy'}}</dd>
+        <dt>Horário:</dt><dd>{{promocao.dia_hora | date: 'HH:mm'}}</dd>
+        <dt>Preço:</dt><dd>R$ {{promocao.preco}}</dd>
       </dl>
     </mat-card-content>
     <mat-card-actions>

@@ -26,38 +26,13 @@
           matInput 
           placeholder="Data e Hora" 
           formControlName="dia_hora" 
-          type="date"
+          type="datetime-local"
           [errorStateMatcher]="matcher">
         <mat-error>
           <span *ngIf="!promocaoForm.get('dia_hora').valid && promocaoForm.get('dia_hora').touched">
             Por favor entre a data</span>
         </mat-error>
       </mat-form-field><!-- Data e hora -->
-      <mat-form-field class="example-full-width">
-        <input 
-          matInput 
-          placeholder="Nome do Site" 
-          formControlName="nome_site" 
-          [errorStateMatcher]="matcher">
-        <mat-error>
-          <span *ngIf="!promocaoForm.get('nome_site').valid && promocaoForm.get('nome_site').touched">
-            Por favor entre o nome do site
-          </span>
-        </mat-error>
-      </mat-form-field><!-- Nome do site -->
-      <mat-form-field class="example-full-width">
-        <input 
-          matInput 
-          placeholder="CNPJ" 
-          formControlName="cnpj" 
-          type="number"
-          [errorStateMatcher]="matcher">
-        <mat-error>
-          <span *ngIf="!promocaoForm.get('cnpj').valid && promocaoForm.get('cnpj').touched">
-            Por favor entre o CNPJ
-          </span>
-        </mat-error>
-      </mat-form-field><!-- CNPJ -->
       <mat-form-field class="example-full-width">
         <input 
           matInput 
