@@ -9,8 +9,8 @@ json {
 	url site.url
 	telefone site.telefone
 	nome site.nome
-	senha site.senha
-	email site.email
+	password site.password
+	username site.username
 	link {
 		href "${g.link(resource: 'site', absolute: true)}/${site.id}"
 	}

@@ -48,19 +48,19 @@ class BootStrap {
         // Criando Sites
         for(int i = 0; i < 12; i++){
             sites[i] = new Site(
-                    email: "site" + i + "@gmail.com",
-                    senha: "site" + i + "_pass",
+                    username: "site" + i + "@gmail.com",
+                    password: "site" + i + "_pass",
                     url: "https://www.site" + i + ".com.br",
                     nome: "Site" + i,
                     telefone: 33330000L + i
             )
             sites[i].save flush: true
             
-            User usuario_site = new User(
+            /*User usuario_site = new User(
                 username: "site" + i + "@gmail.com", 
                 password: "site" + i + "_pass"
-            ).save()
-            UserRole.create(usuario_site, papel_site, true)
+            ).save()*/
+            UserRole.create(sites[i], papel_site, true)
         }
 
         // Criando Promocoes
@@ -79,6 +79,5 @@ class BootStrap {
         }
     }
     
-    def destroy = {
-    }
+    def destroy = {}
 }
