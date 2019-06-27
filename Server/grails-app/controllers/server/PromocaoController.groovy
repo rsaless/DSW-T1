@@ -12,14 +12,14 @@ class PromocaoController extends RestfulController {
     }
 
     def List<Promocao> index() {
-        respond Promocao.list(), view: 'index'
-    }
-
-    def List<Promocao> getByCnpj(params) {
-        respond Promocao.findAllByCnpj(params.cnpj), view: 'index'
-    }
-
-    def List<Promocao> getByNomeSite(params) {
-        respond Promocao.findAllByNome_site(params.nome_site), view: 'index'
+        if (params.cnpj){
+            def teatro = Teatro.findByCnpj(params.cnpj)
+            respond Promocao.findAllByTeatro(teatro), view: 'index'
+        } else if (params.url){
+            def site = Site.findByUrl(params.url)
+            respond Promocao.findAllBySite(site), view: 'index'
+        } else {
+            respond Promocao.list(), view: 'index'
+        }
     }
 }
