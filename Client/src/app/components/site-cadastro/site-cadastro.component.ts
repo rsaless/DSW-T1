@@ -22,8 +22,8 @@ export class SiteCadastroComponent implements OnInit {
   ngOnInit() {
     this.siteForm = this.formBuilder.group({
       nome: [null, Validators.required],
-      email: [null, Validators.required],
-      senha: [null, Validators.required],
+      username: [null, Validators.required],
+      password: [null, Validators.required],
       url: [null, Validators.required],
       telefone: [33333333, Validators.required],
     });

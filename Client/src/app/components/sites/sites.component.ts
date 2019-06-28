@@ -9,7 +9,7 @@ import { Site } from '../../models/site';
 })
 export class SitesComponent implements OnInit {
 
-  displayedColumns: string[] = ['nome', 'email', 'url', 'telefone'];
+  displayedColumns: string[] = ['nome', 'username', 'url', 'telefone'];
   sites: Site[] = [];
   isLoadingResults = true;
 
