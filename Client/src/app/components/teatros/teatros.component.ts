@@ -9,7 +9,7 @@ import { Teatro } from '../../models/teatro';
 })
 export class TeatrosComponent implements OnInit {
 
-  displayedColumns: string[] = ['nome', 'email', 'cidade', 'cnpj'];
+  displayedColumns: string[] = ['nome', 'username', 'cidade', 'cnpj'];
   teatros: Teatro[] = [];
   isLoadingResults = true;
 

@@ -26,8 +26,8 @@ export class TeatroEdicaoComponent implements OnInit {
     this.isLoadingResults = true;
     this.teatroForm = this.formBuilder.group({
       nome: [null, Validators.required],
-      email: [null, Validators.required],
-      senha: [null, Validators.required],
+      username: [null, Validators.required],
+      password: [null, Validators.required],
       cidade: [null, Validators.required],
       cnpj: [null, Validators.required],
     });
@@ -54,8 +54,8 @@ export class TeatroEdicaoComponent implements OnInit {
     this.id = teatro.id;
     this.teatroForm.setValue({
       nome: teatro.nome,
-      email: teatro.email,
-      senha: teatro.senha,
+      username: teatro.username,
+      password: teatro.password,
       cidade: teatro.cidade,
       cnpj: teatro.cnpj
     });

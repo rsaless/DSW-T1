@@ -22,8 +22,8 @@ export class TeatroCadastroComponent implements OnInit {
   ngOnInit() {
     this.teatroForm = this.formBuilder.group({
       nome: [null, Validators.required],
-      email: [null, Validators.required],
-      senha: [null, Validators.required],
+      username: [null, Validators.required],
+      password: [null, Validators.required],
       cidade: [null, Validators.required],
       cnpj: [null, Validators.required],
     });

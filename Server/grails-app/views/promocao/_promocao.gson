@@ -21,7 +21,7 @@ json {
 	}
     teatro {
 		id promocao.teatro.id
-		email promocao.teatro.email
+		username promocao.teatro.username
 		nome promocao.teatro.nome
 		cidade promocao.teatro.cidade
 		cnpj promocao.teatro.cnpj
