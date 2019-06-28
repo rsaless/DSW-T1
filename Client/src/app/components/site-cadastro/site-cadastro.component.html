@@ -25,11 +25,11 @@
           <input 
             matInput 
             placeholder="Email" 
-            formControlName="email" 
+            formControlName="username" 
             type="email"
             [errorStateMatcher]="matcher">
           <mat-error>
-            <span *ngIf="!siteForm.get('email').valid && siteForm.get('email').touched">
+            <span *ngIf="!siteForm.get('username').valid && siteForm.get('username').touched">
               Por favor entre o email
             </span>
           </mat-error>
@@ -37,11 +37,11 @@
         <mat-form-field class="example-full-width">
             <input 
               matInput
-              formControlName="senha" 
+              formControlName="password" 
               type="password"
               [errorStateMatcher]="matcher">
             <mat-error>
-              <span *ngIf="!siteForm.get('senha').valid && siteForm.get('senha').touched">
+              <span *ngIf="!siteForm.get('password').valid && siteForm.get('password').touched">
                 Por favor entre a senha
               </span>
             </mat-error>

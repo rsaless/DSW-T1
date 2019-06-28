@@ -14,14 +14,14 @@ json {
 	}
 	site {
 		id promocao.site.id
-		email promocao.site.email
+		username promocao.site.username
 		url promocao.site.url
 		nome promocao.site.nome
 		telefone promocao.site.telefone
 	}
     teatro {
 		id promocao.teatro.id
-		email promocao.teatro.email
+		username promocao.teatro.username
 		nome promocao.teatro.nome
 		cidade promocao.teatro.cidade
 		cnpj promocao.teatro.cnpj

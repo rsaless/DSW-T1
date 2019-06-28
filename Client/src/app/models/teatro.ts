@@ -1,8 +1,8 @@
 export class Teatro {
     id: string;
     nome: string;
-    email: string;
-    senha: string;
+    username: string;
+    password: string;
     cidade: string;
     cnpj: string;
 }

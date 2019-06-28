@@ -1,8 +1,8 @@
 export class Site {
     id: string;
     nome: string;
-    email: string;
-    senha: string;
+    username: string;
+    password: string;
     url: string;
     telefone: number;
 }

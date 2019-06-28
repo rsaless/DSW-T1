@@ -26,8 +26,8 @@ export class SiteEdicaoComponent implements OnInit {
     this.isLoadingResults = true;
     this.siteForm = this.formBuilder.group({
       nome: [null, Validators.required],
-      email: [null, Validators.required],
-      senha: [null, Validators.required],
+      username: [null, Validators.required],
+      password: [null, Validators.required],
       url: [null, Validators.required],
       telefone: [null, Validators.required],
     });
@@ -39,8 +39,8 @@ export class SiteEdicaoComponent implements OnInit {
     this.id = site.id;
     this.siteForm.setValue({
       nome: site.nome,
-      email: site.email,
-      senha: site.senha,
+      username: site.username,
+      password: site.password,
       url: site.url,
       telefone: site.telefone
     });

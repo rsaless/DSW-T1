@@ -13,8 +13,8 @@ export class TeatroDetalhesComponent implements OnInit {
   teatro: Teatro = {
     id: '',
     nome: '',
-    email: '',
-    senha: '',
+    username: '',
+    password: '',
     cidade: '',
     cnpj: '',
   };

@@ -13,8 +13,8 @@ export class SiteDetalhesComponent implements OnInit {
   site: Site = {
     id: '',
     nome: '',
-    email: '',
-    senha: '',
+    username: '',
+    password: '',
     url: '',
     telefone: null
   };
