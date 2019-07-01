@@ -22,6 +22,15 @@ export class ApiService {
     };
   }
 
+  promocoesPorTeatro (cnpj: string): Observable<Promocao[]>{
+    const url = `${apiUrl}/promocoes?cnpj=${cnpj}`;
+    return this.http.get<Promocao[]>(url)
+    .pipe(
+      tap(heroes => console.log('getPromocoesPorTeatro')),
+      catchError(this.handleError('getPromocoesPorTeatro', []))
+    );
+  }
+
   getSites (): Observable<Site[]> {
     const url = `${apiUrl}/sites`;
     return this.http.get<Site[]>(url)

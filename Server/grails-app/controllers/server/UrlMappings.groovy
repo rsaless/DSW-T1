@@ -28,7 +28,7 @@ class UrlMappings {
         */
         /*
             antes =>  "/promocoes/teatro/$cnpj"(controller: 'promocao', action: 'getByCnpj')
-            depois => "/promocoes?$cnpj"
+            depois => "/promocoes?cnpj=$cnpj"
         */
     }
 }
