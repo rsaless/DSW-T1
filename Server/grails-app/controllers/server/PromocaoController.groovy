@@ -13,7 +13,7 @@ class PromocaoController extends RestfulController {
 
     def List<Promocao> index() {
         if (params.cnpj){
-            def teatro = Teatro.findByCnpj(params.cnpj)
+            def teatro = Teatro.findByCnpjLike("%" + params.cnpj + "%")
             respond Promocao.findAllByTeatro(teatro), view: 'index'
         } else if (params.url){
             def site = Site.findByUrl(params.url)
