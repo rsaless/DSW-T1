@@ -81,9 +81,9 @@ export class TeatroDetalhesComponent implements OnInit {
     const dialogRef = this.dialog.open(DialogComponent, dialogConfig);
 
     dialogRef.afterClosed().subscribe(
-      data => {
+      async data => {
         if (data) {
-          this.esvaziaTeatro(this.promocoes);
+          await this.esvaziaTeatro(this.promocoes);
           this.deleteTeatro(id);
         }
       }
