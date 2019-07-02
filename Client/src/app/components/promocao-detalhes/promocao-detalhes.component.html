@@ -22,7 +22,7 @@
         <dt>Preço:</dt><dd>R$ {{promocao.preco}}</dd>
       </dl>
     </mat-card-content>
-    <mat-card-actions>
+    <mat-card-actions *ngIf="jwt.isAdmin || jwt.isOwner(promocao.teatro.username) ">
       <a mat-flat-button color="primary" [routerLink]="['/promocao-edicao', promocao.id]">
         <mat-icon>edit</mat-icon>
       </a>

@@ -4,6 +4,7 @@ import { ApiService } from '../../services/api.service';
 import { Site } from '../../models/site'
 import { Teatro } from '../../models/teatro'
 import { Promocao } from '../../models/promocao'
+import { JWTService } from 'src/app/services/jwt.service';
 
 @Component({
   selector: 'app-promocao-detalhes',
@@ -25,7 +26,8 @@ export class PromocaoDetalhesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private api: ApiService, 
-    private router: Router
+    private router: Router,
+    private jwt: JWTService
   ) { }
 
   async getData(id) {
