@@ -12,7 +12,22 @@ class TeatroController extends RestfulController {
     }
 
     def List<Teatro> index() {
-        if (params.cidade){respond Teatro.findAllByCidade(params.cidade), view: 'index'} 
+        if (params.cidade){respond Teatro.findAllByCidadeLike("%" + params.cidade + "%"), view: 'index'} 
         else {respond Teatro.list(), view: 'index'}
     }
+
 }
+
+
+/*
+
+HTTP Method	    URI	                Controller Action   Return Value
+GET             /books              index               java.lang.Object
+GET             /books/create       create              java.lang.Object
+POST            /books              save    	        java.lang.Object
+GET             /books/${id}        show                java.lang.Object
+GET             /books/${id}/edit   edit                java.lang.Object
+PUT             /books/${id}        update              java.lang.Object
+DELETE          /books/${id}        delete              java.lang.Object
+
+*/

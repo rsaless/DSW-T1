@@ -12,6 +12,7 @@ export class TeatrosComponent implements OnInit {
   displayedColumns: string[] = ['nome', 'username', 'cidade', 'cnpj'];
   teatros: Teatro[] = [];
   isLoadingResults = true;
+  query: string = '';
 
   constructor(private api: ApiService) { }
 
@@ -23,6 +24,12 @@ export class TeatrosComponent implements OnInit {
     this.teatros = await this.api.getTeatros().toPromise();
     this.isLoadingResults = false;
     console.debug('No issues, I will wait until promise is resolved..');
+  }
+
+  async atualizarTabela() {
+    this.isLoadingResults = true;
+    this.teatros = await this.api.teatrosPorCidade(this.query).toPromise();
+    this.isLoadingResults = false;
   }
 
 

@@ -31,6 +31,15 @@ export class ApiService {
     );
   }
 
+  teatrosPorCidade (cidade: string): Observable<Teatro[]>{
+    const url = `${apiUrl}/teatros?cidade=${cidade}`;
+    return this.http.get<Teatro[]>(url)
+    .pipe(
+      tap(heroes => console.log('getTeatrosPorCidade')),
+      catchError(this.handleError('getTeatrosPorCidade', []))
+    );
+  }
+
   getSites (): Observable<Site[]> {
     const url = `${apiUrl}/sites`;
     return this.http.get<Site[]>(url)

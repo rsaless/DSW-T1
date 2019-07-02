@@ -1,3 +1,5 @@
+<input [(ngModel)]="query" (ngModelChange)="atualizarTabela()" type="text" placeholder="Digite a cidade">
+
 <div class="example-container mat-elevation-z8">
   <div class="example-loading-shade"
        *ngIf="isLoadingResults">
