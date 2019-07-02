@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../../services/api.service";
 import { Site } from '../../models/site';
+import { JWTService } from 'src/app/services/jwt.service';
 
 @Component({
   selector: 'app-sites',
@@ -13,7 +14,8 @@ export class SitesComponent implements OnInit {
   sites: Site[] = [];
   isLoadingResults = true;
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService,
+    private jwt: JWTService) { }
 
   ngOnInit() {
     this.getData();

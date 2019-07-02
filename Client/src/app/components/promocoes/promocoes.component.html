@@ -6,8 +6,8 @@ Buscar por Teatro: <input [(ngModel)]="query_teatro" (ngModelChange)="atualizarT
        *ngIf="isLoadingResults">
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   </div>
-  <div *ngIf="jwt.isAdmin || jwt.isTeatro " class="button-row">
-    <a  mat-flat-button color="primary" [routerLink]="['/promocao-cadastro']"><mat-icon>add</mat-icon></a>
+  <div  class="button-row">
+    <a *ngIf="jwt.isAdmin || jwt.isTeatro " mat-flat-button color="primary" [routerLink]="['/promocao-cadastro']"><mat-icon>add</mat-icon></a>
   </div>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="promocoes" class="example-table"

@@ -30,7 +30,6 @@ export class PromocoesComponent implements OnInit {
   async getData() {
     this.promocoes = await this.api.getPromocoes().toPromise();
     this.auth = await this.jwt.getAuthentication().toPromise();
-    console.log(this.auth.roles);
     
     this.isLoadingResults = false;
     console.debug('No issues, I will wait until promise is resolved..');

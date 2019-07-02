@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../../services/api.service";
 import { Teatro } from '../../models/teatro';
+import { JWTService } from 'src/app/services/jwt.service';
 
 @Component({
   selector: 'app-teatros',
@@ -14,7 +15,8 @@ export class TeatrosComponent implements OnInit {
   isLoadingResults = true;
   query: string = '';
 
-  constructor(private api: ApiService) { }
+  constructor(private api: ApiService,
+    private jwt: JWTService) { }
 
   ngOnInit() {
     this.getData();
