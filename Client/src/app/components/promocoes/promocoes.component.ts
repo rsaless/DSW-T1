@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from "../../services/api.service";
 import { Promocao } from '../../models/promocao';
+import { Authentication } from 'src/app/models/authentication';
+import { JWTService } from 'src/app/services/jwt.service';
 
 @Component({
   selector: 'app-promocoes',
@@ -14,8 +16,12 @@ export class PromocoesComponent implements OnInit {
   isLoadingResults = true;
   query_site: string = '';
   query_teatro: string = '';
+  auth: Authentication;
 
-  constructor(private api: ApiService) { }
+  constructor(
+    private api: ApiService,
+    private jwt: JWTService
+    ) { }
 
   ngOnInit() {
     this.getData();
@@ -23,6 +29,9 @@ export class PromocoesComponent implements OnInit {
 
   async getData() {
     this.promocoes = await this.api.getPromocoes().toPromise();
+    this.auth = await this.jwt.getAuthentication().toPromise();
+    console.log(this.auth.roles);
+    
     this.isLoadingResults = false;
     console.debug('No issues, I will wait until promise is resolved..');
   }
@@ -40,6 +49,4 @@ export class PromocoesComponent implements OnInit {
     this.promocoes = await this.api.promocoesPorTeatro(this.query_teatro).toPromise();
     this.isLoadingResults = false;
   }
-
-
 }

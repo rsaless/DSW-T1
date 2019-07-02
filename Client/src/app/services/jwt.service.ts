@@ -39,6 +39,21 @@ export class JWTService {
     );
   }
 
+  public get isTeatro(): boolean{
+    const auth = JSON.parse(localStorage.getItem('authentication'));
+    return auth.roles.includes("ROLE_TEATRO");
+  }
+
+  public get isSite(): boolean{
+    const auth = JSON.parse(localStorage.getItem('authentication'));
+    return auth.roles.includes("ROLE_SITE");
+  }
+
+  public get isAdmin(): boolean{
+    const auth = JSON.parse(localStorage.getItem('authentication'));
+    return auth.roles.includes("ROLE_ADMIN");
+  }
+
   async refreshToken() {
     const auth: Authentication = await this.getAuthentication().toPromise();
     auth.when = new Date();
