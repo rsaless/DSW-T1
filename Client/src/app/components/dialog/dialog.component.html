@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Tem certeza que deseja deletar?</h2>
+
+<mat-dialog-content>
+    <p>O teatro/site possui promoções associadas, deletá-lo também 
+      removerá todas as promoções associadas, deseja continuar?</p>
+</mat-dialog-content>
+
+<mat-dialog-actions>
+    <button class="mat-button"(click)="close()">Não, obrigado</button>
+    <button class="mat-button"(click)="confirmar()">Ok, prosseguir!</button>
+</mat-dialog-actions>
