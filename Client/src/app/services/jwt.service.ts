@@ -54,6 +54,11 @@ export class JWTService {
     return auth.roles.includes("ROLE_ADMIN");
   }
 
+  public isOwner(username): boolean{
+    const auth = JSON.parse(localStorage.getItem('authentication'));
+    return auth.username == username
+  }
+
   async refreshToken() {
     const auth: Authentication = await this.getAuthentication().toPromise();
     auth.when = new Date();
