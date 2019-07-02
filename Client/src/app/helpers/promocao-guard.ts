@@ -1,20 +1,23 @@
 import { Injectable } from '@angular/core';
 import { Router, CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { JWTService } from '../services/jwt.service';
-import { Site } from '../models/site'
-import { ApiService } from '../services/api.service';
 
 @Injectable({ providedIn: 'root' })
-export class AuthGuard implements CanActivate {
-    site: Site = null;
+export class PromocaoGuard implements CanActivate {
+
+
     constructor(
         private router: Router,
-        private api: ApiService,
         private jwt: JWTService
     ) {}
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-        if (this.jwt.isAdmin) return true
+        
+        if (this.jwt.isTeatro || this.jwt.isAdmin) {
+            return true;
+        }
+
+        // not logged in so redirect to login page with the return url
         this.router.navigate(['/login'], { queryParams: { returnUrl: state.url }});
         return false;
     }
