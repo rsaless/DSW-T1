@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../services/api.service';
 import { Site } from '../../models/site'
+import { JWTService } from 'src/app/services/jwt.service';
 
 @Component({
   selector: 'app-site-detalhes',
@@ -23,7 +24,8 @@ export class SiteDetalhesComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private api: ApiService, 
-    private router: Router
+    private router: Router,
+    private jwt: JWTService
   ) { }
 
   async getData(id) {

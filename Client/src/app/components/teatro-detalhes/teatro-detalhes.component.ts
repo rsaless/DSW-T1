@@ -49,6 +49,4 @@ export class TeatroDetalhesComponent implements OnInit {
       );
   }
 
-  isOwner
-
 }
