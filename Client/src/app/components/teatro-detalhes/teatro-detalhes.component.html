@@ -24,7 +24,7 @@
       <a mat-flat-button color="primary" [routerLink]="['/teatro-edicao', teatro.id]">
         <mat-icon>edit</mat-icon>
       </a>
-      <a mat-flat-button color="warn" (click)="deleteTeatro(teatro.id)">
+      <a mat-flat-button color="warn" (click)="tentaDeletar(teatro.id, teatro.cnpj)">
         <mat-icon>delete</mat-icon>
       </a>
     </mat-card-actions>

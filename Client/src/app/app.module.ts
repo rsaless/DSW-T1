@@ -15,7 +15,8 @@ import {
   MatIconModule,
   MatButtonModule,
   MatCardModule,
-  MatFormFieldModule 
+  MatFormFieldModule,
+  MatDialogModule
 } from "@angular/material";
 
 import { AppRoutingModule } from './app-routing.module';
@@ -38,6 +39,7 @@ import { PromocaoEdicaoComponent } from './components/promocao-edicao/promocao-e
 import { PromocoesComponent } from './components/promocoes/promocoes.component';
 import { PromocoesSiteComponent } from './components/promocoes-site/promocoes-site.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { DialogComponent } from './components/dialog/dialog.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     PromocoesSiteComponent,
     NavbarComponent,
     AlertComponent,
-    LoginComponent
+    LoginComponent,
+    DialogComponent
   ],
   imports: [
     BrowserModule,
@@ -76,6 +79,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatCardModule,
     MatSelectModule,
     MatFormFieldModule,
+    MatDialogModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: function tokenGetter() {
@@ -90,6 +94,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     })
   ],  
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [DialogComponent]
 })
 export class AppModule { }
