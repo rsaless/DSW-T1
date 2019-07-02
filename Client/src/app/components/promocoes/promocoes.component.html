@@ -1,4 +1,6 @@
+Buscar por Site: <input [(ngModel)]="query_site" (ngModelChange)="atualizarTabelaSite()" type="text" placeholder="Digite a URL desejada">
 Buscar por Teatro: <input [(ngModel)]="query_teatro" (ngModelChange)="atualizarTabelaTeatro()" type="text" placeholder="Digite o CNPJ desejado">
+
 <div class="example-container mat-elevation-z8">
   <div class="example-loading-shade"
        *ngIf="isLoadingResults">

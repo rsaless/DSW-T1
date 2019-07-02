@@ -31,6 +31,15 @@ export class ApiService {
     );
   }
 
+  promocoesPorSite (purl: string): Observable<Promocao[]>{
+    const url = `${apiUrl}/promocoes?url=${purl}`;
+    return this.http.get<Promocao[]>(url)
+    .pipe(
+      tap(heroes => console.log('getPromocoesPorSite')),
+      catchError(this.handleError('getPromocoesPorSite', []))
+    );
+  }
+
   teatrosPorCidade (cidade: string): Observable<Teatro[]>{
     const url = `${apiUrl}/teatros?cidade=${cidade}`;
     return this.http.get<Teatro[]>(url)

@@ -12,6 +12,7 @@ export class PromocoesComponent implements OnInit {
   displayedColumns: string[] = ['nome_peca', 'preco', 'dia','hora', 'teatro','site'];
   promocoes: Promocao[] = [];
   isLoadingResults = true;
+  query_site: string = '';
   query_teatro: string = '';
 
   constructor(private api: ApiService) { }
@@ -26,8 +27,16 @@ export class PromocoesComponent implements OnInit {
     console.debug('No issues, I will wait until promise is resolved..');
   }
 
+  async atualizarTabelaSite() {
+    this.isLoadingResults = true;
+    this.query_teatro = '';
+    this.promocoes = await this.api.promocoesPorSite(this.query_site).toPromise();
+    this.isLoadingResults = false;
+  }
+
   async atualizarTabelaTeatro() {
     this.isLoadingResults = true;
+    this.query_site = '';
     this.promocoes = await this.api.promocoesPorTeatro(this.query_teatro).toPromise();
     this.isLoadingResults = false;
   }
