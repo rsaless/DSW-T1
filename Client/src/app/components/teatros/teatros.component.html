@@ -6,7 +6,7 @@
     <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
   </div>
   <div class="button-row">
-    <a *ngIf="jwt.isAdmin || jwt.isTeatro " mat-flat-button color="primary" [routerLink]="['/teatro-cadastro']"><mat-icon>add</mat-icon></a>
+    <a *ngIf="jwt.isAdmin" mat-flat-button color="primary" [routerLink]="['/teatro-cadastro']"><mat-icon>add</mat-icon></a>
   </div>
   <div class="mat-elevation-z8">
     <table mat-table [dataSource]="teatros" class="example-table"
