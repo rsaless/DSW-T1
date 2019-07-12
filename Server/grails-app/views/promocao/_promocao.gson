@@ -1,0 +1,29 @@
+import server.Promocao
+
+model {
+	Promocao promocao
+}
+
+json {
+	id promocao.id
+	nome_peca promocao.nome_peca
+	preco promocao.preco
+	dia_hora promocao.dia_hora.format("yyyy-MM-dd'T'HH:mm")
+	link {
+		href "${g.link(resource: 'promocao', absolute: true)}/${promocao.id}"
+	}
+	site {
+		id promocao.site.id
+		username promocao.site.username
+		url promocao.site.url
+		nome promocao.site.nome
+		telefone promocao.site.telefone
+	}
+    teatro {
+		id promocao.teatro.id
+		username promocao.teatro.username
+		nome promocao.teatro.nome
+		cidade promocao.teatro.cidade
+		cnpj promocao.teatro.cnpj
+	}
+}

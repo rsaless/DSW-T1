@@ -1,0 +1,8 @@
+import server.Teatro
+
+model {
+	Iterable<Teatro> teatroList
+}
+
+json tmpl.teatro(teatroList ?: [])
+

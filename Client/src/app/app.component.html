@@ -1,0 +1,16 @@
+<app-navbar></app-navbar>
+
+<ng-template [ngIf]="loggedIn">
+  <div class="logout" style="text-align:right">
+    <mat-card-actions>
+      <button mat-flat-button color="primary" style="color: white" (click)="logout()">Logout</button>
+    </mat-card-actions>
+  </div>
+</ng-template>
+
+<div class="alert-box">
+  <app-alert></app-alert>
+</div>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

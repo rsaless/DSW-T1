@@ -1,0 +1,34 @@
+<div class="example-container mat-elevation-z8">
+  <div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+  </div>
+  <div class="button-row">
+    <a mat-flat-button color="primary" [routerLink]="['/promocoes']">
+      <mat-icon>list</mat-icon>
+    </a>
+  </div>
+  <mat-card class="example-card">
+    <mat-card-header>
+      <mat-card-title>
+        <h2>{{promocao.nome_peca}}</h2>
+      </mat-card-title>
+      <mat-card-subtitle>Teatro: {{promocao.teatro.nome}}</mat-card-subtitle>
+      <mat-card-subtitle>Site: {{promocao.site.url}}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <dl>
+        <dt>Data:</dt><dd>{{promocao.dia_hora | date: 'dd/MM/yyyy'}}</dd>
+        <dt>Horário:</dt><dd>{{promocao.dia_hora | date: 'HH:mm'}}</dd>
+        <dt>Preço:</dt><dd>R$ {{promocao.preco}}</dd>
+      </dl>
+    </mat-card-content>
+    <mat-card-actions *ngIf="jwt.isAdmin || jwt.isOwner(promocao.teatro.username) ">
+      <a mat-flat-button color="primary" [routerLink]="['/promocao-edicao', promocao.id]">
+        <mat-icon>edit</mat-icon>
+      </a>
+      <a mat-flat-button color="warn" (click)="deletePromocao(promocao.id)">
+        <mat-icon>delete</mat-icon>
+      </a>
+    </mat-card-actions>
+  </mat-card>
+</div>

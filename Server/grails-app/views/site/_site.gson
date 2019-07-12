@@ -1,0 +1,18 @@
+import server.Site
+
+model {
+	Site site
+}
+
+json {
+	id site.id
+	url site.url
+	telefone site.telefone
+	nome site.nome
+	password site.password
+	username site.username
+	link {
+		href "${g.link(resource: 'site', absolute: true)}/${site.id}"
+	}
+}
+

@@ -1,0 +1,74 @@
+<div class="example-container mat-elevation-z8">
+    <div class="example-loading-shade"
+         *ngIf="isLoadingResults">
+      <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+    </div>
+    <div class="button-row">
+      <a mat-flat-button color="primary" (click)="promocaoDetalhes()"><mat-icon>info</mat-icon></a>
+    </div>
+    <mat-card class="example-card">
+      <form [formGroup]="promocaoForm" (ngSubmit)="onFormSubmit(promocaoForm.value)">
+        <mat-form-field class="example-full-width">
+            <input 
+              matInput 
+              placeholder="Nome da peça" 
+              formControlName="nome_peca" 
+              [errorStateMatcher]="matcher">
+            <mat-error>
+              <span *ngIf="!promocaoForm.get('nome_peca').valid && promocaoForm.get('nome_peca').touched">
+                Por favor entre o nome da peça
+              </span>
+            </mat-error>
+        </mat-form-field><!-- Nome da peça -->
+        <mat-form-field class="example-full-width">
+          <input 
+            matInput 
+            placeholder="Data e Hora" 
+            formControlName="dia_hora" 
+            type="datetime-local"
+            [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!promocaoForm.get('dia_hora').valid && promocaoForm.get('dia_hora').touched">
+              Por favor entre a data</span>
+          </mat-error>
+        </mat-form-field><!-- Data e hora -->
+        <mat-form-field class="example-full-width">
+          <input 
+            matInput 
+            placeholder="Preço" 
+            type="number" 
+            formControlName="preco"  
+            min=0.01
+            [errorStateMatcher]="matcher">
+          <mat-error>
+            <span *ngIf="!promocaoForm.get('preco').valid && promocaoForm.get('preco').touched">
+              Por favor entre com o Preço
+            </span>
+          </mat-error>
+        </mat-form-field><!-- Preço -->
+        <mat-form-field class="example-full-width">
+            <mat-label>Site</mat-label>
+            <mat-select formControlName="site" [(value)]="selected_site.id">
+                <mat-option *ngFor="let site of sites" [value]="site.id">
+                  {{site.nome}}
+                </mat-option>
+              </mat-select>
+        </mat-form-field><!-- Site -->
+        <mat-form-field class="example-full-width">
+            <mat-label>Teatro</mat-label>
+            <mat-select formControlName="teatro" [(value)]="selected_teatro.id">
+                <mat-option *ngFor="let teatro of teatros" [value]="teatro.id">
+                  {{teatro.nome}}
+                </mat-option>
+              </mat-select>
+        </mat-form-field><!-- Teatro -->
+        <div class="button-row">
+          <button type="submit" [disabled]="!promocaoForm.valid" mat-flat-button color="primary"><mat-icon>save</mat-icon></button>
+        </div>
+      </form>
+    </mat-card>
+  </div>
+
+      
+        
+        
